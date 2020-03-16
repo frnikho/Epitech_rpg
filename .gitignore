@@ -1,0 +1,7 @@
+**/*.o
+.vscode
+.idea
+**/*.gc*
+my_rpg
+CMakeLists.txt
+cmake-build-debug
