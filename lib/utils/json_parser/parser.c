@@ -5,7 +5,6 @@
 ** parser
 */
 
-#include "lib/utils/string.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -47,19 +46,6 @@ char *create_file_buffer(char *file)
     return (buff);
 }
 
-char *my_str_part_copy(char *buff, int beg, int end)
-{
-    char *result = malloc(sizeof(char) * (end-beg+1));
-    int index = 0;
-
-    result[end-beg] = '\0';
-    for (int i = beg; i < end; i++) {
-        result[index] = buff[i];
-        index++;
-    }
-    return (result);
-}
-
 int parser(char **argv)
 {
     char *file_data = create_file_buffer(argv[1]);        // Retourne le contenu du fichier dont le path est argv[1]
@@ -72,6 +58,9 @@ int parser(char **argv)
     int **map_one = contruct_map_from_layer(values[0]);   // {beta} Transforme une valeur de type "[1, 2, 3, 4]" en tableau de int
     int **map_two = contruct_map_from_layer(values[2]);
 
+    char *objects = get_key_data(values[1], "objects");
+    char **obj_tab = get_value_tab(objects, 2);
+
     for (int i = 0; map_one[i]; i++)
         free(map_one[i]);
     free(map_one);
@@ -83,5 +72,9 @@ int parser(char **argv)
     for (int i = 0; values[i]; i++)
         free(values[i]);
     free(values);
+    free(objects);
+    for (int i = 0; obj_tab[i]; i++)
+        free(obj_tab[i]);
+    free(obj_tab);
     return (0);
 }

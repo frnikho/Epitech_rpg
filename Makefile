@@ -44,9 +44,14 @@ $(NAME):				$(OBJ)
 						$(CC) -o $(NAME) $(OBJ) $(LIB) $(CFLAGS)
 clean: clean
 						$(RM) -rf $(OBJ)
+						make -C lib/ clean
+
 fclean:					clean
 						$(RM) -rf $(NAME)
+						make -C lib/ fclean
+
 re:						fclean all
+						make -C lib/ re
 
 test_run:
 						$(MAKE) -C tests/

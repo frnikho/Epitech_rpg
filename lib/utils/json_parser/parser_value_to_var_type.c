@@ -21,6 +21,19 @@ int *in_cont_tab, char *cont_tab);
 int add_container_index(char *buff, int *i_tab, \
 char *cont_tab, int *in_cont_tab);
 
+char *my_str_part_copy(char *buff, int beg, int end)
+{
+    char *result = malloc(sizeof(char) * (end-beg+1));
+    int index = 0;
+
+    result[end-beg] = '\0';
+    for (int i = beg; i < end; i++) {
+        result[index] = buff[i];
+        index++;
+    }
+    return (result);
+}
+
 void set_variables_to_zero(int *entry_point, int *obj_index, \
 int *last_begining, int indx_e)
 {

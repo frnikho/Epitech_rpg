@@ -12,7 +12,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "lib/utils/string.h"
 
 int get_patern_index_core(char *balise, char *buff, int i, int index)
 {
@@ -22,7 +21,7 @@ int get_patern_index_core(char *balise, char *buff, int i, int index)
         if (balise[y] != buff[i+pos_act])
             break;
         pos_act++;
-        if (!balise[y+1])
+        if (!balise[y+1] && buff[i+pos_act] == '"')
             index = i;
     }
     pos_act = 0;
@@ -41,4 +40,45 @@ int get_patern_index(char *buff, char *balise)
             break;
     }
     return (index);
+}
+
+float my_pow(float x, int y)
+{
+    float result = 1;
+    
+    for (; y > 0; y--)
+        result *= x;
+    return (result);
+}
+
+void my_getfloat_point_handling(int decimals, float *values, int *i)
+{
+    values[0] = values[0] / my_pow(10, decimals);
+    for (; decimals > 0; decimals--)
+        values[1] /= 10;
+    (*i)--;
+}
+
+float my_getfloat(char *str)
+{
+    char *buff = str;
+    int neg = 1;
+    int buff_len = 0;
+    float values[] = {0, 1};
+
+    if (buff[0] == '-') {
+        neg = -1;
+        buff = &str[1];
+    }
+    for (; buff[buff_len]; buff_len++);
+    for (int i = buff_len-1; i >= 0; i--) {
+        if ((buff[i] > 57 || buff[i] < 48) && buff[i] != '.')
+            return (0);
+        if (buff[i] == '.')
+            my_getfloat_point_handling(((buff_len-1)-i), values, &i);
+
+        values[0] += (buff[i] - 48) * values[1];
+        values[1] *= 10;
+    }
+    return (values[0]*neg);
 }
