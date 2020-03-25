@@ -40,7 +40,12 @@ EFFECTS					=					$(PATH_EFFECTS)/bump/bump.c													\
 
 UTILS					=					$(PATH_UTILS)/string/str_split.c											\
 											$(PATH_UTILS)/string/str_len.c												\
-											$(PATH_UTILS)/string/str_cat.c
+											$(PATH_UTILS)/string/str_cat.c												\
+											$(PATH_UTILS)/json_parser/parser_construct_objects.c						\
+											$(PATH_UTILS)/json_parser/parser_get_key_value.c							\
+											$(PATH_UTILS)/json_parser/parser_get_patern_index.c							\
+											$(PATH_UTILS)/json_parser/parser_value_to_var.c								\
+											$(PATH_UTILS)/json_parser/parser.c
 
 
 OBJ						=					$(COMPONENTS:%.c=%.o) $(EFFECTS:%.c=%.o) $(UTILS:%.c=%.o)

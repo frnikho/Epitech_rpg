@@ -18,4 +18,9 @@ char *str_cat(char *one, char *two);
 char *str_cat_char(char *one , char c);
 int array_length(char **array);
 
+// Parser
+char *get_key_data(char *buff, char *balise);
+char **get_value_tab(char *value, int tab_len);
+int **contruct_map_from_layer(char *str);
+
 #endif
