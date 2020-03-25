@@ -41,6 +41,7 @@ game_t *init_game(sfVector2f win_size, char *title)
     #endif
     game->mode.width = win_size.x;
     game->mode.height = win_size.y;
+    game->mode.bitsPerPixel = 32;
     game->clock = sfClock_create();
     sfFloatRect rect = {0, 0, win_size.x, win_size.y};
     game->camera = sfView_createFromRect(rect);

@@ -13,7 +13,7 @@
 int init_intro_screen(game_t *game, intro_screen_t *screen)
 {
     screen->delta = 0;
-    char *test = "Warning, this game is so very very fun, please play with caution ";
+    char *test = "Warning, this game is so very very fun, please play with caution";
     char **content = str_split(test, '#');
     screen->dialog = create_dialog(content, 1, (sfVector2f){420, 640}, 1);
 }
