@@ -5,7 +5,6 @@
 ** parser_construct_objects
 */
 
-#include "my.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>

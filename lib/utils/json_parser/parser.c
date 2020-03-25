@@ -5,7 +5,7 @@
 ** parser
 */
 
-#include "my.h"
+#include "lib/utils/string.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -86,15 +86,13 @@ int parser(char **argv)
 {
     char *file_data = create_file_buffer(argv[1]);        // Retourne le contenu du fichier dont le path est argv[1]
 
-    if (file_data[0] == 'E' && my_strlen(file_data) == 1)
+    if (file_data[0] == 'E' && str_len(file_data) == 1)
         return (84);
 
     char *n_value = get_key_data(file_data, "layers");    // Retourne la valeur correspondant a la clef "layers" dans le fichier json
     char **values = get_value_tab(n_value, 3);            // Transforme le string de la valeur en tableau si s'en est un
     int **map_one = contruct_map_from_layer(values[0]);   // {beta} Transforme une valeur de type "[1, 2, 3, 4]" en tableau de int
     int **map_two = contruct_map_from_layer(values[2]);
-    csfml_loop(map_one, map_two);                         // {beta} Fonction en rapport avec la map, layers pour csfml
-
 
     for (int i = 0; map_one[i]; i++)
         free(map_one[i]);

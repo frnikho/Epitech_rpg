@@ -44,7 +44,7 @@ UTILS					=					$(PATH_UTILS)/string/str_split.c											\
 											$(PATH_UTILS)/json_parser/parser_construct_objects.c						\
 											$(PATH_UTILS)/json_parser/parser_get_key_value.c							\
 											$(PATH_UTILS)/json_parser/parser_get_patern_index.c							\
-											$(PATH_UTILS)/json_parser/parser_value_to_var.c								\
+											$(PATH_UTILS)/json_parser/parser_value_to_var_type.c								\
 											$(PATH_UTILS)/json_parser/parser.c
 
 

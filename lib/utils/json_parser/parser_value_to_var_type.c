@@ -5,7 +5,6 @@
 ** parser_value_to_var_type
 */
 
-#include "my.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>

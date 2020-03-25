@@ -5,7 +5,6 @@
 ** parser_get_pater_index
 */
 
-#include "my.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
