@@ -1,0 +1,12 @@
+{
+  "level":1,
+  "xp":0,
+  "stats":{
+    "hp":20,
+    "mp":10,
+    "resistance":8,
+    "magic":8,
+    "agility":8,
+    "stength":8
+  }
+}

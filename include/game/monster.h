@@ -13,12 +13,16 @@
 
 typedef struct monster_s {
     int id;
+    char *name;
     sprite_t *sprite;
-    stats_t entity_stats;
+    stats_t *stats;
     int gains_factor;
     int stats_factor;
     int xp;
     int gold;
 } monster_t;
+
+monster_t *create_monster(char *fp);
+void dispose_monster(monster_t *monster);
 
 #endif

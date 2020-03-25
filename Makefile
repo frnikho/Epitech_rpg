@@ -18,6 +18,13 @@ SRC						=					src/main.c																\
 											src/gui/dialog/update_dialog.c											\
 											src/gui/dialog/draw_dialog.c											\
 											src/game/item/item.c													\
+											src/game/monster/monster.c												\
+											src/game/inventory/inventory.c											\
+											src/game/stats/stats.c													\
+											src/game/stats/damage_stats.c											\
+											src/game/player/player.c												\
+											src/game/player/deserialize_player.c									\
+											src/game/player/serialize_player.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\

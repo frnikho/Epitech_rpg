@@ -8,7 +8,7 @@
 #ifndef MY_RPG_INVENTORY_H
 #define MY_RPG_INVENTORY_H
 
-#include "player/item"
+#include "game/item.h"
 
 typedef struct case_s {
     int id;
@@ -17,7 +17,7 @@ typedef struct case_s {
 
 typedef struct inventory_s {
     case_t **equipements;
-    case_t **bag
+    case_t **bag;
 } inventory_t;
 
 #endif

@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include "lib/utils/string.h"
 
 int get_patern_index_core(char *balise, char *buff, int i, int index)
 {
@@ -34,7 +35,7 @@ int get_patern_index(char *buff, char *balise)
 {
     int index = -1;
 
-    for (int i = 0; i < my_strlen(buff) - my_strlen(balise); i++) {
+    for (int i = 0; i < str_len(buff) - str_len(balise); i++) {
         index = get_patern_index_core(balise, buff, i, index);
         if (index != -1)
             break;

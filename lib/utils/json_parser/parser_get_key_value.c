@@ -1,4 +1,5 @@
 /*
+/*
 ** EPITECH PROJECT, 2020
 ** map_parser
 ** File description:

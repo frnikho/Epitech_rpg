@@ -18,28 +18,6 @@ char *get_key_data(char *buff, char *balise);
 char **get_value_tab(char *value, int tab_len);
 int **contruct_map_from_layer(char *str);
 
-int my_getnbr_bis(char *str)
-{
-    int result = 0;
-    char *buff = str;
-    int neg = 1;
-    int buff_len = 0;
-    int index = 1;
-
-    if (buff[0] == '-') {
-        neg = -1;
-        buff = &str[1];
-    }
-    for (; buff[buff_len]; buff_len++);
-    for (int i = buff_len-1; i >= 0; i--) {
-        if (buff[i] > 57 || buff[i] < 48)
-            return (0);
-        result += (buff[i] - 48) * index;
-        index *= 10;
-    }
-    return (result*neg);
-}
-
 int get_file_infos(char *file)
 {
     struct stat *buff_stat;

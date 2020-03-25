@@ -11,9 +11,9 @@
 stats_t *init_stats(const int value[6])
 {
     stats_t *stats = malloc(sizeof(stats_t));
-    stats->mp = value[0];
-    stats->hp = value[1];
-    stats->strengh = value[2];
+    stats->hp = value[0];
+    stats->mp = value[1];
+    stats->strenght = value[2];
     stats->resistance = value[3];
     stats->agility = value[4];
     stats->magic = value[5];
