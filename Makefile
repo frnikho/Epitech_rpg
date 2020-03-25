@@ -6,19 +6,34 @@
 ##
 
 CC						=					gcc
-
 NAME					=					my_rpg
+PATH_COMPONENT			=					src/component
+PATH_SCENE				=					src/scene
 
-SRC						=					src/main.c														\
+SRC						=					src/main.c																\
+											src/game.c																\
+											src/gui/dialog/dialog.c													\
+											src/gui/dialog/active_dialog.c											\
+											src/gui/dialog/set_dialog_text.c										\
+											src/gui/dialog/update_dialog.c											\
+											src/gui/dialog/draw_dialog.c											\
+											src/game/item/item.c													\
 
-OBJ						=					$(SRC:%.c=%.o)
+SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
+											$(PATH_SCENE)/intro/init_intro_screen.c 								\
+											$(PATH_SCENE)/intro/input_intro_screen.c								\
+											$(PATH_SCENE)/intro/render_intro_screen.c								\
+											$(PATH_SCENE)/intro/update_intro_screen.c								\
 
-LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
+OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)
 
-CFLAGS					=					-I include/ $(LIB)
+LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -L lib/ -lcsfml
+
+CFLAGS					=					-I include/ $(LIB) -g
 
 all:					$(NAME)
 $(NAME):				$(OBJ)
+						$(MAKE) -C lib/
 						$(CC) -o $(NAME) $(OBJ) $(LIB) $(CFLAGS)
 clean: clean
 						$(RM) -rf $(OBJ)
