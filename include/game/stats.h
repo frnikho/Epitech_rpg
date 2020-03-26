@@ -25,6 +25,6 @@ typedef struct stats_s {
 } stats_t;
 
 stats_t *init_stats(const int value[6]);
-void dispose_stats(stats_t *stats);
+void destroy_stats(stats_t *stats);
 
 #endif

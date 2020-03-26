@@ -16,7 +16,7 @@ monster_t *create_monster(char *fp)
 
 void dispose_monster(monster_t *monster)
 {
-    dispose_stats(monster->stats);
+    destroy_stats(monster->stats);
     dispose_sprite(monster->sprite);
     free(monster->name);
     free(monster);

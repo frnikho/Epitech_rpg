@@ -8,12 +8,13 @@
 #include <time.h>
 #include "scene/settings.h"
 #include "scene/intro_screen.h"
+#include "scene/battle.h"
 #include "game.h"
 
 int loop(game_t *game)
 {
     void (*game_state[])(game_t *game, long int delta) =
-        {intro_screen, 0, settings_screen};
+        {intro_screen, battle_screen, settings_screen};
     sfClock_restart(game->clock);
     while (sfRenderWindow_isOpen(game->window)) {
         long int delta = sfClock_restart(game->clock).microseconds;
@@ -29,7 +30,6 @@ int main(int ac, char **av)
     game_t *game = init_game(mode, "Dragon EpiQuest");
     srand(time(0));
     loop(game);
-    deserialize_player();
     dispose_game(game);
     return (0);
 }

@@ -8,10 +8,6 @@
 #include "game.h"
 #include "scene/settings.h"
 
-int change_settings()
-{
-
-}
 
 int update_settings_screen(game_t *game, settings_screen_t *s, long int delta)
 {
@@ -24,4 +20,13 @@ int update_settings_screen(game_t *game, settings_screen_t *s, long int delta)
     sfVector2f spos = {pos[s->select_cursor][0], pos[s->select_cursor][1]};
     set_sprite_position(s->cursor, spos);
     update_dialog(s->dialog, delta);
+    update_fade(s->fade);
+    if (s->fade->is_finish) {
+        game->current_state = INTRO_SCREEN;
+        dispose_settings_screen(s);
+        return (0);
+    }
+    if (s->dialog->is_finished && !s->fade->is_active && !s->fade->is_finish) {
+        set_fade_active(s->fade);
+    }
 }

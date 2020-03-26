@@ -22,7 +22,7 @@ static void update_fade_out(fade_t *fade)
 static void update_fade_in(fade_t *fade)
 {
     if (fade->color.a >= 254 - fade->speed) {
-        fade->color.a = 0;
+        fade->color.a = 255;
         fade->is_finish = 1;
         fade->is_active = 0;
     } else {

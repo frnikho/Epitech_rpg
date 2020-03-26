@@ -5,6 +5,8 @@
 **  function
 */
 
+#include <stdlib.h>
+
 int get_nbr(char *str)
 {
     int result = 0;
@@ -25,4 +27,13 @@ int get_nbr(char *str)
         index *= 10;
     }
     return (result*neg);
+}
+
+int fget_nbr(char *str)
+{
+    if (!str)
+        return (-1);
+    int nbr = get_nbr(str);
+    free(str);
+    return (nbr);
 }

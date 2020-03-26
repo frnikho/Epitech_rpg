@@ -17,6 +17,9 @@ static int init_other_stats(char *content, player_t *player)
     char *mp = get_key_data(stats, "mp");
     player->stats->hp = get_nbr(hp);
     player->stats->mp = get_nbr(mp);
+    free(stats);
+    free(hp);
+    free(mp);
     return (0);
 }
 
@@ -53,6 +56,8 @@ int init_player_objects(char *content, player_t *player)
     int i_level = get_nbr(level);
     player->xp = i_xp;
     player->level = i_level;
+    free(xp);
+    free(level);
     return (0);
 }
 
@@ -70,5 +75,6 @@ player_t *deserialize_player(void)
     if (p->level <= 0 || p->xp < 0 || !p->stats)
         return (0);
     debug_player(p);
+    free(c);
     return (p);
 }

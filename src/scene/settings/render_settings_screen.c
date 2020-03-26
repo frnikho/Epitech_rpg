@@ -18,4 +18,5 @@ int render_settings_screen(game_t *game, settings_screen_t *s, long int delta)
     draw_text(game->window, s->current_dialog);
     draw_sprite(game->window, s->cursor);
     draw_dialog(game->window, s->dialog);
+    draw_fade(game->window, s->fade);
 }

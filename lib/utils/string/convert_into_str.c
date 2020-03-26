@@ -15,7 +15,7 @@ int get_int_length(int number)
 
 char *convert_str(int number)
 {
-    char *result = malloc(sizeof(char) * 10);
+    char *result = malloc(sizeof(char) * (get_int_length(number) + 1));
     int length = get_int_length(number);
     int coef = pow(10, length);
     int index = 0;

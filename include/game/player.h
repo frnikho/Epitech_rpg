@@ -21,5 +21,6 @@ typedef struct player_s {
 void debug_player(player_t *player);
 player_t *deserialize_player(void);
 void serialize_player(player_t *player);
+void destroy_player(player_t *player);
 
 #endif

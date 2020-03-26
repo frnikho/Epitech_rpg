@@ -8,6 +8,7 @@
 #include "game/player.h"
 #include "game.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static player_t *init_player(void)
 {
@@ -40,7 +41,9 @@ void debug_player(player_t *player)
     #endif
 }
 
-void dispose_player(player_t *player)
+void destroy_player(player_t *player)
 {
-
+    //TODO destroy inventory
+    destroy_stats(player->stats);
+    free(player);
 }

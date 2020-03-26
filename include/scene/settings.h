@@ -10,6 +10,7 @@
 
 #include <lib/components/text.h>
 #include <gui/dialog.h>
+#include <lib/effects/fade.h>
 #include "game.h"
 #include "lib/components/sprite.h"
 #include "lib/components/anim_sprite.h"
@@ -36,6 +37,7 @@ typedef struct settings_screen_s {
     text_t *current_dialog;
     text_t *quit;
     dialog_t*dialog;
+    fade_t *fade;
 } settings_screen_t;
 
 void settings_screen(game_t *game, long int delta);

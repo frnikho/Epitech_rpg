@@ -36,10 +36,11 @@ static void load_game_settings(game_t *game) {
         init_default_settings(game);
         return;
     }
-    game->config.framerate = get_nbr(get_key_data(content, "framerate"));
-    game->config.dialog_speed = get_nbr(get_key_data(content, "dialog_speed"));
-    game->config.sound_volume = get_nbr(get_key_data(content, "sound_volume"));
-    game->config.music_volume = get_nbr(get_key_data(content, "music_volume"));
+    game->config.framerate = fget_nbr(get_key_data(content, "framerate"));
+    game->config.dialog_speed = fget_nbr(get_key_data(content, "dialog_speed"));
+    game->config.sound_volume = fget_nbr(get_key_data(content, "sound_volume"));
+    game->config.music_volume = fget_nbr(get_key_data(content, "music_volume"));
+    free(content);
 }
 
 static void debug(game_t *game, sfVector2f win_size)
@@ -79,5 +80,6 @@ void dispose_game(game_t *game)
     sfRenderWindow_destroy(game->window);
     sfView_destroy(game->camera);
     sfClock_destroy(game->clock);
+    destroy_player(game->player);
     free(game);
 }

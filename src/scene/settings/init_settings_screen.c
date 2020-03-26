@@ -45,4 +45,6 @@ int init_settings_screen(game_t *game, settings_screen_t *settings)
     char *tmp = "configuration sauvegardee";
     char **dialog = str_split(tmp, '#');
     settings->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
+    sfVector2f pos = {1600, 800};
+    settings->fade = init_fade(pos, sfBlack, 1, FADE_OUT);
 }
