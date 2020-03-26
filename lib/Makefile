@@ -37,6 +37,9 @@ EFFECTS					=					$(PATH_EFFECTS)/bump/bump.c													\
 											$(PATH_EFFECTS)/bump/draw_bump.c											\
 											$(PATH_EFFECTS)/bump/update_bump.c											\
 											$(PATH_EFFECTS)/bump/active_bump.c											\
+											$(PATH_EFFECTS)/fade/fade.c													\
+											$(PATH_EFFECTS)/fade/fade_draw.c											\
+											$(PATH_EFFECTS)/fade/fade_set.c
 
 UTILS					=					$(PATH_UTILS)/string/str_split.c											\
 											$(PATH_UTILS)/string/str_len.c												\

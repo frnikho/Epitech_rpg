@@ -51,9 +51,8 @@ dialog_t *create_dialog(char **text, int pitch, sfVector2f pos, int speed)
 
 void destroy_dialog(dialog_t *dialog)
 {
-    for (int i = 0; dialog->text[i] != 0; i++) {
+    for (int i = 0; dialog->text[i] != 0; i++)
         free(dialog->text[i]);
-    }
     free(dialog->text);
     dispose_anim_sprite(dialog->dot);
     dispose_sprite(dialog->box);

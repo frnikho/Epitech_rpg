@@ -17,6 +17,7 @@ SRC						=					src/main.c																\
 											src/gui/dialog/set_dialog_text.c										\
 											src/gui/dialog/update_dialog.c											\
 											src/gui/dialog/draw_dialog.c											\
+											src/gui/dialog/reset_dialog.c											\
 											src/game/item/item.c													\
 											src/game/monster/monster.c												\
 											src/game/inventory/inventory.c											\
@@ -50,13 +51,10 @@ $(NAME):				$(OBJ)
 clean: clean
 						$(RM) -rf $(OBJ)
 						make -C lib/ clean
-
 fclean:					clean
 						$(RM) -rf $(NAME)
 						make -C lib/ fclean
-
 re:						fclean all
 						make -C lib/ re
-
 test_run:
 						$(MAKE) -C tests/

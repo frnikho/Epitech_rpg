@@ -8,6 +8,8 @@
 #ifndef DEFENDER_DIALOG_H
 #define DEFENDER_DIALOG_H
 
+#define GUI_POS {420, 640}
+
 #include "lib/components/anim_sprite.h"
 #include "lib/components/sound.h"
 #include "lib/components/text.h"
@@ -36,5 +38,6 @@ void toggle_dialog_active(dialog_t *dialog);
 void set_dialog_text(dialog_t *dialog, char **text);
 void update_dialog(dialog_t *dialog, long int delta);
 void update_dialog_line(dialog_t *dialog);
+void reset_dialog(dialog_t *dialog, char **str, int p, sfVector2f pos);
 
 #endif

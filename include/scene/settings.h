@@ -9,20 +9,20 @@
 #define MY_RPG_SETTINGS_H
 
 #include <lib/components/text.h>
+#include <gui/dialog.h>
 #include "game.h"
 #include "lib/components/sprite.h"
 #include "lib/components/anim_sprite.h"
 
-#define SELECT_QUIT 9
 #define SELECT_FRAME_30 0
 #define SELECT_FRAME_50 1
 #define SELECT_FRAME_60 2
 #define SELECT_FRAME_144 3
 #define SELECT_FRAME_240 4
-
 #define SELECT_DIALOG_1 5
 #define SELECT_DIALOG_2 6
 #define SELECT_DIALOG_3 7
+#define SELECT_QUIT 8
 
 typedef struct settings_screen_s {
     long int delta;
@@ -34,6 +34,8 @@ typedef struct settings_screen_s {
     text_t *title;
     text_t *current_frame;
     text_t *current_dialog;
+    text_t *quit;
+    dialog_t*dialog;
 } settings_screen_t;
 
 void settings_screen(game_t *game, long int delta);

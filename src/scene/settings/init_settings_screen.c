@@ -42,4 +42,7 @@ int init_settings_screen(game_t *game, settings_screen_t *settings)
     settings->cursor = init_sprite("assets/sprite/gui/pointer_big.png");
     set_sprite_position(settings->cursor, (sfVector2f){490, 259});
     init_settings_text(game, settings);
+    char *tmp = "configuration sauvegardee";
+    char **dialog = str_split(tmp, '#');
+    settings->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
 }
