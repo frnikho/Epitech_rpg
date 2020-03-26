@@ -13,16 +13,16 @@
 #include "lib/components/sprite.h"
 #include "lib/components/anim_sprite.h"
 
-#define SELECT_QUIT 0
-#define SELECT_FRAME_30 1
-#define SELECT_FRAME_50 2
-#define SELECT_FRAME_60 3
-#define SELECT_FRAME_144 4
-#define SELECT_FRAME_240 5
+#define SELECT_QUIT 9
+#define SELECT_FRAME_30 0
+#define SELECT_FRAME_50 1
+#define SELECT_FRAME_60 2
+#define SELECT_FRAME_144 3
+#define SELECT_FRAME_240 4
 
-#define SELECT_DIALOG_1 10
-#define SELECT_DIALOG_2 11
-#define SELECT_DIALOG_3 12
+#define SELECT_DIALOG_1 5
+#define SELECT_DIALOG_2 6
+#define SELECT_DIALOG_3 7
 
 typedef struct settings_screen_s {
     long int delta;

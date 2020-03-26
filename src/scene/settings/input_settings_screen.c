@@ -5,6 +5,7 @@
 **  function
 */
 
+#include <lib/utils/string.h>
 #include "game.h"
 #include "scene/settings.h"
 
@@ -15,18 +16,37 @@ static void handle_click_dialog(game_t *game, settings_screen_t *settings)
             game->config.dialog_speed = 1;
             break;
         case SELECT_DIALOG_2:
+            game->config.dialog_speed = 2;
             break;
         case SELECT_DIALOG_3:
+            game->config.dialog_speed = 3;
             break;
     }
+    char *cf = str_cat("* ", convert_str(game->config.dialog_speed));
+    settings->current_dialog->title = cf;
 }
 
 static void handle_click_frame(game_t *game, settings_screen_t *settings)
 {
     switch (settings->select_cursor) {
-        case SELECT_DIALOG_1:
+        case SELECT_FRAME_30:
+            game->config.framerate = 30;
+            break;
+        case SELECT_FRAME_50:
+            game->config.framerate = 50;
+            break;
+        case SELECT_FRAME_60:
+            game->config.framerate = 60;
+            break;
+        case SELECT_FRAME_144:
+            game->config.framerate = 144;
+            break;
+        case SELECT_FRAME_240:
+            game->config.framerate = 240;
             break;
     }
+    char *cf = str_cat("* ", convert_str(game->config.framerate));
+    settings->current_frame->title = cf;
 }
 
 static int handle_selection(game_t *game, settings_screen_t *settings)
