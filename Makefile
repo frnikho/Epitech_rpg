@@ -31,6 +31,11 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/input_intro_screen.c								\
 											$(PATH_SCENE)/intro/render_intro_screen.c								\
 											$(PATH_SCENE)/intro/update_intro_screen.c								\
+											$(PATH_SCENE)/settings/init_settings_screen.c							\
+											$(PATH_SCENE)/settings/input_settings_screen.c							\
+											$(PATH_SCENE)/settings/render_settings_screen.c							\
+											$(PATH_SCENE)/settings/settings_screen.c								\
+											$(PATH_SCENE)/settings/update_settings_screen.c
 
 OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)
 

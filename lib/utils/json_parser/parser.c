@@ -5,59 +5,25 @@
 ** parser
 */
 
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
+#include "lib/utils/file.h"
+#include "lib/utils/string.h"
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 char *get_key_data(char *buff, char *balise);
 char **get_value_tab(char *value, int tab_len);
 int **contruct_map_from_layer(char *str);
 
-int get_file_infos(char *file)
-{
-    struct stat *buff_stat;
-    int file_size;
-
-    buff_stat = malloc(sizeof(struct stat));
-    stat(file, buff_stat);
-    file_size = buff_stat->st_size;
-    free(buff_stat);
-    return (file_size);
-}
-
-char *create_file_buffer(char *file)
-{
-    char *buff;
-    int fd = 0;
-    int size = 0;
-    int file_size = get_file_infos(file);
-
-    buff = malloc(sizeof(char) * (file_size + 1));
-    fd = open(file, O_RDONLY);
-    if (fd == -1)
-        return ("E");
-    size = read(fd, buff, file_size);
-    buff[size] = 0;
-    close(fd);
-    return (buff);
-}
-
 int parser(char **argv)
 {
-    char *file_data = create_file_buffer(argv[1]);        // Retourne le contenu du fichier dont le path est argv[1]
-
+    int fd = open_file(argv[1]);
+    char *file_data = read_file(fd, argv[1]); // Retourne le contenu du fichier dont le path est argv[1]
     if (file_data[0] == 'E' && str_len(file_data) == 1)
         return (84);
 
-    char *n_value = get_key_data(file_data, "layers");    // Retourne la valeur correspondant a la clef "layers" dans le fichier json
+    char *n_value = get_key_data(file_data, "layers");    /* Retourne la valeur correspondant a la clef "layers" dans le fichier json */
     char **values = get_value_tab(n_value, 3);            // Transforme le string de la valeur en tableau si s'en est un
     int **map_one = contruct_map_from_layer(values[0]);   // {beta} Transforme une valeur de type "[1, 2, 3, 4]" en tableau de int
     int **map_two = contruct_map_from_layer(values[2]);
-
     char *objects = get_key_data(values[1], "objects");
     char **obj_tab = get_value_tab(objects, 2);
 

@@ -5,13 +5,8 @@
 ** parser_get_pater_index
 */
 
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include "lib/utils/string.h"
+
 
 int get_patern_index_core(char *balise, char *buff, int i, int index)
 {

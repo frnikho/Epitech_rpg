@@ -16,13 +16,13 @@
 #include <SFML/Graphics.h>
 #include "game/player.h"
 
-enum game_state {INTRO_SCREEN = 0, MAIN_MENU = 1, LEVEL_1 = 2};
+enum game_state {INTRO_SCREEN = 0, MAIN_MENU = 1, SETTINGS = 2};
 
 typedef struct config_s {
     int framerate;
     int dialog_speed;
-    int sound_volumn;
-    int music_volumn;
+    int sound_volume;
+    int music_volume;
 
     int key_left;
     int key_right;

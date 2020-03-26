@@ -1,14 +1,14 @@
 {
-  "framerate": 144,
-  "sound_volume": 100,
-  "music_volume": 40,
-  "key_map": {
-    "left": "$key_left$",
-    "right": "$key_right$",
-    "up": "$key_up$",
-    "down": "$key_down$",
-    "inventory": "e",
-    "pause": "$escape$"
+  "framerate":144,
+  "sound_volume":100,
+  "music_volume":100,
+  "key_map":{
+    "left":"$key_left$",
+    "right":"$key_right$",
+    "up":"$key_up$",
+    "down":"$key_down$",
+    "inventory":"e",
+    "pause":"$escape$"
   },
-  "dialog_speed": 3
+  "dialog_speed":1
 }

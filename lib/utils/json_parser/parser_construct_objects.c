@@ -5,13 +5,7 @@
 ** parser_construct_objects
 */
 
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 char *get_key_data(char *buff, char *balise);
 char **get_value_tab(char *value, int tab_len);
@@ -41,7 +35,7 @@ void copy_index_part_from_str(int **data_tab, char *data_str, int i, int y)
 {
     int current = 0;
     static int last = 1;
-    char *temp_value = NULL;
+    char *temp_value = 0;
 
     if (i == 0 && y == 0)
         last = 1;
@@ -65,7 +59,7 @@ int **contruct_map_from_layer(char *str)
     int height = get_nbr(height_str);
     int **data_tab = malloc(sizeof(int *) * (width+1));
 
-    data_tab[width] = NULL;
+    data_tab[width] = 0;
     for (int i = 0; i < width; i++) {
         data_tab[i] = malloc(sizeof(int) * (height+1));
         data_tab[i][height] = 0;

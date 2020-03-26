@@ -8,6 +8,8 @@
 #include "game.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "lib/utils/file.h"
+#include "lib/utils/string.h"
 
 static void init_default_settings(game_t *game)
 {
@@ -17,10 +19,27 @@ static void init_default_settings(game_t *game)
     game->config.key_up = sfKeyUp;
     game->config.key_inventory = 'e';
     game->config.key_pause = sfKeyEscape;
-    game->config.sound_volumn = 100;
-    game->config.music_volumn = 100;
+    game->config.sound_volume = 100;
+    game->config.music_volume = 100;
     game->config.dialog_speed = 3;
     game->config.framerate = 144;
+}
+
+static void load_game_settings(game_t *game) {
+    int fd = open_file("content/settings.json");
+    if (!fd) {
+        init_default_settings(game);
+        return;
+    }
+    char *content = read_file(fd, "content/settings.json");
+    if (!content || content[0] == 0) {
+        init_default_settings(game);
+        return;
+    }
+    game->config.framerate = get_nbr(get_key_data(content, "framerate"));
+    game->config.dialog_speed = get_nbr(get_key_data(content, "dialog_speed"));
+    game->config.sound_volume = get_nbr(get_key_data(content, "sound_volume"));
+    game->config.music_volume = get_nbr(get_key_data(content, "music_volume"));
 }
 
 static void debug(game_t *game, sfVector2f win_size)
@@ -29,7 +48,7 @@ static void debug(game_t *game, sfVector2f win_size)
     printf("[debug] created windows (%.fx%.f)\n", win_size.x, win_size.y);
     printf("[debug] with max %d FPS\n", conf.framerate);
     printf("[debug] CONFIG:\n[debug]\t sound = ");
-    printf("%d%%, music = %d%%\n", conf.sound_volumn, conf.music_volumn);
+    printf("%d%%, music = %d%%\n", conf.music_volume, conf.music_volume);
     printf("[debug]\t dialog speed = %d\n", conf.dialog_speed);
 }
 
@@ -37,7 +56,7 @@ game_t *init_game(sfVector2f win_size, char *title)
 {
     game_t *game = malloc(sizeof(game_t));
     #ifdef DEFAULT_CONFIG
-    init_default_settings(game);
+    load_game_settings(game);
     #endif
     game->mode.width = win_size.x;
     game->mode.height = win_size.y;
@@ -49,7 +68,7 @@ game_t *init_game(sfVector2f win_size, char *title)
     debug(game, win_size);
     #endif
     game->window = sfRenderWindow_create(game->mode, title, sfClose, 0);
-    game->current_state = 0;
+    game->current_state = SETTINGS;
     sfRenderWindow_setFramerateLimit(game->window, game->config.framerate);
     sfRenderWindow_setView(game->window, game->camera);
     return (game);
