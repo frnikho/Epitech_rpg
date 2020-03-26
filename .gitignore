@@ -5,3 +5,6 @@
 my_rpg
 CMakeLists.txt
 cmake-build-debug
+lib/libcsfml.a
+build
+build-rl

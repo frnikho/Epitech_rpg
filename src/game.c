@@ -6,10 +6,10 @@
 */
 
 #include "game.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include "lib/utils/file.h"
 #include "lib/utils/string.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 static void init_default_settings(game_t *game)
 {
