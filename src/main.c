@@ -29,6 +29,7 @@ int main(int ac, char **av)
     game_t *game = init_game(mode, "Paint Defender");
     srand(time(0));
     loop(game);
+    deserialize_player();
     dispose_game(game);
     return (0);
 }
