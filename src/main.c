@@ -26,7 +26,7 @@ int loop(game_t *game)
 int main(int ac, char **av)
 {
     sfVector2f mode = {1600, 800};
-    game_t *game = init_game(mode, "Paint Defender");
+    game_t *game = init_game(mode, "Dragon EpiQuest");
     srand(time(0));
     loop(game);
     deserialize_player();
