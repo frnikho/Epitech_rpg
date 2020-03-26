@@ -6,11 +6,12 @@
 */
 
 #include <stdlib.h>
+#include "lib/utils/string.h"
 
 char *get_key_data(char *buff, char *balise);
 char **get_value_tab(char *value, int tab_len);
 char *my_str_part_copy(char *buff, int beg, int end);
-int get_nbr(char *str);
+char *get_key_data(char *buff, char *balise);
 
 void clear_chars_from_str(char *excluded_chars, char *str)
 {
@@ -35,7 +36,7 @@ void copy_index_part_from_str(int **data_tab, char *data_str, int i, int y)
 {
     int current = 0;
     static int last = 1;
-    char *temp_value = 0;
+    char *temp_value = NULL;
 
     if (i == 0 && y == 0)
         last = 1;
@@ -59,7 +60,7 @@ int **contruct_map_from_layer(char *str)
     int height = get_nbr(height_str);
     int **data_tab = malloc(sizeof(int *) * (width+1));
 
-    data_tab[width] = 0;
+    data_tab[width] = NULL;
     for (int i = 0; i < width; i++) {
         data_tab[i] = malloc(sizeof(int) * (height+1));
         data_tab[i][height] = 0;
@@ -70,4 +71,17 @@ int **contruct_map_from_layer(char *str)
     free(width_str);
     free(height_str);
     return (data_tab);
+}
+
+int ***construct_map_tab_from_layers(char **map_layers)
+{
+    int tab_len = 0;
+    int ***map_tab = NULL;
+
+    for (; map_layers[tab_len]; tab_len++);
+    map_tab = malloc(sizeof(int **)* (tab_len+1));
+    map_tab[tab_len] = NULL;
+    for (int i = 0; map_layers[i]; i++)
+        map_tab[i] = contruct_map_from_layer(map_layers[i]);
+    return (map_tab);
 }

@@ -8,9 +8,10 @@
 int get_patern_index(char *buff, char *balise);
 char *my_str_part_copy(char *buff, int beg, int end);
 
-int add_container_index(char *b, int *i_tab, char *cont_tab, int *in_cont_tab)
+int add_container_index(char *buff, int *i_tab, \
+char *cont_tab, int *in_cont_tab)
 {
-    if (b[i_tab[0]] == cont_tab[i_tab[1]]) {
+    if (buff[i_tab[0]] == cont_tab[i_tab[1]]) {
         if (i_tab[1] % 2 == 0)
             in_cont_tab[i_tab[1]]++;
         else
@@ -20,20 +21,21 @@ int add_container_index(char *b, int *i_tab, char *cont_tab, int *in_cont_tab)
     return (0);
 }
 
-void check_container_opening_closing(char *b, int in, int *ict, char *cont_tab)
+void check_container_opening_closing(char *buff, int indx_e, \
+int *in_cont_tab, char *cont_tab)
 {
     int i_tab[] = {0, 0};
 
-    if (b[in] == '"') {
-        if (ict[4] == 2)
-            ict[4]++;
+    if (buff[indx_e] == '"') {
+        if (in_cont_tab[4] == 2)
+            in_cont_tab[4]++;
         else
-            ict[4]--;
+            in_cont_tab[4]--;
     }
-    for (int i = 0; ict[i] && ict[4] == 2; i++) {
-        i_tab[0] = in;
+    for (int i = 0; cont_tab[i] && in_cont_tab[4] == 2; i++) {
+        i_tab[0] = indx_e;
         i_tab[1] = i;
-        if (add_container_index(b, i_tab, cont_tab, ict) == -1)
+        if (add_container_index(buff, i_tab, cont_tab, in_cont_tab) == -1)
             break;
     }
 }
@@ -50,15 +52,16 @@ int is_in_container(int in_container_tt, int *in_cont_tab)
     return (in_container_tt);
 }
 
-int check_paragraph_end(char *buff, int indx_e, int ict)
+int check_paragraphe_end(char *buff, int indx_e, int in_container_tt)
 {
     int force_stop = 0;
 
-    if ((buff[indx_e] == '\n' && ict == 0)) {
+    if ((buff[indx_e] == '\n' || buff[indx_e] == '\n') \
+    && in_container_tt == 0) {
         force_stop = 1;
         indx_e--;
     }
-    if ((buff[indx_e] == '}' || buff[indx_e] == ']') && ict == 0)
+    if ((buff[indx_e] == '}' || buff[indx_e] == ']') && in_container_tt == 0)
         force_stop = 1;
     return (force_stop);
 }
@@ -79,7 +82,7 @@ char *get_key_data(char *buff, char *balise)
             break;
         check_container_opening_closing(buff, indx_e, in_cont_tab, cont_tab);
         in_container_tt = is_in_container(in_container_tt, in_cont_tab);
-        force_stop = check_paragraph_end(buff, indx_e, in_container_tt);
+        force_stop = check_paragraphe_end(buff, indx_e, in_container_tt);
         if (force_stop == 1 && buff[indx_e+1] != ',')
             indx_e--;
         indx_e++;

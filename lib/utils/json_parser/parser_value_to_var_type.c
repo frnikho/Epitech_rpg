@@ -6,14 +6,17 @@
 */
 
 #include <stdlib.h>
+#include "lib/utils/string.h"
 
 char *my_str_part_copy(char *buff, int beg, int end);
-int check_paragraph_end(char *buff, int indx_e, int in_container_tt);
+int check_paragraphe_end(char *buff, int indx_e, int in_container_tt);
 int is_in_container(int in_container_tt, int *in_cont_tab);
 void check_container_opening_closing(char *buff, int indx_e, \
 int *in_cont_tab, char *cont_tab);
 int add_container_index(char *buff, int *i_tab, \
 char *cont_tab, int *in_cont_tab);
+int my_getnbr_bis(char *str);
+char *get_key_data(char *buff, char *balise);
 
 char *my_str_part_copy(char *buff, int beg, int end)
 {
@@ -72,17 +75,38 @@ char **get_value_tab(char *value, int tab_len)
     int force_stop = 0;
     char **obj_tab = malloc(sizeof(char*)*(tab_len+1));
 
-    obj_tab[tab_len] = 0;
+    obj_tab[tab_len] = NULL;
     while (1) {
         if ((value[indx_e] == ',' && in_container_tt == 0) || force_stop == 1)
             break;
         check_container_opening_closing(value, indx_e, in_cont_tab, cont_tab);
         in_container_tt = is_in_container(in_container_tt, in_cont_tab);
-        force_stop = check_paragraph_end(value, indx_e, in_container_tt);
+        force_stop = check_paragraphe_end(value, indx_e, in_container_tt);
         check_next_object(value, indx_e, in_cont_tab, &obj_tab);
         if (force_stop == 1 && value[indx_e+1] != ',')
             indx_e--;
         indx_e++;
     }
     return (obj_tab);
+}
+
+char **get_layers_by_ids(int *ids, char **layers)
+{
+    char *id_act_char = NULL;
+    int id_act = 0;
+    int tab_len = 0;
+    char **result = 0;
+    int idnx = 0;
+
+    for (; ids[tab_len]; tab_len++);
+    result = malloc(sizeof(char *) * (tab_len+1));
+    result[tab_len] = NULL;
+    for (int i = 0; layers[i]; i++) {
+        id_act_char = get_key_data(layers[i], "id");
+        id_act = get_nbr(id_act_char);
+        free(id_act_char);
+        for (int y = 0; ids[y]; y++)
+            ids[y] == id_act ? result[idnx] = strdup(layers[i]), idnx++ : 0;
+    }
+    return (result);
 }

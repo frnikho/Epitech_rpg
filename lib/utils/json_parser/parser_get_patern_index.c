@@ -7,7 +7,6 @@
 
 #include "lib/utils/string.h"
 
-
 int get_patern_index_core(char *balise, char *buff, int i, int index)
 {
     int pos_act = 0;
@@ -40,7 +39,7 @@ int get_patern_index(char *buff, char *balise)
 float my_pow(float x, int y)
 {
     float result = 1;
-    
+
     for (; y > 0; y--)
         result *= x;
     return (result);

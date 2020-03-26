@@ -12,35 +12,52 @@
 char *get_key_data(char *buff, char *balise);
 char **get_value_tab(char *value, int tab_len);
 int **contruct_map_from_layer(char *str);
+int ***construct_map_tab_from_layers(char **map_layers);
+char **get_layers_by_ids(int *ids, char **layers);
+
+void free_tab(char **tab)
+{
+    for (int i = 0; tab[i]; i++)
+        free(tab[i]);
+    free(tab);
+}
+
+void free_double_tab(int ***tab)
+{
+    for (int i = 0; tab[i]; i++) {
+        for (int y = 0; tab[i][y]; y++)
+            free(tab[i][y]);
+        free(tab[i]);
+    }
+    free(tab);
+}
 
 int parser(char **argv)
 {
     int fd = open_file(argv[1]);
     char *file_data = read_file(fd, argv[1]); // Retourne le contenu du fichier dont le path est argv[1]
+    
     if (file_data[0] == 'E' && str_len(file_data) == 1)
         return (84);
 
-    char *n_value = get_key_data(file_data, "layers");    /* Retourne la valeur correspondant a la clef "layers" dans le fichier json */
-    char **values = get_value_tab(n_value, 3);            // Transforme le string de la valeur en tableau si s'en est un
-    int **map_one = contruct_map_from_layer(values[0]);   // {beta} Transforme une valeur de type "[1, 2, 3, 4]" en tableau de int
-    int **map_two = contruct_map_from_layer(values[2]);
-    char *objects = get_key_data(values[1], "objects");
-    char **obj_tab = get_value_tab(objects, 2);
+    char *layers_str = get_key_data(file_data, "layers");                   // Retourne la valeur correspondant a la clef "layers" dans le fichier json
+    char **layers = get_value_tab(layers_str, 3);                           // Transforme le string de la valeur en tableau si s'en est un
+    //int **map_one = contruct_map_from_layer(layers[0]);                   // Transforme une valeur de type [layers:data] en tableau de int
 
-    for (int i = 0; map_one[i]; i++)
-        free(map_one[i]);
-    free(map_one);
-    for (int i = 0; map_two[i]; i++)
-        free(map_two[i]);
-    free(map_two);
+    char **map_layers = get_layers_by_ids((int []){1, 2, 0}, layers);       // Selectionne les layers coorespondant aux ids donnés en paramètres
+    int ***map_tab = construct_map_tab_from_layers(map_layers);             // Contruit une liste de tableau de int à partir d'une valeur de type [layers]
+    
+    char **obj_layer = get_layers_by_ids((int []){3, 0}, layers);
+    char *objects_str = get_key_data(obj_layer[0], "objects");
+    char **obj_tab = get_value_tab(objects_str, 4);
+
+    free_tab(obj_tab);
+    free(objects_str);
+    free_tab(obj_layer);
+    free_double_tab(map_tab);
+    free_tab(map_layers);
+    free_tab(layers);
+    free(layers_str);
     free(file_data);
-    free(n_value);
-    for (int i = 0; values[i]; i++)
-        free(values[i]);
-    free(values);
-    free(objects);
-    for (int i = 0; obj_tab[i]; i++)
-        free(obj_tab[i]);
-    free(obj_tab);
     return (0);
 }
