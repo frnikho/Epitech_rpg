@@ -106,7 +106,7 @@ char **get_layers_by_ids(int *ids, char **layers)
         id_act = get_nbr(id_act_char);
         free(id_act_char);
         for (int y = 0; ids[y]; y++)
-            ids[y] == id_act ? result[idnx] = strdup(layers[i]), idnx++ : 0;
+            ids[y] == id_act ? result[idnx] = my_strdup(layers[i]), idnx++ : 0;
     }
     return (result);
 }

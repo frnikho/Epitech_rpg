@@ -19,6 +19,8 @@ char *str_cat_char(char *one , char c);
 int array_length(char **array);
 int get_nbr(char *str);
 char *convert_str(int number);
+char *my_strdup(char const *src);
+char *my_strcpy(char *dest, char const *src);
 
 char *get_key_data(char *buff, char *balise);
 char **get_value_tab(char *value, int tab_len);

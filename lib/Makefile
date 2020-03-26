@@ -43,6 +43,8 @@ UTILS					=					$(PATH_UTILS)/string/str_split.c											\
 											$(PATH_UTILS)/string/str_cat.c												\
 											$(PATH_UTILS)/string/get_nbr.c												\
 											$(PATH_UTILS)/string/convert_into_str.c										\
+											$(PATH_UTILS)/string/my_strdup.c											\
+											$(PATH_UTILS)/string/my_strcpy.c											\
 											$(PATH_UTILS)/json_parser/parser_construct_objects.c						\
 											$(PATH_UTILS)/json_parser/parser_get_key_value.c							\
 											$(PATH_UTILS)/json_parser/parser_get_patern_index.c							\
