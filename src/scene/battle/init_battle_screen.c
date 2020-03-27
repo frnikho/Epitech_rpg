@@ -13,11 +13,12 @@
 static void init_battle_gui(game_t *game, battle_screen_t *battle)
 {
     battle->attack_gui = create_attack_gui(battle->monster);
+    battle->select_gui = create_select_gui(battle->monster);
 }
 
 static void init_battle_zone(game_t *game, battle_screen_t *battle)
 {
-    static sfVector2f pos[] = {{150, 400}, {550, 400}, {950, 400}, {1350, 400}, 0};
+    static sfVector2f pos[] = {{150, 300}, {550, 300}, {950, 300}, {1350, 300}, 0};
     int fd = open_file("content/zone_info.json");
     char *content = read_file(fd, "content/zone_info.json");
     char *zone = convert_str(game->player->zone);
