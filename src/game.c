@@ -69,7 +69,7 @@ game_t *init_game(sfVector2f win_size, char *title)
     debug(game, win_size);
     #endif
     game->window = sfRenderWindow_create(game->mode, title, sfClose, 0);
-    game->current_state = SETTINGS;
+    game->current_state = BATTLE;
     sfRenderWindow_setFramerateLimit(game->window, game->config.framerate);
     sfRenderWindow_setView(game->window, game->camera);
     return (game);
