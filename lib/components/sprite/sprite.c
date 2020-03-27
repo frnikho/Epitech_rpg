@@ -9,10 +9,10 @@
 #include <stdlib.h>
 #include "lib/components/sprite.h"
 
-sprite_t *init_sprite(char *filepath)
+sprite_t *init_sprite(char *filepath, sfIntRect *area)
 {
     sprite_t *sprite = malloc(sizeof(sprite_t));
-    sprite->texture = sfTexture_createFromFile(filepath, 0);
+    sprite->texture = sfTexture_createFromFile(filepath, area);
     sprite->sprite = sfSprite_create();
     sprite->delta = 0;
     sfSprite_setTexture(sprite->sprite, sprite->texture, sfFalse);

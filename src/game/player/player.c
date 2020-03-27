@@ -23,6 +23,7 @@ static player_t *init_player(void)
     player->stats = init_stats(values);
     player->level = 1;
     player->xp = 0;
+    player->zone = 1;
     return (player);
 }
 
@@ -37,7 +38,7 @@ void debug_player(player_t *player)
     stats_t *s = player->stats;
     printf("Player:\nattack: %d resistance: %d\n", s->strenght, s->resistance);
     printf("agility: %d hp: %d mp %d\n", s->agility, s->hp, s->mp);
-    printf("magic: %d xp: %d level: %d", s->magic, player->xp, player->level);
+    printf("magic: %d xp: %d level: %d\n", s->magic, player->xp, player->level);
     #endif
 }
 

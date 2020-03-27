@@ -35,11 +35,11 @@ static void init_settings_text(game_t *game, settings_screen_t *settings)
 int init_settings_screen(game_t *game, settings_screen_t *settings)
 {
     settings->select_cursor = 0;
-    settings->bg = init_sprite("assets/sprite/bg.png");
+    settings->bg = init_sprite("assets/sprite/bg.png", 0);
     set_sprite_scale(settings->bg, (float) 1.2);
-    settings->box = init_sprite("assets/sprite/gui/box_settings.png");
+    settings->box = init_sprite("assets/sprite/gui/box_settings.png", 0);
     set_sprite_position(settings->box, (sfVector2f){400, 50});
-    settings->cursor = init_sprite("assets/sprite/gui/pointer_big.png");
+    settings->cursor = init_sprite("assets/sprite/gui/pointer_big.png", 0);
     set_sprite_position(settings->cursor, (sfVector2f){490, 259});
     init_settings_text(game, settings);
     char *tmp = "configuration sauvegardee";

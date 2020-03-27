@@ -16,6 +16,7 @@ typedef struct player_s {
     int xp;
     inventory_t *inventory;
     stats_t *stats;
+    int zone;
 } player_t;
 
 void debug_player(player_t *player);

@@ -6,11 +6,69 @@
 */
 
 #include "game/monster.h"
+#include "lib/utils/string.h"
 #include <malloc.h>
+#include <stdlib.h>
+#include <lib/utils/file.h>
+
+static void init_monster_sprite(monster_t *monster, char *content)
+{
+    char *rect = get_key_data(content, "sprite");
+    int x = fget_nbr(get_key_data(rect, "x"));
+    int y = fget_nbr(get_key_data(rect, "y"));
+    int width = fget_nbr(get_key_data(rect, "width"));
+    int height = fget_nbr(get_key_data(rect, "height"));
+    sfIntRect sprite = {x, y, width, height};
+    monster->sprite = init_sprite("assets/sprite/monster.png", &sprite);
+    free(rect);
+}
+
+static void init_monster_gain(monster_t *monster, char *content)
+{
+    int factor = fget_nbr(get_key_data(content, "gain_factor"));
+    int gold = fget_nbr(get_key_data(content, "gold"));
+    int xp = fget_nbr(get_key_data(content, "xp"));
+    monster->xp = (rand() % factor) + xp;
+    monster->gold = (rand() % factor) + gold;
+}
+
+static void init_monster_stats(monster_t *monster, char *content)
+{
+    int f = fget_nbr(get_key_data(content, "stats_factor"));
+    char *s = get_key_data(content, "stats");
+    int values[6];
+    printf("%s\n", s);
+    values[STATS_I_HP] = (fget_nbr(get_key_data(s, "hp")) + rand() % f);
+    values[STATS_I_MP] = (fget_nbr(get_key_data(s, "pm")) + rand() % f);
+    values[STATS_I_STR] = (fget_nbr(get_key_data(s, "strength")) + rand() % f);
+    values[STATS_I_RES] = (fget_nbr(get_key_data(s, "resistance")) + rand() % f);
+    values[STATS_I_AG] = (fget_nbr(get_key_data(s, "agility")) + rand() % f);
+    values[STATS_I_MAG] = (fget_nbr(get_key_data(s, "magic")) + rand() % f);
+    monster->stats = init_stats(values);
+}
 
 monster_t *create_monster(char *fp)
 {
     monster_t *monster = malloc(sizeof(monster_t));
+
+    char **name = str_split(fp, '.');
+    monster->name = name[0];
+    free(name[1]);
+    free(name);
+
+    if (!monster)
+        return (0);
+    fp = str_cat("content/monsters/", fp);
+    int fd = open_file(fp);
+    char *content = read_file(fd, fp);
+
+    init_monster_sprite(monster, content);
+    init_monster_gain(monster, content);
+    init_monster_stats(monster, content);
+
+    free(content);
+
+    printf("create monster: %s\n", fp);
     return (monster);
 }
 

@@ -24,5 +24,6 @@ typedef struct monster_s {
 
 monster_t *create_monster(char *fp);
 void dispose_monster(monster_t *monster);
+void draw_monster(sfRenderWindow *window, monster_t *monster);
 
 #endif

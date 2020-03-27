@@ -80,6 +80,6 @@ void dispose_game(game_t *game)
     sfRenderWindow_destroy(game->window);
     sfView_destroy(game->camera);
     sfClock_destroy(game->clock);
-    destroy_player(game->player);
+    //destroy_player(game->player);
     free(game);
 }

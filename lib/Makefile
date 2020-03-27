@@ -5,7 +5,7 @@
 ## Main makefile
 ##
 
-CC						=					gcc
+CC						=					gcc -g
 NAME					=					libcsfml.a
 
 PATH_COMPONENTS			=					components
@@ -42,6 +42,7 @@ EFFECTS					=					$(PATH_EFFECTS)/bump/bump.c													\
 											$(PATH_EFFECTS)/fade/fade_set.c
 
 UTILS					=					$(PATH_UTILS)/string/str_split.c											\
+											$(PATH_UTILS)/string/str_split_json.c										\
 											$(PATH_UTILS)/string/str_len.c												\
 											$(PATH_UTILS)/string/str_cat.c												\
 											$(PATH_UTILS)/string/get_nbr.c												\
@@ -61,7 +62,7 @@ OBJ						=					$(COMPONENTS:%.c=%.o) $(EFFECTS:%.c=%.o) $(UTILS:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
-CFLAGS					=					-I ../include/ $(LIB)
+CFLAGS					=					-I ../include/ $(LIB) -g
 
 all:										$(NAME)
 $(NAME):									$(OBJ)

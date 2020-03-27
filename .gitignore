@@ -8,3 +8,4 @@ cmake-build-debug
 lib/libcsfml.a
 build
 build-rl
+vgcore.*

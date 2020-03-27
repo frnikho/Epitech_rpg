@@ -27,7 +27,7 @@ static void init(dialog_t *dialog, char **text, int p, sfVector2f pos)
     dialog->index_line = 0;
     dialog->text = text;
     dialog->line_finish = 0;
-    dialog->box = init_sprite("assets/sprite/gui/box_dialog.png");
+    dialog->box = init_sprite("assets/sprite/gui/box_dialog.png", 0);
     set_sprite_position(dialog->box, pos);
     pos.x += 10;
     pos.y += 10;

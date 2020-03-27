@@ -49,7 +49,6 @@ static char **init_split(char *c, char s)
     char **array = malloc(sizeof(char*) * (size + 1));
     for (int i = 0; i < size; i++)
         array[i] = malloc(sizeof(char) * (count_character_line(c, s, i) + 1));
-    array[size] = NULL;
     return (array);
 }
 
@@ -69,5 +68,7 @@ char **str_split(char *c, char split)
             index_x = 0;
         }
     }
+    array[index_y][index_x] = 0;
+    array[index_y+1] = 0;
     return (array);
 }

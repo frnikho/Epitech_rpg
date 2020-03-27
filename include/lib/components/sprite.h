@@ -16,7 +16,7 @@ typedef struct sprite_s {
     sfSprite *sprite;
 } sprite_t;
 
-sprite_t *init_sprite(char *filepath);
+sprite_t *init_sprite(char *filepath, sfIntRect *area);
 void dispose_sprite(sprite_t *sprite);
 void set_sprite_position(sprite_t *sprite, sfVector2f position);
 void move_sprite_position(sprite_t *sprite, sfVector2f offset);

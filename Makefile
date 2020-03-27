@@ -20,6 +20,7 @@ SRC						=					src/main.c																\
 											src/gui/dialog/reset_dialog.c											\
 											src/game/item/item.c													\
 											src/game/monster/monster.c												\
+											src/game/monster/draw_monster.c											\
 											src/game/inventory/inventory.c											\
 											src/game/stats/stats.c													\
 											src/game/stats/damage_stats.c											\
@@ -36,7 +37,12 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/settings/input_settings_screen.c							\
 											$(PATH_SCENE)/settings/render_settings_screen.c							\
 											$(PATH_SCENE)/settings/settings_screen.c								\
-											$(PATH_SCENE)/settings/update_settings_screen.c
+											$(PATH_SCENE)/settings/update_settings_screen.c							\
+											$(PATH_SCENE)/battle/battle_screen.c									\
+											$(PATH_SCENE)/battle/init_battle_screen.c								\
+											$(PATH_SCENE)/battle/input_battle_screen.c								\
+											$(PATH_SCENE)/battle/render_battle_screen.c								\
+											$(PATH_SCENE)/battle/update_battle_screen.c								\
 
 OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)
 
