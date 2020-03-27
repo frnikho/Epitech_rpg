@@ -29,6 +29,10 @@ SRC						=					src/main.c																\
 											src/game/player/serialize_player.c										\
 											src/game/player/gui/player_gui.c										\
 											src/game/player/gui/draw_player_gui.c									\
+											src/gui/attack_dialog/attack_gui.c										\
+											src/gui/attack_dialog/draw_attack_gui.c									\
+											src/gui/select_dialog/select_gui.c										\
+											src/gui/select_dialog/draw_select_gui.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\

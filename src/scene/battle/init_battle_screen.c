@@ -10,6 +10,11 @@
 #include "lib/utils/string.h"
 #include "lib/utils/file.h"
 
+static void init_battle_gui(game_t *game, battle_screen_t *battle)
+{
+    battle->attack_gui = create_attack_gui(battle->monster);
+}
+
 static void init_battle_zone(game_t *game, battle_screen_t *battle)
 {
     static sfVector2f pos[] = {{150, 400}, {550, 400}, {950, 400}, {1350, 400}, 0};
@@ -43,4 +48,5 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     init_battle_zone(game, battle);
     battle->bg = init_sprite("assets/sprite/background/forest.bmp", 0);
     set_sprite_scale(battle->bg, (float) 3.4);
+    init_battle_gui(game, battle);
 }

@@ -8,6 +8,7 @@
 #ifndef MY_RPG_BATTLE_H
 #define MY_RPG_BATTLE_H
 
+#include <gui/attack_gui.h>
 #include "game/monster.h"
 #include "game/player.h"
 
@@ -15,8 +16,7 @@ typedef struct battle_screen_s {
     player_t *player;
     monster_t **monster;
     sprite_t *bg;
-    //TODO create action box
-
+    attack_gui_t *attack_gui;
 } battle_screen_t;
 
 void battle_screen(game_t *game, long int delta);
