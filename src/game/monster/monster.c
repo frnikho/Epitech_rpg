@@ -47,7 +47,7 @@ static void init_monster_stats(monster_t *monster, char *content)
     monster->stats = init_stats(values);
 }
 
-monster_t *create_monster(char *fp)
+monster_t *create_monster(char *fp, sfVector2f pos)
 {
     monster_t *monster = malloc(sizeof(monster_t));
 
@@ -63,6 +63,9 @@ monster_t *create_monster(char *fp)
     char *content = read_file(fd, fp);
 
     init_monster_sprite(monster, content);
+    pos.x -= (sfSprite_getGlobalBounds(monster->sprite->sprite).width / 2);
+    set_sprite_position(monster->sprite, pos);
+    set_sprite_scale(monster->sprite, 2.2);
     init_monster_gain(monster, content);
     init_monster_stats(monster, content);
 

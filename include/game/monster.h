@@ -22,7 +22,7 @@ typedef struct monster_s {
     int gold;
 } monster_t;
 
-monster_t *create_monster(char *fp);
+monster_t *create_monster(char *fp, sfVector2f pos);
 void dispose_monster(monster_t *monster);
 void draw_monster(sfRenderWindow *window, monster_t *monster);
 

@@ -14,7 +14,7 @@
 typedef struct battle_screen_s {
     player_t *player;
     monster_t **monster;
-
+    sprite_t *bg;
     //TODO create action box
 
 } battle_screen_t;

@@ -1,10 +1,18 @@
 {
   "zone": {
-    "1": [
-      "slime.json",
-      "dracky.json"
-    ],
-    "2": {},
+    "1": {
+      "monsters": [
+        "slime.json",
+        "dracky.json"
+      ],
+      "count":2
+    },
+    "2": {
+      "monsters": [
+
+      ],
+      "count":3
+    },
     "3": {},
     "4": {}
   }

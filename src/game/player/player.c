@@ -29,7 +29,9 @@ static player_t *init_player(void)
 
 player_t *create_player(void)
 {
-
+    player_t *player = deserialize_player();
+    create_gui(player);
+    return (player);
 }
 
 void debug_player(player_t *player)

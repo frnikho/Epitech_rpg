@@ -26,7 +26,9 @@ SRC						=					src/main.c																\
 											src/game/stats/damage_stats.c											\
 											src/game/player/player.c												\
 											src/game/player/deserialize_player.c									\
-											src/game/player/serialize_player.c
+											src/game/player/serialize_player.c										\
+											src/game/player/gui/player_gui.c										\
+											src/game/player/gui/draw_player_gui.c									\
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\
