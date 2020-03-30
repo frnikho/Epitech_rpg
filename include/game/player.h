@@ -18,10 +18,15 @@ typedef struct player_gui_s {
     text_t *name;
     text_t *hp;
     text_t *mp;
-
+    sfRectangleShape *hp_bar;
+    sfRectangleShape *hp_shadow;
+    sfRectangleShape *mp_bar;
+    sfRectangleShape *mp_shadow;
 } player_gui_t;
 
 typedef struct player_s {
+    int max_health;
+    int max_mp;
     int level;
     int xp;
     int zone;

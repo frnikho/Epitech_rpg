@@ -12,8 +12,12 @@
 #include "lib/components/text.h"
 
 typedef struct select_gui_s {
+    int is_active;
+    int is_selected;
+    int monster_index;
     monster_t **monsters;
     text_t *monsters_name;
+    sprite_t *cursor;
     sprite_t *gui;
 } select_gui_t;
 

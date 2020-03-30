@@ -12,9 +12,9 @@
 #define DEBUG 1
 #define DEFAULT_CONFIG 1
 
+#include "game/player.h"
 #include <stdlib.h>
 #include <SFML/Graphics.h>
-#include "game/player.h"
 
 enum game_state {INTRO_SCREEN = 0, BATTLE = 1, SETTINGS = 2};
 

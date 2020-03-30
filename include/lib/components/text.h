@@ -8,6 +8,8 @@
 #ifndef MUL_MY_DEFENDER_2019_TEXT_H
 #define MUL_MY_DEFENDER_2019_TEXT_H
 
+#define FONT "assets/font/dq.ttf"
+
 #include <SFML/Graphics.h>
 
 typedef struct text_s {

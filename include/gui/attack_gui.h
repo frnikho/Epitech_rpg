@@ -36,5 +36,7 @@ typedef struct attack_gui_s {
 attack_gui_t *create_attack_gui(monster_t **monster);
 void destroy_attack_gui(attack_gui_t *gui);
 void draw_attack_gui(sfRenderWindow *window, attack_gui_t *gui);
+void handle_attack_gui(attack_gui_t *gui, sfEvent event);
+void update_attack_gui(attack_gui_t *gui, long int delta);
 
 #endif
