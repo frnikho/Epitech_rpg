@@ -12,6 +12,9 @@
 attack_gui_t *create_attack_gui(monster_t **monster)
 {
     attack_gui_t *gui = malloc(sizeof(attack_gui_t));
+    if (!gui)
+        return (0);
+    sfColor grey = sfColor_fromRGBA(87, 89, 93, 255);
     gui->is_selected = 0;
     gui->select_index = 0;
     gui->box = init_sprite("assets/sprite/gui/attack_gui.png", 0);
@@ -26,8 +29,10 @@ attack_gui_t *create_attack_gui(monster_t **monster)
     gui->tension = init_text("Tension", 23, (sfVector2f){615, 730});
     set_text_font(gui->attack, "assets/font/dq.ttf");
     set_text_font(gui->tension, "assets/font/dq.ttf");
+    set_text_color(gui->tension, grey);
     set_text_font(gui->objects, "assets/font/dq.ttf");
     set_text_font(gui->habilities, "assets/font/dq.ttf");
+    set_text_color(gui->habilities, grey);
     set_text_font(gui->spells, "assets/font/dq.ttf");
     set_text_font(gui->goaway, "assets/font/dq.ttf");
     return (gui);

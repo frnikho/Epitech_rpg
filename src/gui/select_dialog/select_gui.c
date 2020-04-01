@@ -29,6 +29,9 @@ select_gui_t *create_select_gui(monster_t **monsters)
 
     gui->monsters_name = init_text(str, 18, (sfVector2f){920, 640});
     set_text_font(gui->monsters_name, "assets/font/dq.ttf");
+    gui->cursor = init_sprite("assets/sprite/gui/pointer_small.png", 0);
+    set_sprite_position(gui->cursor, (sfVector2f){880, 640});
+    set_sprite_scale(gui->cursor, 2.2);
     return (gui);
 }
 

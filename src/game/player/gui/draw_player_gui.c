@@ -16,4 +16,5 @@ void draw_player_gui(sfRenderWindow *window, player_t *player)
     draw_text(window, player->gui->mp);
 
     sfRenderWindow_drawRectangleShape(window, player->gui->hp_bar, 0);
+    sfRenderWindow_drawRectangleShape(window, player->gui->mp_bar, 0);
 }

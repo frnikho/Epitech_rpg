@@ -5,8 +5,8 @@
     "width":30,
     "height":30
   },
-  "gain_factor":2,
-  "stats_factor":2,
+  "gain_factor":1,
+  "stats_factor":1,
   "gold":4,
   "xp":2,
   "stats":{

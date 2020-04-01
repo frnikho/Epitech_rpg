@@ -10,6 +10,8 @@
 
 int get_int_length(int number)
 {
+    if (number <= 0)
+        return (1);
     return log10(number) + 1;
 }
 

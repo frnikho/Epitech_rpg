@@ -25,8 +25,8 @@ typedef struct player_gui_s {
 } player_gui_t;
 
 typedef struct player_s {
-    int max_health;
-    int max_mp;
+    int health;
+    int mp;
     int level;
     int xp;
     int zone;
@@ -43,5 +43,6 @@ void destroy_player(player_t *player);
 
 void create_gui(player_t *player);
 void draw_player_gui(sfRenderWindow *window, player_t *player);
+void update_player_gui(player_t *player);
 
 #endif

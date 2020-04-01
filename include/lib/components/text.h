@@ -16,6 +16,7 @@ typedef struct text_s {
     long int delta;
     sfFont *font;
     sfText *text;
+    sfColor color;
     char *title;
     int size;
     float letter_spacing;

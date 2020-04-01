@@ -12,11 +12,11 @@
 #include "lib/components/sprite.h"
 #include "lib/components/text.h"
 
-#define SELECT_ATTACK 1
-#define SELECT_DEFENSE 2
-#define SELECT_MAGIC 3
-#define SELECT TENSION 4
-#define SELECT_GO_AWAY 5
+#define SELECT_ATTACK 0
+#define SELECT_DEFENSE 1
+#define SELECT_MAGIC 2
+#define SELECT TENSION 3
+#define SELECT_GO_AWAY 4
 
 typedef struct attack_gui_s {
     int select_index;

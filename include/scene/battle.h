@@ -8,17 +8,22 @@
 #ifndef MY_RPG_BATTLE_H
 #define MY_RPG_BATTLE_H
 
-#include <gui/attack_gui.h>
-#include <gui/select_gui.h>
+#define PLAYER_INDEX 500
+
+#include "lib/components/sound.h"
+#include "gui/attack_gui.h"
+#include "gui/select_gui.h"
 #include "game/monster.h"
 #include "game/player.h"
 
 typedef struct battle_screen_s {
+    int select_choice;
     player_t *player;
     monster_t **monster;
     sprite_t *bg;
     attack_gui_t *attack_gui;
     select_gui_t *select_gui;
+    sound_t *music;
 } battle_screen_t;
 
 void battle_screen(game_t *game, long int delta);

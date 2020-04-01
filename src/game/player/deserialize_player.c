@@ -17,6 +17,8 @@ static int init_other_stats(char *content, player_t *player)
     char *mp = get_key_data(stats, "mp");
     player->stats->hp = get_nbr(hp);
     player->stats->mp = get_nbr(mp);
+    player->health = get_nbr(hp);
+    player->mp = get_nbr(mp);
     free(stats);
     free(hp);
     free(mp);

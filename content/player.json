@@ -2,11 +2,11 @@
   "level":10,
   "xp":0,
   "stats":{
-    "hp":20,
-    "mp":10,
+    "hp":15,
+    "mp":5,
     "resistance":8,
     "magic":8,
-    "agility":8,
-    "strength":8
+    "agility":5,
+    "strength":4
   }
 }

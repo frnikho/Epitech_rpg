@@ -19,6 +19,7 @@ text_t *init_text(char *title, int size, sfVector2f position)
     text->letter_spacing = 1;
     text->line_spacing = 1;
     text->position = position;
+    text->color = sfWhite;
     return (text);
 }
 
@@ -33,7 +34,7 @@ void draw_text(sfRenderWindow *window, text_t *text)
     sfText_setPosition(text->text, text->position);
     sfText_setCharacterSize(text->text, text->size);
     sfText_setFont(text->text, text->font);
-    sfText_setColor(text->text, sfWhite);
+    sfText_setColor(text->text, text->color);
     sfText_setLetterSpacing(text->text, text->letter_spacing);
     sfText_setLineSpacing(text->text, text->line_spacing);
     sfRenderWindow_drawText(window, text->text, NULL);

@@ -21,6 +21,8 @@ SRC						=					src/main.c																\
 											src/game/item/item.c													\
 											src/game/monster/monster.c												\
 											src/game/monster/draw_monster.c											\
+											src/game/monster/attack_monster.c										\
+											src/game/monster/get_monsters.c											\
 											src/game/inventory/inventory.c											\
 											src/game/stats/stats.c													\
 											src/game/stats/damage_stats.c											\
@@ -29,12 +31,15 @@ SRC						=					src/main.c																\
 											src/game/player/serialize_player.c										\
 											src/game/player/gui/player_gui.c										\
 											src/game/player/gui/draw_player_gui.c									\
+											src/game/player/gui/update_player_gui.c									\
 											src/gui/attack_dialog/attack_gui.c										\
 											src/gui/attack_dialog/draw_attack_gui.c									\
 											src/gui/attack_dialog/handle_attack_gui.c								\
 											src/gui/attack_dialog/update_attack_gui.c								\
 											src/gui/select_dialog/select_gui.c										\
 											src/gui/select_dialog/draw_select_gui.c									\
+											src/gui/select_dialog/update_select_gui.c								\
+											src/gui/select_dialog/handle_select_gui.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\

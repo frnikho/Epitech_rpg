@@ -24,5 +24,7 @@ typedef struct select_gui_s {
 select_gui_t *create_select_gui(monster_t **monsters);
 void dispose_select_gui(select_gui_t *gui);
 void draw_select_gui(sfRenderWindow *window, select_gui_t *gui);
+void handle_select_gui(sfEvent event, select_gui_t *gui);
+void update_select_gui(select_gui_t *gui, long int delta);
 
 #endif

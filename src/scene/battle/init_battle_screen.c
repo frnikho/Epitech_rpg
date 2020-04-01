@@ -27,7 +27,6 @@ static void init_battle_zone(game_t *game, battle_screen_t *battle)
     int monsters = fget_nbr(get_key_data(zone_json, "count"));
     monsters = (rand() % monsters) + 1;
 
-
     zone_json = get_key_data(zone_json, "monsters");
     char **array = str_split_json_array(zone_json, ',', 1);
 
@@ -47,7 +46,11 @@ static void init_battle_zone(game_t *game, battle_screen_t *battle)
 int init_battle_screen(game_t *game, battle_screen_t *battle)
 {
     init_battle_zone(game, battle);
+    battle->select_choice = 0;
     battle->bg = init_sprite("assets/sprite/background/forest.bmp", 0);
+    battle->music = init_sound("assets/music/monster_battle.ogg");
+    play_sound(battle->music);
+    set_sound_loop(battle->music, 1);
     set_sprite_scale(battle->bg, (float) 3.4);
     init_battle_gui(game, battle);
 }

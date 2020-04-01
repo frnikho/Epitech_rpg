@@ -9,7 +9,7 @@
 
 void set_text_color(text_t *text, sfColor color)
 {
-    sfText_setColor(text->text, color);
+    text->color = color;
 }
 
 void set_text_random_color(text_t *text)

@@ -1,0 +1,8 @@
+{
+  "name": "Herbe Medicinal",
+  "use_in_battle": true,
+  "use_in_overwold": true,
+  "stats": {
+    "health": 30
+  }
+}

@@ -10,6 +10,7 @@
 
 #include "lib/components/sprite.h"
 #include "game/stats.h"
+#include "player.h"
 
 typedef struct monster_s {
     int id;
@@ -25,5 +26,7 @@ typedef struct monster_s {
 monster_t *create_monster(char *fp, sfVector2f pos);
 void dispose_monster(monster_t *monster);
 void draw_monster(sfRenderWindow *window, monster_t *monster);
+int get_monsters_length(monster_t **monsters);
+void monster_attack_player(monster_t *monster, player_t *player);
 
 #endif
