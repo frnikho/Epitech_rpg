@@ -77,7 +77,6 @@ player_t *deserialize_player(void)
     if (p->level <= 0 || p->xp < 0 || !p->stats)
         return (0);
     p->zone = 1;
-    debug_player(p);
     free(c);
     return (p);
 }

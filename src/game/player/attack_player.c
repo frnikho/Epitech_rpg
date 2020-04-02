@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2020
-** attack_monter.c
+** attack_player.c
 ** File description:
 **  function
 */
 
-#include <game/monster.h>
-#include <game/player.h>
 #include <stdlib.h>
+#include "game/player.h"
+#include "game/monster.h"
 
 static int calc_attack_damage(int att, int def)
 {
@@ -20,11 +20,10 @@ static int calc_attack_damage(int att, int def)
     return (damage);
 }
 
-void monster_attack_player(monster_t *monster, player_t *player)
+void player_attack_monster(player_t *player, monster_t *monster)
 {
     if (!monster || !player)
         return;
-    int damage = calc_attack_damage(monster->stats->strenght, player->stats->resistance);
-    player->health -= damage;
-    update_player_gui(player);
+    int damage = calc_attack_damage(player->stats->strenght, monster->stats->resistance);
+    monster->stats->hp -= damage;
 }

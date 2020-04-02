@@ -22,11 +22,16 @@ SRC						=					src/main.c																\
 											src/game/monster/monster.c												\
 											src/game/monster/draw_monster.c											\
 											src/game/monster/attack_monster.c										\
+											src/game/monster/update_monster.c										\
 											src/game/monster/get_monsters.c											\
+											src/game/monster/gui/monster_gui.c										\
+											src/game/monster/gui/draw_monster_gui.c									\
+											src/game/monster/gui/update_monster_gui.c								\
 											src/game/inventory/inventory.c											\
 											src/game/stats/stats.c													\
 											src/game/stats/damage_stats.c											\
 											src/game/player/player.c												\
+											src/game/player/attack_player.c											\
 											src/game/player/deserialize_player.c									\
 											src/game/player/serialize_player.c										\
 											src/game/player/gui/player_gui.c										\

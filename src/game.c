@@ -43,16 +43,6 @@ static void load_game_settings(game_t *game) {
     free(content);
 }
 
-static void debug(game_t *game, sfVector2f win_size)
-{
-    config_t conf = game->config;
-    printf("[debug] created windows (%.fx%.f)\n", win_size.x, win_size.y);
-    printf("[debug] with max %d FPS\n", conf.framerate);
-    printf("[debug] CONFIG:\n[debug]\t sound = ");
-    printf("%d%%, music = %d%%\n", conf.music_volume, conf.music_volume);
-    printf("[debug]\t dialog speed = %d\n", conf.dialog_speed);
-}
-
 game_t *init_game(sfVector2f win_size, char *title)
 {
     game_t *game = malloc(sizeof(game_t));
@@ -65,9 +55,6 @@ game_t *init_game(sfVector2f win_size, char *title)
     game->clock = sfClock_create();
     sfFloatRect rect = {0, 0, win_size.x, win_size.y};
     game->camera = sfView_createFromRect(rect);
-    #ifdef DEBUG
-    debug(game, win_size);
-    #endif
     game->window = sfRenderWindow_create(game->mode, title, sfClose, 0);
     game->current_state = BATTLE;
     sfRenderWindow_setFramerateLimit(game->window, game->config.framerate);

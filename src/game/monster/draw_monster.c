@@ -9,5 +9,6 @@
 
 void draw_monster(sfRenderWindow *window, monster_t *monster)
 {
-    draw_sprite(window, monster->sprite);
+    if (monster->is_alive)
+        draw_sprite(window, monster->sprite);
 }

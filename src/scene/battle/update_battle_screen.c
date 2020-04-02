@@ -30,7 +30,7 @@ static sfVector2i *get_attack_order(monster_t **m, player_t *p)
     return (order);
 }
 
-static void update_monster(game_t *g, battle_screen_t *b, long int delta)
+static void update_monster_battle(game_t *g, battle_screen_t *b, long int delta)
 {
     if (!b->select_choice)
         return;
@@ -39,10 +39,10 @@ static void update_monster(game_t *g, battle_screen_t *b, long int delta)
         return;
     for (int i = 0; attack_order[i].x != -999; i++) {
         if (attack_order[i].x != PLAYER_INDEX) {
-            printf("enemy %d attack the player\n", attack_order[i].x-1);
             monster_attack_player(b->monster[attack_order[i].x-1], g->player);
         } else {
-            printf("Player attack the enemy %d\n", b->select_gui->monster_index);
+            player_attack_monster(g->player, b->monster[b->select_gui->monster_index]);
+            update_monster(b->monster[b->select_gui->monster_index], delta);
         }
     }
     b->select_choice = 0;
@@ -67,5 +67,5 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     }
     if (!battle->select_choice && battle->select_gui->is_selected)
         battle->select_choice = 1;
-    update_monster(game, battle, delta);
+    update_monster_battle(game, battle, delta);
 }

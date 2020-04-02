@@ -6,9 +6,7 @@
 */
 
 #include "game/player.h"
-#include "game.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static player_t *init_player(void)
 {
@@ -34,15 +32,6 @@ player_t *create_player(void)
     return (player);
 }
 
-void debug_player(player_t *player)
-{
-    #ifdef DEBUG
-    stats_t *s = player->stats;
-    printf("Player:\nattack: %d resistance: %d\n", s->strenght, s->resistance);
-    printf("agility: %d hp: %d mp %d\n", s->agility, s->hp, s->mp);
-    printf("magic: %d xp: %d level: %d\n", s->magic, player->xp, player->level);
-    #endif
-}
 
 void destroy_player(player_t *player)
 {

@@ -37,7 +37,6 @@ static void init_monster_stats(monster_t *monster, char *content)
     int f = fget_nbr(get_key_data(content, "stats_factor"));
     char *s = get_key_data(content, "stats");
     int values[6];
-    printf("%s\n", s);
     values[STATS_I_HP] = (fget_nbr(get_key_data(s, "hp")) + rand() % f);
     values[STATS_I_MP] = (fget_nbr(get_key_data(s, "pm")) + rand() % f);
     values[STATS_I_STR] = (fget_nbr(get_key_data(s, "strength")) + rand() % f);
@@ -50,14 +49,13 @@ static void init_monster_stats(monster_t *monster, char *content)
 monster_t *create_monster(char *fp, sfVector2f pos)
 {
     monster_t *monster = malloc(sizeof(monster_t));
-
-    char **name = str_split(fp, '.');
-    monster->name = name[0];
-    free(name[1]);
-    free(name);
-
     if (!monster)
         return (0);
+    char **name = str_split(fp, '.');
+    monster->name = name[0];
+    monster->is_alive = 1;
+    free(name[1]);
+    free(name);
     fp = str_cat("content/monsters/", fp);
     int fd = open_file(fp);
     char *content = read_file(fd, fp);
@@ -68,10 +66,7 @@ monster_t *create_monster(char *fp, sfVector2f pos)
     set_sprite_scale(monster->sprite, 2.2);
     init_monster_gain(monster, content);
     init_monster_stats(monster, content);
-
     free(content);
-
-    printf("create monster: %s\n", fp);
     return (monster);
 }
 
