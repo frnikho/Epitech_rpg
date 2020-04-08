@@ -13,5 +13,5 @@ void draw_dialog(sfRenderWindow *window, dialog_t *dialog)
         return;
     draw_sprite(window, dialog->box);
     draw_text(window, dialog->msg);
-    draw_anim_sprite(window, dialog->dot);
+    //draw_anim_sprite(window, dialog->dot);
 }

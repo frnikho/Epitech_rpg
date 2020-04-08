@@ -32,7 +32,6 @@ player_t *create_player(void)
     return (player);
 }
 
-
 void destroy_player(player_t *player)
 {
     //TODO destroy inventory

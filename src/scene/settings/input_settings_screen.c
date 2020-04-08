@@ -5,7 +5,7 @@
 **  function
 */
 
-#include <lib/utils/string.h>
+#include "lib/utils/string.h"
 #include "game.h"
 #include "scene/settings.h"
 

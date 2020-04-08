@@ -14,7 +14,8 @@
 int loop(game_t *game)
 {
     void (*game_state[])(game_t *game, long int delta) =
-        {intro_screen, battle_screen, settings_screen};
+    {intro_screen, battle_screen, settings_screen};
+
     sfClock_restart(game->clock);
     while (sfRenderWindow_isOpen(game->window)) {
         long int delta = sfClock_restart(game->clock).microseconds;

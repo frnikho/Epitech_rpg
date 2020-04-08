@@ -8,6 +8,7 @@
 #ifndef DEFENDER_INTRO_SCREEN_H
 #define DEFENDER_INTRO_SCREEN_H
 
+#include "game/npc.h"
 #include "gui/dialog.h"
 #include "lib/components/anim_sprite.h"
 #include "game.h"
@@ -15,6 +16,7 @@
 typedef struct intro_screen_s {
     long int delta;
     dialog_t *dialog;
+    npc_t **npc;
 } intro_screen_t;
 
 void intro_screen(game_t *game, long int delta);

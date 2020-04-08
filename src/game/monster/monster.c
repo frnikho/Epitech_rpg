@@ -7,9 +7,8 @@
 
 #include "game/monster.h"
 #include "lib/utils/string.h"
-#include <malloc.h>
+#include "lib/utils/file.h"
 #include <stdlib.h>
-#include <lib/utils/file.h>
 
 static void init_monster_sprite(monster_t *monster, char *content)
 {
@@ -37,10 +36,11 @@ static void init_monster_stats(monster_t *monster, char *content)
     int f = fget_nbr(get_key_data(content, "stats_factor"));
     char *s = get_key_data(content, "stats");
     int values[6];
+    char *rs = "resistance";
     values[STATS_I_HP] = (fget_nbr(get_key_data(s, "hp")) + rand() % f);
     values[STATS_I_MP] = (fget_nbr(get_key_data(s, "pm")) + rand() % f);
     values[STATS_I_STR] = (fget_nbr(get_key_data(s, "strength")) + rand() % f);
-    values[STATS_I_RES] = (fget_nbr(get_key_data(s, "resistance")) + rand() % f);
+    values[STATS_I_RES] = (fget_nbr(get_key_data(s, rs)) + rand() % f);
     values[STATS_I_AG] = (fget_nbr(get_key_data(s, "agility")) + rand() % f);
     values[STATS_I_MAG] = (fget_nbr(get_key_data(s, "magic")) + rand() % f);
     monster->stats = init_stats(values);

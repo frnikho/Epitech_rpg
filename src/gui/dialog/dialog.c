@@ -33,10 +33,9 @@ static void init(dialog_t *dialog, char **text, int p, sfVector2f pos)
     pos.y += 10;
     dialog->msg = init_text("", 22, pos);
     sfIntRect slime_rect = {0, 0, 40, 48};
-    anim_info_t *info = init_anim_info(slime_rect, 1, 4, 7);
     pos.x += 730;
     pos.y += 80;
-    dialog->dot = init_anim_sprite("assets/sprite/king_slime_1.png", pos, info);
+    //dialog->dot = init_anim_sprite("assets/sprite/king_slime_1.png", pos, info);
     set_text_font(dialog->msg, "assets/font/dq.ttf");
     set_text_color(dialog->msg, sfWhite);
     init_dialog_sound(dialog, p);
@@ -54,7 +53,7 @@ void destroy_dialog(dialog_t *dialog)
     for (int i = 0; dialog->text[i] != 0; i++)
         free(dialog->text[i]);
     free(dialog->text);
-    dispose_anim_sprite(dialog->dot);
+    //dispose_anim_sprite(dialog->dot);
     dispose_sprite(dialog->box);
     dispose_text(dialog->msg);
     dispose_sound(dialog->sound);

@@ -6,8 +6,26 @@
 */
 
 #include "game.h"
-#include <zconf.h>
 #include "lib/utils/file.h"
+#include "lib/utils/string.h"
+#include <zconf.h>
+
+char **get_dialog(char *key)
+{
+    int fd = open_file("content/dialog.json");
+    char *content = read_file(fd, "content/dialog.json");
+    char *msg = get_key_data(content, key);
+
+    for (int i = 0; msg[i] != 0; i++) {
+        if (msg[i] == '$')
+            msg[i] = '\n';
+        if (msg[i] == '\"')
+            msg[i] = ' ';
+    }
+    char **result = str_split(msg, '#');
+    free(content);
+    return (result);
+}
 
 char *read_file(int fd, char *fp)
 {

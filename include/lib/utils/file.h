@@ -10,5 +10,6 @@
 
 int open_file(char *content);
 char *read_file(int fd, char *fp);
+char **get_dialog(char *key);
 
 #endif

@@ -37,6 +37,11 @@ SRC						=					src/main.c																\
 											src/game/player/gui/player_gui.c										\
 											src/game/player/gui/draw_player_gui.c									\
 											src/game/player/gui/update_player_gui.c									\
+											src/game/npc/npc.c														\
+											src/game/npc/draw_npc.c													\
+											src/game/npc/update_npc.c												\
+											src/game/npc/get_npc_dialog.c											\
+											src/game/npc/get_town_npcs.c											\
 											src/gui/attack_dialog/attack_gui.c										\
 											src/gui/attack_dialog/draw_attack_gui.c									\
 											src/gui/attack_dialog/handle_attack_gui.c								\
@@ -61,6 +66,12 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/battle/input_battle_screen.c								\
 											$(PATH_SCENE)/battle/render_battle_screen.c								\
 											$(PATH_SCENE)/battle/update_battle_screen.c								\
+											$(PATH_SCENE)/battle/update_attack_battle_screen.c						\
+											$(PATH_SCENE)/overworld/overworld.c										\
+											$(PATH_SCENE)/overworld/init_overworld.c								\
+											$(PATH_SCENE)/overworld/input_overworld.c								\
+											$(PATH_SCENE)/overworld/render_overworld.c								\
+											$(PATH_SCENE)/overworld/update_overworld.c								\
 
 OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)
 

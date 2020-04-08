@@ -5,7 +5,7 @@
 **  function
 */
 
-#include <lib/utils/string.h>
+#include "lib/utils/string.h"
 #include "gui/dialog.h"
 
 static void update_text_dialog(dialog_t *d)
@@ -34,7 +34,7 @@ void update_dialog(dialog_t *dialog, long int delta)
     update_anim_sprite(dialog->dot, delta);
     if (dialog->dot->delta > 80000) {
         dialog->dot->delta = 0;
-        update_anim_sprite_rect(dialog->dot);
+        //update_anim_sprite_rect(dialog->dot);
     }
     int t = 50000;
     if (dialog->delta >= t && !dialog->is_finished && !dialog->line_finish) {

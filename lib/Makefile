@@ -19,9 +19,9 @@ COMPONENTS				=					$(PATH_COMPONENTS)/camera/camera_drag.c										\
 											$(PATH_COMPONENTS)/sprite/sprite_size.c										\
 											$(PATH_COMPONENTS)/sprite/sprite_event.c									\
 											$(PATH_COMPONENTS)/anim_sprite/anim_sprite.c								\
-											$(PATH_COMPONENTS)/anim_sprite/anim_sprite_info.c							\
 											$(PATH_COMPONENTS)/anim_sprite/anim_sprite_update.c							\
 											$(PATH_COMPONENTS)/anim_sprite/anim_sprite_event.c							\
+											$(PATH_COMPONENTS)/anim_sprite/anim_sprite_scale.c							\
 											$(PATH_COMPONENTS)/text/text.c												\
 											$(PATH_COMPONENTS)/text/text_color.c										\
 											$(PATH_COMPONENTS)/text/text_font.c											\

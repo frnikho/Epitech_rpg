@@ -8,9 +8,17 @@
 #ifndef MY_RPG_MONSTER_H
 #define MY_RPG_MONSTER_H
 
+#include <lib/components/anim_sprite.h>
 #include "lib/components/sprite.h"
 #include "game/stats.h"
 #include "player.h"
+
+typedef struct monster_hit_s {
+    int is_active;
+    long int delta;
+    anim_sprite_t *stroke;
+    sprite_t *damage;
+} monster_hit_t;
 
 typedef struct monster_s {
     long int delta;
@@ -33,5 +41,9 @@ int get_monsters_length(monster_t **monsters);
 
 void player_attack_monster(player_t *player, monster_t *monster);
 void monster_attack_player(monster_t *monster, player_t *player);
+
+monster_hit_t *create_monster_hit(int damage, monster_t monster);
+void update_monster_hit(monster_hit_t *hit, long int delta);
+void draw_monster_hit(sfRenderWindow *window, monster_hit_t *hit);
 
 #endif

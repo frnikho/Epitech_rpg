@@ -32,26 +32,33 @@ static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 
 static void update_monster_battle(game_t *g, battle_screen_t *b, long int delta)
 {
-    if (!b->select_choice)
+    if (!b->select_choice && b->round.code != ATTACK_CODE)
         return;
     sfVector2i *attack_order = get_attack_order(b->monster, g->player);
-    if (!attack_order)
-        return;
+    b->round.order = attack_order;
+    b->round.code = ATTACK_CODE;
+    /*
     for (int i = 0; attack_order[i].x != -999; i++) {
         if (attack_order[i].x != PLAYER_INDEX) {
             monster_attack_player(b->monster[attack_order[i].x-1], g->player);
         } else {
-            player_attack_monster(g->player, b->monster[b->select_gui->monster_index]);
-            update_monster(b->monster[b->select_gui->monster_index], delta);
+            int index = b->select_gui->monster_index;
+            player_attack_monster(g->player, b->monster[index]);
+            update_monster(b->monster[index], delta);
         }
     }
+     */
+}
+
+static void end_monster_attack(game_t *game, battle_screen_t *b)
+{
     b->select_choice = 0;
     b->attack_gui->select_index = 0;
     b->attack_gui->is_selected = 0;
     b->select_gui->monster_index = 0;
     b->select_gui->is_selected = 0;
     b->select_gui->is_active = 0;
-    free(attack_order);
+    free(b->round.order);
 }
 
 int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
@@ -68,4 +75,7 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     if (!battle->select_choice && battle->select_gui->is_selected)
         battle->select_choice = 1;
     update_monster_battle(game, battle, delta);
+    if (battle->round.code == ATTACK_CODE) {
+        update_attack_battle_screen(game, battle, delta);
+    }
 }

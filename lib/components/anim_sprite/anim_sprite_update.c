@@ -6,29 +6,39 @@
 */
 
 #include "lib/components/anim_sprite.h"
+#include <stdlib.h>
 
-static void update(anim_sprite_t *sprite, int count)
+static void update_anim_frame(anim_sprite_t *sprite)
 {
-    int width = sprite->info->width;
-    int height = sprite->info->height;
-    sprite->rect.left = width * sprite->info->count_column;
-    sprite->rect.top = height * sprite->info->count_row;
-    sfSprite_setTextureRect(sprite->sprite, sprite->rect);
-    sprite->info->count_column++;
+    sprite->current_count++;
+    if (sprite->current_count >= sprite->count) {
+        sprite->current_count = 0;
+    }
 }
 
 void update_anim_sprite_rect(anim_sprite_t *sprite)
 {
-    if (sprite->info->count_anim >= sprite->info->anim) {
-        sprite->info->count_anim = 0;
-        sprite->info->count_column = 0;
-        sprite->info->count_row = 0;
-    }
-    update(sprite, sprite->info->count_anim);
-    sprite->info->count_anim++;
+    update_anim_frame(sprite);
 }
 
-void set_anim_sprite_anim(anim_sprite_t *sprite, int count)
+static int get_anim_size(sfIntRect *array)
 {
+    int count = 0;
+    for (; array[count].height != -9999; count++)
+        continue;
+    return (count);
+}
 
+void add_anim_frame(anim_sprite_t *anim, sfIntRect rect)
+{
+    sfIntRect *result = malloc(sizeof(sfIntRect) * (get_anim_size(anim->rect) + 2));
+    int i = 0;
+    for (; anim->rect[i].height != -9999; i++) {
+        result[i] = anim->rect[i];
+    }
+    result[i] = rect;
+    result[i+1] = (sfIntRect){0, 0, 0, -9999};
+    free(anim->rect);
+    anim->rect = result;
+    anim->count++;
 }
