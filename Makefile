@@ -51,7 +51,16 @@ SRC						=					src/main.c																\
 											src/gui/select_dialog/select_gui.c										\
 											src/gui/select_dialog/draw_select_gui.c									\
 											src/gui/select_dialog/update_select_gui.c								\
-											src/gui/select_dialog/handle_select_gui.c
+											src/gui/select_dialog/handle_select_gui.c								\
+											src/game/map/dependencies.c												\
+											src/game/map/destroy_and_free.c											\
+											src/game/map/draw_and_create_objects.c									\
+											src/game/map/draw_and_create_obstacles.c								\
+											src/game/map/draw_and_create_tiles.c									\
+											src/game/map/global_map_updates.c										\
+											src/game/map/objects_and_tiles_var.c									\
+											src/game/map/player_collisions.c										\
+											src/game/map/render_optimisation.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\

@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <SFML/Graphics.h>
 
-enum game_state {INTRO_SCREEN = 0, MAIN_MENU = 1, BATTLE = 2, SETTINGS = 3};
+enum game_state {INTRO_SCREEN = 0, MAIN_MENU = 1, BATTLE = 2, SETTINGS = 3, OVERWORLD = 4};
 
 typedef struct config_s {
     int framerate;

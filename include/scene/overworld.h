@@ -8,8 +8,13 @@
 #ifndef MY_RPG_OVERWORLD_H
 #define MY_RPG_OVERWORLD_H
 
+#include "game/map.h"
+
 typedef struct overworld_s {
-    //TODO MAP DE LUANN :)
+    map_t *map;
+    char **obs_tab;
+    int ***objs_tab;
+    int ***tiles_tab;
 } overworld_t;
 
 void overworld(game_t *game, long int delta);

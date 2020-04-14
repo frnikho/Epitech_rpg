@@ -33,6 +33,7 @@ typedef struct player_s {
     inventory_t *inventory;
     player_gui_t *gui;
     stats_t *stats;
+    sfFloatRect collision_box;
 } player_t;
 
 player_t *create_player(void);

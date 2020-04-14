@@ -5,8 +5,8 @@
 ** parser_get_index_value
 */
 
-int get_patern_index(char *buff, char *balise);
-char *my_str_part_copy(char *buff, int beg, int end);
+#include "lib/utils/json_parser.h"
+#include "lib/utils/string.h"
 
 int add_container_index(char *buff, int *i_tab, \
 char *cont_tab, int *in_cont_tab)
@@ -87,8 +87,5 @@ char *get_key_data(char *buff, char *balise)
             indx_e--;
         indx_e++;
     }
-
-    //printf("%s\n", buff);
-
     return (my_str_part_copy(buff, indx_b, indx_e));
 }
