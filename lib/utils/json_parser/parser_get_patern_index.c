@@ -5,6 +5,7 @@
 ** parser_get_pater_index
 */
 
+#include "lib/utils/json_parser.h"
 #include "lib/utils/string.h"
 
 int get_patern_index_core(char *balise, char *buff, int i, int index)

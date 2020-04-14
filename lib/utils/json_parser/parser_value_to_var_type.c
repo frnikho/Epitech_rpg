@@ -5,18 +5,8 @@
 ** parser_value_to_var_type
 */
 
-#include <stdlib.h>
+#include "lib/utils/json_parser.h"
 #include "lib/utils/string.h"
-
-char *my_str_part_copy(char *buff, int beg, int end);
-int check_paragraphe_end(char *buff, int indx_e, int in_container_tt);
-int is_in_container(int in_container_tt, int *in_cont_tab);
-void check_container_opening_closing(char *buff, int indx_e, \
-int *in_cont_tab, char *cont_tab);
-int add_container_index(char *buff, int *i_tab, \
-char *cont_tab, int *in_cont_tab);
-int my_getnbr_bis(char *str);
-char *get_key_data(char *buff, char *balise);
 
 char *my_str_part_copy(char *buff, int beg, int end)
 {

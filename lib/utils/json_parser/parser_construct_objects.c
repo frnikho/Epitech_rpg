@@ -5,13 +5,8 @@
 ** parser_construct_objects
 */
 
-#include <stdlib.h>
+#include "lib/utils/json_parser.h"
 #include "lib/utils/string.h"
-
-char *get_key_data(char *buff, char *balise);
-char **get_value_tab(char *value, int tab_len);
-char *my_str_part_copy(char *buff, int beg, int end);
-char *get_key_data(char *buff, char *balise);
 
 void clear_chars_from_str(char *excluded_chars, char *str)
 {
@@ -20,10 +15,8 @@ void clear_chars_from_str(char *excluded_chars, char *str)
 
     for (int i = 0; str[i]; i++) {
         pass = 0;
-        for (int y = 0; excluded_chars[y]; y++) {
-            if (str[i] == excluded_chars[y])
-                pass = 1;
-        }
+        for (int y = 0; excluded_chars[y]; y++)
+            str[i] == excluded_chars[y] ? pass = 1 : 0;
         if (pass == 1)
             continue;
         str[index] = str[i];
