@@ -35,6 +35,7 @@ static void init_settings_text(game_t *game, settings_screen_t *settings)
 int init_settings_screen(game_t *game, settings_screen_t *settings)
 {
     settings->select_cursor = 0;
+    settings->is_active = 0;
     settings->bg = init_sprite("assets/sprite/bg.png", 0);
     set_sprite_scale(settings->bg, (float) 1.2);
     settings->box = init_sprite("assets/sprite/gui/box_settings.png", 0);
@@ -47,4 +48,6 @@ int init_settings_screen(game_t *game, settings_screen_t *settings)
     settings->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
     sfVector2f pos = {1600, 800};
     settings->fade = init_fade(pos, sfBlack, 1, FADE_OUT);
+    settings->quit = init_text("Sauvegarder", 20, (sfVector2f){750, 690});
+    set_text_font(settings->quit, FONT);
 }

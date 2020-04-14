@@ -87,5 +87,8 @@ char *get_key_data(char *buff, char *balise)
             indx_e--;
         indx_e++;
     }
+
+    //printf("%s\n", buff);
+
     return (my_str_part_copy(buff, indx_b, indx_e));
 }

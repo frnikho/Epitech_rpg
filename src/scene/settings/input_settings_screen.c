@@ -11,11 +11,10 @@
 
 static void update_and_quit(game_t *game, settings_screen_t *settings)
 {
-    static int is_active = 0;
 
-    if (settings->select_cursor == SELECT_QUIT && !is_active) {
+    if (settings->select_cursor == SELECT_QUIT && !settings->is_active) {
         set_dialog_active(settings->dialog, sfTrue);
-        is_active = 1;
+        settings->is_active = 1;
     }
 }
 
@@ -80,9 +79,8 @@ static int handle_selection(game_t *game, settings_screen_t *settings)
 int input_settings_screen(game_t *game, settings_screen_t *settings)
 {
     if (game->event.type == sfEvtKeyPressed) {
-        if (settings->dialog->is_active) {
+        if (settings->dialog->is_active)
             update_dialog_line(settings->dialog);
-        }
         handle_selection(game, settings);
     }
 }

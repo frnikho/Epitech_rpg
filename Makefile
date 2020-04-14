@@ -42,6 +42,8 @@ SRC						=					src/main.c																\
 											src/game/npc/update_npc.c												\
 											src/game/npc/get_npc_dialog.c											\
 											src/game/npc/get_town_npcs.c											\
+											src/game/npc/script/get_npc_script.c									\
+											src/game/npc/script/npc_script.c										\
 											src/gui/attack_dialog/attack_gui.c										\
 											src/gui/attack_dialog/draw_attack_gui.c									\
 											src/gui/attack_dialog/handle_attack_gui.c								\
@@ -56,6 +58,11 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/input_intro_screen.c								\
 											$(PATH_SCENE)/intro/render_intro_screen.c								\
 											$(PATH_SCENE)/intro/update_intro_screen.c								\
+											$(PATH_SCENE)/main_menu/init_main_menu.c								\
+											$(PATH_SCENE)/main_menu/input_main_menu.c								\
+											$(PATH_SCENE)/main_menu/render_main_menu.c								\
+											$(PATH_SCENE)/main_menu/update_main_menu.c								\
+											$(PATH_SCENE)/main_menu/main_menu.c										\
 											$(PATH_SCENE)/settings/init_settings_screen.c							\
 											$(PATH_SCENE)/settings/input_settings_screen.c							\
 											$(PATH_SCENE)/settings/render_settings_screen.c							\

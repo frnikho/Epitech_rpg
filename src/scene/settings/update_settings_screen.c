@@ -12,7 +12,7 @@
 int update_settings_screen(game_t *game, settings_screen_t *s, long int delta)
 {
     static int pos[][2] = {{490, 259}, {595, 259}, {700, 259}, {810, 259},
-        {920, 259}, {490, 412}, {590, 412}, {680, 412}, {750, 700}};
+        {920, 259}, {490, 412}, {590, 412}, {680, 412}, {700, 695}};
     if (s->select_cursor < 0)
         s->select_cursor = 0;
     if (s->select_cursor > 8)
@@ -22,7 +22,8 @@ int update_settings_screen(game_t *game, settings_screen_t *s, long int delta)
     update_dialog(s->dialog, delta);
     update_fade(s->fade);
     if (s->fade->is_finish) {
-        game->current_state = INTRO_SCREEN;
+        game->current_state = MAIN_MENU;
+        game->code = GAMECODE_RESET;
         dispose_settings_screen(s);
         return (0);
     }

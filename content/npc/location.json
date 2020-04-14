@@ -1,53 +1,32 @@
 {
   "topaze":{
-    "count":8,
+    "count":1,
     "1":{
       "x":100,
       "y":100,
       "speed":1,
-      "file":"content/npc/knight.json"
-    },
-    "2":{
-      "x":150,
-      "y":100,
-      "speed":1,
-      "file":"content/npc/knight.json"
-    },
-    "3":{
-      "x":400,
-      "y":450,
-      "speed":1,
-      "file":"content/npc/bodyguard.json"
-    },
-    "4":{
-      "x":510,
-      "y":400,
-      "speed":1,
-      "file":"content/npc/bodyguard.json"
-    },
-    "5":{
-      "x":800,
-      "y":600,
-      "speed":1,
-      "file":"content/npc/musclor.json"
-    },
-    "6":{
-      "x":200,
-      "y":500,
-      "speed":2,
-      "file":"content/npc/sister.json"
-    },
-    "7":{
-      "x":100,
-      "y":100,
-      "speed":3,
-      "file":"content/npc/king.json"
-    },
-    "8":{
-      "x":900,
-      "y":500,
-      "speed":0,
-      "file":"content/npc/musclor.json"
+      "file":"content/npc/knight.json",
+      "script":{
+        "dialog":"......",
+        "actions":{
+          "count":3,
+          "a":{
+            "x":100,
+            "y":200,
+            "time":1800000
+          },
+          "b":{
+            "x":100,
+            "y":200,
+            "time":1800000
+          },
+          "c":{
+            "x":200,
+            "y":200,
+            "time":1800000
+          }
+        }
+      }
     }
   }
 }

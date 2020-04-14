@@ -30,6 +30,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 
 void destroy_overworld(game_t *game, overworld_t *overworld)
 {
+
 }
 
 void overworld(game_t *game, long int delta)

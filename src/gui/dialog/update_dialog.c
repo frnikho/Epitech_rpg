@@ -31,11 +31,11 @@ void update_dialog(dialog_t *dialog, long int delta)
     if (!dialog->is_active)
         return;
     dialog->delta += delta;
-    update_anim_sprite(dialog->dot, delta);
-    if (dialog->dot->delta > 80000) {
+    //update_anim_sprite(dialog->dot, delta);
+    /*if (dialog->dot->delta > 80000) {
         dialog->dot->delta = 0;
-        //update_anim_sprite_rect(dialog->dot);
-    }
+        update_anim_sprite_rect(dialog->dot);
+    }*/
     int t = 50000;
     if (dialog->delta >= t && !dialog->is_finished && !dialog->line_finish) {
         dialog->delta = 0;

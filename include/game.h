@@ -12,11 +12,13 @@
 #define DEBUG 1
 #define DEFAULT_CONFIG 1
 
+#define GAMECODE_RESET 500
+
 #include "game/player.h"
 #include <stdlib.h>
 #include <SFML/Graphics.h>
 
-enum game_state {INTRO_SCREEN = 0, BATTLE = 1, SETTINGS = 2};
+enum game_state {INTRO_SCREEN = 0, MAIN_MENU = 1, BATTLE = 2, SETTINGS = 3};
 
 typedef struct config_s {
     int framerate;
@@ -42,6 +44,7 @@ typedef struct game_s {
     enum game_state current_state;
     config_t config;
     player_t *player;
+    int code;
 } game_t;
 
 game_t *init_game(sfVector2f win_size, char *title);

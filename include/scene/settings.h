@@ -28,6 +28,7 @@
 typedef struct settings_screen_s {
     long int delta;
     int select_cursor;
+    int is_active;
     sprite_t *cursor;
     sprite_t *box;
     sprite_t *bg;

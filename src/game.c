@@ -54,10 +54,11 @@ game_t *init_game(sfVector2f win_size, char *title)
     game->mode.height =(unsigned int) win_size.y;
     game->mode.bitsPerPixel = 32;
     game->clock = sfClock_create();
+    game->code = 0;
     sfFloatRect rect = {0, 0, win_size.x, win_size.y};
     game->camera = sfView_createFromRect(rect);
     game->window = sfRenderWindow_create(game->mode, title, sfClose, 0);
-    game->current_state = INTRO_SCREEN;
+    game->current_state = MAIN_MENU;
     sfRenderWindow_setFramerateLimit(game->window, game->config.framerate);
     sfRenderWindow_setView(game->window, game->camera);
     return (game);

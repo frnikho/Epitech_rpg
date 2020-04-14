@@ -11,6 +11,7 @@
 settings_screen_t *init(game_t *game)
 {
     settings_screen_t *settings = malloc(sizeof(settings_screen_t));
+    game->code = 0;
     init_settings_screen(game, settings);
     return (settings);
 }
@@ -21,6 +22,7 @@ void dispose_settings_screen(settings_screen_t *settings)
     dispose_text(settings->text);
     dispose_text(settings->current_dialog);
     dispose_text(settings->current_frame);
+    dispose_text(settings->quit);
     dispose_fade(settings->fade);
     dispose_sprite(settings->cursor);
     dispose_sprite(settings->box);
@@ -46,7 +48,7 @@ void update(game_t* g, settings_screen_t *s, long int delta)
 void settings_screen(game_t *game, long int delta)
 {
     static settings_screen_t *settings;
-    if (!settings)
+    if (!settings || game->code == GAMECODE_RESET)
         settings = init(game);
     update(game, settings, delta);
 }

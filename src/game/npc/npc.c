@@ -47,6 +47,7 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
 {
     npc_t *npc = malloc(sizeof(npc_t));
     npc->delta = 0;
+    npc->delta_movement = 0;
     npc->current_animations = 0;
     npc->speed = speed;
     npc->fp = filepath;
