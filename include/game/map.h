@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "game/collision.h"
 
 typedef struct {
     sfTexture *texture;
@@ -28,10 +29,11 @@ typedef struct {
     sfVector2u texture_size;
 } object_t;
 
-typedef struct {
+typedef struct obstacle_s {
     sfConvexShape *body;
     sfFloatRect shape;
     float rotation;
+    collision_box_t *collision;
 } obstacle_t;
 
 typedef struct {

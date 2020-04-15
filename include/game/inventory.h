@@ -22,4 +22,8 @@ typedef struct inventory_s {
     sprite_t *box;
 } inventory_t;
 
+inventory_t *create_inventory(void);
+void add_inventory_item(inventory_t *inv, item_t *item);
+void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv);
+
 #endif

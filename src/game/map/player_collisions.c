@@ -6,7 +6,7 @@
 */
 
 #include "game/map.h"
-
+/*
 int is_rectangles_in_collision(sfFloatRect *r_one, sfFloatRect *r_two)
 {
     if (r_one->left + r_one->width > r_two->left && \
@@ -28,8 +28,8 @@ int check_collisions_ahead(map_t *map, player_t *player)
         rect.top = map->obs[i]->shape.top*map->zoom+map->offset.y;
         rect.width = map->obs[i]->shape.width*map->zoom;
         rect.height = map->obs[i]->shape.height*map->zoom;
-        if (is_rectangles_in_collision(&player->collision_box, &rect) == 1)
-            return (1);
+        //if (is_rectangles_in_collision(&player->collision_box, &rect) == 1)
+        //    return (1);
     }
     return (0);
 }
@@ -39,8 +39,8 @@ map_t *map)
 {
     int size = 50 * map->zoom;
 
-    player->collision_box.left = (mode->width / 2) - (size / 2);
-    player->collision_box.top = (mode->height / 2) - (size / 2);
-    player->collision_box.height = size;
-    player->collision_box.width = size;
-}
+    //player->collision_box.left = (mode->width / 2) - (size / 2);
+    //player->collision_box.top = (mode->height / 2) - (size / 2);
+    //player->collision_box.height = size;
+    //player->collision_box.width = size;
+}*/

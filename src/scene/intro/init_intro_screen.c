@@ -13,8 +13,6 @@
 int init_intro_screen(game_t *game, intro_screen_t *screen)
 {
     screen->delta = 0;
-    char **test = get_dialog("caution");
-    screen->dialog = create_dialog(test, 1, (sfVector2f){420, 640}, 1);
     set_player_scale(game->player, 2);
 
     screen->npc = get_town_npcs("topaze");

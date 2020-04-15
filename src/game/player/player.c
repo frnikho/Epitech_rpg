@@ -10,6 +10,7 @@
 #include "lib/utils/json_parser.h"
 #include <stdlib.h>
 #include "lib/utils/string.h"
+#include "game/collision.h"
 
 static sfIntRect *get_player_json_rect(char *filepath, char *animations)
 {
@@ -66,12 +67,14 @@ player_t *create_player(void)
     player_t *player = deserialize_player();
     create_gui(player);
     player->current_animations = 0;
+    player->inventory = create_inventory();
     player->animations = malloc(sizeof(anim_sprite_t*) * 5);
     player->animations[0] = init_player_action("content/player.json", "idle");
     player->animations[1] = init_player_action("content/player.json", "walk_right");
     player->animations[2] = init_player_action("content/player.json", "walk_left");
     player->animations[3] = init_player_action("content/player.json", "walk_up");
     player->animations[4] = 0;
+    //player->collision = create_collision_box(sfSprite_getGlobalBounds(player->animations[0]->sprite), 0);
     return (player);
 }
 

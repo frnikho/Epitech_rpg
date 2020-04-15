@@ -27,13 +27,14 @@ void add_player_position(player_t *player, sfVector2f pos)
     }
 }
 
-void move_player(player_t *p, npc_t **npcs, long int delta)
+
+int move_player(player_t *p, npc_t **npcs, long int delta)
 {
     static int current_delta = 0;
     current_delta += delta;
     if (current_delta <= 30000) {
         current_delta += delta;
-        return;
+        return (0);
     }
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         add_player_position(p, (sfVector2f){0, -1});
@@ -50,7 +51,6 @@ void move_player(player_t *p, npc_t **npcs, long int delta)
     if (sfKeyboard_isKeyPressed(sfKeyD)) {
         p->current_animations = 1;
         add_player_position(p, (sfVector2f){1, 0});
-    }
-
-    current_delta = 0;
+    }    current_delta = 0;
+    return (1);
 }

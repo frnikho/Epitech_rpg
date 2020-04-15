@@ -60,6 +60,7 @@ void update_npc(npc_t *npc, long int delta)
 {
     static int speed[] = {0, 260000, 220000, 180000, 160000, 140000, 120000, 100000, 80000, 60000, 40000, 20000};
     npc->delta += delta;
+   // npc->collision->collision_box = sfSprite_getGlobalBounds(npc->animations[npc->current_animations]->sprite);
     if (npc->speed == 0)
         return;
 
