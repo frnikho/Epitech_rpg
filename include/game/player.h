@@ -11,6 +11,7 @@
 #include "lib/components/text.h"
 #include "inventory.h"
 #include "stats.h"
+#include "npc.h"
 
 typedef struct player_gui_s {
     sprite_t *box;
@@ -25,6 +26,7 @@ typedef struct player_gui_s {
 } player_gui_t;
 
 typedef struct player_s {
+    long int delta;
     int health;
     int mp;
     int level;
@@ -34,6 +36,8 @@ typedef struct player_s {
     player_gui_t *gui;
     stats_t *stats;
     sfFloatRect collision_box;
+    int current_animations;
+    anim_sprite_t **animations;
 } player_t;
 
 player_t *create_player(void);
@@ -45,5 +49,9 @@ void destroy_player(player_t *player);
 void create_gui(player_t *player);
 void draw_player_gui(sfRenderWindow *window, player_t *player);
 void update_player_gui(player_t *player);
+void draw_player(sfRenderWindow *window, player_t *player);
+void set_player_scale(player_t *player, float scale);
+void update_player(player_t *player, long int delta);
+void move_player(player_t *p, npc_t **npcs, long int delta);
 
 #endif

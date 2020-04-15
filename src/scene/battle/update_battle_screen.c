@@ -47,7 +47,7 @@ static void update_monster_battle(game_t *g, battle_screen_t *b, long int delta)
             update_monster(b->monster[index], delta);
         }
     }
-     */
+    */
 }
 
 static void end_monster_attack(game_t *game, battle_screen_t *b)

@@ -31,7 +31,10 @@ SRC						=					src/main.c																\
 											src/game/stats/stats.c													\
 											src/game/stats/damage_stats.c											\
 											src/game/player/player.c												\
+											src/game/player/draw_player.c											\
+											src/game/player/update_player.c											\
 											src/game/player/attack_player.c											\
+											src/game/player/move_player.c											\
 											src/game/player/deserialize_player.c									\
 											src/game/player/serialize_player.c										\
 											src/game/player/gui/player_gui.c										\

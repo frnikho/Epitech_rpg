@@ -14,4 +14,5 @@ int render_intro_screen(game_t *game, intro_screen_t *screen, long int delta)
     draw_dialog(game->window, screen->dialog);
     for (int i = 0; screen->npc[i] != 0; i++)
         draw_npc(game->window, screen->npc[i]);
+    draw_player(game->window, game->player);
 }

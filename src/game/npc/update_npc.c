@@ -65,8 +65,6 @@ void update_npc(npc_t *npc, long int delta)
 
     update_action_script(npc, delta);
 
-
-
     if (npc->delta >= speed[npc->speed]) {
         npc->delta = 0;
         update_anim_sprite_rect(npc->animations[npc->current_animations]);
