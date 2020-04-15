@@ -20,7 +20,7 @@ typedef struct collision_box_s {
     sfFloatRect collision_box;
 } collision_box_t;
 
-collision_box_t *create_collision_box(sfFloatRect rec, int update_on_default);
+collision_box_t *create_collision_box(sfFloatRect rec, int update_on_default, int is_blocking);
 int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, collision_box_t *player, long int delta);
 
 #endif /* !COLLISION_H_ */

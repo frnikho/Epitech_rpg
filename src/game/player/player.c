@@ -74,7 +74,7 @@ player_t *create_player(void)
     player->animations[2] = init_player_action("content/player.json", "walk_left");
     player->animations[3] = init_player_action("content/player.json", "walk_up");
     player->animations[4] = 0;
-    //player->collision = create_collision_box(sfSprite_getGlobalBounds(player->animations[0]->sprite), 0);
+    player->collision = create_collision_box(sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
     return (player);
 }
 

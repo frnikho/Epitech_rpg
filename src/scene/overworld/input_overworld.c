@@ -10,5 +10,4 @@
 
 int input_overworld(game_t *game, overworld_t *overworld)
 {
-
 }

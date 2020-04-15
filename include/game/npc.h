@@ -34,6 +34,7 @@ typedef struct npc_s {
     int current_animations;
     script_t *script;
     collision_box_t *collision;
+    collision_box_t *trigger;
 } npc_t;
 
 npc_t *create_npc(char *filepath, sfVector2f pos, int speed);

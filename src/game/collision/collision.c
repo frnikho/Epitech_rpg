@@ -13,13 +13,14 @@
 #include <stdlib.h>
 #include <SFML/Graphics.h>
 
-collision_box_t *create_collision_box(sfFloatRect rec, int update_on_default)
+collision_box_t *create_collision_box(sfFloatRect rec, int update_on_default, int is_blocking)
 {
     collision_box_t *box = malloc(sizeof(collision_box_t));
     box->is_active = 1;
-    box->is_blocking = 1;
+    box->is_blocking = is_blocking;
     box->update_on_default = update_on_default;
     box->collision_box = rec;
+    return (box);
 }
 
 int is_rectangles_in_collision(sfFloatRect *r_one, sfFloatRect *r_two)
@@ -55,6 +56,11 @@ int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, collision_box_t *p
         if (result != 0)
             return (result);
         else if (npcs[i]->collision->update_on_default == 1)
+            update_npc(npcs[i], delta);
+        result = check_collisions(player, npcs[i]->trigger);
+        if (result != 0)
+            return (result);
+        else if (npcs[i]->trigger->update_on_default == 1)
             update_npc(npcs[i], delta);
     }
     for (int i = 0; map_obs[i]; i++) {
