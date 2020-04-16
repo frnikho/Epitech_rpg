@@ -8,6 +8,7 @@
 #ifndef DEFENDER_DIALOG_H
 #define DEFENDER_DIALOG_H
 
+#define DOT_FP "assets/sprite/king_slime_1.png"
 #define GUI_POS {420, 640}
 
 #include "lib/components/anim_sprite.h"

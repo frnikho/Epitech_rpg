@@ -23,7 +23,10 @@ void handle_attack_gui(attack_gui_t *gui, sfEvent event)
         gui->select_index++;
     if (event.key.code == sfKeySpace || event.key.code == sfKeyEnter) {
         gui->is_selected = 1;
-        if ((compare_color(gui->abilities->color, grey) == 0 && gui->select_index == 1) || (compare_color(gui->spells->color, grey) == 0 && gui->select_index == SELECT_MAGIC))
+        int in = gui->select_index;
+        if ((compare_color(gui->abilities->color, grey) == 0 && in == 1))
+            gui->is_selected = 0;
+        if ((compare_color(gui->spells->color, grey) == 0 && in == 2))
             gui->is_selected = 0;
     }
 }

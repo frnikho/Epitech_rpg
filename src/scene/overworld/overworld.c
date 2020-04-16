@@ -16,11 +16,31 @@ static overworld_t *init(game_t *game)
     return (overworld);
 }
 
+static void overworld_offset(game_t *game, overworld_t *overworld, int coeff)
+{
+    switch (game->event.key.code) {
+    case (sfKeyRight):
+        overworld->map->offset.x -= coeff*overworld->map->zoom;
+        break;
+    case (sfKeyLeft):
+        overworld->map->offset.x += coeff*overworld->map->zoom;
+        break;
+    case (sfKeyUp):
+        overworld->map->offset.y += coeff*overworld->map->zoom;
+        break;
+    case (sfKeyDown):
+        overworld->map->offset.y -= coeff*overworld->map->zoom;
+        break;
+    case (sfKeyZ):
+        overworld->map->zoom += 0.1;
+        break;
+    case (sfKeyA):
+        overworld->map->zoom -= 0.1;
+    }
+}
+
 static void update(game_t *game, overworld_t *overworld, long int delta)
 {
-    int coeff = 5;
-    sfVector2f prev_offset = overworld->map->offset;
-
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             destroy_overworld(game, overworld);
@@ -28,29 +48,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
             return;
         }
         if (game->event.type == sfEvtKeyPressed) {
-            switch (game->event.key.code) {
-                case (sfKeyRight):
-                    overworld->map->offset.x -= coeff*overworld->map->zoom;
-                    break;
-                case (sfKeyLeft):
-                    overworld->map->offset.x += coeff*overworld->map->zoom;
-                    break;
-                case (sfKeyUp):
-                    overworld->map->offset.y += coeff*overworld->map->zoom;
-                    break;
-                case (sfKeyDown):
-                    overworld->map->offset.y -= coeff*overworld->map->zoom;
-                    break;
-                case (sfKeyZ):
-                    overworld->map->zoom += 0.1;
-                    break;
-                case (sfKeyA):
-                    overworld->map->zoom -= 0.1;
-                default:
-                    break;
-            }
-            //if (check_collisions_ahead(overworld->map, game->player) == 1)
-            //    overworld->map->offset = prev_offset;
+            overworld_offset(game, overworld, 5);
         }
     }
     update_overworld(game, overworld, delta);

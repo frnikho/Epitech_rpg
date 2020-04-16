@@ -5,7 +5,7 @@
 **  function
 */
 
-#include <gui/dialog.h>
+#include "gui/dialog.h"
 
 void set_dialog_active(dialog_t *dialog, int is_active)
 {
