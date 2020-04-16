@@ -25,6 +25,14 @@ void add_player_position(player_t *player, sfVector2f pos)
     }
 }
 
+int exec_move(player_t *p, sfVector2f pos, int current_annimation, int *current_delta)
+{
+    add_player_position(p, pos);
+    p->pre_pos = pos;
+    p->current_animations = current_annimation;
+    (*current_delta) = 0;   
+}
+
 int move_player(player_t *p, npc_t **npcs, long int delta)
 {
     static int current_delta = 0;
@@ -34,26 +42,14 @@ int move_player(player_t *p, npc_t **npcs, long int delta)
         current_delta += delta;
         return (0);
     }
-    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-        add_player_position(p, (sfVector2f){0, -1});
-        p->pre_pos = (sfVector2f){0, -1};
-        p->current_animations = 3;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
-        p->current_animations = 2;
-        add_player_position(p, (sfVector2f){-1, 0});
-        p->pre_pos = (sfVector2f){-1, 0};
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyS)) {
-        add_player_position(p, (sfVector2f){0, 1});
-        p->current_animations = 0;
-        p->pre_pos = (sfVector2f){0, 1};
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyD)) {
-        p->current_animations = 1;
-        add_player_position(p, (sfVector2f){1, 0});
-        p->pre_pos = (sfVector2f){1, 0};
-    }
+    if (sfKeyboard_isKeyPressed(sfKeyZ) && current_delta != 0)
+        exec_move(p, (sfVector2f){0, -1}, 3, &current_delta);
+    if (sfKeyboard_isKeyPressed(sfKeyQ) && current_delta != 0)
+        exec_move(p, (sfVector2f){-1, 0}, 2,  &current_delta);
+    if (sfKeyboard_isKeyPressed(sfKeyS) && current_delta != 0)
+        exec_move(p, (sfVector2f){0, 1}, 0,  &current_delta);
+    if (sfKeyboard_isKeyPressed(sfKeyD) && current_delta != 0)
+        exec_move(p, (sfVector2f){1, 0}, 1,  &current_delta);
     current_delta = 0;
     return (1);
 }
