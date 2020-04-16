@@ -39,7 +39,8 @@ static sfIntRect *get_player_json_rect(char *filepath, char *animations)
 static anim_sprite_t *init_player_action(char *filepath, char *anim_name)
 {
     sfIntRect *rect = get_player_json_rect(filepath, anim_name);
-    anim_sprite_t *sprite = create_anim_sprite("assets/sprite/player.png", (sfVector2f){0, 0});
+    anim_sprite_t *sprite = create_anim_sprite("assets/sprite/player.png", \
+    (sfVector2f){0, 0});
     for (int i = 0; rect[i].height != -9999; i++)
         add_anim_frame(sprite, rect[i]);
     return (sprite);
@@ -62,6 +63,17 @@ static player_t *init_player(void)
     return (player);
 }
 
+static anim_sprite_t **create_annimations(void)
+{
+    anim_sprite_t **animations = malloc(sizeof(anim_sprite_t*) * 5);
+    animations[0] = init_player_action("content/player.json", "idle");
+    animations[1] = init_player_action("content/player.json", "walk_right");
+    animations[2] = init_player_action("content/player.json", "walk_left");
+    animations[3] = init_player_action("content/player.json", "walk_up");
+    animations[4] = 0;
+    return (animations);
+}
+
 player_t *create_player(void)
 {
     player_t *player = deserialize_player();
@@ -71,20 +83,9 @@ player_t *create_player(void)
     create_gui(player);
     player->current_animations = 0;
     player->inventory = create_inventory();
-    player->animations = malloc(sizeof(anim_sprite_t*) * 5);
-    player->animations[0] = init_player_action("content/player.json", "idle");
-    player->animations[1] = init_player_action("content/player.json", "walk_right");
-    player->animations[2] = init_player_action("content/player.json", "walk_left");
-    player->animations[3] = init_player_action("content/player.json", "walk_up");
-    player->animations[4] = 0;
+    player->animations = create_annimations();
     player->pre_pos = (sfVector2f){0, 0};
-    player->collision = create_collision_box(sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
+    player->collision = create_collision_box(\
+    sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
     return (player);
-}
-
-void destroy_player(player_t *player)
-{
-    //TODO destroy inventory
-    destroy_stats(player->stats);
-    free(player);
 }

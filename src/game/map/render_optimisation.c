@@ -28,7 +28,8 @@ int is_square_in_window(sfRenderWindow *window, sfVector2f *points)
     return (0);
 }
 
-int is_object_displayed(int i, int y, object_layer_t *layer, sfRenderWindow *window)
+int is_object_displayed(int i, int y, object_layer_t *layer, \
+sfRenderWindow *window)
 {
     sfVector2f position;
     sfVector2f points[4] = {{0, 0}, {0, 0}, {0, 0}, {0, 0}};

@@ -47,6 +47,7 @@ static anim_sprite_t *init_npc(npc_t *npc, char *filepath, char *anim_name)
 npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
 {
     npc_t *npc = malloc(sizeof(npc_t));
+
     npc->delta = 0;
     npc->delta_movement = 0;
     npc->current_animations = 0;
@@ -60,9 +61,9 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
     npc->animations[4] = 0;
     for (int i = 0; npc->animations[i] != 0; i++)
         sfSprite_setPosition(npc->animations[i]->sprite, pos);
-
     sfFloatRect r = sfSprite_getGlobalBounds(npc->animations[0]->sprite);
     npc->collision = create_collision_box(r, 0, 1);
-    npc->trigger = create_collision_box((sfFloatRect){r.left-10, r.top-10, r.width+20, r.height+20}, 1, 0);
+    npc->trigger = create_collision_box((sfFloatRect){r.left-10, r.top-10, \
+        r.width+20, r.height+20}, 1, 0);
     return (npc);
 }
