@@ -53,17 +53,13 @@ static void update_action_script(npc_t *npc, long int delta)
         action->delta += delta;
     }
     do_action(npc, &npc->script->actions[npc->script->pos_count], delta);
-
 }
 
 void update_npc(npc_t *npc, long int delta)
 {
     static int speed[] = {0, 260000, 220000, 180000, 160000, 140000, 120000, 100000, 80000, 60000, 40000, 20000};
-    sfFloatRect r = sfSprite_getGlobalBounds(npc->animations[npc->current_animations]->sprite);
 
     npc->delta += delta;
-    npc->collision->collision_box = r;
-    npc->trigger->collision_box = (sfFloatRect){r.left-5, r.top-5, r.width+10, r.height+10};
     if (npc->speed == 0)
         return;
     update_action_script(npc, delta);

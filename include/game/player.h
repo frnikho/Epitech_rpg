@@ -41,6 +41,7 @@ typedef struct player_s {
     collision_box_t *collision;
     int current_animations;
     anim_sprite_t **animations;
+    sfVector2f pre_pos;
 } player_t;
 
 player_t *create_player(void);
@@ -58,5 +59,6 @@ void update_player(player_t *player, long int delta);
 int move_player(player_t *p, npc_t **npcs, long int delta);
 
 sfVector2f get_player_position(player_t *player);
+void add_player_position(player_t *player, sfVector2f pos);
 
 #endif

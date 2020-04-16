@@ -69,3 +69,26 @@ int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, collision_box_t *p
     }
     return (0);
 }
+
+int block_move_on_collision(player_t *p, npc_t **npcs, long int delta)
+{
+    obstacle_t **obs = malloc(sizeof(obstacle_t*));
+    sfFloatRect r = {0, 0, 0, 0};
+
+    obs[0] = NULL;
+    p->collision->collision_box = sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
+    for (int i = 0; npcs[i]; i++) {
+        r = sfSprite_getGlobalBounds(npcs[i]->animations[npcs[i]->current_animations]->sprite);
+        npcs[i]->collision->collision_box = r;
+        npcs[i]->trigger->collision_box = (sfFloatRect){r.left-5, r.top-5, r.width+10, r.height+10};
+    }
+    if (check_collision_ahead(obs, npcs, p->collision, delta) == 1) {
+        free(obs);
+        add_player_position(p, (sfVector2f){p->pre_pos.x * -1, p->pre_pos.y * -1});
+        p->pre_pos = (sfVector2f){0, 0};
+        return (1);
+    }
+    free(obs);
+    p->pre_pos = (sfVector2f){0, 0};
+    return (0);
+}
