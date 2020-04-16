@@ -16,17 +16,15 @@ static void init_attack_text(attack_gui_t *gui, sfColor grey)
     gui->cursor = init_sprite("assets/sprite/gui/pointer_small.png", 0);
     set_sprite_scale(gui->cursor, 2);
     gui->attack = init_text("Attaquer", 23, (sfVector2f){450, 630});
-    gui->habilities = init_text("Aptitudes", 23, (sfVector2f){615, 630});
+    gui->abilities = init_text("Aptitudes", 23, (sfVector2f){615, 630});
     gui->spells = init_text("Sorts", 23, (sfVector2f){450, 680});
     gui->objects = init_text("Objets", 23, (sfVector2f){615, 680});
     gui->goaway = init_text("Fuite", 23, (sfVector2f){450, 730});
     gui->tension = init_text("Tension", 23, (sfVector2f){615, 730});
     set_text_font(gui->attack, "assets/font/dq.ttf");
     set_text_font(gui->tension, "assets/font/dq.ttf");
-    set_text_color(gui->tension, grey);
     set_text_font(gui->objects, "assets/font/dq.ttf");
-    set_text_font(gui->habilities, "assets/font/dq.ttf");
-    set_text_color(gui->habilities, grey);
+    set_text_font(gui->abilities, "assets/font/dq.ttf");
     set_text_font(gui->spells, "assets/font/dq.ttf");
     set_text_font(gui->goaway, "assets/font/dq.ttf");
 }

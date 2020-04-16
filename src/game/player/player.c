@@ -65,6 +65,8 @@ static player_t *init_player(void)
 player_t *create_player(void)
 {
     player_t *player = deserialize_player();
+    player->learned_abi = 0;
+    player->learned_spell = 0;
     create_gui(player);
     player->current_animations = 0;
     player->inventory = create_inventory();
@@ -74,7 +76,7 @@ player_t *create_player(void)
     player->animations[2] = init_player_action("content/player.json", "walk_left");
     player->animations[3] = init_player_action("content/player.json", "walk_up");
     player->animations[4] = 0;
-    //player->collision = create_collision_box(sfSprite_getGlobalBounds(player->animations[0]->sprite), 0);
+    player->collision = create_collision_box(sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
     return (player);
 }
 

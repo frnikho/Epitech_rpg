@@ -33,6 +33,8 @@ typedef struct player_s {
     int level;
     int xp;
     int zone;
+    int learned_abi;
+    int learned_spell;
     inventory_t *inventory;
     player_gui_t *gui;
     stats_t *stats;

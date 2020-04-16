@@ -14,5 +14,5 @@ void update_player(player_t *player, long int delta)
         player->delta = 0;
         update_anim_sprite_rect(player->animations[player->current_animations]);
     }
-    //player->collision->collision_box = sfSprite_getGlobalBounds(player->animations[player->current_animations]->sprite);
+    player->collision->collision_box = sfSprite_getGlobalBounds(player->animations[player->current_animations]->sprite);
 }
