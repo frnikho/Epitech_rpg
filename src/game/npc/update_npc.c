@@ -7,35 +7,37 @@
 
 #include "game/npc.h"
 
+static void setup_action(npc_t *npc, float *f, \
+int current_animations, int sign)
+{
+    npc->current_animations = current_animations;
+    if (sign > 0)
+        (*f)++;
+    else
+        (*f)--;
+}
+
 static void do_action(npc_t *npc, action_t *action, long int delta)
 {
     sfVector2f p;
+
     p = sfSprite_getPosition(npc->animations[npc->current_animations]->sprite);
     int nx = action->pos.x;
     int ny = action->pos.y;
     npc->delta_movement += delta;
     if (npc->delta_movement < 5000)
         return;
-    if (p.x > nx) {
-        npc->current_animations = 2;
-        p.x--;
-    }
-    if (p.x < nx) {
-        npc->current_animations = 1;
-        p.x++;
-    }
-    if (p.y > ny) {
-        npc->current_animations = 3;
-        p.y--;
-    }
-    if (p.y < ny) {
-        npc->current_animations = 0;
-        p.y++;
-    }
+    if (p.x > nx)
+        setup_action(npc, &p.x, 2, -1);
+    if (p.x < nx)
+        setup_action(npc, &p.x, 1, 1);
+    if (p.y > ny)
+        setup_action(npc, &p.y, 3, -1);
+    if (p.y < ny)
+        setup_action(npc, &p.y, 0, 1);
     for (int i = 0; npc->animations[i] != 0; i++)
         sfSprite_setPosition(npc->animations[i]->sprite, p);
     npc->delta_movement = 0;
-
 }
 
 static void update_action_script(npc_t *npc, long int delta)
@@ -57,7 +59,8 @@ static void update_action_script(npc_t *npc, long int delta)
 
 void update_npc(npc_t *npc, long int delta)
 {
-    static int speed[] = {0, 260000, 220000, 180000, 160000, 140000, 120000, 100000, 80000, 60000, 40000, 20000};
+    static int speed[] = {0, 260000, 220000, 180000, 160000, 140000, 120000, \
+        100000, 80000, 60000, 40000, 20000};
 
     npc->delta += delta;
     if (npc->speed == 0)

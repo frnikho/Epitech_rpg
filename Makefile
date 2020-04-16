@@ -41,6 +41,7 @@ SRC						=					src/main.c																\
 											src/game/player/get_player_position.c									\
 											src/game/player/deserialize_player.c									\
 											src/game/player/serialize_player.c										\
+											src/game/player/destroy_player.c										\
 											src/game/player/gui/player_gui.c										\
 											src/game/player/gui/draw_player_gui.c									\
 											src/game/player/gui/update_player_gui.c									\
@@ -68,7 +69,8 @@ SRC						=					src/main.c																\
 											src/game/map/objects_and_tiles_var.c									\
 											src/game/map/player_collisions.c										\
 											src/game/map/render_optimisation.c										\
-											src/game/collision/collision.c
+											src/game/collision/collision.c											\
+											src/game/collision/player_collisions.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\
@@ -101,7 +103,7 @@ OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -L lib/ -lcsfml
 
-CFLAGS					=					-I include/ $(LIB) -g
+CFLAGS					=					-I include/ $(LIB)
 
 all:					$(NAME)
 $(NAME):				$(OBJ)
@@ -117,3 +119,6 @@ re:						fclean all
 						make -C lib/ re
 test_run:
 						$(MAKE) -C tests/
+
+debug:					CFLAGS+=-g
+debug:					re

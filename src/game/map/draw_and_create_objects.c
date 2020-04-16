@@ -7,7 +7,8 @@
 
 #include "game/map.h"
 
-void draw_single_object(object_layer_t *layer, sfRenderWindow *window, int i, int y)
+void draw_single_object(object_layer_t *layer, sfRenderWindow *window, \
+int i, int y)
 {
     int t_size = layer->tile_size;
     float zoom = layer->zoom;
