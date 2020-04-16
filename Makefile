@@ -30,6 +30,7 @@ SRC						=					src/main.c																\
 											src/game/inventory/inventory.c											\
 											src/game/inventory/add_inventory_item.c									\
 											src/game/inventory/draw_inventory.c										\
+											src/game/inventory/open_inventory.c										\
 											src/game/stats/stats.c													\
 											src/game/stats/damage_stats.c											\
 											src/game/player/player.c												\

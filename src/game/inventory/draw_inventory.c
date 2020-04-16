@@ -9,9 +9,10 @@
 
 void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv)
 {
-    sfVector2i point = {500, 600};
+    if (!inv->is_open)
+        return;
+    static sfVector2i point = {500, 600};
     sfVector2f pos = sfRenderWindow_mapPixelToCoords(window, point, camera);
     set_sprite_position(inv->box, pos);
     draw_sprite(window, inv->box);
-    printf("%f, %f: \n", pos.x, pos.y);
 }
