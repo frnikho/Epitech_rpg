@@ -9,6 +9,7 @@
 #include "lib/utils/file.h"
 #include "lib/utils/string.h"
 #include <stdlib.h>
+#include "game/collision.h"
 
 static sfIntRect *get_npc_json_rect(char *filepath, char *animations)
 {
@@ -59,5 +60,9 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
     npc->animations[4] = 0;
     for (int i = 0; npc->animations[i] != 0; i++)
         sfSprite_setPosition(npc->animations[i]->sprite, pos);
+
+    sfFloatRect r = sfSprite_getGlobalBounds(npc->animations[0]->sprite);
+    npc->collision = create_collision_box(r, 0, 1);
+    npc->trigger = create_collision_box((sfFloatRect){r.left-10, r.top-10, r.width+20, r.height+20}, 1, 0);
     return (npc);
 }

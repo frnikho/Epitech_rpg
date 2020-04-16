@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "game/collision.h"
 
 typedef struct {
     sfTexture *texture;
@@ -28,10 +29,11 @@ typedef struct {
     sfVector2u texture_size;
 } object_t;
 
-typedef struct {
+typedef struct obstacle_s {
     sfConvexShape *body;
     sfFloatRect shape;
     float rotation;
+    collision_box_t *collision;
 } obstacle_t;
 
 typedef struct {
@@ -91,9 +93,9 @@ void create_object_tab(map_t *map, int ***objs_tab);
 void create_obtacles_tab(char **obj_tab, map_t *map);
 int is_object_displayed(int i, int y, object_layer_t *layer, sfRenderWindow *window);
 sfVector2f *is_tile_displayed(tile_layer_t *layer, int i, int y);
-int check_collisions_ahead(map_t *map, player_t *player);
-void update_player_collision_box(sfVideoMode *mode, player_t *player, \
-map_t *map);
+//int check_collisions_ahead(map_t *map, player_t *player);
+//void update_player_collision_box(sfVideoMode *mode, player_t *player, \
+//map_t *map);
 
 void create_window(sfRenderWindow *window);
 void print_player(sfRenderWindow *window, map_t *map);

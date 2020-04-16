@@ -49,8 +49,8 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
                 default:
                     break;
             }
-            if (check_collisions_ahead(overworld->map, game->player) == 1)
-                overworld->map->offset = prev_offset;
+            //if (check_collisions_ahead(overworld->map, game->player) == 1)
+            //    overworld->map->offset = prev_offset;
         }
     }
     update_overworld(game, overworld, delta);

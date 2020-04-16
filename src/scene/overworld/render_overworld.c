@@ -23,10 +23,10 @@ int render_overworld(game_t *game, overworld_t *overworld, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
     update_zoom_and_offset(overworld->map);
-    update_player_collision_box(&game->mode, game->player, overworld->map);
+    //update_player_collision_box(&game->mode, game->player, overworld->map);
     
     draw_map(overworld->map, game->window, (int []){0}, (int []){99, 0});
-    draw_rectangle(&game->player->collision_box, game->window);
+    //draw_rectangle(&game->player->collision_box, game->window);
     draw_map(overworld->map,game->window, (int []){99, 0}, (int []){0});
     //print_framerate();
 }

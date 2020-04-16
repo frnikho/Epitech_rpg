@@ -28,10 +28,16 @@ SRC						=					src/main.c																\
 											src/game/monster/gui/draw_monster_gui.c									\
 											src/game/monster/gui/update_monster_gui.c								\
 											src/game/inventory/inventory.c											\
+											src/game/inventory/add_inventory_item.c									\
+											src/game/inventory/draw_inventory.c										\
 											src/game/stats/stats.c													\
 											src/game/stats/damage_stats.c											\
 											src/game/player/player.c												\
+											src/game/player/draw_player.c											\
+											src/game/player/update_player.c											\
 											src/game/player/attack_player.c											\
+											src/game/player/move_player.c											\
+											src/game/player/get_player_position.c									\
 											src/game/player/deserialize_player.c									\
 											src/game/player/serialize_player.c										\
 											src/game/player/gui/player_gui.c										\
@@ -60,7 +66,8 @@ SRC						=					src/main.c																\
 											src/game/map/global_map_updates.c										\
 											src/game/map/objects_and_tiles_var.c									\
 											src/game/map/player_collisions.c										\
-											src/game/map/render_optimisation.c
+											src/game/map/render_optimisation.c										\
+											src/game/collision/collision.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/intro/init_intro_screen.c 								\

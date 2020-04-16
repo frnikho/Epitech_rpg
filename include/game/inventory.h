@@ -10,14 +10,20 @@
 
 #include "game/item.h"
 
+#define INV_SIZE 30
+
 typedef struct case_s {
     int id;
     item_t *item;
 } case_t;
 
 typedef struct inventory_s {
-    case_t **equipements;
-    case_t **bag;
+    case_t **content;
+    sprite_t *box;
 } inventory_t;
+
+inventory_t *create_inventory(void);
+void add_inventory_item(inventory_t *inv, item_t *item);
+void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv);
 
 #endif

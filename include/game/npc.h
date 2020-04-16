@@ -9,6 +9,7 @@
 #define MY_RPG_NPC_H
 
 #include "lib/components/anim_sprite.h"
+#include "game/collision.h"
 
 #define NPC_FP "assets/sprite/npc.png"
 
@@ -32,6 +33,8 @@ typedef struct npc_s {
     anim_sprite_t **animations;
     int current_animations;
     script_t *script;
+    collision_box_t *collision;
+    collision_box_t *trigger;
 } npc_t;
 
 npc_t *create_npc(char *filepath, sfVector2f pos, int speed);

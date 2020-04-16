@@ -25,7 +25,7 @@ int init_overworld(game_t *game, overworld_t *overworld)
 
     char **tiles_layers = get_layers_by_ids((int []){1, 2, 0}, layers);
     int ***tiles_tab = construct_map_tab_from_layers(tiles_layers);
-    
+
     char **objs_layers = get_layers_by_ids((int []){4, 0}, layers);
     int ***objs_tab = construct_map_tab_from_layers(objs_layers);
 

@@ -6,6 +6,7 @@
 */
 
 #include "game/map.h"
+#include "game/collision.h"
 
 void draw_single_obstacle(sfRenderWindow *window, map_t *map, obstacle_t *obs)
 {
@@ -50,6 +51,7 @@ obstacle_t *create_obtacle(char **obj_tab, int index)
     obs->shape.height = my_getfloat(height_str);
     obs->shape.top = my_getfloat(top_str);
     obs->shape.left = my_getfloat(left_str);
+    //obs->collision = create_collision_box(shape, 0);
     free(width_str);
     free(height_str);
     free(top_str);
