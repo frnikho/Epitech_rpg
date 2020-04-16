@@ -12,28 +12,44 @@
 void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
 {
     static int index = 0;
-    char **dialog = NULL;
-    char *chosen_name = NULL;
+    static long int delta = 0;
     if (index == 0) {
         if (b->round.order[b->round.order_index].x == -999) {
             b->round.code = ATTACK_CODE;
             return;
         }
+        int tmp = b->select_gui->monster_index;
         if (b->round.order[b->round.order_index].x == PLAYER_INDEX) {
-            chosen_name = b->monster[b->select_choice]->name;
-            dialog = str_split("Le joueur attaque {monster}", '&');
+            char *m_name = b->monster[b->select_gui->monster_index]->name;
+            char *msg = str_cat("Le joueur attaque ", m_name);
+            char **dialog = str_split(msg, '&');
             b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
+            player_attack_monster(g->player, b->monster[tmp]);
         } else {
-            dialog = str_split("Monster a attaque le jouer !", '&');
+            char **dialog = str_split("Monster a attaque le jouer !", '&');
             b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
+            monster_attack_player(b->monster[tmp], g->player);
         }
         set_dialog_active(b->dialog, 1);
     }
-    if (b->dialog->line_finish) {
-        index = 0;
-        b->round.order_index++;
+    if (b->dialog && b->dialog->is_active && b->dialog->line_finish) {
+        delta += d;
+        if (delta >= 500000) {
+            b->round.order_index++;
+            set_dialog_active(b->dialog, 0);
+            delta = 0;
+            //TODO ATTACK ENEMY SPRITE
+            index = -1;
+        }
     }
-    printf("dialog: %d\n", b->dialog->line_finish);
-    update_dialog(b->dialog, d);
+    if (b->round.order_index >= get_monsters_length(b->monster)+1) {
+        b->attacking = 0;
+        b->select_gui->is_selected = 0;
+        b->select_choice = 0;
+        b->attack_gui->is_selected = 0;
+        b->attack_gui->select_index = 0;
+        return;
+    }
     index++;
+    update_dialog(b->dialog, d);
 }

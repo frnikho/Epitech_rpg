@@ -44,6 +44,8 @@ static void init(dialog_t *dialog, char **text, int p, sfVector2f pos)
 dialog_t *create_dialog(char **text, int pitch, sfVector2f pos, int speed)
 {
     dialog_t *dialog = malloc(sizeof(dialog_t));
+    init(dialog, text, pitch, pos);
+    return (dialog);
 }
 
 void destroy_dialog(dialog_t *dialog)

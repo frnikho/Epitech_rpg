@@ -57,6 +57,7 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     battle->round.code = 0;
     battle->round.order_index = 0;
     battle->round.order = 0;
+    battle->attacking = 0;
     //play_sound(battle->music);
     set_sound_loop(battle->music, 1);
     set_sprite_scale(battle->bg, (float) 3.4);

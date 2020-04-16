@@ -37,17 +37,6 @@ static void update_monster_battle(game_t *g, battle_screen_t *b, long int delta)
     sfVector2i *attack_order = get_attack_order(b->monster, g->player);
     b->round.order = attack_order;
     b->round.code = ATTACK_CODE;
-    /*
-    for (int i = 0; attack_order[i].x != -999; i++) {
-        if (attack_order[i].x != PLAYER_INDEX) {
-            monster_attack_player(b->monster[attack_order[i].x-1], g->player);
-        } else {
-            int index = b->select_gui->monster_index;
-            player_attack_monster(g->player, b->monster[index]);
-            update_monster(b->monster[index], delta);
-        }
-    }
-    */
 }
 
 static void end_monster_attack(game_t *game, battle_screen_t *b)
@@ -68,7 +57,7 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     update_select_gui(battle->select_gui, delta);
     update_player_gui(game->player);
     if (battle->attack_gui->is_selected) {
-        if (battle->attack_gui->select_index == SELECT_ATTACK) {
+        if (battle->attack_gui->select_index == SELECT_ATTACK && battle->attacking) {
             battle->select_gui->is_active = 1;
         }
     }
@@ -76,6 +65,7 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         battle->select_choice = 1;
     update_monster_battle(game, battle, delta);
     if (battle->round.code == ATTACK_CODE) {
+        battle->attacking = 1;
         update_attack_battle_screen(game, battle, delta);
     }
 }
