@@ -10,13 +10,15 @@
 
 int input_battle_screen(game_t *game, battle_screen_t *battle)
 {
+    int active = 0;
+
     if (battle->attack_gui->is_selected)
         handle_select_gui(game->event, battle->select_gui);
     handle_attack_gui(battle->attack_gui, game->event);
     if (game->event.type != sfEvtKeyPressed)
         return (0);
     sfKeyCode key = game->event.key.code;
-    int active = battle->select_gui->is_active;
+    active = battle->select_gui->is_active;
     if (!battle->select_choice && key == sfKeyEscape && active) {
         battle->select_gui->is_active = 0;
         battle->attack_gui->is_selected = 0;
