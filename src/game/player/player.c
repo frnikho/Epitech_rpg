@@ -65,6 +65,8 @@ static player_t *init_player(void)
 player_t *create_player(void)
 {
     player_t *player = deserialize_player();
+    player->learned_abi = 0;
+    player->learned_spell = 0;
     create_gui(player);
     player->current_animations = 0;
     player->inventory = create_inventory();

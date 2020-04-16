@@ -26,7 +26,7 @@ typedef struct attack_gui_s {
 
     text_t *attack;
     text_t *spells;
-    text_t *habilities;
+    text_t *abilities;
     text_t *objects;
     text_t *goaway;
     text_t *tension;
@@ -38,5 +38,6 @@ void destroy_attack_gui(attack_gui_t *gui);
 void draw_attack_gui(sfRenderWindow *window, attack_gui_t *gui);
 void handle_attack_gui(attack_gui_t *gui, sfEvent event);
 void update_attack_gui(attack_gui_t *gui, long int delta);
+int compare_color(sfColor selected, sfColor grey);
 
 #endif
