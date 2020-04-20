@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** get_npc_script.c
 ** File description:
-** npc script function
+** npc state function
 */
 
 #include "lib/utils/string.h"

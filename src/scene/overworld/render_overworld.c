@@ -18,11 +18,19 @@ void draw_rectangle(sfFloatRect *rec, sfRenderWindow *window)
     sfRectangleShape_destroy(shape);
 }
 
-int render_overworld(game_t *game, overworld_t *overworld, long int delta)
+static void render_map_world(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
-    update_zoom_and_offset(overworld->map);
-    draw_map(overworld->map, game->window, (int []){0}, (int []){99, 0});
-    draw_map(overworld->map, game->window, (int []){99, 0}, (int []){0});
+    update_zoom_and_offset(world->map);
+    draw_map(world->map, game->window, (int []){0}, (int []){99, 0});
+    draw_map(world->map, game->window, (int []){99, 0}, (int []){0});
+}
+
+int render_overworld(game_t *game, overworld_t *world, long int delta)
+{
+    sfRenderWindow_clear(game->window, sfBlack);
+    draw_state(game->window, world->state);
+    draw_player(game->window, game->player);
+    draw_inventory(game->window, game->camera, game->player->inventory);
     return (0);
 }

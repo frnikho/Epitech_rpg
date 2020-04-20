@@ -11,7 +11,7 @@
 #include "lib/utils/json_parser.h"
 #include "lib/utils/string.h"
 
-int init_overworld(game_t *game, overworld_t *overworld)
+static int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
     char *file_data = create_file_buffer("map_one.json");
@@ -37,4 +37,10 @@ int init_overworld(game_t *game, overworld_t *overworld)
     free_tab(layers);
     free(layers_str);
     free(file_data);
+    return (0);
+}
+
+int init_overworld(game_t *game, overworld_t *world)
+{
+    world->state = create_state(0, 0);
 }

@@ -5,8 +5,9 @@
 ** move_player function
 */
 
-#include <game/map.h>
+#include "game/map.h"
 #include "game/player.h"
+#include "lib/components/pad.h"
 
 void set_player_position(player_t *player, sfVector2f position)
 {
@@ -44,13 +45,15 @@ int move_player(player_t *p, npc_t **npcs, long int delta)
         current_delta += delta;
         return (0);
     }
-    if (sfKeyboard_isKeyPressed(sfKeyZ) && current_delta != 0)
+    if (current_delta == 0)
+        return (0);
+    if (sfKeyboard_isKeyPressed(sfKeyZ) || pad_arrow() == PAD_UP)
         exec_move(p, (sfVector2f){0, -1}, 3, &current_delta);
-    if (sfKeyboard_isKeyPressed(sfKeyQ) && current_delta != 0)
+    if (sfKeyboard_isKeyPressed(sfKeyQ) || pad_arrow() == PAD_LEFT)
         exec_move(p, (sfVector2f){-1, 0}, 2, &current_delta);
-    if (sfKeyboard_isKeyPressed(sfKeyS) && current_delta != 0)
+    if (sfKeyboard_isKeyPressed(sfKeyS) || pad_arrow() == PAD_DOWN)
         exec_move(p, (sfVector2f){0, 1}, 0, &current_delta);
-    if (sfKeyboard_isKeyPressed(sfKeyD) && current_delta != 0)
+    if (sfKeyboard_isKeyPressed(sfKeyD) || pad_arrow() == PAD_RIGHT)
         exec_move(p, (sfVector2f){1, 0}, 1, &current_delta);
     current_delta = 0;
     return (1);

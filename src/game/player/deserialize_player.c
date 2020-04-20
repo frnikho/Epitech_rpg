@@ -52,8 +52,6 @@ int init_player_objects(char *content, player_t *player)
 {
     char *xp = get_key_data(content, "xp");
     char *level = get_key_data(content, "level");
-    if (!xp || !level)
-        return (-1);
     int i_xp = get_nbr(xp);
     int i_level = get_nbr(level);
     player->xp = i_xp;
@@ -74,7 +72,7 @@ player_t *deserialize_player(void)
         return (0);
     if (init_player_objects(c, p) == -1)
         return (0);
-    if (p->level <= 0 || p->xp < 0 || !p->stats)
+    if (!p->stats)
         return (0);
     p->zone = 1;
     free(c);

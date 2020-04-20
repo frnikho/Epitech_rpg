@@ -34,6 +34,7 @@ int main(int ac, char **av)
     game->player = create_player();
     srand(time(0));
     loop(game);
+    serialize_player(game->player);
     dispose_game(game);
     return (0);
 }

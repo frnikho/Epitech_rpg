@@ -9,6 +9,7 @@ CC						=					gcc -g
 NAME					=					my_rpg
 PATH_COMPONENT			=					src/component
 PATH_SCENE				=					src/scene
+PATH_STATE				=					src/state
 
 SRC						=					src/main.c																\
 											src/game.c																\
@@ -99,7 +100,13 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/overworld/render_overworld.c								\
 											$(PATH_SCENE)/overworld/update_overworld.c								\
 
-OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)
+STATE					=					$(PATH_STATE)/draw_state.c												\
+											$(PATH_STATE)/update_state.c											\
+											$(PATH_STATE)/create_state.c											\
+											$(PATH_STATE)/intro/intro_state.c										\
+
+
+OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)	$(STATE:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -L lib/ -lcsfml
 
@@ -116,7 +123,6 @@ fclean:					clean
 						$(RM) -rf $(NAME)
 						make -C lib/ fclean
 re:						fclean all
-						make -C lib/ re
 test_run:
 						$(MAKE) -C tests/
 

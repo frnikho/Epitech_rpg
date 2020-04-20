@@ -23,11 +23,11 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
             char *m_name = b->monster[b->select_gui->monster_index]->name;
             char *msg = str_cat("Le joueur attaque ", m_name);
             char **dialog = str_split(msg, '&');
-            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
+            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
             player_attack_monster(g->player, b->monster[tmp]);
         } else {
             char **dialog = str_split("Monster a attaque le jouer !", '&');
-            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 1);
+            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
             monster_attack_player(b->monster[tmp], g->player);
         }
         set_dialog_active(b->dialog, 1);

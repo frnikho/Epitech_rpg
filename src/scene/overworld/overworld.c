@@ -47,9 +47,6 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
             sfRenderWindow_close(game->window);
             return;
         }
-        if (game->event.type == sfEvtKeyPressed) {
-            overworld_offset(game, overworld, 5);
-        }
     }
     update_overworld(game, overworld, delta);
     render_overworld(game, overworld, delta);
@@ -57,11 +54,11 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 
 void destroy_overworld(game_t *game, overworld_t *overworld)
 {
-    destroy_and_free_map(overworld->map);
-    free(overworld->map);
-    free_tab(overworld->obs_tab);
-    free_double_tab(overworld->tiles_tab);
-    free_double_tab(overworld->objs_tab);
+    //destroy_and_free_map(overworld->map);
+    //free(overworld->map);
+    //free_tab(overworld->obs_tab);
+    //free_double_tab(overworld->tiles_tab);
+    //free_double_tab(overworld->objs_tab);
 }
 
 void overworld(game_t *game, long int delta)

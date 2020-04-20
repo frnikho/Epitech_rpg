@@ -8,6 +8,8 @@
 #ifndef MY_RPG_OVERWORLD_H
 #define MY_RPG_OVERWORLD_H
 
+#include "game.h"
+#include "state.h"
 #include "game/map.h"
 
 typedef struct overworld_s {
@@ -15,6 +17,7 @@ typedef struct overworld_s {
     char **obs_tab;
     int ***objs_tab;
     int ***tiles_tab;
+    state_t *state;
 } overworld_t;
 
 void overworld(game_t *game, long int delta);
