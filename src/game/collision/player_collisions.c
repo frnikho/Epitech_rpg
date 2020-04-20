@@ -28,20 +28,15 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta)
     }
 }
 
-int block_move_on_collision(player_t *p, npc_t **npcs, long int delta)
+int block_move_on_collision(player_t *p, npc_t **npcs, long int delta, obstacle_t **obs)
 {
-    obstacle_t **obs = malloc(sizeof(obstacle_t*));
-
-    obs[0] = NULL;
     update_collisions_box(p, npcs, delta);
     if (check_collision_ahead(obs, npcs, p->collision, delta) == 1) {
-        free(obs);
         add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \
             p->pre_pos.y * -1});
         p->pre_pos = (sfVector2f){0, 0};
         return (1);
     }
-    free(obs);
     p->pre_pos = (sfVector2f){0, 0};
     return (0);
 }

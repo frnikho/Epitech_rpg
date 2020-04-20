@@ -23,7 +23,7 @@ void draw_single_tile(tile_layer_t *layer, sfRenderWindow *window, int i, int y)
     sfConvexShape_setPoint(layer->tile_shape, 2, points[2]);
     sfConvexShape_setPoint(layer->tile_shape, 3, points[3]);
     sfConvexShape_setTexture(layer->tile_shape, \
-    layer->tiles[map_tile_id(layer->tiles_map[y][i])], sfTrue);
+    layer->tiles[layer->tiles_map[y][i]-1], sfTrue);
     sfRenderWindow_drawConvexShape(window, layer->tile_shape, NULL);
     free(points);
 }
@@ -51,11 +51,11 @@ void draw_tiles(map_t *map, sfRenderWindow *window, int *layers_to_print)
     }
 }
 
-tile_layer_t *init_tile_layer(int **tiles_map)
+tile_layer_t *init_tile_layer(int **tiles_map, char *tile_set)
 {
     tile_layer_t *layer = malloc(sizeof(tile_layer_t));
 
-    layer->tiles = create_tiles();
+    layer->tiles = create_tiles(tile_set);
     layer->width = get_tab_width(tiles_map);
     layer->height = get_tab_height(tiles_map);
     layer->tile_size = 32;
@@ -67,7 +67,7 @@ tile_layer_t *init_tile_layer(int **tiles_map)
     return (layer);
 }
 
-void create_tile_tab(map_t *map, int ***layers_tab)
+void create_tile_tab(map_t *map, int ***layers_tab, char *tile_set)
 {
     int tab_len = 0;
 
@@ -75,5 +75,5 @@ void create_tile_tab(map_t *map, int ***layers_tab)
     map->tile_layers = malloc(sizeof(tile_layer_t*) * (tab_len+1));
     map->tile_layers[tab_len] = NULL;
     for (int i = 0; layers_tab[i]; i++)
-        map->tile_layers[i] = init_tile_layer(layers_tab[i]);
+        map->tile_layers[i] = init_tile_layer(layers_tab[i], tile_set);
 }

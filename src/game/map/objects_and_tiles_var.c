@@ -7,14 +7,27 @@
 
 #include "game/map.h"
 
-sfTexture **create_tiles(void)
+sfTexture **create_tiles(char *tile_set)
 {
-    sfTexture **tab = malloc(sizeof(sfTexture*) * 4);
+    sfTexture **tab = NULL;
+    sfIntRect rect = {0, 0, 32, 32};
+    sfTexture *tile_set_texture = sfTexture_createFromFile(tile_set, NULL);
+    sfVector2u max_size = sfTexture_getSize(tile_set_texture);
+    int index = 0;
 
-    tab[0] = sfTexture_createFromFile("assets/sprite/tiles/tile1.png", NULL);
-    tab[1] = sfTexture_createFromFile("assets/sprite/tiles/tile2.png", NULL);
-    tab[2] = sfTexture_createFromFile("assets/sprite/tiles/tile3.png", NULL);
-    tab[3] = NULL;
+    tab = malloc(sizeof(sfTexture*) * (((max_size.x / rect.width) * \
+    (max_size.y / rect.height))+1));
+    for (int y = 0; (rect.top + rect.height) <= max_size.y; y++) {
+        for (int x = 0; (rect.left + rect.width) <= max_size.x; x++) {
+            tab[index] = sfTexture_createFromFile(tile_set, &rect);
+            tab[index+1] = NULL;
+            rect.left += rect.width;
+            index++;
+        }
+        rect.left = 0;
+        rect.top += rect.height;
+    }
+    sfTexture_destroy(tile_set_texture);
     return (tab);
 }
 
@@ -38,20 +51,6 @@ object_t **create_objects(void)
 
     tab[2] = NULL;
     return (tab);
-}
-
-int map_tile_id(int id)
-{
-    int default_tile = 1;
-    int tab[][2] = {{31, 0},
-                    {61, 1},
-                    {19, 2}};
-
-    for (int i = 0; i < 3; i++) {
-        if (tab[i][0] == id)
-            return (tab[i][1]);
-    }
-    return (default_tile);
 }
 
 int map_obj_id(int id)

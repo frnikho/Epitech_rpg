@@ -15,9 +15,14 @@ int update_overworld(game_t *game, overworld_t *world, long int delta)
     if (game->player->inventory->is_open)
         return (0);
     if (move_player(game->player, world->state->npcs, delta)) {
-        block_move_on_collision(game->player, world->state->npcs, delta);
+        block_move_on_collision(game->player, world->state->npcs, \
+        delta, world->map->obs);
         sfView_setCenter(game->camera, get_player_position(game->player));
         sfRenderWindow_setView(game->window, game->camera);
     }
-    block_move_on_collision(game->player, world->state->npcs, delta);
+    block_move_on_collision(game->player, world->state->npcs, \
+    delta, world->map->obs);
+    //sfFloatRect rect = sfSprite_getGlobalBounds(game->player->animations[game->player->current_animations]->sprite);
+    //if (rect.top > 150 && rect.left > 150)
+    //    world->current_map = 1;
 }

@@ -11,10 +11,10 @@
 #include "lib/utils/json_parser.h"
 #include "lib/utils/string.h"
 
-static int init_overworld_map(overworld_t *overworld)
+int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
-    char *file_data = create_file_buffer("map_one.json");
+    char *file_data = create_file_buffer(overworld->maps[overworld->current_map]);
     if (file_data[0] == 'E' && str_len(file_data) == 1)
         return (84);
     char *layers_str = get_key_data(file_data, "layers");
@@ -26,6 +26,7 @@ static int init_overworld_map(overworld_t *overworld)
     char **obs_layer = get_layers_by_ids((int []){3, 0}, layers);
     char *obstacles_str = get_key_data(obs_layer[0], "objects");
     char **obs_tab = get_value_tab(obstacles_str, 4);
+    overworld->map->tile_set = overworld->tile_sets[overworld->current_map];
     init_map(overworld->map, tiles_tab, objs_tab, obs_tab);
     overworld->obs_tab = obs_tab;
     overworld->objs_tab = objs_tab;
@@ -40,7 +41,39 @@ static int init_overworld_map(overworld_t *overworld)
     return (0);
 }
 
+static void init_maps(overworld_t *world)
+{
+    char *maps[] = {"map_one.json", "map_one_copy.json", NULL};
+    int tab_len = 0;
+
+    for(; maps[tab_len]; tab_len++);
+    world->maps = malloc(sizeof(char *) * (tab_len+1));
+    world->maps[tab_len] = NULL;
+    for (int i = 0; i < tab_len; i++) {
+        world->maps[i] = maps[i];
+    }
+    world->current_map = 0;
+}
+
+static void init_tile_sets(overworld_t *world)
+{
+    char *tile_sets[] = {"assets/sprite/tiles/set_one.png", "assets/sprite/tiles/set_one.png", NULL};
+    int tab_len = 0;
+
+    for(; tile_sets[tab_len]; tab_len++);
+    world->tile_sets = malloc(sizeof(char *) * (tab_len+1));
+    world->tile_sets[tab_len] = NULL;
+    for (int i = 0; i < tab_len; i++) {
+        world->tile_sets[i] = tile_sets[i];
+    }
+}
+
 int init_overworld(game_t *game, overworld_t *world)
 {
     world->state = create_state(0, 0);
+    init_maps(world);
+    init_tile_sets(world);
+    if (init_overworld_map(world) == 84)
+        return (84);
+    return (0);
 }

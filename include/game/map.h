@@ -59,6 +59,7 @@ typedef struct {
 } object_layer_t;
 
 typedef struct {
+    char *tile_set;
     tile_layer_t **tile_layers;
     object_layer_t **obj_layers;
     obstacle_t **obs;
@@ -74,10 +75,9 @@ int *layers_to_print_objs);
 void update_zoom_and_offset(map_t *map);
 void destroy_and_free_map(map_t *map);
 int map_obj_id(int id);
-int map_tile_id(int id);
 int is_square_in_window(sfRenderWindow *window, sfVector2f *points);
 object_t **create_objects(void);
-sfTexture **create_tiles(void);
+sfTexture **create_tiles(char *tile_set);
 int get_tab_width(int **tab);
 int get_tab_height(int **tab);
 void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab);
@@ -88,14 +88,11 @@ void destroy_and_free_object_layer(object_layer_t *layer);
 void draw_tiles(map_t *map, sfRenderWindow *window, int *layers_to_print);
 void draw_objects(map_t *map, sfRenderWindow *window, int *layers_to_print);
 void draw_obstacles(map_t *map, sfRenderWindow *window);
-void create_tile_tab(map_t *map, int ***layers_tab);
+void create_tile_tab(map_t *map, int ***layers_tab, char *tile_set);
 void create_object_tab(map_t *map, int ***objs_tab);
 void create_obtacles_tab(char **obj_tab, map_t *map);
 int is_object_displayed(int i, int y, object_layer_t *layer, sfRenderWindow *window);
 sfVector2f *is_tile_displayed(tile_layer_t *layer, int i, int y);
-//int check_collisions_ahead(map_t *map, player_t *player);
-//void update_player_collision_box(sfVideoMode *mode, player_t *player, \
-//map_t *map);
 
 void create_window(sfRenderWindow *window);
 void print_player(sfRenderWindow *window, map_t *map);

@@ -13,6 +13,9 @@
 #include "game/map.h"
 
 typedef struct overworld_s {
+    char **maps;
+    char **tile_sets;
+    int current_map;
     map_t *map;
     char **obs_tab;
     int ***objs_tab;
@@ -26,6 +29,7 @@ int init_overworld(game_t *game, overworld_t *overworld);
 int input_overworld(game_t *game, overworld_t *overworld);
 int update_overworld(game_t *game, overworld_t *overworld, long int delta);
 int render_overworld(game_t *game, overworld_t *overworld, long int delta);
+int init_overworld_map(overworld_t *overworld);
 
 
 #endif

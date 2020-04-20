@@ -23,6 +23,6 @@ typedef struct collision_box_s {
 
 collision_box_t *create_collision_box(sfFloatRect rec, int update_on_default, int is_blocking);
 int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, collision_box_t *player, long int delta);
-int block_move_on_collision(player_t *p, npc_t **npcs, long int delta);
+int block_move_on_collision(player_t *p, npc_t **npcs, long int delta, obstacle_t **obs);
 
 #endif /* !COLLISION_H_ */

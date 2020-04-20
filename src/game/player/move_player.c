@@ -30,10 +30,13 @@ void add_player_position(player_t *player, sfVector2f pos)
 int exec_move(player_t *p, sfVector2f pos, int current_annimation, \
 int *current_delta)
 {
+    if ((*current_delta) == 0)
+        return (1);
     add_player_position(p, pos);
-    p->pre_pos = pos;
     p->current_animations = current_annimation;
+    p->pre_pos = pos;
     (*current_delta) = 0;
+    return (0);
 }
 
 int move_player(player_t *p, npc_t **npcs, long int delta)
@@ -45,8 +48,6 @@ int move_player(player_t *p, npc_t **npcs, long int delta)
         current_delta += delta;
         return (0);
     }
-    if (current_delta == 0)
-        return (0);
     if (sfKeyboard_isKeyPressed(sfKeyZ) || pad_arrow() == PAD_UP)
         exec_move(p, (sfVector2f){0, -1}, 3, &current_delta);
     if (sfKeyboard_isKeyPressed(sfKeyQ) || pad_arrow() == PAD_LEFT)

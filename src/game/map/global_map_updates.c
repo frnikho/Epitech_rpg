@@ -28,10 +28,10 @@ int *layers_to_print_objs)
 
 void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab)
 {
-    create_tile_tab(map, tiles_tab);
+    create_tile_tab(map, tiles_tab, map->tile_set);
     create_object_tab(map, objs_tab);
     create_obtacles_tab(obs_tab, map);
-    map->offset = (sfVector2f){300, 300};
+    map->offset = (sfVector2f){0, 0};
     map->zoom = 1;
 }
 

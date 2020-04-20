@@ -51,7 +51,7 @@ obstacle_t *create_obtacle(char **obj_tab, int index)
     obs->shape.height = my_getfloat(height_str);
     obs->shape.top = my_getfloat(top_str);
     obs->shape.left = my_getfloat(left_str);
-    //obs->collision = create_collision_box(shape, 0);
+    obs->collision = create_collision_box(obs->shape, 0, 1);
     free(width_str);
     free(height_str);
     free(top_str);
