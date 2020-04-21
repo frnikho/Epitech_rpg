@@ -7,6 +7,7 @@
 
 #include <game.h>
 #include <scene/battle.h>
+#include <stdio.h>
 
 static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 {
@@ -68,5 +69,15 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         battle->attacking = 1;
         update_attack_battle_screen(game, battle, delta);
     }
+    end_battle_screen(game, battle, delta);
 }
 
+int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
+{
+    for (int i = 0; b->monster[i] != 0; i++) {
+        if (g->player->health <= 0 || b->monster[i]->is_alive != 1) {
+            g->current_state = INTRO_SCREEN;
+            return (0);
+        }
+    }
+}
