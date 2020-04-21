@@ -10,6 +10,7 @@
 
 int input_intro_screen(game_t *game, intro_screen_t *screen)
 {
+    handle_inventory(game->event, game->player->inventory);
     if (game->event.type == sfEvtKeyPressed) {
         if (game->event.key.code == sfKeyE)
             toggle_inventory(game->player->inventory);

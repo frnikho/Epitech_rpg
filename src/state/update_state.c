@@ -7,13 +7,13 @@
 
 #include "state.h"
 
-const list_state_t updateList[] = {{0, update_intro_state}, {-999, 0}};
+const list_state_t update_list[] = {{0, update_intro_state}, {-999, 0}};
 
-static void iterateLists(state_t  *state, int code)
+static void call_list(state_t *state, int code)
 {
-    for (int i = 0; updateList[i].code != 999; i++) {
-        if (code == updateList[i].code) {
-            updateList[i].init(state, 0);
+    for (int i = 0; update_list[i].code != 999; i++) {
+        if (code == update_list[i].code) {
+            update_list[i].init(state, 0);
             return;
         }
     }
@@ -21,5 +21,5 @@ static void iterateLists(state_t  *state, int code)
 
 void update_state(state_t *state, long int delta)
 {
-    iterateLists(state, state->code);
+    call_list(state, state->code);
 }

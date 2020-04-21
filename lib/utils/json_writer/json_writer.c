@@ -85,6 +85,5 @@ int json_writer(char *fp, char *key, char *value)
     fd = open_file(fp);
     write(fd, content, str_len(content));
 
-    //printf("%s\n", content);
     return (0);
 }

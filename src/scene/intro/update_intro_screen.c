@@ -13,6 +13,7 @@ int update_intro_screen(game_t *game, intro_screen_t *screen, long int delta)
 {
     screen->delta += delta;
     update_player(game->player, delta);
+    update_inventory(game->player->inventory, delta);
     if (game->player->inventory->is_open)
         return (0);
     if (move_player(game->player, screen->npc, delta)) {

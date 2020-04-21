@@ -17,7 +17,6 @@ enum pad pad_arrow(void)
 {
     float x = sfJoystick_getAxisPosition(0, sfJoystickPovX);
     float y = sfJoystick_getAxisPosition(0, sfJoystickPovY);
-
     if (x <= -100)
         return (PAD_LEFT);
     if (x >= 100)

@@ -9,7 +9,7 @@
 
 const list_state_t lists[] = {{0, intro_state}, {999, 0}};
 
-static void iterateLists(state_t  *state, int code)
+static void iterate_lists(state_t *state, int code)
 {
     for (int i = 0; lists[i].code != 999; i++) {
         if (code == lists[i].code) {
@@ -24,6 +24,6 @@ state_t *create_state(int code, int sub_code)
     state_t *state = malloc(sizeof(state_t));
     state->code = code;
     state->sub_code = sub_code;
-    iterateLists(state, code);
+    iterate_lists(state, code);
     return (state);
 }

@@ -27,7 +27,6 @@ typedef struct round_s {
 typedef struct battle_screen_s {
     int select_choice;
     int attacking;
-    player_t *player;
     monster_t **monster;
     sprite_t *bg;
     attack_gui_t *attack_gui;

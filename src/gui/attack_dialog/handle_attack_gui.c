@@ -33,9 +33,9 @@ void handle_attack_gui(attack_gui_t *gui, sfEvent event)
 
 int compare_color(sfColor selected, sfColor grey)
 {
-    if (selected.r != grey.r || selected.g != grey.g || selected.b != grey.b || selected.a != grey.a) {
-        printf("oui\n");
+    if (selected.r != grey.r || selected.g != grey.g)
         return (1);
-    }
+    if (selected.b != grey.b || selected.a != grey.a)
+        return (1);
     return (0);
 }

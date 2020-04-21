@@ -14,5 +14,4 @@ void intro_state(state_t *state, long int delta)
 
 void update_intro_state(state_t *state, long int delta)
 {
-
 }

@@ -14,10 +14,10 @@
 int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
-    char *file_data = create_file_buffer(overworld->maps[overworld->current_map]);
-    if (file_data[0] == 'E' && str_len(file_data) == 1)
+    char *fd = create_file_buffer(overworld->maps[overworld->current_map]);
+    if (fd[0] == 'E' && str_len(fd) == 1)
         return (84);
-    char *layers_str = get_key_data(file_data, "layers");
+    char *layers_str = get_key_data(fd, "layers");
     char **layers = get_value_tab(layers_str, 4);
     char **tiles_layers = get_layers_by_ids((int []){1, 2, 0}, layers);
     int ***tiles_tab = construct_map_tab_from_layers(tiles_layers);
@@ -37,7 +37,7 @@ int init_overworld_map(overworld_t *overworld)
     free_tab(tiles_layers);
     free_tab(layers);
     free(layers_str);
-    free(file_data);
+    free(fd);
     return (0);
 }
 
@@ -46,7 +46,7 @@ static void init_maps(overworld_t *world)
     char *maps[] = {"map_one.json", "map_one_copy.json", NULL};
     int tab_len = 0;
 
-    for(; maps[tab_len]; tab_len++);
+    for (; maps[tab_len]; tab_len++);
     world->maps = malloc(sizeof(char *) * (tab_len+1));
     world->maps[tab_len] = NULL;
     for (int i = 0; i < tab_len; i++) {
@@ -57,10 +57,11 @@ static void init_maps(overworld_t *world)
 
 static void init_tile_sets(overworld_t *world)
 {
-    char *tile_sets[] = {"assets/sprite/tiles/set_one.png", "assets/sprite/tiles/set_one.png", NULL};
+    char *tile_sets[] = {"assets/sprite/tiles/set_one.png",
+        "assets/sprite/tiles/set_one.png", NULL};
     int tab_len = 0;
 
-    for(; tile_sets[tab_len]; tab_len++);
+    for (; tile_sets[tab_len]; tab_len++);
     world->tile_sets = malloc(sizeof(char *) * (tab_len+1));
     world->tile_sets[tab_len] = NULL;
     for (int i = 0; i < tab_len; i++) {

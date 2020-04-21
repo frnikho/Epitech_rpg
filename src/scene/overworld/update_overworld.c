@@ -22,7 +22,4 @@ int update_overworld(game_t *game, overworld_t *world, long int delta)
     }
     block_move_on_collision(game->player, world->state->npcs, \
     delta, world->map->obs);
-    //sfFloatRect rect = sfSprite_getGlobalBounds(game->player->animations[game->player->current_animations]->sprite);
-    //if (rect.top > 150 && rect.left > 150)
-    //    world->current_map = 1;
 }

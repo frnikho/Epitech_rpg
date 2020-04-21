@@ -12,7 +12,6 @@
 static overworld_t *init(game_t *game)
 {
     overworld_t *overworld = malloc(sizeof(overworld_t));
-
     if (init_overworld(game, overworld) == 84)
         return (NULL);
     return (overworld);

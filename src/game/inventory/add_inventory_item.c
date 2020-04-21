@@ -12,6 +12,7 @@ void add_inventory_item(inventory_t *inv, item_t *item)
     for (int i = 0; inv->content[i] != 0; i++) {
         if (inv->content[i]->item == 0) {
             inv->content[i]->item = item;
+            return;
         }
     }
 }
