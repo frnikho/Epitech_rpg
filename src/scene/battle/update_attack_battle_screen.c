@@ -42,7 +42,7 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
             b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
             player_attack_monster(g->player, b->monster[tmp]);
         } else {
-            char **dialog = str_split("Monster a attaque le jouer !", '&');
+            char **dialog = str_split("Monster a attaque le joueur !", '&');
             b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
             monster_attack_player(b->monster[tmp], g->player);
         }
