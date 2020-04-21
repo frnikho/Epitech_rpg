@@ -71,6 +71,7 @@ static void init_tile_sets(overworld_t *world)
 int init_overworld(game_t *game, overworld_t *world)
 {
     world->state = create_state(0, 0);
+    sfView_zoom(game->camera, 0.5);
     init_maps(world);
     init_tile_sets(world);
     if (init_overworld_map(world) == 84)

@@ -9,6 +9,22 @@
 #include "game.h"
 #include "scene/battle.h"
 
+static void check_end_battle_monster(game_t *g, battle_screen_t *b)
+{
+    if (b->round.order_index >= get_monsters_length(b->monster)+1) {
+        b->attacking = 0;
+        b->attack_gui->is_selected = 0;
+        b->select_choice = 0;
+        b->round.code = 0;
+        b->round.order_index = 0;
+        b->attack_gui->select_index = 0;
+        b->select_gui->is_selected = 0;
+        b->select_gui->is_active = 0;
+        free(b->round.order);
+        b->attack_gui->select_index = 0;
+    }
+}
+
 void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
 {
     static int index = 0;
@@ -42,14 +58,7 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
             index = -1;
         }
     }
-    if (b->round.order_index >= get_monsters_length(b->monster)+1) {
-        b->attacking = 0;
-        b->select_gui->is_selected = 0;
-        b->select_choice = 0;
-        b->attack_gui->is_selected = 0;
-        b->attack_gui->select_index = 0;
-        return;
-    }
+    check_end_battle_monster(g, b);
     index++;
     update_dialog(b->dialog, d);
 }
