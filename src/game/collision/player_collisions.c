@@ -30,6 +30,8 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta)
 
 int block_move_on_collision(player_t *p, npc_t **n, long int d, obstacle_t **b)
 {
+    if (p->is_ghost == 1)
+        return (0);
     update_collisions_box(p, n, d);
     if (check_collision_ahead(b, n, p->collision, d) == 1) {
         add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \

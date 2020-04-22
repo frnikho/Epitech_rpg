@@ -17,26 +17,14 @@ static overworld_t *init(game_t *game)
     return (overworld);
 }
 
-static void overworld_offset(game_t *game, overworld_t *overworld, int coeff)
+static void overworld_commands(game_t *game, overworld_t *overworld)
 {
     switch (game->event.key.code) {
-    case (sfKeyRight):
-        overworld->map->offset.x -= coeff*overworld->map->zoom;
+    case (sfKeyG):
+        game->player->is_ghost = 1 - (game->player->is_ghost * 1);
         break;
-    case (sfKeyLeft):
-        overworld->map->offset.x += coeff*overworld->map->zoom;
+    default:
         break;
-    case (sfKeyUp):
-        overworld->map->offset.y += coeff*overworld->map->zoom;
-        break;
-    case (sfKeyDown):
-        overworld->map->offset.y -= coeff*overworld->map->zoom;
-        break;
-    case (sfKeyZ):
-        overworld->map->zoom += 0.1;
-        break;
-    case (sfKeyA):
-        overworld->map->zoom -= 0.1;
     }
 }
 
@@ -59,6 +47,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
         }
     }
     map_act = overworld->current_map;
+    overworld_commands(game, overworld);
     update_overworld(game, overworld, delta);
     render_overworld(game, overworld, delta);
 }

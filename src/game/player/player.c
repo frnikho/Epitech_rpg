@@ -85,6 +85,7 @@ player_t *create_player(void)
     player->inventory = create_inventory();
     player->animations = create_annimations();
     player->pre_pos = (sfVector2f){0, 0};
+    player->is_ghost = 0;
     player->collision = create_collision_box(\
     sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
     return (player);

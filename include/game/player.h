@@ -42,6 +42,7 @@ typedef struct player_s {
     int current_animations;
     anim_sprite_t **animations;
     sfVector2f pre_pos;
+    int is_ghost;
 } player_t;
 
 player_t *create_player(void);

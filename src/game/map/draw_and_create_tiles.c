@@ -58,7 +58,7 @@ tile_layer_t *init_tile_layer(int **tiles_map, char *tile_set)
     layer->tiles = create_tiles(tile_set);
     layer->width = get_tab_width(tiles_map);
     layer->height = get_tab_height(tiles_map);
-    layer->tile_size = 32;
+    layer->tile_size = 20;
     layer->tile_shape = sfConvexShape_create();
     sfConvexShape_setPointCount(layer->tile_shape, 4);
     layer->tiles_map = tiles_map;
