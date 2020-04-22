@@ -18,14 +18,14 @@ int init_overworld_map(overworld_t *overworld)
     if (fd[0] == 'E' && str_len(fd) == 1)
         return (84);
     char *layers_str = get_key_data(fd, "layers");
-    char **layers = get_value_tab(layers_str, 4);
-    char **tiles_layers = get_layers_by_ids((int []){1, 2, 0}, layers);
+    char **layers = get_value_tab(layers_str, 3);
+    char **tiles_layers = get_layers_by_ids((int []){1, 0}, layers);
     int ***tiles_tab = construct_map_tab_from_layers(tiles_layers);
     char **objs_layers = get_layers_by_ids((int []){4, 0}, layers);
     int ***objs_tab = construct_map_tab_from_layers(objs_layers);
-    char **obs_layer = get_layers_by_ids((int []){3, 0}, layers);
+    char **obs_layer = get_layers_by_ids((int []){2, 0}, layers);
     char *obstacles_str = get_key_data(obs_layer[0], "objects");
-    char **obs_tab = get_value_tab(obstacles_str, 4);
+    char **obs_tab = get_value_tab(obstacles_str, 36);
     overworld->map->tile_set = overworld->tile_sets[overworld->current_map];
     init_map(overworld->map, tiles_tab, objs_tab, obs_tab);
     overworld->obs_tab = obs_tab;
@@ -43,7 +43,7 @@ int init_overworld_map(overworld_t *overworld)
 
 static void init_maps(overworld_t *world)
 {
-    char *maps[] = {"map_one.json", "map_one_copy.json", NULL};
+    char *maps[] = {"first_village.json", "map_one_copy.json", NULL};
     int tab_len = 0;
 
     for (; maps[tab_len]; tab_len++);
@@ -57,7 +57,7 @@ static void init_maps(overworld_t *world)
 
 static void init_tile_sets(overworld_t *world)
 {
-    char *tile_sets[] = {"assets/sprite/tiles/set_one.png",
+    char *tile_sets[] = {"assets/tiles/outside.png",
         "assets/sprite/tiles/set_one.png", NULL};
     int tab_len = 0;
 

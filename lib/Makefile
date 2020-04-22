@@ -64,7 +64,7 @@ OBJ						=					$(COMPONENTS:%.c=%.o) $(EFFECTS:%.c=%.o) $(UTILS:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
-CFLAGS					=					-I ../include/ $(LIB) -g
+CFLAGS					=					-I ../include/ $(LIB) -g -O3
 
 all:										$(NAME)
 $(NAME):									$(OBJ)

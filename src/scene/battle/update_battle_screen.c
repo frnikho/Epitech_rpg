@@ -5,8 +5,10 @@
 **  function
 */
 
-#include "game.h"
-#include "scene/battle.h"
+#include <game.h>
+#include <scene/battle.h>
+#include <stdio.h>
+#include "lib/utils/string.h"
 
 static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 {
@@ -54,6 +56,8 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
 {
     sfRenderWindow_setView(game->window, game->camera);
     update_attack_gui(battle->attack_gui, delta);
+    for (int i = 0; battle->monster[i]; i++)
+        update_monster(battle->monster[i], delta);
     update_select_gui(battle->select_gui, delta);
     update_player_gui(game->player);
     if (battle->attack_gui->is_selected) {
@@ -68,14 +72,18 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         battle->attacking = 1;
         update_attack_battle_screen(game, battle, delta);
     }
-    end_battle_screen(game, battle, delta);
+    //end_battle_screen(game, battle, delta);
 }
 
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
 {
     for (int i = 0; b->monster[i] != 0; i++) {
-        if (g->player->health <= 0 || b->monster[i]->is_alive != 1) {
-            g->current_state = INTRO_SCREEN;
+        if (b->monster[i]->stats->hp >= 0)
+            return (1);
+        else {
+            char **dialog = str_split("Vous avez remporté la victoire !&#Vous avez gagné ? xp&$Vous ramassez ? pièces d'or", '&');
+            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
+            set_dialog_active(b->dialog, 1);
             return (0);
         }
     }

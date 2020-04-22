@@ -23,7 +23,7 @@ static void render_map_world(game_t *game, overworld_t *world, long int delta)
     sfRenderWindow_clear(game->window, sfBlack);
     update_zoom_and_offset(world->map);
     draw_map(world->map, game->window, (int []){0}, (int []){99, 0});
-    draw_map(world->map, game->window, (int []){99, 0}, (int []){0});
+    //draw_map(world->map, game->window, (int []){2, 0}, (int []){99, 0});
 }
 
 int render_overworld(game_t *game, overworld_t *world, long int delta)

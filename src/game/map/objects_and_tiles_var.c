@@ -10,7 +10,7 @@
 sfTexture **create_tiles(char *tile_set)
 {
     sfTexture **tab = NULL;
-    sfIntRect rect = {0, 0, 32, 32};
+    sfIntRect rect = {0, 0, 20, 20};
     sfTexture *tile_set_texture = sfTexture_createFromFile(tile_set, NULL);
     sfVector2u max_size = sfTexture_getSize(tile_set_texture);
     int index = 0;

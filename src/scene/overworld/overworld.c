@@ -17,26 +17,14 @@ static overworld_t *init(game_t *game)
     return (overworld);
 }
 
-static void overworld_offset(game_t *game, overworld_t *overworld, int coeff)
+static void overworld_commands(game_t *game, overworld_t *overworld)
 {
     switch (game->event.key.code) {
-    case (sfKeyRight):
-        overworld->map->offset.x -= coeff*overworld->map->zoom;
+    case (sfKeyG):
+        game->player->is_ghost = 1 - (game->player->is_ghost * 1);
         break;
-    case (sfKeyLeft):
-        overworld->map->offset.x += coeff*overworld->map->zoom;
+    default:
         break;
-    case (sfKeyUp):
-        overworld->map->offset.y += coeff*overworld->map->zoom;
-        break;
-    case (sfKeyDown):
-        overworld->map->offset.y -= coeff*overworld->map->zoom;
-        break;
-    case (sfKeyZ):
-        overworld->map->zoom += 0.1;
-        break;
-    case (sfKeyA):
-        overworld->map->zoom -= 0.1;
     }
 }
 
@@ -44,13 +32,13 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 {
     static int map_act = -1;
 
-    /*if (overworld->current_map != map_act && map_act != -1) {
+    if (overworld->current_map != map_act && map_act != -1) {
         destroy_overworld(game, overworld);
         if (init_overworld_map(overworld) == 84) {
             sfRenderWindow_close(game->window);
             return;
         }
-    }*/
+    }
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             destroy_overworld(game, overworld);
@@ -58,7 +46,8 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
             return;
         }
     }
-    //map_act = overworld->current_map;
+    map_act = overworld->current_map;
+    overworld_commands(game, overworld);
     update_overworld(game, overworld, delta);
     render_overworld(game, overworld, delta);
 }
@@ -75,6 +64,7 @@ void destroy_overworld(game_t *game, overworld_t *overworld)
 void overworld(game_t *game, long int delta)
 {
     static overworld_t *overworld;
+
     if (!overworld)
         overworld = init(game);
     if (overworld == NULL) {
