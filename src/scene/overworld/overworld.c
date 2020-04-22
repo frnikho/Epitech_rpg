@@ -44,13 +44,13 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 {
     static int map_act = -1;
 
-    if (overworld->current_map != map_act && map_act != -1) {
+    /*if (overworld->current_map != map_act && map_act != -1) {
         destroy_overworld(game, overworld);
         if (init_overworld_map(overworld) == 84) {
             sfRenderWindow_close(game->window);
             return;
         }
-    }
+    }*/
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             destroy_overworld(game, overworld);
@@ -58,7 +58,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
             return;
         }
     }
-    map_act = overworld->current_map;
+    //map_act = overworld->current_map;
     update_overworld(game, overworld, delta);
     render_overworld(game, overworld, delta);
 }
@@ -75,7 +75,6 @@ void destroy_overworld(game_t *game, overworld_t *overworld)
 void overworld(game_t *game, long int delta)
 {
     static overworld_t *overworld;
-
     if (!overworld)
         overworld = init(game);
     if (overworld == NULL) {

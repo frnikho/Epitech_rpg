@@ -5,9 +5,8 @@
 **  function
 */
 
-#include <game.h>
-#include <scene/battle.h>
-#include <stdio.h>
+#include "game.h"
+#include "scene/battle.h"
 
 static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 {

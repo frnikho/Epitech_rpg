@@ -60,6 +60,7 @@ static void init(dialog_t *dialog, char **text, int p, sfVector2f pos)
     dialog->msg = init_text("", 22, pos);
     pos.x += 730;
     pos.y += 80;
+    dialog->relative = 0;
     set_text_font(dialog->msg, "assets/font/dq.ttf");
     set_text_color(dialog->msg, sfWhite);
     init_dialog_sound(dialog, p);

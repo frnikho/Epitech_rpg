@@ -20,7 +20,7 @@ int update_settings_screen(game_t *game, settings_screen_t *s, long int delta)
     sfVector2f spos = {pos[s->select_cursor][0], pos[s->select_cursor][1]};
     set_sprite_position(s->cursor, spos);
     update_dialog(s->dialog, delta);
-    update_fade(s->fade);
+    update_fade(s->fade, delta);
     if (s->fade->is_finish) {
         game->current_state = MAIN_MENU;
         game->code = GAMECODE_RESET;

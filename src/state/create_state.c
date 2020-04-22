@@ -24,6 +24,10 @@ state_t *create_state(int code, int sub_code)
     state_t *state = malloc(sizeof(state_t));
     state->code = code;
     state->sub_code = sub_code;
+    state->dialog = 0;
+    state->delta = 0;
+    state->fade_out = 0;
+    state->fade_in = 0;
     iterate_lists(state, code);
     return (state);
 }

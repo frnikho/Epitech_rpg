@@ -29,9 +29,9 @@ static void render_map_world(game_t *game, overworld_t *world, long int delta)
 int render_overworld(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
-    render_map_world(game, world, delta);
-    draw_state(game->window, world->state);
+    //render_map_world(game, world, delta);
     draw_player(game->window, game->player);
     draw_inventory(game->window, game->camera, game->player->inventory);
+    draw_state(game->camera, game->window, world->state);
     return (0);
 }
