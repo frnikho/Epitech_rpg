@@ -11,6 +11,7 @@
 #include "game.h"
 #include "state.h"
 #include "game/map.h"
+#include "game/npc.h"
 
 typedef struct overworld_s {
     map_setup_t **maps;
@@ -21,6 +22,7 @@ typedef struct overworld_s {
     int ***tiles_tab;
     state_t *state;
     interaction_box_t **maps_interaction_boxes;
+    npc_t **npcs;
 } overworld_t;
 
 void overworld(game_t *game, long int delta);

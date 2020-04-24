@@ -44,6 +44,7 @@ typedef struct player_s {
     anim_sprite_t **animations;
     sfVector2f pre_pos;
     int is_ghost;
+    npc_t *interlocutor;
 } player_t;
 
 player_t *create_player(void);
@@ -59,6 +60,7 @@ void draw_player(sfRenderWindow *window, player_t *player);
 void set_player_scale(player_t *player, float scale);
 void update_player(player_t *player, long int delta);
 int move_player(player_t *p, npc_t **npcs, long int delta);
+void set_player_position(player_t *player, sfVector2f position);
 
 sfVector2f get_player_position(player_t *player);
 void add_player_position(player_t *player, sfVector2f pos);

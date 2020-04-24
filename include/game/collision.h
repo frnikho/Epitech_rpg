@@ -33,7 +33,7 @@ typedef struct interaction_box_s {
 } interaction_box_t;
 
 collision_box_t *create_collision_box(sfFloatRect rec, int update_on_default, int is_blocking);
-int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, collision_box_t *player, long int delta);
+int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, player_t *player, long int delta);
 int block_move_on_collision(player_t *p, npc_t **n, long int d, overworld_t *world);
 int check_interaction_ahead(player_t *player, overworld_t *world, long int delta);
 interaction_box_t *create_interaction_box(sfFloatRect rec, int is_blocking, \

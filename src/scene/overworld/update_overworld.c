@@ -10,21 +10,28 @@
 
 static void update_map_world(game_t *game, overworld_t *world, long int delta)
 {
-    npc_t **npcs = world->state->npcs;
-
+    npc_t **npcs = world->npcs;
     block_move_on_collision(game->player, npcs, delta, world);
-    //sfFloatRect rect = sfSprite_getGlobalBounds(game->player->animations[game->player->current_animations]->sprite);
-    //if (rect.top > 150 && rect.left > 150)
-    //world->current_map = 1;
+}
+
+static void update_npcs(npc_t **npcs, long int delta)
+{
+    for (int i = 0; npcs[i]; i++) {
+        //reset_dialog(npcs[i]->dialog, get_dialog("first_knight"), 1, (sfVector2f){GUI_POS});
+        update_dialog(npcs[i]->dialog, delta);
+    }
 }
 
 int update_overworld(game_t *game, overworld_t *world, long int delta)
 {
     update_state(world->state, game, delta);
     update_player(game->player, delta);
+    update_npcs(world->npcs, delta);
     if (game->player->inventory->is_open)
         return (0);
-    move_player(game->player, world->state->npcs, delta);
+    if (move_player(game->player, world->state->npcs, delta)) {
+        update_map_world(game, world, delta);
+    }
     update_map_world(game, world, delta);
     sfView_setCenter(game->camera, get_player_position(game->player));
     sfRenderWindow_setView(game->window, game->camera);

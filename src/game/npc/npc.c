@@ -44,7 +44,7 @@ static anim_sprite_t *init_npc(npc_t *npc, char *filepath, char *anim_name)
     return (sprite);
 }
 
-npc_t *create_npc(char *filepath, sfVector2f pos, int speed, char *dialog)
+npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
 {
     npc_t *npc = malloc(sizeof(npc_t));
 
@@ -54,6 +54,7 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed, char *dialog)
     npc->speed = speed;
     npc->fp = filepath;
     npc->need_move = 0;
+    npc->finish_move = 0;
     npc->script = 0;
     npc->next_pos = (sfVector2f){0, 0};
     npc->animations = malloc(sizeof(anim_sprite_t*) * 5);
@@ -70,6 +71,5 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed, char *dialog)
     npc->collision = create_collision_box(r, 0, 1);
     npc->trigger = create_collision_box((sfFloatRect){r.left-10, r.top-10, \
         r.width+20, r.height+20}, 1, 0);
-    npc->dialog = create_dialog(get_dialog(dialog), 1, (sfVector2f){0, 0}, 1);
     return (npc);
 }

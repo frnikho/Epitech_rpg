@@ -50,6 +50,7 @@ SRC						=					src/main.c																\
 											src/game/player/gui/draw_player_gui.c									\
 											src/game/player/gui/update_player_gui.c									\
 											src/game/npc/npc.c														\
+											src/game/npc/move_npc.c													\
 											src/game/npc/draw_npc.c													\
 											src/game/npc/update_npc.c												\
 											src/game/npc/get_npc_dialog.c											\

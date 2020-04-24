@@ -19,13 +19,13 @@ int current_animations, int sign)
 
 static void move_npc_nextpos(npc_t *npc, long int delta)
 {
-    sfVector2f p = {0, 0};
-
-    p = sfSprite_getPosition(npc->animations[npc->current_animations]->sprite);
+    sfVector2f p = sfSprite_getPosition(npc->animations[npc->current_animations]->sprite);
     int nx = npc->next_pos.x;
     int ny = npc->next_pos.y;
+    if (p.x == nx && p.y == ny)
+        npc->finish_move = 1;
     npc->delta_movement += delta;
-    if (npc->delta_movement < 5000)
+    if (npc->delta_movement < 14000)
         return;
     if (p.x > nx)
         setup_action(npc, &p.x, 2, -1);
@@ -87,6 +87,8 @@ void update_npc(npc_t *npc, long int delta)
     npc->delta += delta;
     if (npc->speed == 0)
         return;
+    if (npc->need_move && !npc->finish_move)
+        move_npc_nextpos(npc, delta);
     update_action_script(npc, delta);
     if (npc->delta >= speed[npc->speed]) {
         npc->delta = 0;

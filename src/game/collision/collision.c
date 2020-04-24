@@ -12,6 +12,7 @@
 #include "lib/components/anim_sprite.h"
 #include <stdlib.h>
 #include <SFML/Graphics.h>
+#include "gui/dialog.h"
 
 collision_box_t *create_collision_box(sfFloatRect rec, \
 int update_on_default, int is_blocking)
@@ -50,24 +51,26 @@ int check_collisions(collision_box_t *c1, collision_box_t *c2)
 }
 
 int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, \
-collision_box_t *player, long int delta)
+player_t *player, long int delta)
 {
     int result = 0;
 
+    player->interlocutor = NULL;
     for (int i = 0; npcs[i]; i++) {
-        result = check_collisions(player, npcs[i]->collision);
+        result = check_collisions(player->collision, npcs[i]->collision);
         if (result != 0)
             return (result);
         else if (npcs[i]->collision->update_on_default == 1)
             update_npc(npcs[i], delta);
-        result = check_collisions(player, npcs[i]->trigger);
-        if (result != 0)
+        result = check_collisions(player->collision, npcs[i]->trigger);
+        if (result != 0) {
+            player->interlocutor = npcs[i];
             return (result);
-        else if (npcs[i]->trigger->update_on_default == 1)
+        } else if (npcs[i]->trigger->update_on_default == 1)
             update_npc(npcs[i], delta);
     }
     for (int i = 0; map_obs[i]; i++) {
-        if (check_collisions(player, map_obs[i]->collision) == 1)
+        if (check_collisions(player->collision, map_obs[i]->collision) == 1)
             return (1);
     }
     return (0);

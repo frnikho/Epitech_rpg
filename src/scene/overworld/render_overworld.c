@@ -36,11 +36,23 @@ static void render_map_world(game_t *game, overworld_t *world, long int delta)
     draw_interaction_boxes(game->window, world->map);
 }
 
+static void draw_npcs(sfRenderWindow *window, npc_t **npcs, sfView *camera)
+{
+    for (int i = 0; npcs[i]; i++) {
+        draw_npc(window, npcs[i]);
+    }
+    for (int i = 0; npcs[i]; i++) {
+        set_dialog_relative(npcs[i]->dialog, camera);
+        draw_dialog(window, npcs[i]->dialog);
+    }
+}
+
 int render_overworld(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
     render_map_world(game, world, delta);
     draw_player(game->window, game->player);
+    draw_npcs(game->window, world->npcs, game->camera);
     draw_inventory(game->window, game->camera, game->player->inventory);
     draw_state(game->camera, game->window, world->state);
     return (0);

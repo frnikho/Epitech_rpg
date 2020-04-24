@@ -45,5 +45,6 @@ void reset_dialog(dialog_t *dialog, char **str, int p, sfVector2f pos);
 void set_dialog_position(dialog_t *d, sfRenderWindow *w, sfView *v);
 void set_dialog_relative(dialog_t *dialog, sfView *view);
 void set_dialog_scale(dialog_t *dialog, float scale);
+void clear_dialog(dialog_t *dialog);
 
 #endif
