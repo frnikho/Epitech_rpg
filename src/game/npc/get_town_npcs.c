@@ -42,7 +42,7 @@ npc_t **get_town_npcs(char *town)
         char *fp = get_key_data(key, "file");
         char *clear_fp = clean_fp(fp);
         free(fp);
-        npcs[i] = create_npc(clear_fp, (sfVector2f){x, y}, speed);
+        npcs[i] = create_npc(clear_fp, (sfVector2f){x, y}, speed, "topaze_king");
         npcs[i]->script = get_npc_script(get_key_data(key, "script"));
     }
     npcs[count] = 0;

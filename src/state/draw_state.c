@@ -23,4 +23,8 @@ void draw_state(sfView *camera, sfRenderWindow *window, state_t *state)
         draw_dialog(window, state->dialog);
         set_dialog_relative(state->dialog, camera);
     }
+    for (int i = 0; state->npcs[i]; i++) {
+        draw_dialog(window, state->npcs[i]->dialog);
+        set_dialog_relative(state->npcs[i]->dialog, camera);
+    }
 }

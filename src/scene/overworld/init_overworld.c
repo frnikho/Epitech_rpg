@@ -56,6 +56,7 @@ int init_overworld_map(overworld_t *overworld)
     free_tab(layers);
     free(layers_str);
     free(fd);
+    set_dialog_active(overworld->state->npcs[0]->dialog, 1);
     return (0);
 }
 
@@ -98,8 +99,8 @@ void init_maps_interactions(overworld_t *world)
 {
     interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 3);
 
-    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 0);
-    inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 0);
+    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 2);
+    inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 1);
 
     inter[2] = NULL;
     world->maps_interaction_boxes = inter;

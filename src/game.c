@@ -61,7 +61,6 @@ game_t *init_game(sfVector2f win_size, char *title)
     game->current_state = OVERWORLD;
     sfRenderWindow_setFramerateLimit(game->window, game->config.framerate);
     sfRenderWindow_setView(game->window, game->camera);
-    //sfView_zoom(game->camera, 0.5);
     return (game);
 }
 

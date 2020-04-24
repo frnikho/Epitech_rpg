@@ -38,5 +38,6 @@ int block_move_on_collision(player_t *p, npc_t **n, long int d, overworld_t *wor
 int check_interaction_ahead(player_t *player, overworld_t *world, long int delta);
 interaction_box_t *create_interaction_box(sfFloatRect rec, int is_blocking, \
 int load_zone, int zone_act);
+int is_rectangles_in_collision(sfFloatRect *r_one, sfFloatRect *r_two);
 
 #endif /* !COLLISION_H_ */
