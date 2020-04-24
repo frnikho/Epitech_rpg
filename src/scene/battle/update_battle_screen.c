@@ -91,7 +91,6 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
             gold += b->monster[i]->gold;
         }
     }
-
     char *str = "vous avez vaincu tout les monstres ! # +";
     str = str_cat(str, convert_str(gold));
     str = str_cat(str, " golds, +");
@@ -99,7 +98,8 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
     str = str_cat(str, " xp");
 
     if (tmp_delta == 0) {
-        b->dialog = create_dialog(str_split(str), 1);
+        b->dialog = create_dialog(str_split(str, '#'), 1, (sfVector2f)GUI_POS, 1);
+        set_dialog_active(b->dialog, 1);
     }
     tmp_delta += delta;
     return (0);
