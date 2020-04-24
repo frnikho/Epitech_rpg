@@ -48,7 +48,7 @@ overworld_t *world)
     if (p->is_ghost == 1)
         return (0);
     update_collisions_box(p, n, d, world->map);
-    if (check_collision_ahead(world->map->obs, n, p->collision, d) == 1) {
+    if (check_collision_ahead(world->map->obs, n, p, d) == 1) {
         add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \
             p->pre_pos.y * -1});
         p->pre_pos = (sfVector2f){0, 0};

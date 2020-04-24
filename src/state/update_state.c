@@ -19,6 +19,12 @@ static void call_list(state_t *state, game_t *game, int code, long int delta)
     }
 }
 
+void update_npcs_dialogs(state_t *state, long int delta)
+{
+    for (int i = 0; state->npcs[i]; i++)
+        update_dialog(state->npcs[i]->dialog, delta);
+}
+
 void update_state(state_t *state, game_t *game, long int delta)
 {
     call_list(state, game, state->code, delta);

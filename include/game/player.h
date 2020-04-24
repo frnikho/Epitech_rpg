@@ -44,6 +44,7 @@ typedef struct player_s {
     anim_sprite_t **animations;
     sfVector2f pre_pos;
     int is_ghost;
+    npc_t *interlocutor;
 } player_t;
 
 player_t *create_player(void);

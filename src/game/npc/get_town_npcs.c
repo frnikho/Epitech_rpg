@@ -9,6 +9,7 @@
 #include "lib/utils/string.h"
 #include "lib/utils/file.h"
 #include <stdlib.h>
+#include "gui/dialog.h"
 
 static char *clean_fp(char *fp)
 {
@@ -41,9 +42,12 @@ npc_t **get_town_npcs(char *town)
         int speed = fget_nbr(get_key_data(key, "speed"));
         char *fp = get_key_data(key, "file");
         char *clear_fp = clean_fp(fp);
+        char *dialog = get_key_data(key, "dialog");
         free(fp);
         npcs[i] = create_npc(clear_fp, (sfVector2f){x, y}, speed);
+        npcs[i]->dialog = create_dialog(get_dialog(clean_fp(dialog)), 1, (sfVector2f)GUI_POS, 1);
         npcs[i]->script = get_npc_script(get_key_data(key, "script"));
+        free(dialog);
     }
     npcs[count] = 0;
     return (npcs);

@@ -49,6 +49,7 @@ int init_overworld_map(overworld_t *overworld)
     overworld->obs_tab = obs_tab;
     overworld->objs_tab = objs_tab;
     overworld->tiles_tab = tiles_tab;
+    overworld->npcs = get_town_npcs("topaze");
     free(obstacles_str);
     free_tab(obs_layer);
     free_tab(objs_layers);
@@ -98,8 +99,8 @@ void init_maps_interactions(overworld_t *world)
 {
     interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 3);
 
-    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 0);
-    inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 0);
+    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 2);
+    inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 1);
 
     inter[2] = NULL;
     world->maps_interaction_boxes = inter;
@@ -133,7 +134,7 @@ void init_maps(overworld_t *world)
 
     maps[2] = NULL;
     world->maps = maps;
-    world->current_map = 0;
+    world->current_map = 1;
 }
 
 static int init_world_map(game_t *game, overworld_t *world)

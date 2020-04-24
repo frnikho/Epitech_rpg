@@ -13,6 +13,8 @@
 
 #define NPC_FP "assets/sprite/npc.png"
 
+typedef struct dialog_s dialog_t;
+
 typedef struct action_s {
     long int delta;
     sfVector2f pos;
@@ -38,6 +40,7 @@ typedef struct npc_s {
     script_t *script;
     collision_box_t *collision;
     collision_box_t *trigger;
+    dialog_t *dialog;
 } npc_t;
 
 npc_t *create_npc(char *filepath, sfVector2f pos, int speed);
