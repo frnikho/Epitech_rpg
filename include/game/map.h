@@ -66,6 +66,7 @@ typedef struct map_s{
     float zoom;
     sfVector2f offset;
     int tile_size;
+    interaction_box_t **interaction_boxes;
 } map_t;
 
 typedef struct map_setup_s {
@@ -76,6 +77,7 @@ typedef struct map_setup_s {
     int *tile_layers_id;
     int *objs_layers_id;
     int *obs_layers_id;
+    int *interaction_boxes_indexs;
     int tile_size;
     sfVector2f offset;
     float zoom;

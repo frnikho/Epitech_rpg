@@ -20,6 +20,7 @@ typedef struct overworld_s {
     int ***objs_tab;
     int ***tiles_tab;
     state_t *state;
+    interaction_box_t **maps_interaction_boxes;
 } overworld_t;
 
 void overworld(game_t *game, long int delta);
