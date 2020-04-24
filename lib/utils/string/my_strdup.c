@@ -10,7 +10,7 @@
 
 char *my_strdup(char const *src)
 {
-    int length = str_len(src);
+    int length = str_len(src)+1;
     char *new;
 
     new = malloc(sizeof(char) * length);

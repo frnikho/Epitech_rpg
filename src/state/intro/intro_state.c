@@ -12,7 +12,7 @@ void intro_state(state_t *state, game_t *game, long int delta)
 {
     state->fade_in = init_fade((sfVector2f){1600, 800}, sfBlack, 1, FADE_IN);
     set_fade_active(state->fade_in);
-    game->player->can_move = 0;
+    game->player->can_move = 1;
     state->npcs = malloc(sizeof(npc_t*) * 6);
     state->npcs[0] = create_npc("content/npc/musclor.json", (sfVector2f){20, 60}, 1);
     state->npcs[1] = 0;
