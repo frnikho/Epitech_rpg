@@ -18,7 +18,10 @@ select_gui_t *create_select_gui(monster_t **monsters)
     gui->monsters = monsters;
     gui->gui = init_sprite("assets/sprite/gui/select_enemy_gui.png", 0);
     set_sprite_position(gui->gui, (sfVector2f){850, 600});
-
+    for (int i = 0; monsters[i]; i++) {
+        if (monsters[i]->stats->hp <= 0)
+            gui->monsters_name->color = sfColor_fromRGBA(87, 89, 93, 255);
+    }
     char *str = str_cat("1.\t", monsters[0]->name);
     for (int i = 1; monsters[i] != 0; i++) {
         str = str_cat_char(str, '\n');
