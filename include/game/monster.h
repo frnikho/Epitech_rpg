@@ -39,8 +39,8 @@ void draw_monster(sfRenderWindow *window, monster_t *monster);
 void update_monster(monster_t *monster, long int delta);
 int get_monsters_length(monster_t **monsters);
 
-void player_attack_monster(player_t *player, monster_t *monster);
-void monster_attack_player(monster_t *monster, player_t *player);
+int player_attack_monster(player_t *player, monster_t *monster);
+int monster_attack_player(monster_t *monster, player_t *player);
 
 monster_hit_t *create_monster_hit(int damage, monster_t monster);
 void update_monster_hit(monster_hit_t *hit, long int delta);

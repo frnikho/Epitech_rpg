@@ -56,18 +56,18 @@ void free_double_tab(int ***tab)
 
 int parser(char **argv)
 {
-    char *file_data = create_file_buffer(argv[1]);                         // Retourne le contenu du fichier dont le path est argv[1]
+    char *file_data = create_file_buffer(argv[1]);// Retourne le contenu du fichier dont le path est argv[1]
 
     if (file_data[0] == 'E' && str_len(file_data) == 1)
         return (84);
 
-    char *layers_str = get_key_data(file_data, "layers");                  // Retourne la valeur correspondant a la clef "layers" dans le fichier json
-    char **layers = get_value_tab(layers_str, 4);                          // Transforme le string de la valeur en tableau si s'en est un
-    //int **map_one = contruct_map_from_layer(layers[0]);                  // Transforme une valeur de type [layers:data] en tableau de int
+    char *layers_str = get_key_data(file_data, "layers");// Retourne la valeur correspondant a la clef "layers" dans le fichier json
+    char **layers = get_value_tab(layers_str, 4);// Transforme le string de la valeur en tableau si s'en est un
+    //int **map_one = contruct_map_from_layer(layers[0]);// Transforme une valeur de type [layers:data] en tableau de int
 
 
-    char **tiles_layers = get_layers_by_ids((int []){1, 2, 0}, layers);    // Selectionne les layers coorespondant aux ids donnés en paramètres
-    int ***tiles_tab = construct_map_tab_from_layers(tiles_layers);        // Contruit une liste de tableau de int à partir d'une valeur de type [layers]
+    char **tiles_layers = get_layers_by_ids((int []){1, 2, 0}, layers);// Selectionne les layers coorespondant aux ids donnés en paramètres
+    int ***tiles_tab = construct_map_tab_from_layers(tiles_layers);// Contruit une liste de tableau de int à partir d'une valeur de type [layers]
     
     char **objs_layers = get_layers_by_ids((int []){4, 0}, layers);
     int ***objs_tab = construct_map_tab_from_layers(objs_layers);
@@ -76,7 +76,7 @@ int parser(char **argv)
     char *obstacles_str = get_key_data(obs_layer[0], "objects");
     char **obs_tab = get_value_tab(obstacles_str, 4);
     
-    //csfml_loop(tiles_tab, objs_tab, obs_tab);                              // {beta} Fonction en rapport avec la map, layers pour csfml
+    //csfml_loop(tiles_tab, objs_tab, obs_tab);// {beta} Fonction en rapport avec la map, layers pour csfml
 
 
 

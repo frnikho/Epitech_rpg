@@ -13,6 +13,7 @@
 static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 {
     int length = get_monsters_length(m) + 1;
+
     sfVector2i *order = malloc(sizeof(sfVector2i) * (length + 1));
     order[0] = (sfVector2i){PLAYER_INDEX, p->stats->agility};
     for (int i = 0; i < length-1; i++)
