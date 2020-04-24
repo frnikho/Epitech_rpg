@@ -16,7 +16,7 @@ static const sfVector2f pos[] = {{150, 300}, {550, 300}, {950, 300},
 static void init_battle_gui(game_t *game, battle_screen_t *battle)
 {
     sfColor grey = sfColor_fromRGBA(87, 89, 93, 255);
-
+    battle->dialog = 0;
     battle->attack_gui = create_attack_gui(battle->monster);
     battle->select_gui = create_select_gui(battle->monster);
     if (game->player->learned_abi == 0)

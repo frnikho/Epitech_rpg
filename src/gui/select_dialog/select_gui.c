@@ -18,30 +18,29 @@ select_gui_t *create_select_gui(monster_t **monsters)
     gui->monsters = monsters;
     gui->gui = init_sprite("assets/sprite/gui/select_enemy_gui.png", 0);
     set_sprite_position(gui->gui, (sfVector2f){850, 600});
-    for (int i = 0; monsters[i]; i++) {
-        if (monsters[i]->stats->hp <= 0)
-            gui->monsters_name->color = sfColor_fromRGBA(87, 89, 93, 255);
+    int count_monster = get_monsters_length(monsters);
+    gui->monsters_name = malloc(sizeof(text_t*) * (get_monsters_length(monsters) + 1));
+    for (int i = 0; i < count_monster; i++) {
+        char *count = convert_str(i+1);
+        char *name = monsters[i]->name;
+        char *tmp = str_cat(count, ". ");
+        tmp = str_cat(tmp, name);
+        gui->monsters_name[i] = init_text(tmp, 18, (sfVector2f){920, 640 + (i*20)});
+        set_text_font(gui->monsters_name[i], FONT);
     }
-    char *str = str_cat("1.\t", monsters[0]->name);
-    for (int i = 1; monsters[i] != 0; i++) {
-        str = str_cat_char(str, '\n');
-        str = str_cat(str, convert_str(i+1));
-        str = str_cat(str, ".\t");
-        str = str_cat(str, monsters[i]->name);
-    }
-
-    gui->monsters_name = init_text(str, 18, (sfVector2f){920, 640});
-    set_text_font(gui->monsters_name, "assets/font/dq.ttf");
+    gui->monsters_name[count_monster] = 0;
     gui->cursor = init_sprite("assets/sprite/gui/pointer_small.png", 0);
     set_sprite_position(gui->cursor, (sfVector2f){880, 640});
-    set_sprite_scale(gui->cursor, 2.2);
+    set_sprite_scale(gui->cursor, 2.2f);
     return (gui);
 }
 
 void dispose_select_gui(select_gui_t *gui)
 {
     dispose_sprite(gui->gui);
-    dispose_text(gui->monsters_name);
+    for (int i = 0; gui->monsters_name[i] != 0; i++) {
+        dispose_text(gui->monsters_name[i]);
+    }
     dispose_sprite(gui->cursor);
     for (int i = 0; gui->monsters[i] != 0; i++)
         gui->monsters[i];

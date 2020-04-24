@@ -73,19 +73,34 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         battle->attacking = 1;
         update_attack_battle_screen(game, battle, delta);
     }
-    //end_battle_screen(game, battle, delta);
+    end_battle_screen(game, battle, delta);
 }
 
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
 {
+    static long int tmp_delta = 0;
+    static int xp = 0;
+    static int gold = 0;
     for (int i = 0; b->monster[i] != 0; i++) {
-        if (b->monster[i]->stats->hp >= 0)
+        if (b->monster[i]->is_alive)
             return (1);
-        else {
-            char **dialog = str_split("Vous avez remporté la victoire !&#Vous avez gagné ? xp&$Vous ramassez ? pièces d'or", '&');
-            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
-            set_dialog_active(b->dialog, 1);
-            return (0);
+    }
+    if (tmp_delta == 0) {
+        for (int i = 0; b->monster[i] != 0; i++) {
+            xp += b->monster[i]->xp;
+            gold += b->monster[i]->gold;
         }
     }
+
+    char *str = "vous avez vaincu tout les monstres ! # +";
+    str = str_cat(str, convert_str(gold));
+    str = str_cat(str, " golds, +");
+    str = str_cat(str, convert_str(xp));
+    str = str_cat(str, " xp");
+
+    if (tmp_delta == 0) {
+        b->dialog = create_dialog(str_split(str), 1);
+    }
+    tmp_delta += delta;
+    return (0);
 }
