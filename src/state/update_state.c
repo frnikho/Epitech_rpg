@@ -24,6 +24,4 @@ void update_state(state_t *state, game_t *game, long int delta)
     call_list(state, game, state->code, delta);
     if (state && state->dialog)
         update_dialog(state->dialog, delta);
-    for (int i = 0; state->npcs[i] != 0; i++)
-        update_npc(state->npcs[0], delta);
 }

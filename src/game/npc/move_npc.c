@@ -11,4 +11,5 @@ void move_npc(npc_t *npc, sfVector2f next_pos)
 {
     npc->need_move = 1;
     npc->next_pos = next_pos;
+    npc->finish_move = 0;
 }

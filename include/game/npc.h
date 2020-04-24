@@ -30,6 +30,7 @@ typedef struct npc_s {
     long int delta_movement;
     int speed;
     int need_move;
+    int finish_move;
     sfVector2f next_pos;
     char *fp;
     anim_sprite_t **animations;

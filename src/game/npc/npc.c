@@ -54,6 +54,7 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
     npc->speed = speed;
     npc->fp = filepath;
     npc->need_move = 0;
+    npc->finish_move = 0;
     npc->script = 0;
     npc->next_pos = (sfVector2f){0, 0};
     npc->animations = malloc(sizeof(anim_sprite_t*) * 5);
