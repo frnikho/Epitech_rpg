@@ -29,6 +29,8 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
 {
     static int index = 0;
     static long int delta = 0;
+    int damage = 0;
+
     if (index == 0) {
         if (b->round.order[b->round.order_index].x == -999) {
             b->round.code = ATTACK_CODE;
@@ -37,20 +39,23 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
         int tmp = b->select_gui->monster_index;
         if (b->round.order[b->round.order_index].x == PLAYER_INDEX) {
             char *m_name = b->monster[b->select_gui->monster_index]->name;
-            char *msg = str_cat("Le joueur attaque ", m_name);
-            char **dialog = str_split(msg, '&');
+            damage = player_attack_monster(g->player, b->monster[tmp]);
+            char *msg = str_cat("Vous attaquez ", m_name);
+            msg = str_cat(msg, str_cat("\nVous avez inflige ", convert_str(damage)));
+            char **dialog = str_split(msg, '#');
             b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
-            player_attack_monster(g->player, b->monster[tmp]);
         } else {
-            char **dialog = str_split("Monster a attaque le joueur !", '&');
-            b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
-            monster_attack_player(b->monster[tmp], g->player);
+            if (b->monster[tmp]->stats->hp > 0) {
+                monster_attack_player(b->monster[tmp], g->player);
+                char **dialog = str_split("Monster a attaque le joueur !", '&');
+                b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
+            }
         }
         set_dialog_active(b->dialog, 1);
     }
-    if (b->dialog && b->dialog->is_active && b->dialog->line_finish) {
+    if (b->dialog && b->dialog->is_active && b->dialog->is_active) {
         delta += d;
-        if (delta >= 500000) {
+        if (delta >= 3000000) {
             b->round.order_index++;
             set_dialog_active(b->dialog, 0);
             delta = 0;
@@ -62,3 +67,5 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
     index++;
     update_dialog(b->dialog, d);
 }
+
+void get_dialog(char *msg, char *damage);

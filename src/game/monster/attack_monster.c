@@ -20,12 +20,13 @@ static int calc_attack_damage(int att, int def)
     return (damage);
 }
 
-void monster_attack_player(monster_t *monster, player_t *player)
+int monster_attack_player(monster_t *monster, player_t *player)
 {
     if (!monster || !player)
-        return;
+        return (0);
     int str = monster->stats->strenght;
     int damage = calc_attack_damage(str, player->stats->resistance);
     player->health -= damage;
     update_player_gui(player);
+    return (damage);
 }
