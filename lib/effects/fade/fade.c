@@ -11,7 +11,7 @@
 
 static void init_shape(fade_t *fade)
 {
-    sfVector2f pos = {0, 0};
+    sfVector2f pos = {-800, -400};
     sfVector2f size = {fade->screen_size.x, fade->screen_size.y};
     fade->shape = sfRectangleShape_create();
     sfRectangleShape_setSize(fade->shape, size);

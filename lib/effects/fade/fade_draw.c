@@ -35,9 +35,12 @@ void update_delta(fade_t *fade, long int delta)
     fade->delta += delta;
 }
 
-void update_fade(fade_t *fade)
+void update_fade(fade_t *fade, long int delta)
 {
     if (!fade->is_active)
+        return;
+    fade->delta += delta;
+    if (fade->delta <= 1800)
         return;
     if (fade->fade_in) {
         update_fade_in(fade);
@@ -45,6 +48,7 @@ void update_fade(fade_t *fade)
         update_fade_out(fade);
     }
     sfRectangleShape_setFillColor(fade->shape, fade->color);
+    fade->delta = 0;
 }
 
 void draw_fade(sfRenderWindow *window, fade_t *fade)

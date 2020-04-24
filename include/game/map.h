@@ -21,7 +21,7 @@
 #include <time.h>
 #include "game/collision.h"
 
-typedef struct {
+typedef struct object_s{
     sfTexture *texture;
     sfVector2f scale;
     sfVector2f center_offset;
@@ -36,7 +36,7 @@ typedef struct obstacle_s {
     collision_box_t *collision;
 } obstacle_t;
 
-typedef struct {
+typedef struct tile_layer_s{
     sfTexture **tiles;
     int width;
     int height;
@@ -47,7 +47,7 @@ typedef struct {
     sfVector2f offset;
 } tile_layer_t;
 
-typedef struct {
+typedef struct object_layer_s{
     object_t **objects;
     int width;
     int height;
@@ -58,26 +58,40 @@ typedef struct {
     sfVector2f offset;
 } object_layer_t;
 
-typedef struct {
+typedef struct map_s{
     char *tile_set;
     tile_layer_t **tile_layers;
     object_layer_t **obj_layers;
     obstacle_t **obs;
     float zoom;
     sfVector2f offset;
+    int tile_size;
 } map_t;
+
+typedef struct map_setup_s {
+    char *file;
+    char *tile_set;
+    int layer_nb;
+    int obs_nb;
+    int *tile_layers_id;
+    int *objs_layers_id;
+    int *obs_layers_id;
+    int tile_size;
+    sfVector2f offset;
+    float zoom;
+} map_setup_t;
 
 char *get_key_data(char *buff, char *balise);
 float my_getfloat(char *str);
 
 void draw_map(map_t *map, sfRenderWindow *window, int *layers_to_print_tiles, \
-int *layers_to_print_objs);
+int *layers_to_print_objs, sfView *camera);
 void update_zoom_and_offset(map_t *map);
 void destroy_and_free_map(map_t *map);
 int map_obj_id(int id);
-int is_square_in_window(sfRenderWindow *window, sfVector2f *points);
+int is_square_in_window(sfFloatRect rect, sfVector2f *points);
 object_t **create_objects(void);
-sfTexture **create_tiles(char *tile_set);
+sfTexture **create_tiles(char *tile_set, int tile_size);
 int get_tab_width(int **tab);
 int get_tab_height(int **tab);
 void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab);
@@ -85,7 +99,7 @@ void destroy_and_free_tile_layer(tile_layer_t *layer);
 void destroy_and_free_obstacles(obstacle_t **obs);
 void destroy_objects(object_t **obj);
 void destroy_and_free_object_layer(object_layer_t *layer);
-void draw_tiles(map_t *map, sfRenderWindow *window, int *layers_to_print);
+void draw_tiles(map_t *map, sfRenderWindow *window, int *layers_to_print, sfView *camera);
 void draw_objects(map_t *map, sfRenderWindow *window, int *layers_to_print);
 void draw_obstacles(map_t *map, sfRenderWindow *window);
 void create_tile_tab(map_t *map, int ***layers_tab, char *tile_set);

@@ -24,6 +24,8 @@ typedef struct dialog_s {
     sound_t *sound;
     char **text;
     int speed;
+    int relative;
+    sfView *cam;
     int line_finish;
     int index_msg;
     int index_line;
@@ -40,5 +42,8 @@ void set_dialog_text(dialog_t *dialog, char **text);
 void update_dialog(dialog_t *dialog, long int delta);
 void update_dialog_line(dialog_t *dialog);
 void reset_dialog(dialog_t *dialog, char **str, int p, sfVector2f pos);
+void set_dialog_position(dialog_t *d, sfRenderWindow *w, sfView *v);
+void set_dialog_relative(dialog_t *dialog, sfView *view);
+void set_dialog_scale(dialog_t *dialog, float scale);
 
 #endif

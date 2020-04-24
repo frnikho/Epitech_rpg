@@ -14,19 +14,22 @@
 int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
-    char *fd = create_file_buffer(overworld->maps[overworld->current_map]);
+    char *fd = create_file_buffer(overworld->maps[overworld->current_map]->file);
     if (fd[0] == 'E' && str_len(fd) == 1)
         return (84);
     char *layers_str = get_key_data(fd, "layers");
-    char **layers = get_value_tab(layers_str, 3);
-    char **tiles_layers = get_layers_by_ids((int []){1, 0}, layers);
+    char **layers = get_value_tab(layers_str, overworld->maps[overworld->current_map]->layer_nb);
+    char **tiles_layers = get_layers_by_ids(overworld->maps[overworld->current_map]->tile_layers_id, layers);
     int ***tiles_tab = construct_map_tab_from_layers(tiles_layers);
-    char **objs_layers = get_layers_by_ids((int []){4, 0}, layers);
+    char **objs_layers = get_layers_by_ids(overworld->maps[overworld->current_map]->objs_layers_id, layers);
     int ***objs_tab = construct_map_tab_from_layers(objs_layers);
-    char **obs_layer = get_layers_by_ids((int []){2, 0}, layers);
+    char **obs_layer = get_layers_by_ids(overworld->maps[overworld->current_map]->obs_layers_id, layers);
     char *obstacles_str = get_key_data(obs_layer[0], "objects");
-    char **obs_tab = get_value_tab(obstacles_str, 36);
-    overworld->map->tile_set = overworld->tile_sets[overworld->current_map];
+    char **obs_tab = get_value_tab(obstacles_str, overworld->maps[overworld->current_map]->obs_nb);
+    overworld->map->tile_set = overworld->maps[overworld->current_map]->tile_set;
+    overworld->map->tile_size = overworld->maps[overworld->current_map]->tile_size;
+    overworld->map->offset = overworld->maps[overworld->current_map]->offset;
+    overworld->map->zoom = overworld->maps[overworld->current_map]->zoom;
     init_map(overworld->map, tiles_tab, objs_tab, obs_tab);
     overworld->obs_tab = obs_tab;
     overworld->objs_tab = objs_tab;
@@ -41,41 +44,68 @@ int init_overworld_map(overworld_t *overworld)
     return (0);
 }
 
-static void init_maps(overworld_t *world)
+void init_layers_id(map_setup_t *map, int *tile_ids, \
+int *objs_ids, int *obs_ids)
 {
-    char *maps[] = {"first_village.json", "map_one_copy.json", NULL};
     int tab_len = 0;
+    int i = 0;
 
-    for (; maps[tab_len]; tab_len++);
-    world->maps = malloc(sizeof(char *) * (tab_len+1));
-    world->maps[tab_len] = NULL;
-    for (int i = 0; i < tab_len; i++) {
-        world->maps[i] = maps[i];
-    }
+    for (tab_len = 0; tile_ids[tab_len]; tab_len++);
+    map->tile_layers_id = malloc(sizeof(int) * (tab_len+1));
+    for (i = 0; tile_ids[i]; i++)
+        map->tile_layers_id[i] = tile_ids[i];
+    map->tile_layers_id[i] = 0;
+    for (tab_len = 0; objs_ids[tab_len]; tab_len++);
+    map->objs_layers_id = malloc(sizeof(int) * (tab_len+1));
+    for (i = 0; objs_ids[i]; i++)
+        map->objs_layers_id[i] = objs_ids[i];
+    map->objs_layers_id[i] = 0;
+    for (tab_len = 0; obs_ids[tab_len]; tab_len++);
+    map->obs_layers_id = malloc(sizeof(int) * (tab_len+1));    
+    for (i = 0; obs_ids[i]; i++)
+        map->obs_layers_id[i] = obs_ids[i];
+    map->obs_layers_id[i] = 0;
+}
+
+void init_maps(overworld_t *world)
+{
+    map_setup_t **maps = malloc(sizeof(map_setup_t*) * 100);
+
+    maps[0] = malloc(sizeof(map_setup_t));
+    maps[0]->file = "first_village.json";
+    maps[0]->tile_set = "assets/tiles/outside.png";
+    maps[0]->layer_nb = 3;
+    maps[0]->obs_nb = 36;
+    maps[0]->tile_size = 20;
+    maps[0]->offset = (sfVector2f){0, 0};
+    maps[0]->zoom = 1;
+    init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
+
+    maps[1] = malloc(sizeof(map_setup_t));
+    maps[1]->file = "assets/maps/world.json";
+    maps[1]->tile_set = "assets/tiles/world.png";
+    maps[1]->layer_nb = 2;
+    maps[1]->obs_nb = 81;
+    maps[1]->tile_size = 20;
+    maps[1]->offset = (sfVector2f){0, 0};
+    maps[1]->zoom = 1;
+    init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
+
+    maps[2] = NULL;
+    world->maps = maps;
     world->current_map = 0;
 }
 
-static void init_tile_sets(overworld_t *world)
+static int init_world_map(game_t *game, overworld_t *world)
 {
-    char *tile_sets[] = {"assets/tiles/outside.png",
-        "assets/sprite/tiles/set_one.png", NULL};
-    int tab_len = 0;
-
-    for (; tile_sets[tab_len]; tab_len++);
-    world->tile_sets = malloc(sizeof(char *) * (tab_len+1));
-    world->tile_sets[tab_len] = NULL;
-    for (int i = 0; i < tab_len; i++) {
-        world->tile_sets[i] = tile_sets[i];
-    }
+    init_maps(world);
+    if (init_overworld_map(world) == 84)
+        return (84);
 }
 
 int init_overworld(game_t *game, overworld_t *world)
 {
-    world->state = create_state(0, 0);
-    sfView_zoom(game->camera, 0.5);
-    init_maps(world);
-    init_tile_sets(world);
-    if (init_overworld_map(world) == 84)
-        return (84);
+    world->state = create_state(0, game, 0);
+    init_world_map(game, world);
     return (0);
 }

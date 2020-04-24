@@ -19,6 +19,7 @@ SRC						=					src/main.c																\
 											src/gui/dialog/update_dialog.c											\
 											src/gui/dialog/draw_dialog.c											\
 											src/gui/dialog/reset_dialog.c											\
+											src/gui/dialog/set_dialog_position.c									\
 											src/game/item/item.c													\
 											src/game/monster/monster.c												\
 											src/game/monster/draw_monster.c											\
@@ -112,7 +113,7 @@ OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)	$(STATE:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -L lib/ -lcsfml
 
-CFLAGS					=					-I include/ $(LIB) -O3
+CFLAGS					=					-I include/ $(LIB)
 
 all:					$(NAME)
 $(NAME):				$(OBJ)

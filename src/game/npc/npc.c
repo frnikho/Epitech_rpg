@@ -53,14 +53,19 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
     npc->current_animations = 0;
     npc->speed = speed;
     npc->fp = filepath;
+    npc->need_move = 0;
+    npc->script = 0;
+    npc->next_pos = (sfVector2f){0, 0};
     npc->animations = malloc(sizeof(anim_sprite_t*) * 5);
     npc->animations[0] = init_npc(npc, filepath, "idle");
     npc->animations[1] = init_npc(npc, filepath, "walk_right");
     npc->animations[2] = init_npc(npc, filepath, "walk_left");
     npc->animations[3] = init_npc(npc, filepath, "walk_up");
     npc->animations[4] = 0;
-    for (int i = 0; npc->animations[i] != 0; i++)
+    for (int i = 0; npc->animations[i] != 0; i++) {
         sfSprite_setPosition(npc->animations[i]->sprite, pos);
+        set_anim_sprite_scale(npc->animations[i], 2);
+    }
     sfFloatRect r = sfSprite_getGlobalBounds(npc->animations[0]->sprite);
     npc->collision = create_collision_box(r, 0, 1);
     npc->trigger = create_collision_box((sfFloatRect){r.left-10, r.top-10, \

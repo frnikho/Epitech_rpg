@@ -19,11 +19,11 @@ void destroy_and_free_map(map_t *map)
 }
 
 void draw_map(map_t *map, sfRenderWindow *window, int *layers_to_print_tiles, \
-int *layers_to_print_objs)
+int *layers_to_print_objs, sfView *camera)
 {
-    draw_tiles(map, window, layers_to_print_tiles);
+    draw_tiles(map, window, layers_to_print_tiles, camera);
     draw_objects(map, window, layers_to_print_objs);
-    //draw_obstacles(map, window);
+    draw_obstacles(map, window);
 }
 
 void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab)
@@ -31,8 +31,10 @@ void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab)
     create_tile_tab(map, tiles_tab, map->tile_set);
     create_object_tab(map, objs_tab);
     create_obtacles_tab(obs_tab, map);
-    map->offset = (sfVector2f){0, 0};
-    map->zoom = 1;
+    if (!map->offset.x == 0 || !map->offset.y == 0)
+        map->offset = (sfVector2f){0, 0};
+    if (!map->zoom)
+        map->zoom = 1;
 }
 
 void update_zoom_and_offset(map_t *map)

@@ -35,6 +35,7 @@ typedef struct player_s {
     int zone;
     int learned_abi;
     int learned_spell;
+    int can_move;
     inventory_t *inventory;
     player_gui_t *gui;
     stats_t *stats;

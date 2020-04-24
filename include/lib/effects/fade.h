@@ -29,7 +29,7 @@ typedef struct fade_s {
 fade_t *init_fade(sfVector2f size, sfColor color, float speed, int in);
 void draw_fade(sfRenderWindow *window, fade_t *fade);
 void update_delta(fade_t *fade, long int delta);
-void update_fade(fade_t *fade);
+void update_fade(fade_t *fade, long int delta);
 void dispose_fade(fade_t *fade);
 void reset_fade(fade_t *fade);
 int fade_is_active(fade_t *fade);

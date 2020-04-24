@@ -13,8 +13,7 @@
 #include "game/map.h"
 
 typedef struct overworld_s {
-    char **maps;
-    char **tile_sets;
+    map_setup_t **maps;
     int current_map;
     map_t *map;
     char **obs_tab;
