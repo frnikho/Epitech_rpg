@@ -74,6 +74,7 @@ SRC						=					src/main.c																\
 											src/game/map/player_collisions.c										\
 											src/game/map/render_optimisation.c										\
 											src/game/collision/collision.c											\
+											src/game/collision/interaction_boxes.c											\
 											src/game/collision/player_collisions.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\

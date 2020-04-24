@@ -12,6 +12,7 @@
 #include "lib/components/anim_sprite.h"
 #include <stdlib.h>
 #include <SFML/Graphics.h>
+#include "scene/overworld.h"
 
 static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map_t *map)
 {
@@ -34,14 +35,26 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
         map->obs[i]->collision->collision_box = (sfFloatRect){r.left*z+ox, \
         r.top*z+oy, r.width*z+ox, r.height*z+oy};
     }
+    for (int i = 0; map->interaction_boxes[i]; i++) {
+        r = map->interaction_boxes[i]->shape;
+        map->interaction_boxes[i]->collision_box = (sfFloatRect){r.left*z+ox, \
+        r.top*z+oy, r.width*z+ox, r.height*z+oy};
+    }
 }
 
-int block_move_on_collision(player_t *p, npc_t **n, long int d, map_t *map)
+int block_move_on_collision(player_t *p, npc_t **n, long int d, \
+overworld_t *world)
 {
     if (p->is_ghost == 1)
         return (0);
-    update_collisions_box(p, n, d, map);
-    if (check_collision_ahead(map->obs, n, p->collision, d) == 1) {
+    update_collisions_box(p, n, d, world->map);
+    if (check_collision_ahead(world->map->obs, n, p->collision, d) == 1) {
+        add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \
+            p->pre_pos.y * -1});
+        p->pre_pos = (sfVector2f){0, 0};
+        return (1);
+    }
+    if (check_interaction_ahead(p, world, d) == 1) {
         add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \
             p->pre_pos.y * -1});
         p->pre_pos = (sfVector2f){0, 0};

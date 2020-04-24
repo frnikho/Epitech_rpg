@@ -11,6 +11,20 @@
 #include "lib/utils/json_parser.h"
 #include "lib/utils/string.h"
 
+void load_interaction_boxes(map_setup_t *setup, map_t *map, overworld_t *world)
+{
+    int tab_len = 0;
+    int i = 0;
+
+    for (tab_len = 0; setup->interaction_boxes_indexs[tab_len]; tab_len++);
+    map->interaction_boxes = malloc(sizeof(interaction_box_t *) * (tab_len+1));
+    for (i = 0; setup->interaction_boxes_indexs[i]; i++) {
+        map->interaction_boxes[i] = \
+        world->maps_interaction_boxes[setup->interaction_boxes_indexs[i]-1];
+    }
+    map->interaction_boxes[i] = NULL;    
+}
+
 int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
@@ -31,6 +45,7 @@ int init_overworld_map(overworld_t *overworld)
     overworld->map->offset = overworld->maps[overworld->current_map]->offset;
     overworld->map->zoom = overworld->maps[overworld->current_map]->zoom;
     init_map(overworld->map, tiles_tab, objs_tab, obs_tab);
+    load_interaction_boxes(overworld->maps[overworld->current_map], overworld->map, overworld);
     overworld->obs_tab = obs_tab;
     overworld->objs_tab = objs_tab;
     overworld->tiles_tab = tiles_tab;
@@ -42,6 +57,18 @@ int init_overworld_map(overworld_t *overworld)
     free(layers_str);
     free(fd);
     return (0);
+}
+
+void init_interactions_boxes_indexs(map_setup_t *map, int *indexs)
+{
+    int tab_len = 0;
+    int i = 0;
+
+    for (tab_len = 0; indexs[tab_len]; tab_len++);
+    map->interaction_boxes_indexs = malloc(sizeof(int) * (tab_len+1));
+    for (i = 0; indexs[i]; i++)
+        map->interaction_boxes_indexs[i] = indexs[i];
+    map->interaction_boxes_indexs[i] = 0;
 }
 
 void init_layers_id(map_setup_t *map, int *tile_ids, \
@@ -67,6 +94,17 @@ int *objs_ids, int *obs_ids)
     map->obs_layers_id[i] = 0;
 }
 
+void init_maps_interactions(overworld_t *world)
+{
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 3);
+
+    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 0);
+    inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 0);
+
+    inter[2] = NULL;
+    world->maps_interaction_boxes = inter;
+}
+
 void init_maps(overworld_t *world)
 {
     map_setup_t **maps = malloc(sizeof(map_setup_t*) * 100);
@@ -79,6 +117,7 @@ void init_maps(overworld_t *world)
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 1.5;
+    init_interactions_boxes_indexs(maps[0], (int []){1, 0});
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[1] = malloc(sizeof(map_setup_t));
@@ -89,6 +128,7 @@ void init_maps(overworld_t *world)
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 1;
+    init_interactions_boxes_indexs(maps[1], (int []){2, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = NULL;
@@ -99,6 +139,7 @@ void init_maps(overworld_t *world)
 static int init_world_map(game_t *game, overworld_t *world)
 {
     init_maps(world);
+    init_maps_interactions(world);
     if (init_overworld_map(world) == 84)
         return (84);
 }
