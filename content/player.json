@@ -1,4 +1,9 @@
 {
+  "location":{
+    "town":"topaze",
+    "x":0,
+    "y":0
+  },
   "level":0,
   "xp":0,
   "stats":{

@@ -63,7 +63,7 @@ void destroy_overworld(game_t *game, overworld_t *overworld)
 
 void overworld(game_t *game, long int delta)
 {
-    static overworld_t *overworld;
+    static overworld_t *overworld = 0;
 
     if (!overworld)
         overworld = init(game);

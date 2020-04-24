@@ -48,7 +48,7 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
         }
         set_dialog_active(b->dialog, 1);
     }
-    if (b->dialog && b->dialog->is_active && b->dialog->line_finish) {
+    if (b->dialog && b->dialog->is_active && b->dialog->is_finished) {
         delta += d;
         if (delta >= 500000) {
             b->round.order_index++;

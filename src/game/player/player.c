@@ -60,6 +60,7 @@ static player_t *init_player(void)
     player->level = 1;
     player->xp = 0;
     player->zone = 1;
+    player->can_move = 1;
     return (player);
 }
 
@@ -71,6 +72,8 @@ static anim_sprite_t **create_annimations(void)
     animations[2] = init_player_action("content/player.json", "walk_left");
     animations[3] = init_player_action("content/player.json", "walk_up");
     animations[4] = 0;
+    for (int i = 0; animations[i] != 0; i++)
+        set_anim_sprite_scale(animations[i], 2);
     return (animations);
 }
 

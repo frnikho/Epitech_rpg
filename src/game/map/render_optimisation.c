@@ -7,22 +7,18 @@
 
 #include "game/map.h"
 
-int is_point_in_window(sfRenderWindow *window, sfVector2f point)
+int is_point_in_window(sfFloatRect rect, sfVector2f point)
 {
-    int w_width = 1600;
-    int w_height = 800;
-
-    if (point.x <= w_width && point.x >= 0) {
-        if (point.y <= w_height && point.y >= 0)
+    if (point.x > rect.left && point.x < rect.width)
+        if (point.y > rect.top && point.y < rect.height)
             return (1);
-    }
     return (0);
 }
 
-int is_square_in_window(sfRenderWindow *window, sfVector2f *points)
+int is_square_in_window(sfFloatRect rect, sfVector2f *points)
 {
     for (int i = 0; i < 4; i++) {
-        if (is_point_in_window(window, points[i]) == 1)
+        if (is_point_in_window(rect, points[i]) == 1)
             return (1);
     }
     return (0);
@@ -47,8 +43,8 @@ sfRenderWindow *window)
     points[2].y = position.y + obj->disapear_dist.y;
     points[3].x = position.x - obj->disapear_dist.x;
     points[3].y = position.y + obj->disapear_dist.y;
-    if (is_square_in_window(window, points) == 0)
-        return (0);
+    //if (is_square_in_window(window, points) == 0)
+    //    return (0);
     return (1);
 }
 

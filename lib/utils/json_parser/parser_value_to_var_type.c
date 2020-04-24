@@ -91,6 +91,8 @@ char **get_layers_by_ids(int *ids, char **layers)
     for (; ids[tab_len]; tab_len++);
     result = malloc(sizeof(char *) * (tab_len+1));
     result[tab_len] = NULL;
+    if (tab_len == 0)
+        return (result);
     for (int i = 0; layers[i]; i++) {
         id_act_char = get_key_data(layers[i], "id");
         id_act = get_nbr(id_act_char);

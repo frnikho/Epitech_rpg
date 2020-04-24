@@ -42,8 +42,10 @@ int *current_delta)
 int move_player(player_t *p, npc_t **npcs, long int delta)
 {
     static int current_delta = 0;
-    current_delta += delta;
 
+    if (!p->can_move)
+        return (0);
+    current_delta += delta;
     if (current_delta <= 30000) {
         current_delta += delta;
         return (0);

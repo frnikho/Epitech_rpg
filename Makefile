@@ -113,7 +113,7 @@ OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)	$(STATE:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -L lib/ -lcsfml
 
-CFLAGS					=					-I include/ $(LIB) -O3
+CFLAGS					=					-I include/ $(LIB)
 
 all:					$(NAME)
 $(NAME):				$(OBJ)
