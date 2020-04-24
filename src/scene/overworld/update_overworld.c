@@ -11,10 +11,10 @@
 static void update_map_world(game_t *game, overworld_t *world, long int delta)
 {
     npc_t **npcs = world->state->npcs;
-    block_move_on_collision(game->player, npcs, delta, world->map->obs);
+    block_move_on_collision(game->player, npcs, delta, world->map);
     sfFloatRect rect = sfSprite_getGlobalBounds(game->player->animations[game->player->current_animations]->sprite);
-    //if (rect.top > 150 && rect.left > 150)
-    //world->current_map = 1;
+    if (rect.top > 150 && rect.left > 150)
+    world->current_map = 1;
 }
 
 int update_overworld(game_t *game, overworld_t *world, long int delta)

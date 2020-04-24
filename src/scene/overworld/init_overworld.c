@@ -78,14 +78,14 @@ void init_maps(overworld_t *world)
     maps[0]->obs_nb = 36;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
-    maps[0]->zoom = 1;
+    maps[0]->zoom = 1.5;
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
     maps[1]->tile_set = "assets/tiles/world.png";
     maps[1]->layer_nb = 2;
-    maps[1]->obs_nb = 81;
+    maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 1;
