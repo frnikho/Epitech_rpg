@@ -85,7 +85,7 @@ void init_maps(overworld_t *world)
     maps[1]->file = "assets/maps/world.json";
     maps[1]->tile_set = "assets/tiles/world.png";
     maps[1]->layer_nb = 2;
-    maps[1]->obs_nb = 81;
+    maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 1;
@@ -93,7 +93,7 @@ void init_maps(overworld_t *world)
 
     maps[2] = NULL;
     world->maps = maps;
-    world->current_map = 0;
+    world->current_map = 1;
 }
 
 static int init_world_map(game_t *game, overworld_t *world)

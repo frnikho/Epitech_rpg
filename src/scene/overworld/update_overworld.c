@@ -23,7 +23,9 @@ int update_overworld(game_t *game, overworld_t *world, long int delta)
     update_player(game->player, delta);
     if (game->player->inventory->is_open)
         return (0);
-    move_player(game->player, world->state->npcs, delta);
+    if (move_player(game->player, world->state->npcs, delta)) {
+        update_map_world(game, world, delta);
+    }
     update_map_world(game, world, delta);
     sfView_setCenter(game->camera, get_player_position(game->player));
     sfRenderWindow_setView(game->window, game->camera);

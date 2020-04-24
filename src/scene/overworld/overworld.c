@@ -31,7 +31,6 @@ static void overworld_commands(game_t *game, overworld_t *overworld)
 static void update(game_t *game, overworld_t *overworld, long int delta)
 {
     static int map_act = -1;
-
     if (overworld->current_map != map_act && map_act != -1) {
         destroy_overworld(game, overworld);
         if (init_overworld_map(overworld) == 84) {
@@ -45,6 +44,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
             sfRenderWindow_close(game->window);
             return;
         }
+        input_overworld(game, overworld);
     }
     map_act = overworld->current_map;
     overworld_commands(game, overworld);

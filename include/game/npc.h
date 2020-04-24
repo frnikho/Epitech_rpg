@@ -45,6 +45,8 @@ void update_npc(npc_t *npc, long int delta);
 char **get_npc_dialog(npc_t *npc);
 npc_t **get_town_npcs(char *town);
 
+void move_npc(npc_t *npc, sfVector2f next_pos);
+
 void set_npc_script(npc_t *npc, script_t *script);
 script_t *get_npc_script(char *str_script);
 
