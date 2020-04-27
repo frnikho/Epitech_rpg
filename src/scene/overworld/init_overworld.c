@@ -128,13 +128,13 @@ void init_maps(overworld_t *world)
     maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
-    maps[1]->zoom = 2.0f;
+    maps[1]->zoom = 3.0f;
     init_interactions_boxes_indexs(maps[1], (int []){2, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = NULL;
     world->maps = maps;
-    world->current_map = 1;
+
 }
 
 static int init_world_map(game_t *game, overworld_t *world)
@@ -147,7 +147,8 @@ static int init_world_map(game_t *game, overworld_t *world)
 
 int init_overworld(game_t *game, overworld_t *world)
 {
-    world->state = create_state(0, game, 0);
+    world->state = create_state(100, game, 0);
+    world->current_map = 1;
     init_world_map(game, world);
     return (0);
 }

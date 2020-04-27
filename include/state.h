@@ -39,4 +39,7 @@ void set_dialog_scale(dialog_t *dialog, float scale);
 void intro_state(state_t *state, game_t *game, long int delta);
 void update_intro_state(state_t *state, game_t *game, long int delta);
 
+void world_state(state_t *state, game_t *game, long int delta);
+void update_world_state(state_t *state, game_t *game, long int delta);
+
 #endif

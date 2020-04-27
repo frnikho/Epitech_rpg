@@ -7,7 +7,7 @@
 
 #include "state.h"
 
-const list_state_t lists[] = {{0, intro_state}, {999, 0}};
+const list_state_t lists[] = {{0, intro_state}, {100, world_state}, {999, 0}};
 
 static void iterate_lists(state_t *state, game_t *game, int code)
 {

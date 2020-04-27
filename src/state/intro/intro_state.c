@@ -17,6 +17,7 @@ void intro_state(state_t *state, game_t *game, long int delta)
     state->npcs[0] = create_npc("content/npc/musclor.json", (sfVector2f){400, 300}, 1);
     state->npcs[1] = create_npc("content/npc/sister.json", (sfVector2f){600, 800}, 1);
     state->npcs[2] = 0;
+    set_player_position(game->player, (sfVector2f) {});
     set_player_position(game->player, (sfVector2f) {543, 300});
 }
 

@@ -109,6 +109,7 @@ STATE					=					$(PATH_STATE)/draw_state.c												\
 											$(PATH_STATE)/update_state.c											\
 											$(PATH_STATE)/create_state.c											\
 											$(PATH_STATE)/intro/intro_state.c										\
+											$(PATH_STATE)/world/world_state.c										\
 
 
 OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)	$(STATE:%.c=%.o)
