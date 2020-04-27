@@ -20,4 +20,9 @@ int render_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     }
     if (battle->attacking == 1 && battle->dialog != 0)
         draw_dialog(game->window, battle->dialog);
+    if (battle->fade_in) {
+        draw_fade(game->window, battle->fade_in);
+        game->current_state = INTRO_SCREEN;
+    }
+
 }
