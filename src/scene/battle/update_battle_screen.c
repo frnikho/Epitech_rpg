@@ -9,6 +9,7 @@
 #include <scene/battle.h>
 #include <stdio.h>
 #include "lib/utils/string.h"
+#include "lib/effects/fade.h"
 
 static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 {
@@ -79,6 +80,7 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
 {
     static long int tmp_delta = 0;
+    static int code = 0;
     static int xp = 0;
     static int gold = 0;
     for (int i = 0; b->monster[i] != 0; i++) {
@@ -91,7 +93,7 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
             gold += b->monster[i]->gold;
         }
     }
-    char *str = "vous avez vaincu tout les monstres ! # +";
+    char *str = "Vous avez vaincu tout les monstres ! # +";
     str = str_cat(str, convert_str(gold));
     str = str_cat(str, " golds, +");
     str = str_cat(str, convert_str(xp));
@@ -101,6 +103,13 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
         b->dialog = create_dialog(str_split(str, '#'), 1, (sfVector2f)GUI_POS, 1);
         set_dialog_active(b->dialog, 1);
     }
+    if (b->dialog->is_finished && code == 0) {
+        b->fade_in = init_fade((sfVector2f){1600*10, 800*10}, sfBlack, 1, FADE_IN);
+        set_fade_active(b->fade_in);
+        code++;
+    }
+    if (b->fade_in)
+        update_fade(b->fade_in, delta);
     tmp_delta += delta;
     return (0);
 }

@@ -38,12 +38,14 @@ static void check_attack_monster(game_t *g, battle_screen_t *b, int tmp)
 static void check_attack_player(game_t *g, battle_screen_t *b, int tmp)
 {
     char *m_name = b->monster[b->select_gui->monster_index]->name;
-    int damage = player_attack_monster(g->player, b->monster[tmp]);
     char *msg = str_cat("Vous attaquez ", m_name);
+    int damage = player_attack_monster(g->player, b->monster[tmp]);
     msg = str_cat(msg, str_cat("#Vous avez inflige ", convert_str(damage)));
+    msg = str_cat(msg, " degats.");
     char **dialog = str_split(msg, '#');
     b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
     set_dialog_active(b->dialog, 1);
+    b->monster[b->select_gui->monster_index]->stats->hp -= damage;
 }
 
 static void check_dialog(battle_screen_t *b, long int *delta, long int *d, int *index)
@@ -51,7 +53,6 @@ static void check_dialog(battle_screen_t *b, long int *delta, long int *d, int *
     if (b->dialog->is_finished) {
         (*delta) += (*d);
         if ((*delta) >= 30000) {
-            printf("index: %d\n", b->round.order_index);
             b->round.order_index++;
             set_dialog_active(b->dialog, 0);
             (*delta) = 0;

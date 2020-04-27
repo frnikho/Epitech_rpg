@@ -17,6 +17,7 @@
 #include "gui/select_gui.h"
 #include "game/monster.h"
 #include "game/player.h"
+#include "lib/effects/fade.h"
 
 typedef struct round_s {
     sfVector2i *order;
@@ -34,6 +35,8 @@ typedef struct battle_screen_s {
     sound_t *music;
     dialog_t *dialog;
     round_t round;
+    fade_t *fade_in;
+    fade_t *fade_out;
 } battle_screen_t;
 
 void battle_screen(game_t *game, long int delta);
