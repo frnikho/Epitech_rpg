@@ -28,6 +28,8 @@ typedef struct player_gui_s {
 
 typedef struct player_s {
     long int delta;
+    long int delta_fight;
+    int fight;
     int health;
     int mp;
     int level;

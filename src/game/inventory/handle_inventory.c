@@ -10,6 +10,8 @@
 
 static void handle_inv_gamepad(sfEvent e, inventory_t *inv)
 {
+    if (!inv)
+        return;
     if (!inv->is_open)
         return;
     if (e.type != sfEvtJoystickButtonPressed)
@@ -18,8 +20,10 @@ static void handle_inv_gamepad(sfEvent e, inventory_t *inv)
 
 void handle_inventory(sfEvent event, inventory_t *inv)
 {
+    if (!inv || !inv->is_open)
+        return;
     handle_inv_gamepad(event, inv);
-    if (!inv->is_open || event.type != sfEvtKeyPressed)
+    if (event.type != sfEvtKeyPressed)
         return;
     if (event.key.code == sfKeyZ) {
         if (inv->cursor_index.y != 0)

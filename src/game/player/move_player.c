@@ -39,11 +39,21 @@ int *current_delta)
     return (0);
 }
 
+static void handle_player_fight(player_t *player, long int delta)
+{
+    if (player->delta_fight >= 18000000) {
+        player->delta_fight = 0;
+        player->fight = 1;
+        return;
+    }
+    player->delta_fight += delta;
+}
+
 int move_player(player_t *p, npc_t **npcs, long int delta)
 {
     static int current_delta = 0;
 
-    if (!p->can_move)
+    if (!p || !p->can_move)
         return (0);
     current_delta += delta;
     if (current_delta <= 30000) {
@@ -58,6 +68,7 @@ int move_player(player_t *p, npc_t **npcs, long int delta)
         exec_move(p, (sfVector2f){0, 1}, 0, &current_delta);
     if (sfKeyboard_isKeyPressed(sfKeyD) || pad_arrow() == PAD_RIGHT)
         exec_move(p, (sfVector2f){1, 0}, 1, &current_delta);
+    handle_player_fight(p, delta);
     current_delta = 0;
     return (1);
 }

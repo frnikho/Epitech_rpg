@@ -80,13 +80,16 @@ static anim_sprite_t **create_annimations(void)
 player_t *create_player(void)
 {
     player_t *player = deserialize_player();
+    player->interlocutor = NULL;
     player->learned_abi = 0;
     player->learned_spell = 0;
     player->delta = 0;
-    create_gui(player);
     player->current_animations = 0;
+    player->delta_fight = 0;
+    player->fight = 0;
     player->inventory = create_inventory();
     player->animations = create_annimations();
+    create_gui(player);
     player->pre_pos = (sfVector2f){0, 0};
     player->is_ghost = 0;
     player->collision = create_collision_box(\
