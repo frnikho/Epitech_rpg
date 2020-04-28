@@ -21,8 +21,11 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     float ox = map->offset.x;
     float oy = map->offset.y;
 
+    printf("Player block: %.2f  %.2f  %.2f  %.2f  down:%.2f   right:%.2f\n", p->collision->collision_box.left, p->collision->collision_box.top, p->collision->collision_box.width, p->collision->collision_box.height, p->collision->collision_box.top+p->collision->collision_box.height, p->collision->collision_box.left+p->collision->collision_box.width);
+    printf("%i\n", p->current_animations);
     p->collision->collision_box = \
     sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
+
     for (int i = 0; npcs[i]; i++) {
         r = sfSprite_getGlobalBounds(npcs[i]->animations[npcs[i]->\
         current_animations]->sprite);
@@ -38,13 +41,14 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     for (int i = 0; map->interaction_boxes[i]; i++) {
         r = map->interaction_boxes[i]->shape;
         map->interaction_boxes[i]->collision_box = (sfFloatRect){r.left*z+ox, \
-        r.top*z+oy, r.width*z+ox, r.height*z+oy};
+        r.top*z+oy, r.width*z, r.height*z};
     }
 }
 
 int block_move_on_collision(player_t *p, npc_t **n, long int d, \
 overworld_t *world)
 {
+    printf("--------\n");
     if (p->is_ghost == 1)
         return (0);
     update_collisions_box(p, n, d, world->map);

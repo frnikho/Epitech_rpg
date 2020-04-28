@@ -81,6 +81,7 @@ typedef struct map_setup_s {
     int tile_size;
     sfVector2f offset;
     float zoom;
+    char *location;
 } map_setup_t;
 
 char *get_key_data(char *buff, char *balise);

@@ -21,8 +21,8 @@ void add_player_position(player_t *player, sfVector2f pos)
     for (int i = 0; player->animations[i] != 0; i++) {
         sfVector2f current_pos = \
         sfSprite_getPosition(player->animations[i]->sprite);
-        int x = current_pos.x + pos.x;
-        int y = current_pos.y + pos.y;
+        float x = current_pos.x + pos.x;
+        float y = current_pos.y + pos.y;
         set_player_position(player, (sfVector2f){x, y});
     }
 }

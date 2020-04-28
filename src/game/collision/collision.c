@@ -25,12 +25,12 @@ int update_on_default, int is_blocking)
     return (box);
 }
 
-int is_rectangles_in_collision(sfFloatRect *r_one, sfFloatRect *r_two)
+int is_rectangles_in_collision(sfFloatRect r_one, sfFloatRect r_two)
 {
-    if (r_one->left + r_one->width > r_two->left && \
-    r_one->left < r_two->left + r_two->width) {
-        if (r_one->top + r_one->height > r_two->top &&\
-        r_one->top < r_two->top + r_two->height) {
+    if (r_one.left + r_one.width > r_two.left && \
+    r_one.left < r_two.left + r_two.width) {
+        if (r_one.top + r_one.height > r_two.top &&\
+        r_one.top < r_two.top + r_two.height) {
             return (1);
         }
     }
@@ -41,8 +41,8 @@ int check_collisions(collision_box_t *c1, collision_box_t *c2)
 {
     if (c1->is_active == 0 || c2->is_active == 0)
         return (0);
-    if (is_rectangles_in_collision(&c1->collision_box, \
-    &c2->collision_box) == 1) {
+    if (is_rectangles_in_collision(c1->collision_box, \
+        c2->collision_box) == 1) {
         if (c1->is_blocking == 0 || c2->is_blocking == 0)
             return (2);
         return (1);

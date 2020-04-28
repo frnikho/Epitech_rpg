@@ -14,7 +14,6 @@ void draw_interaction_boxes(sfRenderWindow *window, map_t *map)
 
     sfConvexShape_setPointCount(shape, 4);
     sfConvexShape_setFillColor(shape, sfColor_fromRGBA(0, 255, 0, 150));
-
     for (int i = 0; map->interaction_boxes[i]; i++) {
         sfFloatRect r = map->interaction_boxes[i]->collision_box;
         sfConvexShape_setPoint(shape, 0, (sfVector2f){r.left, r.top});
@@ -47,6 +46,19 @@ static void draw_npcs(sfRenderWindow *window, npc_t **npcs, sfView *camera)
     }
 }
 
+void print_point(sfRenderWindow *window, sfVector2f point)
+{
+    sfCircleShape *circle = sfCircleShape_create();
+    int radius = 40;
+
+    sfCircleShape_setFillColor(circle, sfColor_fromRGBA(255, 0, 0, 255));
+    sfCircleShape_setPosition(circle, (sfVector2f){point.x-(radius/2), \
+        point.y-(radius/2)});
+    sfCircleShape_setRadius(circle, radius);
+    sfRenderWindow_drawCircleShape(window, circle, NULL);
+    sfCircleShape_destroy(circle);
+}
+
 int render_overworld(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
@@ -55,5 +67,6 @@ int render_overworld(game_t *game, overworld_t *world, long int delta)
     draw_npcs(game->window, world->npcs, game->camera);
     draw_inventory(game->window, game->camera, game->player->inventory);
     draw_state(game->camera, game->window, world->state);
+    print_point(game->window, (sfVector2f){300, 600});
     return (0);
 }
