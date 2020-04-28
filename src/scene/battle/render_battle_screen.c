@@ -22,7 +22,7 @@ int render_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         draw_dialog(game->window, battle->dialog);
     if (battle->fade_in) {
         draw_fade(game->window, battle->fade_in);
-        game->current_state = INTRO_SCREEN;
+        game->current_state = OVERWORLD;
+        game->player->fight = 0;
     }
-
 }
