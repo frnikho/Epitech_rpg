@@ -26,7 +26,6 @@ void draw_interaction_boxes(sfRenderWindow *window, map_t *map)
     sfConvexShape_destroy(shape);
 }
 
-
 static void render_map_world(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);

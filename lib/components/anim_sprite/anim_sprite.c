@@ -34,7 +34,8 @@ void update_anim_sprite(anim_sprite_t *sprite, long int delta)
 
 void draw_anim_sprite(sfRenderWindow *window, anim_sprite_t *sprite)
 {
-    sfSprite_setTextureRect(sprite->sprite, sprite->rect[sprite->current_count]);
+    int count = sprite->current_count;
+    sfSprite_setTextureRect(sprite->sprite, sprite->rect[count]);
     sfRenderWindow_drawSprite(window, sprite->sprite, 0);
 }
 

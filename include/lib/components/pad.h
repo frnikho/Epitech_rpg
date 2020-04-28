@@ -8,7 +8,7 @@
 #ifndef MY_RPG_PAD_H
 #define MY_RPG_PAD_H
 
-enum pad {UNKNOW = 0, PAD_LEFT = 40, PAD_UP = 45, PAD_RIGHT = 50, PAD_DOWN = 55};
+enum pad {UNKNOW, PAD_LEFT, PAD_UP, PAD_RIGHT, PAD_DOWN};
 
 #define PAD_A 0
 #define PAD_B 1

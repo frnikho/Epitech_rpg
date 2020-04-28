@@ -31,7 +31,8 @@ static int get_anim_size(sfIntRect *array)
 
 void add_anim_frame(anim_sprite_t *anim, sfIntRect rect)
 {
-    sfIntRect *result = malloc(sizeof(sfIntRect) * (get_anim_size(anim->rect) + 2));
+    int size = get_anim_size(anim->rect);
+    sfIntRect *result = malloc(sizeof(sfIntRect) * (size + 2));
     int i = 0;
     for (; anim->rect[i].height != -9999; i++) {
         result[i] = anim->rect[i];

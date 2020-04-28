@@ -101,13 +101,13 @@ void destroy_and_free_tile_layer(tile_layer_t *layer);
 void destroy_and_free_obstacles(obstacle_t **obs);
 void destroy_objects(object_t **obj);
 void destroy_and_free_object_layer(object_layer_t *layer);
-void draw_tiles(map_t *map, sfRenderWindow *window, int *layers_to_print, sfView *camera);
+void draw_tiles(map_t *map, sfRenderWindow *window, int *layers, sfView *c);
 void draw_objects(map_t *map, sfRenderWindow *window, int *layers_to_print);
 void draw_obstacles(map_t *map, sfRenderWindow *window);
 void create_tile_tab(map_t *map, int ***layers_tab, char *tile_set);
 void create_object_tab(map_t *map, int ***objs_tab);
 void create_obtacles_tab(char **obj_tab, map_t *map);
-int is_object_displayed(int i, int y, object_layer_t *layer, sfRenderWindow *window);
+int is_object_displayed(int i, int y, object_layer_t *lay, sfRenderWindow *w);
 sfVector2f *is_tile_displayed(tile_layer_t *layer, int i, int y);
 
 void create_window(sfRenderWindow *window);

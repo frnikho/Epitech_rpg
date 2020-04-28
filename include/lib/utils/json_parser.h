@@ -33,6 +33,4 @@ char *create_file_buffer(char *file);
 void free_tab(char **tab);
 void free_double_tab(int ***tab);
 
-//void csfml_loop(int ***tiles_tab, int ***objs_tab, char **obs_tab);
-
-#endif /* !PARSER_H_ */
+#endif

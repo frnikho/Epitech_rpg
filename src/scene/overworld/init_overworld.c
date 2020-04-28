@@ -97,12 +97,13 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 4);
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 7);
 
     inter[0] = create_interaction_box((sfFloatRect){0, 200, 150, 150}, 0, 1, 2);
     inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 1);
-    inter[2] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, 0, -1, 2);
-    inter[3] = NULL;
+    inter[2] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, 0, -1, 1);
+    inter[3] = create_interaction_box((sfFloatRect){0, 0, 1550, 1240}, 0, -1, 0);
+    inter[4] = NULL;
     world->maps_interaction_boxes = inter;
 }
 
@@ -119,7 +120,7 @@ void init_maps(overworld_t *world)
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 2.0f;
-    init_interactions_boxes_indexs(maps[0], (int []){1, 0});
+    init_interactions_boxes_indexs(maps[0], (int []){1, 4, 0});
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
@@ -129,7 +130,7 @@ void init_maps(overworld_t *world)
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 1.0f;
-    init_interactions_boxes_indexs(maps[1], (int []){2, 3, 0});
+    init_interactions_boxes_indexs(maps[1], (int []){2, 3});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = NULL;

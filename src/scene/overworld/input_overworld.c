@@ -12,6 +12,9 @@
 int input_overworld(game_t *game, overworld_t *overworld)
 {
     if (game->event.type == sfEvtKeyPressed) {
+        if (game->event.key.code == sfKeyE) {
+            open_inventory(game->player->inventory);
+        }
         if (overworld->state->dialog && overworld->state->dialog->is_active) {
             update_dialog_line(overworld->state->dialog);
         }

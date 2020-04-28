@@ -38,13 +38,13 @@ static void handle_player_fight(player_t *player, long int delta)
         random_delta = 0;
     }
 
-    if (player->delta_fight >= 3000000) {
+    if (player->delta_fight >= 4500000) {
         player->delta_fight = 0;
-        player->fight = 1;
+        if (player->zone != 0)
+            player->fight = 1;
         return;
     }
     player->delta_fight += delta;
-    printf("delta: %ld\n", player->delta_fight);
 }
 
 int exec_move(player_t *p, sfVector2f pos, int current_annimation, \
