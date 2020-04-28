@@ -23,6 +23,8 @@ int render_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     if (battle->fade_in) {
         draw_fade(game->window, battle->fade_in);
         game->current_state = OVERWORLD;
+        game->code = RESET_CODE;
+        dispose_battle_screen(game, battle);
         game->player->fight = 0;
     }
 }

@@ -10,6 +10,7 @@
 
 static battle_screen_t *init(game_t *game)
 {
+    game->code = 0;
     battle_screen_t *battle = malloc(sizeof(battle_screen_t));
     if (!battle)
         return (0);
@@ -19,7 +20,18 @@ static battle_screen_t *init(game_t *game)
 
 void dispose_battle_screen(game_t *game, battle_screen_t *battle)
 {
-
+    dispose_fade(battle->fade_in);
+    //dispose_fade(battle->fade_out);
+    for (int i = 0; battle->monster[i]; i++) {
+        dispose_monster(battle->monster[i]);
+    }
+    free(battle->monster);
+    dispose_select_gui(battle->select_gui);
+    destroy_attack_gui(battle->attack_gui);
+    battle->attacking = 0;
+    destroy_dialog(battle->dialog);
+    dispose_sprite(battle->bg);
+    battle = 0;
 }
 
 static void update(game_t *game, battle_screen_t *battle, long int delta)
@@ -39,7 +51,7 @@ static void update(game_t *game, battle_screen_t *battle, long int delta)
 void battle_screen(game_t *game, long int delta)
 {
     static battle_screen_t *battle;
-    if (!battle) {
+    if (!battle || game->code == RESET_CODE) {
         battle = init(game);
         if (!battle)
             return;

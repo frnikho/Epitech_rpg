@@ -50,7 +50,7 @@ static void check_attack_player(game_t *g, battle_screen_t *b, int tmp)
 
 static void check_dialog(battle_screen_t *b, long int *delta, long int *d, int *index)
 {
-    if (b->dialog->is_finished) {
+    if (b->dialog && b->dialog->is_finished) {
         (*delta) += (*d);
         if ((*delta) >= 30000) {
             b->round.order_index++;

@@ -10,6 +10,7 @@
 
 #define PLAYER_INDEX 500
 #define ATTACK_CODE 200
+#define RESET_CODE 500
 
 #include "gui/dialog.h"
 #include "lib/components/sound.h"
@@ -28,6 +29,7 @@ typedef struct round_s {
 typedef struct battle_screen_s {
     int select_choice;
     int attacking;
+    int code;
     monster_t **monster;
     sprite_t *bg;
     attack_gui_t *attack_gui;
