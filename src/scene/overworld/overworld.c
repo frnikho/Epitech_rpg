@@ -19,12 +19,10 @@ static overworld_t *init(game_t *game)
 
 static void overworld_commands(game_t *game, overworld_t *overworld)
 {
-    switch (game->event.key.code) {
-    case (sfKeyG):
+    if (game->event.key.code == sfKeyG) {
         game->player->is_ghost = 1 - (game->player->is_ghost * 1);
-        break;
-    default:
-        break;
+        for (int i = 0; i < 4; i++)
+            game->player->free_moves[i] = 1;
     }
 }
 

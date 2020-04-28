@@ -59,10 +59,10 @@ overworld_t *world)
     sfVector2f moves[] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
     int result = 0;
 
-    p->search_for_interlocutor = 1;
-    p->interlocutor = NULL;
     if (p->is_ghost == 1)
         return (0);
+    p->search_for_interlocutor = 1;
+    p->interlocutor = NULL;
     for (int i = 0; i < 4; i++) {
         add_player_position(p, moves[i]);
         update_collisions_box(p, n, d, world->map);

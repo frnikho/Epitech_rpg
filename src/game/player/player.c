@@ -75,8 +75,8 @@ player_t *create_player(void)
     player->is_ghost = 0;
     player->collision = create_collision_box(\
     sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
-    player->free_moves = malloc(sizeof(int) * 4);
-    player->free_moves = (int []){1, 1, 1, 1};
+    player->free_moves = malloc(sizeof(int) * 5);
+    player->free_moves = (int []){1, 1, 1, 1, 0};
     player->search_for_interlocutor = 1;
     return (player);
 }
