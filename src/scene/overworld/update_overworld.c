@@ -23,20 +23,17 @@ static void update_npcs(npc_t **npcs, long int delta)
 
 int update_overworld(game_t *game, overworld_t *world, long int delta)
 {
-    printf("pos: x:%1.0f - y:%1.0f\n", get_player_position(game->player).x, get_player_position(game->player).y);
+    update_map_world(game, world, delta);
     update_state(world->state, game, delta);
     update_player(game->player, delta);
     update_npcs(world->npcs, delta);
     if (game->player->inventory->is_open)
         return (0);
-    if (move_player(game->player, world->state->npcs, delta)) {
-        //update_map_world(game, world, delta);
-    }
+    move_player(game->player, world->state->npcs, delta);
     if (game->player->fight) {
         game->current_state = BATTLE;
         return (0);
     }
-    update_map_world(game, world, delta);
     sfView_setCenter(game->camera, get_player_position(game->player));
     sfRenderWindow_setView(game->window, game->camera);
     return (0);

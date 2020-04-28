@@ -44,9 +44,10 @@ typedef struct player_s {
     collision_box_t *collision;
     int current_animations;
     anim_sprite_t **animations;
-    sfVector2f pre_pos;
     int is_ghost;
     npc_t *interlocutor;
+    int *free_moves;
+    int search_for_interlocutor;
 } player_t;
 
 player_t *create_player(void);
@@ -66,5 +67,7 @@ void set_player_position(player_t *player, sfVector2f position);
 
 sfVector2f get_player_position(player_t *player);
 void add_player_position(player_t *player, sfVector2f pos);
+int exec_move(player_t *p, sfVector2f pos, int current_annimation, \
+int *current_delta);
 
 #endif

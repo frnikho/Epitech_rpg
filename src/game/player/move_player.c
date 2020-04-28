@@ -37,13 +37,14 @@ static void handle_player_fight(player_t *player, long int delta)
         player->delta_fight -= rdn;
         random_delta = 0;
     }
-    if (player->delta_fight >= 4500000) {
+
+    if (player->delta_fight >= 3000000) {
         player->delta_fight = 0;
-        if (player->zone != 0)
-            player->fight = 0;
+        //player->fight = 1;
         return;
     }
     player->delta_fight += delta;
+    //printf("delta: %ld\n", player->delta_fight);
 }
 
 int exec_move(player_t *p, sfVector2f pos, int current_annimation, \
@@ -54,7 +55,6 @@ int *current_delta)
     handle_player_fight(p, (*current_delta));
     add_player_position(p, pos);
     p->current_animations = current_annimation;
-    p->pre_pos = pos;
     (*current_delta) = 0;
     return (0);
 }
@@ -62,6 +62,7 @@ int *current_delta)
 int move_player(player_t *p, npc_t **npcs, long int delta)
 {
     static int current_delta = 0;
+    int *m = p->free_moves;
 
     if (!p || !p->can_move)
         return (0);
@@ -70,13 +71,13 @@ int move_player(player_t *p, npc_t **npcs, long int delta)
         current_delta += delta;
         return (0);
     }
-    if (sfKeyboard_isKeyPressed(sfKeyZ) || pad_arrow() == PAD_UP)
+    if ((sfKeyboard_isKeyPressed(sfKeyZ)||pad_arrow() == PAD_UP)&&m[0]==1)
         exec_move(p, (sfVector2f){0, -1}, 3, &current_delta);
-    if (sfKeyboard_isKeyPressed(sfKeyQ) || pad_arrow() == PAD_LEFT)
+    if ((sfKeyboard_isKeyPressed(sfKeyQ)||pad_arrow() == PAD_LEFT)&&m[1]==1)
         exec_move(p, (sfVector2f){-1, 0}, 2, &current_delta);
-    if (sfKeyboard_isKeyPressed(sfKeyS) || pad_arrow() == PAD_DOWN)
+    if ((sfKeyboard_isKeyPressed(sfKeyS)||pad_arrow() == PAD_DOWN)&&m[2]==1)
         exec_move(p, (sfVector2f){0, 1}, 0, &current_delta);
-    if (sfKeyboard_isKeyPressed(sfKeyD) || pad_arrow() == PAD_RIGHT)
+    if ((sfKeyboard_isKeyPressed(sfKeyD)||pad_arrow() == PAD_RIGHT)&&m[3]==1)
         exec_move(p, (sfVector2f){1, 0}, 1, &current_delta);
     current_delta = 0;
     return (1);

@@ -52,8 +52,6 @@ long int delta)
             world->current_map = world->map->interaction_boxes[i]->load_map;
         if (result != 0) {
             player->zone = world->map->interaction_boxes[i]->zone_act;
-            sfFloatRect r = world->map->interaction_boxes[i]->collision_box;
-            sfFloatRect p = sfSprite_getGlobalBounds(player->animations[player->current_animations]->sprite);
             return (result);
         }
     }
