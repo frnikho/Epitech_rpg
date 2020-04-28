@@ -11,7 +11,7 @@
 inventory_t *create_inventory(void)
 {
     inventory_t *inv = malloc(sizeof(inventory_t));
-    inv->content = malloc(sizeof(case_t*) * INV_SIZE);
+    inv->content = malloc(sizeof(case_t*) * (INV_SIZE + 1));
     if (!inv->content)
         return (0);
     inv->is_open = 0;
@@ -28,6 +28,7 @@ inventory_t *create_inventory(void)
         inv->content[i]->item = 0;
         inv->content[i]->pos = (sfVector2u) {x, y};
     }
+    inv->content[INV_SIZE] = 0;
     inv->box = init_sprite("assets/sprite/inventory.png", 0);
     inv->cursor = init_sprite("assets/sprite/gui/pointer_small.png", 0);
     return (inv);

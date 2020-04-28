@@ -46,24 +46,6 @@ static anim_sprite_t *init_player_action(char *filepath, char *anim_name)
     return (sprite);
 }
 
-static player_t *init_player(void)
-{
-    player_t *player = malloc(sizeof(player_t));
-    int values[6];
-    values[STATS_I_HP] = 20;
-    values[STATS_I_MP] = 10;
-    values[STATS_I_MAG] = 8 + (rand() % 5);
-    values[STATS_I_STR] = 8 + (rand() % 5);
-    values[STATS_I_RES] = 8 + (rand() % 5);
-    values[STATS_I_AG] = 8 + (rand() % 5);
-    player->stats = init_stats(values);
-    player->level = 1;
-    player->xp = 0;
-    player->zone = 0;
-    player->can_move = 1;
-    return (player);
-}
-
 static anim_sprite_t **create_annimations(void)
 {
     anim_sprite_t **animations = malloc(sizeof(anim_sprite_t*) * 5);

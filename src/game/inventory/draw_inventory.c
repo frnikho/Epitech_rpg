@@ -39,10 +39,10 @@ void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv)
     sfVector2i dot = {0, 0};
     sfVector2f tmp = {0, 0};
 
-    if (!inv->is_open)
+    if (!inv || !inv->content || !inv->is_open)
         return;
     update_items(window, camera, inv);
-    for (int i = 0; inv->content[i] != 0; i++) {
+    for (int i = 0; inv->content[i]->item != 0; i++) {
         if (inv->content[i]->item != 0) {
             dot = (sfVector2i) {560, 610};
             tmp = sfRenderWindow_mapPixelToCoords(window, dot, camera);

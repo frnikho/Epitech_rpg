@@ -28,6 +28,6 @@ void update_npcs_dialogs(state_t *state, long int delta)
 void update_state(state_t *state, game_t *game, long int delta)
 {
     call_list(state, game, state->code, delta);
-    if (state && state->dialog)
+    if (state->dialog)
         update_dialog(state->dialog, delta);
 }
