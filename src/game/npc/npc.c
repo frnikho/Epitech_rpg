@@ -44,6 +44,16 @@ static anim_sprite_t *init_npc(npc_t *npc, char *filepath, char *anim_name)
     return (sprite);
 }
 
+void destroy_npc(npc_t *npc)
+{
+    for (int i = 0; npc->animations[i]; i++)
+        dispose_anim_sprite(npc->animations[i]);
+    free(npc->animations);
+    free(npc->collision);
+    free(npc->trigger);
+    free(npc);
+}
+
 npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
 {
     npc_t *npc = malloc(sizeof(npc_t));

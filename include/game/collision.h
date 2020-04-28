@@ -39,6 +39,6 @@ overworld_t *w);
 int check_interaction_ahead(player_t *p, overworld_t *w, long int d);
 interaction_box_t *create_interaction_box(sfFloatRect rec, int is_blocking, \
 int load_zone, int zone_act);
-int is_rectangles_in_collision(sfFloatRect *r_one, sfFloatRect *r_two);
+int is_rectangles_in_collision(sfFloatRect r_one, sfFloatRect r_two);
 
 #endif /* !COLLISION_H_ */

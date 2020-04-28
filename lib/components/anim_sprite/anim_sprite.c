@@ -21,9 +21,9 @@ anim_sprite_t *create_anim_sprite(char *fp, sfVector2f p)
     sprite->rect[0] = (sfIntRect){0, 0, 0, -9999};
     sprite->texture = sfTexture_createFromFile(fp, 0);
     sprite->sprite = sfSprite_create();
-    sfSprite_setPosition(sprite->sprite, p);
     sfSprite_setTextureRect(sprite->sprite, (sfIntRect){0, 0, 0, 0});
     sfSprite_setTexture(sprite->sprite, sprite->texture, sfTrue);
+    sfSprite_setPosition(sprite->sprite, p);
     return (sprite);
 }
 

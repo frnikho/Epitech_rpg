@@ -54,11 +54,19 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 
 void destroy_overworld(game_t *game, overworld_t *overworld)
 {
+    free(overworld->map->interaction_boxes);
     destroy_and_free_map(overworld->map);
     free(overworld->map);
     free_tab(overworld->obs_tab);
     free_double_tab(overworld->tiles_tab);
     free_double_tab(overworld->objs_tab);
+    for (int i = 0; overworld->npcs[i]; i++) {
+        free(overworld->npcs[i]->script->actions);
+        free(overworld->npcs[i]->script);
+        free(overworld->npcs[i]->dialog);
+        free(overworld->npcs[i]);
+    }
+    free(overworld->npcs);
 }
 
 void overworld(game_t *game, long int delta)

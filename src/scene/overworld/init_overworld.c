@@ -49,7 +49,7 @@ int init_overworld_map(overworld_t *overworld)
     overworld->obs_tab = obs_tab;
     overworld->objs_tab = objs_tab;
     overworld->tiles_tab = tiles_tab;
-    overworld->npcs = get_town_npcs("topaze");
+    overworld->npcs = get_town_npcs(overworld->maps[overworld->current_map]->location);
     free(obstacles_str);
     free_tab(obs_layer);
     free_tab(objs_layers);
@@ -115,6 +115,7 @@ void init_maps(overworld_t *world)
     maps[0] = malloc(sizeof(map_setup_t));
     maps[0]->file = "assets/maps/topaze.json";
     maps[0]->tile_set = "assets/tiles/outside.png";
+    maps[0]->location = "topaze";
     maps[0]->layer_nb = 2;
     maps[0]->obs_nb = 0;
     maps[0]->tile_size = 20;
@@ -125,6 +126,7 @@ void init_maps(overworld_t *world)
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
     maps[1]->tile_set = "assets/tiles/world.png";
+    maps[1]->location = "default";
     maps[1]->layer_nb = 2;
     maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
@@ -149,7 +151,7 @@ static int init_world_map(game_t *game, overworld_t *world)
 int init_overworld(game_t *game, overworld_t *world)
 {
     world->state = create_state(100, game, 0);
-    world->current_map = 1;
+    world->current_map = 0;
     init_world_map(game, world);
     return (0);
 }
