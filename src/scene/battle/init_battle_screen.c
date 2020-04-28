@@ -58,6 +58,7 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     battle->round.order_index = 0;
     battle->round.order = 0;
     battle->attacking = 0;
+    battle->dialog = 0;
     //play_sound(battle->music);
     sfView_setCenter(game->camera, (sfVector2f){800, 400});
     set_sound_loop(battle->music, 1);

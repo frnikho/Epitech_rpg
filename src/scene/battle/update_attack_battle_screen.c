@@ -9,7 +9,7 @@
 #include "game.h"
 #include "scene/battle.h"
 
-static void check_end_battle_monster(game_t *g, battle_screen_t *b)
+static void check_end(game_t *g, battle_screen_t *b, int *index, long int *d)
 {
     if (b->round.order_index >= get_monsters_length(b->monster)+1) {
         b->attacking = 0;
@@ -65,6 +65,11 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
 {
     static int index = 0;
     static long int delta = 0;
+    if (d == -1) {
+        index = 0;
+        delta = 0;
+        return;
+    }
     if (index == 0) {
         if (b->round.order[b->round.order_index].x == -999) {
             b->round.code = ATTACK_CODE;
@@ -78,7 +83,7 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
         }
     }
     check_dialog(b, &delta, &d, &index);
-    check_end_battle_monster(g, b);
+    check_end(g, b, &index, &delta);
     index++;
     update_dialog(b->dialog, d);
 }
