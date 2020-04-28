@@ -59,7 +59,7 @@ static player_t *init_player(void)
     player->stats = init_stats(values);
     player->level = 1;
     player->xp = 0;
-    player->zone = 1;
+    player->zone = 0;
     player->can_move = 1;
     return (player);
 }

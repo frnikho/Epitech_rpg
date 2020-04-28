@@ -87,7 +87,6 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
         if (b->monster[i]->is_alive)
             return (1);
     }
-    printf("oui\n");
     if (tmp_delta == 0) {
         for (int i = 0; b->monster[i] != 0; i++) {
             xp += b->monster[i]->xp;
