@@ -38,12 +38,6 @@ select_gui_t *create_select_gui(monster_t **monsters)
 void dispose_select_gui(select_gui_t *gui)
 {
     dispose_sprite(gui->gui);
-    for (int i = 0; gui->monsters_name[i] != 0; i++) {
-        dispose_text(gui->monsters_name[i]);
-    }
     dispose_sprite(gui->cursor);
-    for (int i = 0; gui->monsters[i] != 0; i++)
-        gui->monsters[i];
-    free(gui->monsters);
     free(gui);
 }

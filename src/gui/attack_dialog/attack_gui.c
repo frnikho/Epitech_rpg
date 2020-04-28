@@ -44,5 +44,13 @@ attack_gui_t *create_attack_gui(monster_t **monster)
 
 void destroy_attack_gui(attack_gui_t *gui)
 {
+    dispose_text(gui->attack);
+    dispose_text(gui->tension);
+    dispose_text(gui->goaway);
+    dispose_text(gui->spells);
+    dispose_text(gui->objects);
+    dispose_text(gui->abilities);
+    dispose_sprite(gui->cursor);
     dispose_sprite(gui->box);
+    free(gui);
 }

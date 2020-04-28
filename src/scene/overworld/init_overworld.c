@@ -97,19 +97,20 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 3);
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 4);
 
-    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 2);
+    inter[0] = create_interaction_box((sfFloatRect){0, 200, 150, 150}, 0, 1, 2);
     inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 1);
-
-    inter[2] = NULL;
+    inter[2] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, 0, -1, 2);
+    inter[3] = NULL;
     world->maps_interaction_boxes = inter;
 }
 
 void init_maps(overworld_t *world)
 {
     map_setup_t **maps = malloc(sizeof(map_setup_t*) * 100);
-
+    if (!maps)
+        return;
     maps[0] = malloc(sizeof(map_setup_t));
     maps[0]->file = "assets/maps/topaze.json";
     maps[0]->tile_set = "assets/tiles/outside.png";
@@ -121,7 +122,6 @@ void init_maps(overworld_t *world)
     maps[0]->zoom = 2.0f;
     init_interactions_boxes_indexs(maps[0], (int []){1, 0});
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
-
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
     maps[1]->tile_set = "assets/tiles/world.png";
@@ -130,8 +130,8 @@ void init_maps(overworld_t *world)
     maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
-    maps[1]->zoom = 3.0f;
-    init_interactions_boxes_indexs(maps[1], (int []){2, 0});
+    maps[1]->zoom = 1.0f;
+    init_interactions_boxes_indexs(maps[1], (int []){2, 3, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = NULL;

@@ -9,7 +9,9 @@
     },
     "2": {
       "monsters": [
-
+        "dracky.json",
+        "brownie.json",
+        "lapicorne.json"
       ],
       "count":3
     },

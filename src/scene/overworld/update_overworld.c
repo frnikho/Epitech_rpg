@@ -31,6 +31,10 @@ int update_overworld(game_t *game, overworld_t *world, long int delta)
     if (move_player(game->player, world->state->npcs, delta)) {
         //update_map_world(game, world, delta);
     }
+    if (game->player->fight) {
+        game->current_state = BATTLE;
+        return (0);
+    }
     update_map_world(game, world, delta);
     sfView_setCenter(game->camera, get_player_position(game->player));
     sfRenderWindow_setView(game->window, game->camera);

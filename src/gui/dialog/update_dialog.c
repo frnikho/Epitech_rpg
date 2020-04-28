@@ -28,7 +28,7 @@ static void update_text_dialog(dialog_t *d)
 
 void update_dialog(dialog_t *dialog, long int delta)
 {
-    if (!dialog->is_active)
+    if (!dialog || !dialog->is_active)
         return;
     dialog->delta += delta;
     update_anim_sprite(dialog->dot, delta);

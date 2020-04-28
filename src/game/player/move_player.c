@@ -27,11 +27,32 @@ void add_player_position(player_t *player, sfVector2f pos)
     }
 }
 
+static void handle_player_fight(player_t *player, long int delta)
+{
+    static long int random_delta = 0;
+
+    random_delta += delta;
+    if (random_delta >= 900000) {
+        int rdn = rand() % 900000;
+        player->delta_fight -= rdn;
+        random_delta = 0;
+    }
+
+    if (player->delta_fight >= 3000000) {
+        player->delta_fight = 0;
+        player->fight = 1;
+        return;
+    }
+    player->delta_fight += delta;
+    printf("delta: %ld\n", player->delta_fight);
+}
+
 int exec_move(player_t *p, sfVector2f pos, int current_annimation, \
 int *current_delta)
 {
     if ((*current_delta) == 0)
         return (1);
+    handle_player_fight(p, (*current_delta));
     add_player_position(p, pos);
     p->current_animations = current_annimation;
     p->pre_pos = pos;
@@ -43,7 +64,7 @@ int move_player(player_t *p, npc_t **npcs, long int delta)
 {
     static int current_delta = 0;
 
-    if (!p->can_move)
+    if (!p || !p->can_move)
         return (0);
     current_delta += delta;
     if (current_delta <= 30000) {
