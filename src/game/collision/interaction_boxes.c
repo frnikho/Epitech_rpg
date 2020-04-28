@@ -33,7 +33,6 @@ int check_interactions(collision_box_t *player, interaction_box_t *c2)
         return (0);
     if (is_rectangles_in_collision(player->collision_box, \
         c2->collision_box) == 1) {
-        printf("Player col: %.2f  %.2f  %.2f  %.2f  down:%.2f   right:%.2f\n", player->collision_box.left, player->collision_box.top, player->collision_box.width, player->collision_box.height, player->collision_box.top+player->collision_box.height, player->collision_box.left+player->collision_box.width);
         if (player->is_blocking == 0 || c2->is_blocking == 0)
             return (2);
         return (1);
@@ -53,8 +52,6 @@ long int delta)
             world->current_map = world->map->interaction_boxes[i]->load_map;
         if (result != 0) {
             player->zone = world->map->interaction_boxes[i]->zone_act;
-            sfFloatRect r = world->map->interaction_boxes[i]->collision_box;
-            sfFloatRect p = sfSprite_getGlobalBounds(player->animations[player->current_animations]->sprite);
             return (result);
         }
     }

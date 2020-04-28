@@ -49,7 +49,7 @@ static void draw_npcs(sfRenderWindow *window, npc_t **npcs, sfView *camera)
 void print_point(sfRenderWindow *window, sfVector2f point)
 {
     sfCircleShape *circle = sfCircleShape_create();
-    int radius = 40;
+    int radius = 20;
 
     sfCircleShape_setFillColor(circle, sfColor_fromRGBA(255, 0, 0, 255));
     sfCircleShape_setPosition(circle, (sfVector2f){point.x-(radius/2), \
@@ -67,6 +67,5 @@ int render_overworld(game_t *game, overworld_t *world, long int delta)
     draw_npcs(game->window, world->npcs, game->camera);
     draw_inventory(game->window, game->camera, game->player->inventory);
     draw_state(game->camera, game->window, world->state);
-    print_point(game->window, (sfVector2f){300, 600});
     return (0);
 }

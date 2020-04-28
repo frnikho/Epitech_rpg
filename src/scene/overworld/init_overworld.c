@@ -99,7 +99,7 @@ void init_maps_interactions(overworld_t *world)
 {
     interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 4);
 
-    inter[0] = create_interaction_box((sfFloatRect){0, 200, 150, 150}, 0, 1, 2);
+    inter[0] = create_interaction_box((sfFloatRect){150, 300, 150, 150}, 0, 1, 2);
     inter[1] = create_interaction_box((sfFloatRect){0, 150, 150, 150}, 0, 0, 1);
     inter[2] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, 0, -1, 2);
     inter[3] = NULL;

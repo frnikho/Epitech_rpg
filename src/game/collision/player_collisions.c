@@ -21,11 +21,8 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     float ox = map->offset.x;
     float oy = map->offset.y;
 
-    printf("Player block: %.2f  %.2f  %.2f  %.2f  down:%.2f   right:%.2f\n", p->collision->collision_box.left, p->collision->collision_box.top, p->collision->collision_box.width, p->collision->collision_box.height, p->collision->collision_box.top+p->collision->collision_box.height, p->collision->collision_box.left+p->collision->collision_box.width);
-    printf("%i\n", p->current_animations);
     p->collision->collision_box = \
     sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
-
     for (int i = 0; npcs[i]; i++) {
         r = sfSprite_getGlobalBounds(npcs[i]->animations[npcs[i]->\
         current_animations]->sprite);
@@ -45,25 +42,33 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     }
 }
 
+int check_direction_collision(player_t *p, npc_t **n, long int d, overworld_t *world)
+{
+    if (check_collision_ahead(world->map->obs, n, p, d) == 1) {
+        return (0);
+    }
+    if (check_interaction_ahead(p, world, d) == 1) {
+        return (0);
+    }
+    return (1);    
+}
+
 int block_move_on_collision(player_t *p, npc_t **n, long int d, \
 overworld_t *world)
 {
-    printf("--------\n");
+    sfVector2f moves[] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
+    int result = 0;
+
+    p->search_for_interlocutor = 1;
+    p->interlocutor = NULL;
     if (p->is_ghost == 1)
         return (0);
-    update_collisions_box(p, n, d, world->map);
-    if (check_collision_ahead(world->map->obs, n, p, d) == 1) {
-        add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \
-            p->pre_pos.y * -1});
-        p->pre_pos = (sfVector2f){0, 0};
-        return (1);
+    for (int i = 0; i < 4; i++) {
+        add_player_position(p, moves[i]);
+        update_collisions_box(p, n, d, world->map);
+        p->free_moves[i] = check_direction_collision(p, n, d, world);
+        add_player_position(p, (sfVector2f){moves[i].x*-1, moves[i].y*-1});
+        p->search_for_interlocutor = 0;
     }
-    if (check_interaction_ahead(p, world, d) == 1) {
-        add_player_position(p, (sfVector2f){p->pre_pos.x * -1, \
-            p->pre_pos.y * -1});
-        p->pre_pos = (sfVector2f){0, 0};
-        return (1);
-    }
-    p->pre_pos = (sfVector2f){0, 0};
     return (0);
 }
