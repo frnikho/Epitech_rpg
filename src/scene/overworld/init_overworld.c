@@ -119,7 +119,7 @@ void init_maps(overworld_t *world)
     maps[0]->tile_set = "assets/tiles/outside.png";
     maps[0]->location = "topaze";
     maps[0]->layer_nb = 2;
-    maps[0]->obs_nb = 0;
+    maps[0]->obs_nb = 257;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 2.0f;
