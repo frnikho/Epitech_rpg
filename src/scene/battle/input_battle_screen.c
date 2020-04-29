@@ -8,6 +8,16 @@
 #include "game.h"
 #include "scene/battle.h"
 
+void battle_screen_key_pressed(game_t *game)
+{
+    if (game->event.type != sfEvtKeyPressed)
+        return (0);
+    else
+        if (game->event.key.code == sfKeyL) {
+            sfRenderWindow_close(game->window);
+    }
+}
+
 int input_battle_screen(game_t *game, battle_screen_t *battle)
 {
     int active = 0;

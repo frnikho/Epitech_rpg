@@ -22,7 +22,7 @@ void load_interaction_boxes(map_setup_t *setup, map_t *map, overworld_t *world)
         map->interaction_boxes[i] = \
         world->maps_interaction_boxes[setup->interaction_boxes_indexs[i]-1];
     }
-    map->interaction_boxes[i] = NULL;    
+    map->interaction_boxes[i] = NULL;
 }
 
 int init_overworld_map(overworld_t *overworld)
@@ -89,7 +89,7 @@ int *objs_ids, int *obs_ids)
         map->objs_layers_id[i] = objs_ids[i];
     map->objs_layers_id[i] = 0;
     for (tab_len = 0; obs_ids[tab_len]; tab_len++);
-    map->obs_layers_id = malloc(sizeof(int) * (tab_len+1));    
+    map->obs_layers_id = malloc(sizeof(int) * (tab_len+1));
     for (i = 0; obs_ids[i]; i++)
         map->obs_layers_id[i] = obs_ids[i];
     map->obs_layers_id[i] = 0;
@@ -97,13 +97,15 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 7);
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 5);
 
-    //inter[0] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, 0, -1, 1);
-    //inter[1] = create_interaction_box((sfFloatRect){0, 0, 1500, 1300}, 0, -1, 0);
+    inter[0] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, (sfVector2f){200, 0}, -1, 1);
+    inter[1] = create_interaction_box((sfFloatRect){0, 0, 1500, 1300}, (sfVector2f){200, 0}, -1, 0);
     //forest
-    //inter[2] = create_interaction_box((sfFloatRect){850, 990, 250, 200}, 0, -1, 1);
-    inter[0] = NULL;
+    inter[2] = create_interaction_box((sfFloatRect){850, 990, 250, 200}, (sfVector2f){200, 0}, -1, 1);
+    inter[3] = create_interaction_box((sfFloatRect){460, 280, 40, 40}, (sfVector2f){200, 0}, 2, 0);
+    inter[4] = create_interaction_box((sfFloatRect){200, 980, 40, 22}, (sfVector2f){200, 0}, 0, 0);
+    inter[5] = NULL;
     world->maps_interaction_boxes = inter;
 }
 
@@ -131,8 +133,8 @@ void init_maps(overworld_t *world)
     maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
-    maps[1]->zoom = 2.3f;
-    init_interactions_boxes_indexs(maps[1], (int []){0});
+    maps[1]->zoom = 1.0f;
+    init_interactions_boxes_indexs(maps[1], (int []){1, 3, 4, 5, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = malloc(sizeof(map_setup_t));
@@ -162,7 +164,7 @@ static int init_world_map(game_t *game, overworld_t *world)
 int init_overworld(game_t *game, overworld_t *world)
 {
     world->state = create_state(100, game, 0);
-    world->current_map = 1;
+    world->current_map = 0;
     init_world_map(game, world);
     return (0);
 }

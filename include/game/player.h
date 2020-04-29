@@ -50,6 +50,7 @@ typedef struct player_s {
     npc_t *interlocutor;
     int *free_moves;
     int search_for_interlocutor;
+    int in_teleportation;
 } player_t;
 
 player_t *create_player(void);

@@ -14,16 +14,17 @@
 #include <stdlib.h>
 #include <SFML/Graphics.h>
 
-interaction_box_t *create_interaction_box(sfFloatRect rec, int is_blocking, \
+interaction_box_t *create_interaction_box(sfFloatRect rec, sfVector2f spaw_pos, \
 int load_zone, int zone_act)
 {
     interaction_box_t *box = malloc(sizeof(interaction_box_t));
     box->is_active = 1;
-    box->is_blocking = is_blocking;
+    box->is_blocking = 0;
     box->collision_box = (sfFloatRect){rec.left,rec.top,rec.width,rec.height};
     box->shape = (sfFloatRect){rec.left,rec.top,rec.width,rec.height};
     box->load_map = load_zone;
     box->zone_act = zone_act;
+    box->spawn_pos = spaw_pos;
     return (box);
 }
 
@@ -44,16 +45,21 @@ int check_interaction_ahead(player_t *player, overworld_t *world, \
 long int delta)
 {
     int result = 0;
+    int to_return = 0;
 
     for (int i = 0; world->map->interaction_boxes[i]; i++) {
         result = check_interactions(player->collision, \
         world->map->interaction_boxes[i]);
-        if (result != 0 && world->map->interaction_boxes[i]->load_map != -1)
+        if (result != 0 && world->map->interaction_boxes[i]->load_map != -1) {
             world->current_map = world->map->interaction_boxes[i]->load_map;
-        if (result != 0) {
-            player->zone = world->map->interaction_boxes[i]->zone_act;
-            return (result);
+            set_player_position(player, world->map->interaction_boxes[i]->spawn_pos);
+            player->in_teleportation = 1;
         }
+        if (result != 0 && world->map->interaction_boxes[i]->zone_act > player->zone)
+            player->zone = world->map->interaction_boxes[i]->zone_act;
+        if (result != 0)
+            to_return = result;
+
     }
-    return (0);
+    return (to_return);
 }
