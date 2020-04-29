@@ -44,12 +44,10 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
 
 int check_direction_collision(player_t *p, npc_t **n, long int d, overworld_t *world)
 {
-    if (check_collision_ahead(world->map->obs, n, p, d) == 1) {
+    if (check_collision_ahead(world->map->obs, n, p, d) == 1)
         return (0);
-    }
-    if (check_interaction_ahead(p, world, d) == 1) {
+    if (check_interaction_ahead(p, world, d) == 1)
         return (0);
-    }
     return (1);    
 }
 
@@ -63,6 +61,7 @@ overworld_t *world)
         return (0);
     p->search_for_interlocutor = 1;
     p->interlocutor = NULL;
+    p->zone = 0;
     for (int i = 0; i < 4; i++) {
         add_player_position(p, moves[i]);
         update_collisions_box(p, n, d, world->map);

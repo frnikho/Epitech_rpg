@@ -21,6 +21,7 @@ void overworld_key_code(game_t *game)
 
 int input_overworld(game_t *game, overworld_t *overworld)
 {
+    handle_inventory(game->event, game->player->inventory);
     if (game->event.type == sfEvtKeyPressed) {
         overworld_key_code(game);
         if (overworld->state->dialog && overworld->state->dialog->is_active) {
