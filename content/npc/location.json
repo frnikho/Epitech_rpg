@@ -1,6 +1,6 @@
 {
   "topaze":{
-    "count":1,
+    "count":5,
     "1":{
       "x":450,
       "y":130,
@@ -30,6 +30,123 @@
             "x":430,
             "y":180,
             "time":2800000
+          }
+        }
+      }
+    },
+    "2":{
+      "x":684,
+      "y":1272,
+      "speed":1,
+      "file":"content/npc/kebabier.json",
+      "dialog":"first_knight",
+      "script":{
+        "dialog":"......",
+        "actions":{
+          "count":6,
+          "a":{
+            "x":684,
+            "y":1272,
+            "time":3800000
+          },
+          "b":{
+            "x":768,
+            "y":1268,
+            "time":2800000
+          },
+          "c":{
+            "x":684,
+            "y":1272,
+            "time":3800000
+          },
+          "d":{
+            "x":684,
+            "y":1544,
+            "time":4800000
+          },
+          "e":{
+            "x":684,
+            "y":1492,
+            "time":3800000
+          },
+          "f":{
+            "x":732,
+            "y":1492,
+            "time":3800000
+          }
+        }
+      }
+    },
+    "3":{
+      "x":804,
+      "y":1260,
+      "speed":1,
+      "file":"content/npc/onizuka.json",
+      "dialog":"first_knight",
+      "script":{
+        "dialog":"......",
+        "actions":{
+          "count":4,
+          "a":{
+            "x":804,
+            "y":1260,
+            "time":3800000
+          },
+          "b":{
+            "x":803,
+            "y":1260,
+            "time":2800000
+          },
+          "c":{
+            "x":804,
+            "y":1260,
+            "time":100000
+          },
+          "d":{
+            "x":804,
+            "y":1261,
+            "time":15900000
+          },
+          "e":{
+            "x":804,
+            "y":1259,
+            "time":100000
+          }
+        }
+      }
+    },
+    "4":{
+      "x":764,
+      "y":1496,
+      "speed":0,
+      "file":"content/npc/onizuka.json",
+      "dialog":"first_knight",
+      "script":{
+        "dialog":"......",
+        "actions":{
+          "count":1,
+          "a":{
+            "x":764,
+            "y":1496,
+            "time":1800000
+          }
+        }
+      }
+    },
+    "5":{
+      "x":768,
+      "y":1340,
+      "speed":0,
+      "file":"content/npc/musclor.json",
+      "dialog":"first_knight",
+      "script":{
+        "dialog":"......",
+        "actions":{
+          "count":1,
+          "a":{
+            "x":768,
+            "y":1340,
+            "time":1800000
           }
         }
       }
