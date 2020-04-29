@@ -123,11 +123,7 @@ void init_maps(overworld_t *world)
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 2.0f;
-<<<<<<< HEAD
-    init_interactions_boxes_indexs(maps[0], (int []){4, 0});
-=======
     init_interactions_boxes_indexs(maps[0], (int []){0});
->>>>>>> 83ad638ab18d79b0b651971336c5dab781780904
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
