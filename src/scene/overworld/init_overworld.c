@@ -97,15 +97,14 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 5);
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 8);
 
-    inter[0] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, (sfVector2f){200, 0}, -1, 1);
-    inter[1] = create_interaction_box((sfFloatRect){0, 0, 1500, 1300}, (sfVector2f){200, 0}, -1, 0);
-    //forest
-    inter[2] = create_interaction_box((sfFloatRect){850, 990, 250, 200}, (sfVector2f){200, 0}, -1, 1);
-    inter[3] = create_interaction_box((sfFloatRect){460, 280, 40, 40}, (sfVector2f){200, 0}, 2, 0);
-    inter[4] = create_interaction_box((sfFloatRect){200, 980, 40, 22}, (sfVector2f){200, 0}, 0, 0);
-    inter[5] = NULL;
+    //inter[0] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, (sfVector2f){200, 0}, -1, 1);
+    //inter[1] = create_interaction_box((sfFloatRect){0, 0, 1500, 1300}, (sfVector2f){200, 0}, -1, 0);
+    init_zone_world(world, inter);
+    //inter[2] = create_interaction_box((sfFloatRect){850, 990, 250, 200}, (sfVector2f){200, 0}, -1, 1);
+    //inter[3] = create_interaction_box((sfFloatRect){460, 280, 40, 40}, (sfVector2f){200, 0}, 2, 0);
+    //inter[4] = create_interaction_box((sfFloatRect){200, 980, 40, 22}, (sfVector2f){200, 0}, 0, 0);
     world->maps_interaction_boxes = inter;
 }
 
@@ -122,8 +121,8 @@ void init_maps(overworld_t *world)
     maps[0]->obs_nb = 0;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
-    maps[0]->zoom = 2.0f;
-    init_interactions_boxes_indexs(maps[0], (int []){2, 4, 0});
+    maps[0]->zoom = 1.5f;
+    init_interactions_boxes_indexs(maps[0], (int []){TOWN_SAFE, TOWN_OUT, 0});
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
@@ -133,8 +132,8 @@ void init_maps(overworld_t *world)
     maps[1]->obs_nb = 73;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
-    maps[1]->zoom = 1.0f;
-    init_interactions_boxes_indexs(maps[1], (int []){1, 3, 4, 5, 0});
+    maps[1]->zoom = 3.0f;
+    init_interactions_boxes_indexs(maps[1], (int []){TOWN_ENTER, DUNGEON_ENTER, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = malloc(sizeof(map_setup_t));
@@ -146,7 +145,7 @@ void init_maps(overworld_t *world)
     maps[2]->tile_size = 20;
     maps[2]->offset = (sfVector2f){0, 0};
     maps[2]->zoom = 1.5f;
-    init_interactions_boxes_indexs(maps[2], (int []){0});
+    init_interactions_boxes_indexs(maps[2], (int []){DUNGEON_OUT, 0});
     init_layers_id(maps[2], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[3] = NULL;

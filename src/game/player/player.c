@@ -70,6 +70,7 @@ player_t *create_player(void)
     player->delta_fight = 0;
     player->fight = 0;
     player->inventory = create_inventory();
+    player->in_teleportation = 1;
     player->animations = create_annimations();
     create_gui(player);
     player->is_ghost = 0;

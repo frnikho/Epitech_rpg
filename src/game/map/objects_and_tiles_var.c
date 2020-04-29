@@ -7,26 +7,30 @@
 
 #include "game/map.h"
 
-sfTexture **create_tiles(char *tile_set, int tile_size)
+sfSprite **create_tiles(char *tile_set, int tile_size)
 {
-    sfTexture **tab = NULL;
+    sfSprite **tab = NULL;
     sfIntRect rect = {0, 0, tile_size, tile_size};
     sfTexture *tile_set_texture = sfTexture_createFromFile(tile_set, NULL);
     sfVector2u max_size = sfTexture_getSize(tile_set_texture);
     int index = 0;
-
+    sfTexture *tmp = sfTexture_createFromFile(tile_set, 0);
     tab = malloc(sizeof(sfTexture*) * (((max_size.x / rect.width) * \
     (max_size.y / rect.height))+1));
     for (int y = 0; (rect.top + rect.height) <= max_size.y; y++) {
+        printf("update\n");
         for (int x = 0; (rect.left + rect.width) <= max_size.x; x++) {
-            tab[index] = sfTexture_createFromFile(tile_set, &rect);
-            tab[index+1] = NULL;
+            printf("a\n");
+            tab[index] = sfSprite_create();
+            sfSprite_setTexture(tab[index], tmp, 0);
+            sfSprite_setTextureRect(tab[index], rect);
             rect.left += rect.width;
             index++;
         }
         rect.left = 0;
         rect.top += rect.height;
     }
+    tab[index] = 0;
     sfTexture_destroy(tile_set_texture);
     return (tab);
 }

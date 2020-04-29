@@ -37,7 +37,7 @@ typedef struct obstacle_s {
 } obstacle_t;
 
 typedef struct tile_layer_s{
-    sfTexture **tiles;
+    sfSprite **tiles;
     int width;
     int height;
     int tile_size;
@@ -94,7 +94,7 @@ void destroy_and_free_map(map_t *map);
 int map_obj_id(int id);
 int is_square_in_window(sfFloatRect rect, sfVector2f *points);
 object_t **create_objects(void);
-sfTexture **create_tiles(char *tile_set, int tile_size);
+sfSprite **create_tiles(char *tile_set, int tile_size);
 int get_tab_width(int **tab);
 int get_tab_height(int **tab);
 void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab);

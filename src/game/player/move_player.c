@@ -44,7 +44,6 @@ static void handle_player_fight(player_t *player, long int delta)
         return;
     }
     player->delta_fight += delta;
-    //printf("delta: %ld\n", player->delta_fight);
 }
 
 int exec_move(player_t *p, sfVector2f pos, int current_annimation, \

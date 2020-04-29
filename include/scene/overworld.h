@@ -13,7 +13,7 @@
 #include "game/map.h"
 #include "game/npc.h"
 
-enum zone_info {TOWN_SAFE, };
+enum zone_info {DEFAULT, TOWN_SAFE, TOWN_OUT, TOWN_ENTER, DUNGEON_ENTER, DUNGEON_OUT, END};
 
 typedef struct overworld_s {
     map_setup_t **maps;
