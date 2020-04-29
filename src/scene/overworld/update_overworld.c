@@ -23,6 +23,7 @@ static void update_npcs(npc_t **npcs, long int delta)
 
 int update_overworld(game_t *game, overworld_t *world, long int delta)
 {
+    printf("player pos: %1.0f - %1.0f\n", get_player_position(game->player).x, get_player_position(game->player).y);
     update_map_world(game, world, delta);
     update_state(world->state, game, delta);
     update_player(game->player, delta);

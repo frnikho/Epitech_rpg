@@ -9,7 +9,7 @@
 
 void open_inventory(inventory_t *inv)
 {
-    inv->is_open = 1;
+    inv->is_open = !inv->is_open;
 }
 
 void toggle_inventory(inventory_t *inv)
