@@ -129,7 +129,7 @@ void init_maps(overworld_t *world)
     maps[1]->tile_set = "assets/tiles/world.png";
     maps[1]->location = "default";
     maps[1]->layer_nb = 2;
-    maps[1]->obs_nb = 73;
+    maps[1]->obs_nb = 76;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 3.0f;
