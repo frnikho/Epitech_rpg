@@ -50,5 +50,8 @@ void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d);
 int render_battle_screen(game_t *game, battle_screen_t *battle, long int delta);
 void reset_battle_gui(game_t *game, battle_screen_t *battle);
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta);
+void check_run_away(game_t *game, battle_screen_t *battle, long int delta);
+
+int try_run_away(game_t *game, battle_screen_t *battle);
 
 #endif

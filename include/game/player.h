@@ -34,10 +34,12 @@ typedef struct player_s {
     int mp;
     int level;
     int xp;
+    int code;
     int zone;
     int learned_abi;
     int learned_spell;
     int can_move;
+    int can_run_away;
     inventory_t *inventory;
     player_gui_t *gui;
     stats_t *stats;

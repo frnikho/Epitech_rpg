@@ -69,6 +69,7 @@ player_t *create_player(void)
     player->current_animations = 0;
     player->delta_fight = 0;
     player->fight = 0;
+    player->can_run_away = -1;
     player->inventory = create_inventory();
     player->animations = create_annimations();
     create_gui(player);
