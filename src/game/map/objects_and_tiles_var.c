@@ -18,9 +18,7 @@ sfSprite **create_tiles(char *tile_set, int tile_size)
     tab = malloc(sizeof(sfTexture*) * (((max_size.x / rect.width) * \
     (max_size.y / rect.height))+1));
     for (int y = 0; (rect.top + rect.height) <= max_size.y; y++) {
-        printf("update\n");
         for (int x = 0; (rect.left + rect.width) <= max_size.x; x++) {
-            printf("a\n");
             tab[index] = sfSprite_create();
             sfSprite_setTexture(tab[index], tmp, 0);
             sfSprite_setTextureRect(tab[index], rect);

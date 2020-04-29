@@ -29,7 +29,9 @@ static void check_attack_monster(game_t *g, battle_screen_t *b, int tmp)
 {
     if (b->monster[tmp]->is_alive) {
         monster_attack_player(b->monster[tmp], g->player);
-        char **dialog = str_split("Monster a attaque le joueur !", '&');
+        char *name = b->monster[tmp]->name;
+        char *str = str_cat(name, " a attaque le joueur !");
+        char **dialog = str_split(str, '&');
         b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
         set_dialog_active(b->dialog, 1);
     }

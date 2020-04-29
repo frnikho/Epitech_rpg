@@ -40,7 +40,7 @@ static void handle_player_fight(player_t *player, long int delta)
 
     if (player->delta_fight >= 3000000) {
         player->delta_fight = 0;
-        player->fight = 1;
+            //player->fight = 1;
         return;
     }
     player->delta_fight += delta;
