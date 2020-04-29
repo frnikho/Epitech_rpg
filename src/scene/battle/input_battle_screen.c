@@ -8,6 +8,16 @@
 #include "game.h"
 #include "scene/battle.h"
 
+void battle_screen_key_pressed(game_t *game)
+{
+    if (game->event.type != sfEvtKeyPressed)
+        return (0);
+    else
+        if (game->event.key.code == sfKeyL) {
+            sfRenderWindow_close(game->window);
+    }
+}
+
 int input_battle_screen(game_t *game, battle_screen_t *battle)
 {
     int active = 0;
@@ -16,8 +26,7 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
         battle->select_gui->is_active = 1;
     }
     handle_attack_gui(battle->attack_gui, game->event);
-    if (game->event.type != sfEvtKeyPressed)
-        return (0);
+    battle_screen_key_pressed(game);
     if (battle->dialog && battle->dialog->is_active) {
         update_dialog_line(battle->dialog);
     }

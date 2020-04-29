@@ -15,6 +15,8 @@ int input_main_menu(game_t *game, main_menu_t *screen)
     if (screen->is_selected)
         return (0);
     if (evt == sfEvtJoystickMoved || evt == sfEvtKeyPressed) {
+        if (game->event.key.code == sfKeyL)
+            sfRenderWindow_close(game->window);
         if (game->event.key.code == sfKeyZ || (pad_arrow() == PAD_UP))
             screen->select_index--;
         if (game->event.key.code == sfKeyS || (pad_arrow() == PAD_DOWN))
