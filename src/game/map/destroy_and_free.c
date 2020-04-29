@@ -7,10 +7,10 @@
 
 #include "game/map.h"
 
-void destroy_tiles(sfTexture **tiles)
+void destroy_tiles(sfSprite **tiles)
 {
     for (int i = 0; tiles[i]; i++)
-        sfTexture_destroy(tiles[i]);
+        sfSprite_destroy(tiles[i]);
 }
 
 void destroy_objects(object_t **obj)

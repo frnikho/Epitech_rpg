@@ -22,6 +22,11 @@ int loop(game_t *game)
     while (sfRenderWindow_isOpen(game->window)) {
         long int delta = sfClock_restart(game->clock).microseconds;
         game_state[game->current_state](game, delta);
+        if (game->player->in_teleportation) {
+            sfRenderWindow_setTitle(game->window, "Dragon EpiQuest - Loading ...");
+        } else {
+            sfRenderWindow_setTitle(game->window, "Dragon EpiQuest");
+        }
         sfRenderWindow_display(game->window);
     }
     return (1);
@@ -30,8 +35,9 @@ int loop(game_t *game)
 int main(int ac, char **av)
 {
     sfVector2f mode = {1600, 800};
-    game_t *game = init_game(mode, "Dragon EpiQuest");
+    game_t *game = init_game(mode, "Dragon EpiQuest - Loading ...");
     game->player = create_player();
+    set_player_position(game->player, (sfVector2f){500, 500});
     srand(time(0));
     loop(game);
     serialize_player(game->player);
