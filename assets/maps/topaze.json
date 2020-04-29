@@ -588,7 +588,7 @@
                  "y":800
                 }, 
                 {
-                 "height":20,
+                 "height":6.72727272727275,
                  "id":99,
                  "name":"",
                  "rotation":0,
@@ -599,15 +599,15 @@
                  "y":800
                 }, 
                 {
-                 "height":20,
+                 "height":32.9090909090909,
                  "id":100,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":20,
+                 "width":9.09090909090912,
                  "x":860,
-                 "y":820
+                 "y":807.090909090909
                 }, 
                 {
                  "height":60,
@@ -616,30 +616,30 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":20,
+                 "width":9.33333333333337,
                  "x":860,
                  "y":900
                 }, 
                 {
-                 "height":20,
+                 "height":8.33333333333337,
                  "id":102,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":120,
-                 "x":880,
-                 "y":940
+                 "width":130.333333333333,
+                 "x":869.666666666667,
+                 "y":951.666666666667
                 }, 
                 {
-                 "height":40,
+                 "height":51,
                  "id":103,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":20,
-                 "x":980,
+                 "width":10.3333333333334,
+                 "x":989.666666666667,
                  "y":900
                 }, 
                 {
@@ -2951,7 +2951,7 @@
  "nextobjectid":340,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.3.3",
  "tileheight":20,
  "tilesets":[
         {

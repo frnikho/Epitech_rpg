@@ -20,9 +20,10 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     float z = map->zoom;
     float ox = map->offset.x;
     float oy = map->offset.y;
-
     p->collision->collision_box = \
     sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
+    p->collision->collision_box.top += p->collision->collision_box.width/2;
+    p->collision->collision_box.height -= (p->collision->collision_box.height/2);
     for (int i = 0; npcs[i]; i++) {
         r = sfSprite_getGlobalBounds(npcs[i]->animations[npcs[i]->\
         current_animations]->sprite);
