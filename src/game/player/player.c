@@ -78,5 +78,6 @@ player_t *create_player(void)
     player->free_moves = malloc(sizeof(int) * 5);
     player->free_moves = (int []){1, 1, 1, 1, 0};
     player->search_for_interlocutor = 1;
+    player->in_teleportation = 0;
     return (player);
 }
