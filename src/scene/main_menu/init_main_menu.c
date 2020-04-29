@@ -17,8 +17,8 @@ int init_main_menu(game_t *game, main_menu_t *menu)
     menu->cursor = init_sprite("assets/sprite/gui/pointer_big.png", 0);
     set_sprite_scale(menu->cursor, 1.2);
     menu->box = init_sprite("assets/sprite/gui/select_enemy_gui.png", 0);
-    set_sprite_position(menu->box, (sfVector2f){550, 400});
-    menu->text = init_text("Continuer\n\nNouvelle partie\n\nParametre", 20, (sfVector2f){640, 430});
+    set_sprite_position(menu->box, (sfVector2f){550, 415});
+    menu->text = init_text("Continuer\n\nNouvelle partie\n\nParametres\n\nHow to Play", 20, (sfVector2f){640, 420});
     set_text_font(menu->text, FONT);
     set_sprite_scale(menu->bg, 0.9);
     return (0);

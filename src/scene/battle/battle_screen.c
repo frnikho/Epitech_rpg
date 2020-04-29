@@ -20,7 +20,7 @@ static battle_screen_t *init(game_t *game)
 
 void dispose_battle_screen(game_t *game, battle_screen_t *battle)
 {
-    dispose_fade(battle->fade_in);
+    //dispose_fade(battle->fade_in);
     //dispose_fade(battle->fade_out);
     for (int i = 0; battle->monster[i]; i++) {
         dispose_monster(battle->monster[i]);
@@ -29,7 +29,8 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
     dispose_select_gui(battle->select_gui);
     destroy_attack_gui(battle->attack_gui);
     battle->attacking = 0;
-    destroy_dialog(battle->dialog);
+    if (battle->dialog)
+        destroy_dialog(battle->dialog);
     dispose_sprite(battle->bg);
     free(battle->round.order);
     battle->round.order_index = 0;
