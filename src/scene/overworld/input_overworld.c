@@ -9,13 +9,21 @@
 #include "scene/overworld.h"
 #include "gui/dialog.h"
 
+void overworld_key_code(game_t *game)
+{
+    if (game->event.key.code == sfKeyE) {
+        open_inventory(game->player->inventory);
+    }
+    if (game->event.key.code == sfKeyL) {
+        sfRenderWindow_close(game->window);
+    }
+}
+
 int input_overworld(game_t *game, overworld_t *overworld)
 {
     handle_inventory(game->event, game->player->inventory);
     if (game->event.type == sfEvtKeyPressed) {
-        if (game->event.key.code == sfKeyE) {
-            open_inventory(game->player->inventory);
-        }
+        overworld_key_code(game);
         if (overworld->state->dialog && overworld->state->dialog->is_active) {
             update_dialog_line(overworld->state->dialog);
         }

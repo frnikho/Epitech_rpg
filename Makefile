@@ -75,7 +75,7 @@ SRC						=					src/main.c																\
 											src/game/map/player_collisions.c										\
 											src/game/map/render_optimisation.c										\
 											src/game/collision/collision.c											\
-											src/game/collision/interaction_boxes.c											\
+											src/game/collision/interaction_boxes.c									\
 											src/game/collision/player_collisions.c
 
 SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
@@ -99,6 +99,7 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/battle/render_battle_screen.c								\
 											$(PATH_SCENE)/battle/update_battle_screen.c								\
 											$(PATH_SCENE)/battle/update_attack_battle_screen.c						\
+											$(PATH_SCENE)/battle/run_away.c											\
 											$(PATH_SCENE)/overworld/overworld.c										\
 											$(PATH_SCENE)/overworld/init_overworld.c								\
 											$(PATH_SCENE)/overworld/input_overworld.c								\

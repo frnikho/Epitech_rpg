@@ -61,6 +61,8 @@ static void handle_click_frame(game_t *game, settings_screen_t *settings)
 static int handle_selection(game_t *game, settings_screen_t *settings)
 {
     sfKeyEvent key = game->event.key;
+    if (key.code == sfKeyL)
+        sfRenderWindow_close(game->window);
     if (key.code == sfKeyZ)
         settings->select_cursor = 0;
     if (key.code == sfKeyS)

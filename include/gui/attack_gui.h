@@ -16,7 +16,7 @@
 #define SELECT_DEFENSE 1
 #define SELECT_MAGIC 2
 #define SELECT TENSION 3
-#define SELECT_GO_AWAY 4
+#define SELECT_RUN_AWAY 4
 
 typedef struct attack_gui_s {
     int select_index;

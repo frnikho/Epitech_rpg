@@ -22,7 +22,7 @@ void load_interaction_boxes(map_setup_t *setup, map_t *map, overworld_t *world)
         map->interaction_boxes[i] = \
         world->maps_interaction_boxes[setup->interaction_boxes_indexs[i]-1];
     }
-    map->interaction_boxes[i] = NULL;    
+    map->interaction_boxes[i] = NULL;
 }
 
 int init_overworld_map(overworld_t *overworld)
@@ -89,7 +89,7 @@ int *objs_ids, int *obs_ids)
         map->objs_layers_id[i] = objs_ids[i];
     map->objs_layers_id[i] = 0;
     for (tab_len = 0; obs_ids[tab_len]; tab_len++);
-    map->obs_layers_id = malloc(sizeof(int) * (tab_len+1));    
+    map->obs_layers_id = malloc(sizeof(int) * (tab_len+1));
     for (i = 0; obs_ids[i]; i++)
         map->obs_layers_id[i] = obs_ids[i];
     map->obs_layers_id[i] = 0;
@@ -123,7 +123,11 @@ void init_maps(overworld_t *world)
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 2.0f;
+<<<<<<< HEAD
     init_interactions_boxes_indexs(maps[0], (int []){4, 0});
+=======
+    init_interactions_boxes_indexs(maps[0], (int []){0});
+>>>>>>> 83ad638ab18d79b0b651971336c5dab781780904
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
     maps[1] = malloc(sizeof(map_setup_t));
     maps[1]->file = "assets/maps/world.json";
