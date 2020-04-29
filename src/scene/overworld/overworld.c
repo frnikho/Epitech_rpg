@@ -35,6 +35,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
             sfRenderWindow_close(game->window);
             return;
         }
+        game->player->in_teleportation = 0;
     }
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
@@ -47,7 +48,8 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
     map_act = overworld->current_map;
     overworld_commands(game, overworld);
     update_overworld(game, overworld, delta);
-    render_overworld(game, overworld, delta);
+    if (game->player->in_teleportation == 0)
+        render_overworld(game, overworld, delta);
 }
 
 void destroy_overworld(game_t *game, overworld_t *overworld)
