@@ -55,7 +55,7 @@ static anim_sprite_t **create_annimations(void)
     animations[3] = init_player_action("content/player.json", "walk_up");
     animations[4] = 0;
     for (int i = 0; animations[i] != 0; i++)
-        set_anim_sprite_scale(animations[i], 2);
+        set_anim_sprite_scale(animations[i], 1.8);
     return (animations);
 }
 
