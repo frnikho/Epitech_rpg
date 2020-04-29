@@ -105,6 +105,7 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c										\
 											$(PATH_SCENE)/overworld/input_overworld.c								\
 											$(PATH_SCENE)/overworld/render_overworld.c								\
 											$(PATH_SCENE)/overworld/update_overworld.c								\
+											$(PATH_SCENE)/overworld/zone/zone_world.c								\
 
 STATE					=					$(PATH_STATE)/draw_state.c												\
 											$(PATH_STATE)/update_state.c											\

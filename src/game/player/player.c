@@ -71,6 +71,7 @@ player_t *create_player(void)
     player->fight = 0;
     player->can_run_away = -1;
     player->inventory = create_inventory();
+    player->in_teleportation = 1;
     player->animations = create_annimations();
     create_gui(player);
     player->is_ghost = 0;

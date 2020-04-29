@@ -11,17 +11,14 @@
 #include "lib/utils/string.h"
 #include "lib/effects/fade.h"
 
-sfVector2i *get_attack_order(monster_t **m, player_t *p, int p_attack)
+static sfVector2i *get_attack_order(monster_t **m, player_t *p)
 {
     int length = get_monsters_length(m) + 1;
-    int cursor = 0;
+
     sfVector2i *order = malloc(sizeof(sfVector2i) * (length + 1));
-    if (p_attack == 0) {
-        order[0] = (sfVector2i){PLAYER_INDEX, p->stats->agility};
-        cursor = 1;
-    }
+    order[0] = (sfVector2i){PLAYER_INDEX, p->stats->agility};
     for (int i = 0; i < length-1; i++)
-        order[i+cursor] = (sfVector2i){i+cursor, m[i]->stats->agility};
+        order[i+1] = (sfVector2i){i+1, m[i]->stats->agility};
     order[length] = (sfVector2i){-999, -999};
     int index = 0;
     while (index != length) {
@@ -41,8 +38,7 @@ static void update_monster_battle(game_t *g, battle_screen_t *b, long int delta)
 {
     if (!b->select_choice && b->round.code != ATTACK_CODE)
         return;
-    int attack = g->player->can_run_away;
-    sfVector2i *attack_order = get_attack_order(b->monster, g->player, attack);
+    sfVector2i *attack_order = get_attack_order(b->monster, g->player);
     b->round.order = attack_order;
     b->round.code = ATTACK_CODE;
 }
@@ -60,18 +56,12 @@ static void end_monster_attack(game_t *game, battle_screen_t *b)
 
 int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
 {
-    if (game->current_state != BATTLE)
-        return (0);
     sfRenderWindow_setView(game->window, game->camera);
     update_attack_gui(battle->attack_gui, delta);
-    if (battle->dialog && battle->dialog->is_active && !battle->dialog->is_finished) {
-        update_dialog_line(battle->dialog);
-    }
     for (int i = 0; battle->monster[i]; i++)
         update_monster(battle->monster[i], delta);
     update_select_gui(battle->select_gui, delta);
     update_player_gui(game->player);
-    //check_run_away(game, battle, delta);
     if (battle->attack_gui->is_selected) {
         if (battle->attack_gui->select_index == SELECT_ATTACK && battle->attacking) {
             battle->select_gui->is_active = 1;
@@ -94,9 +84,10 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
     static int xp = 0;
     static int gold = 0;
     for (int i = 0; b->monster[i] != 0; i++) {
-        if (b->monster[i]->is_alive)
+        if (!b->monster || b->monster[i]->is_alive)
             return (1);
     }
+    printf("oui\n");
     if (tmp_delta == 0) {
         for (int i = 0; b->monster[i] != 0; i++) {
             xp += b->monster[i]->xp;
@@ -125,27 +116,4 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
     }
     tmp_delta += delta;
     return (0);
-}
-
-void check_run_away(game_t *game, battle_screen_t *battle, long int delta)
-{
-    static int tmp = 0;
-    if (game->player->can_run_away == -1) {
-        return;
-    }
-    if (!tmp && battle->attack_gui->select_index == SELECT_RUN_AWAY && game->player->can_run_away == 1) {
-        char **dialog = str_split("Vous avez reussi a jouir !", '#');
-        battle->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
-        set_dialog_active(battle->dialog, 1);
-        battle->attack_gui->is_selected = 0;
-        game->player->can_run_away = -1;
-    } else if (!tmp) {
-        char **dialog = str_split("Vous n'avez pas reussi a jouir...", '#');
-        battle->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
-        set_dialog_active(battle->dialog, 1);
-        game->player->can_run_away = -1;
-    }
-    battle->attack_gui->is_selected = 0;
-    battle->attack_gui->select_index = 0;
-    tmp = 1;
 }

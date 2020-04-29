@@ -13,6 +13,8 @@
 #include "game/map.h"
 #include "game/npc.h"
 
+enum zone_info {DEFAULT, TOWN_SAFE, TOWN_OUT, TOWN_ENTER, DUNGEON_ENTER, DUNGEON_OUT, END};
+
 typedef struct overworld_s {
     map_setup_t **maps;
     int current_map;
@@ -32,6 +34,6 @@ int input_overworld(game_t *game, overworld_t *overworld);
 int update_overworld(game_t *game, overworld_t *overworld, long int delta);
 int render_overworld(game_t *game, overworld_t *overworld, long int delta);
 int init_overworld_map(overworld_t *overworld);
-
+void init_zone_world(overworld_t *overworld, interaction_box_t **boxs);
 
 #endif
