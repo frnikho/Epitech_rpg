@@ -5,6 +5,7 @@
 ** init overworld function
 */
 
+#include <lib/utils/file.h>
 #include "game.h"
 #include "game/map.h"
 #include "scene/overworld.h"
@@ -144,7 +145,7 @@ void init_maps(overworld_t *world)
     maps[2]->obs_nb = 0;
     maps[2]->tile_size = 20;
     maps[2]->offset = (sfVector2f){0, 0};
-    maps[2]->zoom = 1.5f;
+    maps[2]->zoom = 2.0f;
     init_interactions_boxes_indexs(maps[2], (int []){DUNGEON_OUT, 0});
     init_layers_id(maps[2], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
@@ -162,7 +163,10 @@ static int init_world_map(game_t *game, overworld_t *world)
 
 int init_overworld(game_t *game, overworld_t *world)
 {
-    world->state = create_state(100, game, 0);
+    int fd = open_file("content/stats.json");
+    char *content = read_file(fd, "content/stats.json");
+    int code = get_nbr(get_key_data(content, "code"));
+    world->state = create_state(code, game, 0);
     world->current_map = 0;
     init_world_map(game, world);
     return (0);

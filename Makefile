@@ -99,6 +99,7 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c												\
 											$(PATH_SCENE)/settings/update_settings_screen.c									\
 											$(PATH_SCENE)/battle/battle_screen.c											\
 											$(PATH_SCENE)/battle/init_battle_screen.c										\
+											$(PATH_SCENE)/battle/init_battle_screen_bg.c									\
 											$(PATH_SCENE)/battle/input_battle_screen.c										\
 											$(PATH_SCENE)/battle/render_battle_screen.c										\
 											$(PATH_SCENE)/battle/update_battle_screen.c										\

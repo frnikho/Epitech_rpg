@@ -31,16 +31,16 @@ static void load_game_settings(game_t *game)
         init_default_settings(game);
         return;
     }
-    char *content = read_file(fd, "content/settings.json");
-    if (!content || content[0] == 0) {
+    char *co = read_file(fd, "content/settings.json");
+    if (!co || co[0] == 0) {
         init_default_settings(game);
         return;
     }
-    game->config.framerate = fget_nbr(get_key_data(content, "framerate"));
-    game->config.dialog_speed = fget_nbr(get_key_data(content, "dialog_speed"));
-    game->config.sound_volume = fget_nbr(get_key_data(content, "sound_volume"));
-    game->config.music_volume = fget_nbr(get_key_data(content, "music_volume"));
-    free(content);
+    game->config.framerate = fget_nbr(get_key_data(co, "framerate"));
+    game->config.dialog_speed = fget_nbr(get_key_data(co, "dialog_speed"));
+    game->config.sound_volume = fget_nbr(get_key_data(co, "sound_volume"));
+    game->config.music_volume = fget_nbr(get_key_data(co, "music_volume"));
+    free(co);
 }
 
 game_t *init_game(sfVector2f win_size, char *title)

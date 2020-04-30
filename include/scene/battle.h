@@ -26,6 +26,11 @@ typedef struct round_s {
     int code;
 } round_t;
 
+typedef struct battle_bg_s {
+    int zone_code;
+    char *fp;
+} battle_bg_t;
+
 typedef struct battle_screen_s {
     int select_choice;
     int attacking;
@@ -44,6 +49,7 @@ typedef struct battle_screen_s {
 void battle_screen(game_t *game, long int delta);
 void dispose_battle_screen(game_t *game, battle_screen_t *battle);
 int init_battle_screen(game_t *game, battle_screen_t *battle);
+void init_battle_screen_bg(game_t *game, battle_screen_t *battle);
 int input_battle_screen(game_t *game, battle_screen_t *battle);
 int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta);
 void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d);
