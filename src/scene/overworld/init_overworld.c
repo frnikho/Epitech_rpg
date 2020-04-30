@@ -145,7 +145,7 @@ TOWN_OUT, 0});
     maps[1]->tile_set = "assets/tiles/world.png";
     maps[1]->location = "default";
     maps[1]->layer_nb = 2;
-    maps[1]->obs_nb = 76;
+    maps[1]->obs_nb = 128;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 3.0f;
@@ -180,7 +180,7 @@ static int init_world_map(game_t *game, overworld_t *world)
 int init_overworld(game_t *game, overworld_t *world)
 {
     world->state = create_state(100, game, 0);
-    world->current_map = 2;
+    world->current_map = 1;
     init_world_map(game, world);
     set_player_position(game->player, (sfVector2f){1200, 2500});
     return (0);
