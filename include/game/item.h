@@ -14,6 +14,7 @@ typedef struct item_s {
     int id;
     char *fp;
     int count;
+    char *info;
     sprite_t *sprite;
 } item_t;
 

@@ -24,6 +24,14 @@ static void update_inv_cursor(sfRenderWindow *w, sfView *cam, inventory_t *inv)
     set_sprite_position(inv->cursor, cursor_pos);
 }
 
+static void update_panel(sfRenderWindow *w, sfView *cam, inventory_t *inv)
+{
+    static const sfVector2i pos = {1300, 250};
+    sfVector2f box_pos = sfRenderWindow_mapPixelToCoords(w, pos, cam);
+    set_sprite_position(inv->panel.box, box_pos);
+    set_sprite_scale(inv->panel.box, 1.0f);
+}
+
 static void update_items(sfRenderWindow *window, sfView *cam, inventory_t *inv)
 {
     static const sfVector2i point = {550, 600};
@@ -34,14 +42,10 @@ static void update_items(sfRenderWindow *window, sfView *cam, inventory_t *inv)
     draw_sprite(window, inv->box);
 }
 
-void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv)
+static void draw_items(sfRenderWindow *window, sfView *camera, inventory_t *inv)
 {
     sfVector2i dot = {0, 0};
     sfVector2f tmp = {0, 0};
-
-    if (!inv || !inv->content || !inv->is_open)
-        return;
-    update_items(window, camera, inv);
     for (int i = 0; inv->content[i]->item != 0; i++) {
         if (inv->content[i]->item != 0) {
             dot = (sfVector2i) {560, 610};
@@ -54,6 +58,16 @@ void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv)
             draw_sprite(window, inv->content[i]->item->sprite);
         }
     }
+}
+
+void draw_inventory(sfRenderWindow *window, sfView *camera, inventory_t *inv)
+{
+    if (!inv || !inv->content || !inv->is_open)
+        return;
+    update_items(window, camera, inv);
+    draw_items(window, camera, inv);
+    draw_sprite(window, inv->panel.box);
+    update_panel(window, camera, inv);
     update_inv_cursor(window, camera, inv);
     draw_sprite(window, inv->cursor);
 }

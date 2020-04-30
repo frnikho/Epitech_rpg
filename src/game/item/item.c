@@ -22,6 +22,8 @@ item_t *deserialize_item(char *fp)
         return (0);
     sfIntRect rect;
     item->id = fget_nbr(get_key_data(content, "id"));
+    item->info = get_key_data(content, "info");
+
     char *texture = get_key_data(content, "texture");
     rect.left = fget_nbr(get_key_data(texture, "x"));
     rect.top = fget_nbr(get_key_data(texture, "y"));

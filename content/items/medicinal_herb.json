@@ -1,6 +1,7 @@
 {
   "name":"Herbe Medicinal",
   "id":1,
+  "info":"Herbe medicinal qui restore 30hp",
   "texture":{
     "x":26,
     "y":1701,

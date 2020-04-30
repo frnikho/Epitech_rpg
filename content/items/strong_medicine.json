@@ -1,6 +1,7 @@
 {
   "name":"Strong Medicine",
   "id":1,
+  "info":"Herbe medicinal qui restore 40hp",
   "texture":{
     "x":51,
     "y":1701,

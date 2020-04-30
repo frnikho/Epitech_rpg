@@ -8,12 +8,11 @@
 #include "game/inventory.h"
 #include <stdlib.h>
 
-inventory_t *create_inventory(void)
+static int init_inventory_content(inventory_t *inv)
 {
-    inventory_t *inv = malloc(sizeof(inventory_t));
     inv->content = malloc(sizeof(case_t*) * (INV_SIZE + 1));
     if (!inv->content)
-        return (0);
+        return (-1);
     inv->is_open = 0;
     inv->action = 0;
     inv->cursor_index = (sfVector2u) {0, 0};
@@ -29,6 +28,22 @@ inventory_t *create_inventory(void)
         inv->content[i]->pos = (sfVector2u) {x, y};
     }
     inv->content[INV_SIZE] = 0;
+    return (0);
+}
+
+static void init_info_panel(inventory_t *inv)
+{
+    inv->panel.title = init_text("Item:", 16, (sfVector2f){-5, -5});
+    inv->panel.box = init_sprite("assets/sprite/gui/item_info.png", 0);
+    set_text_font(inv->panel.title, FONT);
+}
+
+inventory_t *create_inventory(void)
+{
+    inventory_t *inv = malloc(sizeof(inventory_t));
+    if (init_inventory_content(inv) == -1)
+        return (0);
+    init_info_panel(inv);
     inv->box = init_sprite("assets/sprite/inventory.png", 0);
     inv->cursor = init_sprite("assets/sprite/gui/pointer_small.png", 0);
     return (inv);

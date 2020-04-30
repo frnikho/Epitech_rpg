@@ -8,6 +8,7 @@
 #ifndef MY_RPG_INVENTORY_H
 #define MY_RPG_INVENTORY_H
 
+#include <lib/components/text.h>
 #include "game/item.h"
 
 #define INV_SIZE 30
@@ -17,11 +18,20 @@ typedef struct case_s {
     item_t *item;
 } case_t;
 
+typedef struct info_panel_s {
+    sprite_t *box;
+    text_t *title;
+    text_t *info;
+    int is_open;
+    item_t *item;
+} info_panel_t;
+
 typedef struct inventory_s {
     case_t **content;
     sprite_t *box;
     sprite_t *cursor;
     sfVector2u cursor_index;
+    info_panel_t panel;
     int action;
     int is_selected;
     int is_open;
