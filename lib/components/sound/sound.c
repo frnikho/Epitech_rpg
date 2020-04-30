@@ -25,8 +25,9 @@ sound_t *init_sound(char *fp)
     return (sound);
 }
 
-void play_sound(sound_t *sound)
+void play_sound(sound_t *sound, int volume)
 {
+    sfSound_setVolume(sound->sound, (float) volume);
     sfSound_play(sound->sound);
 }
 

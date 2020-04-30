@@ -18,7 +18,7 @@ typedef struct sound_s {
 sound_t *init_sound(char *fp);
 void dispose_sound(sound_t *sound);
 
-void play_sound(sound_t *sound);
+void play_sound(sound_t *sound, int volume);
 void stop_sound(sound_t *sound);
 void set_sound_volume(sound_t *sound, float volume);
 void set_sound_loop(sound_t *sound, int loop);

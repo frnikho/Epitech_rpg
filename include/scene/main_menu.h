@@ -8,6 +8,7 @@
 #ifndef DEFENDER_MAIN_MENU_H
 #define DEFENDER_MAIN_MENU_H
 
+#include <lib/components/sound.h>
 #include "game.h"
 
 typedef struct main_menu_s {
@@ -18,6 +19,7 @@ typedef struct main_menu_s {
     sprite_t *bg;
     sprite_t *box;
     text_t *text;
+    sound_t *sound;
 } main_menu_t;
 
 void main_menu(game_t *game, long int delta);

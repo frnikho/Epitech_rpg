@@ -21,8 +21,10 @@ int input_main_menu(game_t *game, main_menu_t *screen)
             screen->select_index--;
         if (game->event.key.code == sfKeyS || (pad_arrow() == PAD_DOWN))
             screen->select_index++;
-        if (game->event.key.code == sfKeySpace || pad_pressed(PAD_A))
+        if (game->event.key.code == sfKeySpace || pad_pressed(PAD_A)) {
+            stop_sound(screen->sound);
             screen->is_selected = 1;
+        }
     }
     return (0);
 }

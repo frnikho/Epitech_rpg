@@ -19,6 +19,7 @@ typedef struct state_s {
     int sub_code;
 
     int *acces;
+    sound_t *music;
 
     fade_t *fade_in;
     fade_t *fade_out;

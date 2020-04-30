@@ -10,6 +10,8 @@
 
 void intro_state(state_t *state, game_t *game, long int delta)
 {
+    state->music = init_sound("assets/music/town.ogg");
+    play_sound(state->music, 10);
     state->fade_in = init_fade((sfVector2f){1600*10, 800*10}, \
 sfBlack, 1, FADE_IN);
     set_fade_active(state->fade_in);

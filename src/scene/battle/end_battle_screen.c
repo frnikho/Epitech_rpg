@@ -34,6 +34,9 @@ dialog_t *create_levelup_dialog(player_t *player, int *stats)
 
 static void init_end_dialog(game_t *g, battle_screen_t *b, int *gold, int *xp)
 {
+    stop_sound(b->music);
+    b->music = init_sound("assets/sound/endfight.ogg");
+    play_sound(b->music, 20);
     char *str = "Vous avez vaincu tout les monstres ! # +";
     str = str_cat(str, convert_str((*gold)));
     str = str_cat(str, " golds, +");
@@ -58,6 +61,8 @@ static int check_level(game_t *g, battle_screen_t *b, int **var)
 {
     int *stats = check_player_levelup(g->player);
     if (stats != 0) {
+        b->music = init_sound("assets/sound/levelup.ogg");
+        play_sound(b->music, 10);
         b->dialog = create_levelup_dialog(g->player, stats);
         set_dialog_active(b->dialog, 1);
     } else {

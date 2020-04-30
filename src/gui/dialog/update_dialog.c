@@ -22,7 +22,7 @@ static void update_text_dialog(dialog_t *d)
     }
     new = str_cat_char(d->msg->title, d->text[d->index_line][d->index_msg]);
     d->msg->title = new;
-    play_sound(d->sound);
+    play_sound(d->sound, 60);
     d->index_msg++;
 }
 

@@ -13,6 +13,8 @@ int init_main_menu(game_t *game, main_menu_t *menu)
     menu->delta = 0;
     menu->select_index = 0;
     menu->is_selected = 0;
+    menu->sound = init_sound("assets/music/menu.ogg");
+    play_sound(menu->sound, 60);
     menu->bg = init_sprite("assets/sprite/background/main_menu_bg.jpg", 0);
     menu->cursor = init_sprite("assets/sprite/gui/pointer_big.png", 0);
     set_sprite_scale(menu->cursor, 1.2);

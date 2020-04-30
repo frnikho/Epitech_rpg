@@ -5,6 +5,7 @@
 ** init overworld function
 */
 
+#include "lib/utils/file.h"
 #include "game.h"
 #include "game/map.h"
 #include "scene/overworld.h"
@@ -28,8 +29,7 @@ void load_interaction_boxes(map_setup_t *setup, map_t *map, overworld_t *world)
 int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
-    char *fd = create_file_buffer(overworld->\
-maps[overworld->current_map]->file);
+    char *fd = create_file_buffer(overworld->maps[overworld->current_map]->file);
     if (fd[0] == 'E' && str_len(fd) == 1)
         return (84);
     char *layers_str = get_key_data(fd, "layers");
@@ -107,19 +107,8 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 8);
-
-    /* inter[0] = create_interaction_box((sfFloatRect){150, 750, 300, 400}, \
-(sfVector2f){200, 0}, -1, 1);
-    inter[1] = create_interaction_box((sfFloatRect){0, 0, 1500, 1300}, \
-(sfVector2f){200, 0}, -1, 0); */
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 9);
     init_zone_world(world, inter);
-    /* inter[2] = create_interaction_box((sfFloatRect){850, 990, 250, 200}, \
-(sfVector2f){200, 0}, -1, 1);
-    inter[3] = create_interaction_box((sfFloatRect){460, 280, 40, 40}, \
-(sfVector2f){200, 0}, 2, 0);
-    inter[4] = create_interaction_box((sfFloatRect){200, 980, 40, 22}, \
-(sfVector2f){200, 0}, 0, 0); */
     world->maps_interaction_boxes = inter;
 }
 
@@ -179,9 +168,11 @@ static int init_world_map(game_t *game, overworld_t *world)
 
 int init_overworld(game_t *game, overworld_t *world)
 {
-    world->state = create_state(100, game, 0);
-    world->current_map = 2;
+    int fd = open_file("content/stats.json");
+    char *content = read_file(fd, "content/stats.json");
+    int code = get_nbr(get_key_data(content, "code"));
+    world->state = create_state(code, game, 0);
+    world->current_map = 0;
     init_world_map(game, world);
-    set_player_position(game->player, (sfVector2f){1200, 2500});
     return (0);
 }
