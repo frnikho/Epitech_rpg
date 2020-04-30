@@ -5,7 +5,7 @@
 ** init overworld function
 */
 
-#include "lib/utils/file.h"
+#include <lib/utils/file.h>
 #include "game.h"
 #include "game/map.h"
 #include "scene/overworld.h"
@@ -29,7 +29,8 @@ void load_interaction_boxes(map_setup_t *setup, map_t *map, overworld_t *world)
 int init_overworld_map(overworld_t *overworld)
 {
     overworld->map = malloc(sizeof(map_t));
-    char *fd = create_file_buffer(overworld->maps[overworld->current_map]->file);
+    char *fd = create_file_buffer(overworld->\
+maps[overworld->current_map]->file);
     if (fd[0] == 'E' && str_len(fd) == 1)
         return (84);
     char *layers_str = get_key_data(fd, "layers");
@@ -134,7 +135,7 @@ TOWN_OUT, 0});
     maps[1]->tile_set = "assets/tiles/world.png";
     maps[1]->location = "default";
     maps[1]->layer_nb = 2;
-    maps[1]->obs_nb = 76;
+    maps[1]->obs_nb = 128;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 3.0f;
