@@ -10,12 +10,15 @@
 
 void intro_state(state_t *state, game_t *game, long int delta)
 {
-    state->fade_in = init_fade((sfVector2f){1600*10, 800*10}, sfBlack, 1, FADE_IN);
+    state->fade_in = init_fade((sfVector2f){1600*10, 800*10}, \
+sfBlack, 1, FADE_IN);
     set_fade_active(state->fade_in);
     game->player->can_move = 0;
     state->npcs = malloc(sizeof(npc_t*) * 6);
-    state->npcs[0] = create_npc("content/npc/musclor.json", (sfVector2f){400, 300}, 1);
-    state->npcs[1] = create_npc("content/npc/sister.json", (sfVector2f){600, 800}, 1);
+    state->npcs[0] = create_npc("content/npc/musclor.json", \
+(sfVector2f){400, 300}, 1);
+    state->npcs[1] = create_npc("content/npc/sister.json", \
+(sfVector2f){600, 800}, 1);
     state->npcs[2] = 0;
     set_player_position(game->player, (sfVector2f) {});
     set_player_position(game->player, (sfVector2f) {543, 300});

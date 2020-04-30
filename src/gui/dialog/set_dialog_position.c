@@ -24,7 +24,8 @@ void set_dialog_position(dialog_t *d, sfRenderWindow *w, sfView *v)
 {
     sfVector2f p = sfRenderWindow_mapPixelToCoords(w, (sfVector2i)GUI_POS, v);
     set_sprite_position(d->box, p);
-    d->msg->position = sfRenderWindow_mapPixelToCoords(w, (sfVector2i) {425, 650}, v);
+    d->msg->position = sfRenderWindow_mapPixelToCoords(w, \
+(sfVector2i) {425, 650}, v);
     p.x += 745;
     p.y += 80;
     sfSprite_setPosition(d->dot->sprite, p);

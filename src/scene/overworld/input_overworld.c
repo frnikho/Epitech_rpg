@@ -31,7 +31,8 @@ int input_overworld(game_t *game, overworld_t *overworld)
             update_dialog_line(overworld->npcs[i]->dialog);
         }
         if (game->event.key.code == sfKeySpace) {
-            if (game->player->interlocutor && game->player->interlocutor->dialog && !game->player->interlocutor->dialog->is_active) {
+            if (game->player->interlocutor && game->player->interlocutor->\
+dialog && !game->player->interlocutor->dialog->is_active) {
                 clear_dialog(game->player->interlocutor->dialog);
                 set_dialog_active(game->player->interlocutor->dialog, 1);
             }

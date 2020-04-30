@@ -19,13 +19,15 @@ select_gui_t *create_select_gui(monster_t **monsters)
     gui->gui = init_sprite("assets/sprite/gui/select_enemy_gui.png", 0);
     set_sprite_position(gui->gui, (sfVector2f){850, 600});
     int count_monster = get_monsters_length(monsters);
-    gui->monsters_name = malloc(sizeof(text_t*) * (get_monsters_length(monsters) + 1));
+    gui->monsters_name = malloc(sizeof(text_t*) * \
+(get_monsters_length(monsters) + 1));
     for (int i = 0; i < count_monster; i++) {
         char *count = convert_str(i+1);
         char *name = monsters[i]->name;
         char *tmp = str_cat(count, ". ");
         tmp = str_cat(tmp, name);
-        gui->monsters_name[i] = init_text(tmp, 18, (sfVector2f){920, 640 + (i*20)});
+        gui->monsters_name[i] = init_text(tmp, 18, \
+(sfVector2f){920, 640 + (i*20)});
         set_text_font(gui->monsters_name[i], FONT);
     }
     gui->monsters_name[count_monster] = 0;

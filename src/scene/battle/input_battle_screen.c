@@ -12,21 +12,21 @@ int battle_screen_key_pressed(game_t *game)
 {
     if (game->event.type != sfEvtKeyPressed)
         return (0);
-    else
-        if (game->event.key.code == sfKeyL) {
-            sfRenderWindow_close(game->window);
-    }
+    else if (game->event.key.code == sfKeyL)
+        sfRenderWindow_close(game->window);
     return (1);
 }
 
 int input_battle_screen(game_t *game, battle_screen_t *battle)
 {
     int active = 0;
-    if (battle->attack_gui->select_index == SELECT_ATTACK && battle->attack_gui->is_selected) {
+    if (battle->attack_gui->select_index == SELECT_ATTACK \
+&& battle->attack_gui->is_selected) {
         handle_select_gui(game->event, battle->select_gui);
         battle->select_gui->is_active = 1;
     }
-    if (battle->attack_gui->select_index == SELECT_RUN_AWAY && battle->attack_gui->is_selected) {
+    if (battle->attack_gui->select_index == SELECT_RUN_AWAY \
+&& battle->attack_gui->is_selected) {
         game->player->fight = 0;
         dispose_battle_screen(game, battle);
         game->current_state = OVERWORLD;

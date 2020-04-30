@@ -42,7 +42,7 @@ int check_collisions(collision_box_t *c1, collision_box_t *c2)
     if (c1->is_active == 0 || c2->is_active == 0)
         return (0);
     if (is_rectangles_in_collision(c1->collision_box, \
-        c2->collision_box) == 1) {
+c2->collision_box) == 1) {
         if (c1->is_blocking == 0 || c2->is_blocking == 0)
             return (2);
         return (1);
@@ -59,13 +59,15 @@ player_t *player, long int delta)
         result = check_collisions(player->collision, npcs[i]->collision);
         if (result != 0)
             return (result);
-        else if (npcs[i]->collision->update_on_default == 1 && player->search_for_interlocutor == 1)
+        else if (npcs[i]->collision->update_on_default == 1 && \
+player->search_for_interlocutor == 1)
             update_npc(npcs[i], delta);
         result = check_collisions(player->collision, npcs[i]->trigger);
         if (result != 0) {
             player->interlocutor = npcs[i];
             return (result);
-        } else if (npcs[i]->trigger->update_on_default == 1 && player->search_for_interlocutor == 1)
+        } else if (npcs[i]->trigger->update_on_default == 1 && \
+player->search_for_interlocutor == 1)
             update_npc(npcs[i], delta);
     }
     for (int i = 0; map_obs[i]; i++) {
