@@ -50,7 +50,8 @@ static void check_attack_player(game_t *g, battle_screen_t *b, int tmp)
     b->monster[b->select_gui->monster_index]->stats->hp -= damage;
 }
 
-static void check_dialog(battle_screen_t *b, long int *delta, long int *d, int *index)
+static void check_dialog(battle_screen_t *b, long int *delta, \
+long int *d, int *index)
 {
     if (b->dialog && b->dialog->is_finished) {
         (*delta) += (*d);

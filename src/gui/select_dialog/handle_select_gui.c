@@ -11,7 +11,7 @@
 void handle_select_gui(sfEvent event, select_gui_t *gui)
 {
     sfColor g = sfColor_fromRGBA(87, 89, 93, 255);
-    int a = 0 ;
+    int a = 0;
     if (event.type != sfEvtKeyPressed)
         return;
     sfKeyCode key = event.key.code;

@@ -7,7 +7,8 @@
 
 #include "game/map.h"
 
-void draw_single_tile(tile_layer_t *layer, sfRenderWindow *window, sfFloatRect rect, int *coords)
+void draw_single_tile(tile_layer_t *layer, sfRenderWindow *window, \
+sfFloatRect rect, int *coords)
 {
     sfVector2f *points = NULL;
 
@@ -19,20 +20,24 @@ void draw_single_tile(tile_layer_t *layer, sfRenderWindow *window, sfFloatRect r
         free(points);
         return;
     }
-    sfSprite_setPosition(layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], points[0]);
-    sfSprite_setScale(layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], (sfVector2f){layer->zoom, layer->zoom});
+    sfSprite_setPosition(layer->tiles[layer->\
+tiles_map[coords[1]][coords[0]]-1], points[0]);
+    sfSprite_setScale(layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], \
+(sfVector2f){layer->zoom, layer->zoom});
     /*sfConvexShape_setPoint(layer->tile_shape, 0, points[0]);
     sfConvexShape_setPoint(layer->tile_shape, 1, points[1]);
     sfConvexShape_setPoint(layer->tile_shape, 2, points[2]);
     sfConvexShape_setPoint(layer->tile_shape, 3, points[3]);
     sfConvexShape_setTexture(layer->tile_shape, \
     layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], sfTrue); */
-    sfRenderWindow_drawSprite(window, layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], 0);
+    sfRenderWindow_drawSprite(window, layer->tiles[layer->\
+tiles_map[coords[1]][coords[0]]-1], 0);
     //sfRenderWindow_drawConvexShape(window, layer->tile_shape, NULL);
     free(points);
 }
 
-void draw_tile_layer(tile_layer_t *layer, sfRenderWindow *window, sfFloatRect rect)
+void draw_tile_layer(tile_layer_t *layer, sfRenderWindow *window, \
+sfFloatRect rect)
 {
     for (int y = 0; y < layer->height; y++) {
         for (int i = 0; i < layer->width; i++) {
@@ -41,7 +46,8 @@ void draw_tile_layer(tile_layer_t *layer, sfRenderWindow *window, sfFloatRect re
     }
 }
 
-void draw_tiles(map_t *map, sfRenderWindow *window, int *layers_to_print, sfView *camera)
+void draw_tiles(map_t *map, sfRenderWindow *window, \
+int *layers_to_print, sfView *camera)
 {
     sfVector2i min_p = {0, 0};
     sfVector2i max_p = {1600, 800};

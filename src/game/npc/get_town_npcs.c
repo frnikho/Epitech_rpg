@@ -45,7 +45,8 @@ npc_t **get_town_npcs(char *town)
         char *dialog = get_key_data(key, "dialog");
         free(fp);
         npcs[i] = create_npc(clear_fp, (sfVector2f){x, y}, speed);
-        npcs[i]->dialog = create_dialog(get_dialog(clean_fp(dialog)), 1, (sfVector2f)GUI_POS, 1);
+        npcs[i]->dialog = create_dialog(get_dialog(clean_fp(dialog)), \
+1, (sfVector2f)GUI_POS, 1);
         npcs[i]->script = get_npc_script(get_key_data(key, "script"));
         free(dialog);
     }

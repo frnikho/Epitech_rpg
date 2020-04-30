@@ -14,7 +14,8 @@
 #include <SFML/Graphics.h>
 #include "scene/overworld.h"
 
-static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map_t *map)
+static void update_collisions_box(player_t *p, npc_t **npcs, \
+long int delta, map_t *map)
 {
     sfFloatRect r = {0, 0, 0, 0};
     float z = map->zoom;
@@ -23,7 +24,8 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     p->collision->collision_box = \
     sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
     p->collision->collision_box.top += p->collision->collision_box.width/2;
-    p->collision->collision_box.height -= (p->collision->collision_box.height/2);
+    p->collision->collision_box.height -= (p->collision->\
+collision_box.height/2);
     for (int i = 0; npcs[i]; i++) {
         r = sfSprite_getGlobalBounds(npcs[i]->animations[npcs[i]->\
         current_animations]->sprite);
@@ -34,22 +36,23 @@ static void update_collisions_box(player_t *p, npc_t **npcs, long int delta, map
     for (int i = 0; map->obs[i]; i++) {
         r = map->obs[i]->shape;
         map->obs[i]->collision->collision_box = (sfFloatRect){r.left*z+ox, \
-        r.top*z+oy, r.width*z+ox, r.height*z+oy};
+r.top*z+oy, r.width*z+ox, r.height*z+oy};
     }
     for (int i = 0; map->interaction_boxes[i]; i++) {
         r = map->interaction_boxes[i]->shape;
         map->interaction_boxes[i]->collision_box = (sfFloatRect){r.left*z+ox, \
-        r.top*z+oy, r.width*z, r.height*z};
+r.top*z+oy, r.width*z, r.height*z};
     }
 }
 
-int check_direction_collision(player_t *p, npc_t **n, long int d, overworld_t *world)
+int check_direction_collision(player_t *p, npc_t **n, long int d, \
+overworld_t *world)
 {
     if (check_collision_ahead(world->map->obs, n, p, d) == 1)
         return (0);
     if (check_interaction_ahead(p, world, d) == 1)
         return (0);
-    return (1);    
+    return (1);
 }
 
 int block_move_on_collision(player_t *p, npc_t **n, long int d, \

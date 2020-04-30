@@ -17,9 +17,12 @@ void draw_interaction_boxes(sfRenderWindow *window, map_t *map)
     for (int i = 0; map->interaction_boxes[i]; i++) {
         sfFloatRect r = map->interaction_boxes[i]->collision_box;
         sfConvexShape_setPoint(shape, 0, (sfVector2f){r.left, r.top});
-        sfConvexShape_setPoint(shape, 1, (sfVector2f){(r.left+r.width), r.top});
-        sfConvexShape_setPoint(shape, 2, (sfVector2f){(r.left+r.width), (r.top+r.height)});
-        sfConvexShape_setPoint(shape, 3, (sfVector2f){(r.left), (r.top+r.height)});
+        sfConvexShape_setPoint(shape, 1, (sfVector2f)\
+{(r.left+r.width), r.top});
+        sfConvexShape_setPoint(shape, 2, (sfVector2f)\
+{(r.left+r.width), (r.top+r.height)});
+        sfConvexShape_setPoint(shape, 3, (sfVector2f)\
+{(r.left), (r.top+r.height)});
         sfRenderWindow_drawConvexShape(window, shape, NULL);
     }
     sfConvexShape_destroy(shape);
@@ -29,7 +32,8 @@ static void render_map_world(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
     update_zoom_and_offset(world->map);
-    draw_map(world->map, game->window, (int []){0}, (int []){99, 0}, game->camera);
+    draw_map(world->map, game->window, (int []){0}, \
+(int []){99, 0}, game->camera);
     //draw_map(world->map, game->window, (int []){2, 0}, (int []){99, 0});
     //draw_interaction_boxes(game->window, world->map);
 }

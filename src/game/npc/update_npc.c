@@ -19,7 +19,8 @@ int current_animations, int sign)
 
 static void move_npc_nextpos(npc_t *npc, long int delta)
 {
-    sfVector2f p = sfSprite_getPosition(npc->animations[npc->current_animations]->sprite);
+    sfVector2f p = sfSprite_getPosition\
+(npc->animations[npc->current_animations]->sprite);
     int nx = npc->next_pos.x;
     int ny = npc->next_pos.y;
     if (p.x == nx && p.y == ny)

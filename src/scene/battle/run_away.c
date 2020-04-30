@@ -20,12 +20,7 @@ int try_run_away(game_t *game, battle_screen_t *battle)
     }
     p_side = (game->player->stats->agility * (rand() % 255));
     m_side = (m_agi * (rand() % 255));
-    printf("player side: %i\n", p_side);
-    printf("monster side %i\n\n", m_side);
-    if (p_side >= m_side) {
-        printf("success\n");
+    if (p_side >= m_side)
         return (1);
-    }
-    printf("failure\n");
     return (0);
 }

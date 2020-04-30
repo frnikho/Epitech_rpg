@@ -115,7 +115,6 @@ void create_window(sfRenderWindow *window);
 void print_player(sfRenderWindow *window, map_t *map);
 void print_framerate(void);
 void draw_rectangle(sfFloatRect *rec, sfRenderWindow *window);
-void analyse_event(sfEvent *event, sfRenderWindow \
-*window);
+void analyse_event(sfEvent *event, sfRenderWindow *window);
 
 #endif /* !MAP_LOADING_H_ */

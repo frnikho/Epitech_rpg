@@ -39,7 +39,7 @@ void print_player(sfRenderWindow *window, map_t *map)
     sfCircleShape_setFillColor(circle, sfColor_fromRGBA(172, 0, 230, 255));
     sfCircleShape_setPosition(circle, \
     (sfVector2f){(1600/2)-((radius*map->zoom)), \
-    (800/2)-((radius*map->zoom))});
+(800/2)-((radius*map->zoom))});
     sfCircleShape_setRadius(circle, radius*map->zoom);
     sfRenderWindow_drawCircleShape(window, circle, NULL);
     sfCircleShape_destroy(circle);

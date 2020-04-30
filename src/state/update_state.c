@@ -7,7 +7,8 @@
 
 #include "state.h"
 
-const list_state_t update_list[] = {{0, update_intro_state}, {100, update_world_state}, {-999, 0}};
+const list_state_t update_list[] = {{0, update_intro_state}, \
+{100, update_world_state}, {-999, 0}};
 
 static void call_list(state_t *state, game_t *game, int code, long int delta)
 {
