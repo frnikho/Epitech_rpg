@@ -126,7 +126,7 @@ void init_maps(overworld_t *world)
     maps[0]->obs_nb = 265;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
-    maps[0]->zoom = 1.5f;
+    maps[0]->zoom = 1.8f;
     init_interactions_boxes_indexs(maps[0], (int []){TOWN_SAFE, \
 TOWN_OUT, 0});
     init_layers_id(maps[0], (int []){1, 0}, (int []){0}, (int []){2, 0});
