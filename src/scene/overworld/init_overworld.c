@@ -133,7 +133,7 @@ void init_maps(overworld_t *world)
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
     maps[1]->zoom = 3.0f;
-    init_interactions_boxes_indexs(maps[1], (int []){TOWN_ENTER, DUNGEON_ENTER, 0});
+    init_interactions_boxes_indexs(maps[1], (int []){TOWN_ENTER, DUNGEON_ENTER, FOREST, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = malloc(sizeof(map_setup_t));

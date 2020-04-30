@@ -22,6 +22,7 @@ char *str_cat_char(char *one , char c);
 int array_length(char **array);
 int get_nbr(char *str);
 char *convert_str(int number);
+char *convert_fstr(int number);
 char *my_strdup(char const *src);
 char *my_strcpy(char *dest, char const *src);
 int fget_nbr(char *str);

@@ -34,6 +34,7 @@ typedef struct player_s {
     int mp;
     int level;
     int xp;
+    int gold;
     int code;
     int zone;
     int learned_abi;
@@ -72,5 +73,9 @@ sfVector2f get_player_position(player_t *player);
 void add_player_position(player_t *player, sfVector2f pos);
 int exec_move(player_t *p, sfVector2f pos, int current_annimation, \
 int *current_delta);
+
+int get_next_xp_level(player_t *player);
+int get_player_level(player_t *player);
+int *check_player_levelup(player_t *player);
 
 #endif

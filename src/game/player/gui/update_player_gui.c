@@ -22,6 +22,9 @@ void update_player_gui(player_t *player)
     char *hp = str_cat("HP\t\t\t\t", convert_str(player->health));
     char *mp = str_cat("MP\t\t\t\t", convert_str(player->mp));
 
+    char *level = str_cat("Lv. ", convert_str(player->level));
+    if (player->gui)
+        player->gui->level->title = level;
     player->gui->hp->title = hp;
     player->gui->mp->title = mp;
 }

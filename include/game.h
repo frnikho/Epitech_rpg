@@ -49,8 +49,8 @@ typedef struct game_s {
 
 game_t *init_game(sfVector2f win_size, char *title);
 void dispose_game(game_t *game);
-
 void drag_camera(game_t *game);
 void handle_move_camera(game_t *game);
+int loop(game_t *game);
 
 #endif

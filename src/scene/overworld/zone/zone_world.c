@@ -18,9 +18,8 @@ void init_zone_world(overworld_t *overworld, interaction_box_t **inter)
     inter[TOWN_OUT-1] = create_interaction_box((sfFloatRect){0, 205, 20, 80}, town_out, 1, 0);
     inter[TOWN_ENTER-1] = create_interaction_box((sfFloatRect){200, 980, 40, 22}, town_enter, 0, 0);
     inter[DUNGEON_ENTER-1] = create_interaction_box((sfFloatRect){460, 280, 40, 40}, dungeon_enter, 2, 0);
-
     inter[DUNGEON_OUT-1] = create_interaction_box((sfFloatRect){960, 920, 40, 22}, dungeon_out, 1, 0);
-    //inter[1] = create_interaction_box((sfFloatRect){850, 990, 250, 200}, 0, -1, 1);
+    inter[FOREST-1] = create_interaction_box((sfFloatRect){0, 0, 2500, 2000}, null, -1, 1);
     //inter[2] = create_interaction_box((sfFloatRect){460, 280, 40, 40}, 0, 2, 0);
     //inter[3] = create_interaction_box((sfFloatRect){200, 980, 40, 22}, 0, 0, 0);
     inter[END] = NULL;

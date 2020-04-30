@@ -14,7 +14,7 @@ void serialize_player(player_t *player)
     if (!player)
         return;
     char *fp = "content/player.json";
-    json_writer(fp, "level", convert_str(player->xp));
+    json_writer(fp, "level", convert_str(player->level));
     json_writer(fp, "xp", convert_str(player->xp));
     json_writer(fp, "hp", convert_str(player->stats->hp));
     json_writer(fp, "mp", convert_str(player->stats->mp));
@@ -22,4 +22,5 @@ void serialize_player(player_t *player)
     json_writer(fp, "magic", convert_str(player->stats->magic));
     json_writer(fp, "agility", convert_str(player->stats->agility));
     json_writer(fp, "strength", convert_str(player->stats->strenght));
+    json_writer(fp, "gold", convert_str(player->gold));
 }
