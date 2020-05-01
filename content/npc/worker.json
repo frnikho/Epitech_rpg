@@ -4,60 +4,60 @@
       "count":2,
       "1":{
         "x":180,
-        "y":234,
-        "width":16,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       },
       "2":{
         "x":200,
-        "y":234,
-        "width":16,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       }
     },
     "walk_right":{
       "count":2,
       "1":{
         "x":220,
-        "y":234,
-        "width":14,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       },
       "2":{
         "x":240,
-        "y":234,
-        "width":15,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       }
     },
     "walk_left":{
       "count":2,
       "1":{
         "x":260,
-        "y":234,
-        "width":14,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       },
       "2":{
         "x":280,
-        "y":234,
-        "width":14,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       }
     },
     "walk_up":{
       "count":2,
       "1":{
         "x":300,
-        "y":234,
-        "width":16,
-        "height":24
+        "y":0,
+        "width":13,
+        "height":22
       },
       "2":{
         "x":320,
-        "y":234,
-        "width":16,
-        "height":23
+        "y":0,
+        "width":13,
+        "height":22
       }
     }
   }
