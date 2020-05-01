@@ -13,6 +13,7 @@
 #define DEFAULT_CONFIG 1
 
 #define GAMECODE_RESET 500
+#define RESTART_GAME 295
 
 #include "game/player.h"
 #include <stdlib.h>

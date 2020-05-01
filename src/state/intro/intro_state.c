@@ -54,6 +54,7 @@ void update_intro_state(state_t *state, game_t *game, long int delta)
 {
     static long int d = 0;
     d += delta;
+
     sub_one(state, game, delta, d);
     if (state->sub_code == 4) {
         if (state->npcs[0]->finish_move) {

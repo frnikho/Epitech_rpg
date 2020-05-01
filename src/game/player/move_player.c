@@ -37,6 +37,8 @@ static void handle_player_fight(player_t *player, long int delta)
         player->delta_fight -= rdn;
         random_delta = 0;
     }
+    if (player->zone == 4)
+        player->fight = 1;
     if (player->delta_fight >= 3000000) {
         if (player->zone != 0)
             player->fight = 1;

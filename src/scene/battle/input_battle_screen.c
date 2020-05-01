@@ -22,7 +22,6 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
     int active = 0;
     if (battle->attack_gui->select_index == SELECT_ATTACK \
 && battle->attack_gui->is_selected) {
-        handle_select_gui(game->event, battle->select_gui);
         battle->select_gui->is_active = 1;
     }
     if (battle->attack_gui->select_index == SELECT_RUN_AWAY \

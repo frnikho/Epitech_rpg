@@ -1,0 +1,20 @@
+{
+  "sprite":{
+    "x":4,
+    "y":2230,
+    "width":94,
+    "height":98
+  },
+  "gain_factor":8,
+  "stats_factor":4,
+  "gold":28,
+  "xp":28,
+  "stats":{
+    "strength":16,
+    "hp":40,
+    "resistance":14,
+    "agility":16,
+    "magic":0,
+    "pm":0
+  }
+}

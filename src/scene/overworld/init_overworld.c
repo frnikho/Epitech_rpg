@@ -108,7 +108,7 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 9);
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * (END+1));
     init_zone_world(world, inter);
     world->maps_interaction_boxes = inter;
 }
@@ -138,9 +138,9 @@ TOWN_OUT, 0});
     maps[1]->obs_nb = 128;
     maps[1]->tile_size = 20;
     maps[1]->offset = (sfVector2f){0, 0};
-    maps[1]->zoom = 3.0f;
+    maps[1]->zoom = 2.5f;
     init_interactions_boxes_indexs(maps[1], (int []){TOWN_ENTER, \
-DUNGEON_ENTER, 0});
+DUNGEON_ENTER, FOREST_1, FOREST_2, POISON, 0});
     init_layers_id(maps[1], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[2] = malloc(sizeof(map_setup_t));
@@ -152,7 +152,7 @@ DUNGEON_ENTER, 0});
     maps[2]->tile_size = 20;
     maps[2]->offset = (sfVector2f){0, 0};
     maps[2]->zoom = 2.0f;
-    init_interactions_boxes_indexs(maps[2], (int []){DUNGEON_OUT, 0});
+    init_interactions_boxes_indexs(maps[2], (int []){DUNGEON_OUT, BOSS, 0});
     init_layers_id(maps[2], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[3] = NULL;
@@ -172,8 +172,9 @@ int init_overworld(game_t *game, overworld_t *world)
     int fd = open_file("content/stats.json");
     char *content = read_file(fd, "content/stats.json");
     int code = get_nbr(get_key_data(content, "code"));
-    world->current_map = 0;
+    world->current_map = 1;
     init_world_map(game, world);
-    world->state = create_state(code, game, 0);
+    world->pause = create_pause(game->window, game->camera);
+    world->state = create_state(100, game, 0);
     return (0);
 }
