@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <SFML/Graphics.h>
 #include "gui/dialog.h"
+#include "scene/overworld.h"
 
 collision_box_t *create_collision_box(sfFloatRect rec, \
 int update_on_default, int is_blocking)
@@ -50,9 +51,12 @@ c2->collision_box) == 1) {
     return (0);
 }
 
-int check_collision_ahead(obstacle_t **map_obs, npc_t **npcs, \
-player_t *player, long int delta)
+int check_collision_ahead(overworld_t *world, player_t *player, long int delta)
 {
+    npc_t **npcs = world->npcs;
+    npc_t **npcs_state = world->state->npcs;
+    obstacle_t **map_obs = world->map->obs;
+
     int result = 0;
 
     for (int i = 0; npcs[i]; i++) {
@@ -70,6 +74,25 @@ player->search_for_interlocutor == 1)
 player->search_for_interlocutor == 1)
             update_npc(npcs[i], delta);
     }
+
+
+    for (int i = 0; npcs_state[i]; i++) {
+        result = check_collisions(player->collision, npcs_state[i]->collision);
+        if (result != 0)
+            return (result);
+        /*else if (npcs_state[i]->collision->update_on_default == 1 && \
+player->search_for_interlocutor == 1)
+            update_npc(npcs_state[i], delta);*/
+        //result = check_collisions(player->collision, npcs_state[i]->trigger);
+        //if (result != 0) {
+        //    //player->interlocutor = npcs_state[i];
+        //    return (result);
+        //} /*else if (npcs_state[i]->trigger->update_on_default == 1 && \
+player->search_for_interlocutor == 1)
+        //    update_npc(npcs_state[i], delta);
+    }
+
+
     for (int i = 0; map_obs[i]; i++) {
         if (check_collisions(player->collision, map_obs[i]->collision) == 1)
             return (1);
