@@ -48,6 +48,14 @@ static void init_battle_zone(game_t *game, battle_screen_t *battle)
     free(content);
 }
 
+static void init_spell_gui(game_t *game, battle_screen_t *battle)
+{
+    battle->spell_gui.spell = get_spells(game->player);
+    battle->spell_gui.box = init_sprite("assets/", 0);
+    battle->spell_gui.is_selected = 0;
+    battle->spell_gui.cursor = 0;
+}
+
 int init_battle_screen(game_t *game, battle_screen_t *battle)
 {
     init_battle_zone(game, battle);
@@ -59,6 +67,7 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     battle->round.order = 0;
     battle->attacking = 0;
     battle->dialog = 0;
+    init_spell_gui(game, battle);
     play_sound(battle->music, 60);
     sfView_setCenter(game->camera, (sfVector2f){800, 400});
     set_sound_loop(battle->music, 1);

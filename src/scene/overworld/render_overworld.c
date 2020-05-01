@@ -67,10 +67,10 @@ int render_overworld(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);
     render_map_world(game, world, delta);
-    draw_player(game->window, game->player);
+    draw_state(game->camera, game->window, world->state);
     draw_npcs(game->window, world->npcs, game->camera);
     draw_inventory(game->window, game->camera, game->player->inventory);
-    draw_state(game->camera, game->window, world->state);
+    draw_player(game->window, game->player);
     draw_pause(world->pause, game->window, delta);
     return (0);
 }

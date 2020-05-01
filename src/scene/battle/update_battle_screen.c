@@ -54,21 +54,16 @@ static void end_monster_attack(game_t *game, battle_screen_t *b)
 
 int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
 {
+    if (game->current_state != BATTLE)
+        return (0);
     sfRenderWindow_setView(game->window, game->camera);
     update_attack_gui(battle->attack_gui, delta);
     for (int i = 0; battle->monster[i]; i++)
         update_monster(battle->monster[i], delta);
     update_select_gui(battle->select_gui, delta);
     update_player_gui(game->player);
-    /* if (battle->attack_gui->is_selected) {
-        if (battle->attack_gui->select_index == SELECT_ATTACK && battle->attacking) {
-            battle->select_gui->is_active = 1;
-        }
-    }
-    if (!battle->select_choice && battle->select_gui->is_selected) {
+    if (!battle->select_choice && battle->select_gui->is_selected)
         battle->select_choice = 1;
-        printf("chien\n");
-    } */
     update_monster_battle(game, battle, delta);
     if (battle->round.code == ATTACK_CODE) {
         battle->attacking = 1;
@@ -76,4 +71,5 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     }
     check_player_dead(game, battle, delta);
     end_battle_screen(game, battle, delta);
+    return (0);
 }

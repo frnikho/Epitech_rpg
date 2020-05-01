@@ -10,6 +10,7 @@ NAME					=					my_rpg
 PATH_COMPONENT			=					src/component
 PATH_SCENE				=					src/scene
 PATH_STATE				=					src/state
+PATH_SPELL				=					src/game/spells
 PATH_MAIN				=					src
 
 SRC						=					$(PATH_MAIN)/main.c																\
@@ -107,6 +108,8 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c												\
 											$(PATH_SCENE)/battle/render_battle_screen.c										\
 											$(PATH_SCENE)/battle/update_battle_screen.c										\
 											$(PATH_SCENE)/battle/update_attack_battle_screen.c								\
+											$(PATH_SCENE)/battle/battle_screen_check_player.c								\
+											$(PATH_SCENE)/battle/battle_screen_spells.c										\
 											$(PATH_SCENE)/battle/run_away.c													\
 											$(PATH_SCENE)/battle/tension.c													\
 											$(PATH_SCENE)/battle/end_battle_screen.c										\
@@ -123,8 +126,12 @@ STATE					=					$(PATH_STATE)/draw_state.c														\
 											$(PATH_STATE)/intro/intro_state.c												\
 											$(PATH_STATE)/world/world_state.c												\
 
+SPELLS					=					$(PATH_SPELL)/flame.c															\
+											$(PATH_SPELL)/heal.c															\
+											$(PATH_SPELL)/weakness_hit.c													\
 
-OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)	$(STATE:%.c=%.o)
+
+OBJ						=					$(SRC:%.c=%.o) $(SCENE:%.c=%.o)	$(STATE:%.c=%.o) $(SPELLS:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -L lib/ -lcsfml
 

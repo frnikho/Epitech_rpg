@@ -19,6 +19,7 @@
 #include "game/monster.h"
 #include "game/player.h"
 #include "lib/effects/fade.h"
+#include "game/spell.h"
 
 typedef struct round_s {
     sfVector2i *order;
@@ -30,6 +31,14 @@ typedef struct battle_bg_s {
     int zone_code;
     char *fp;
 } battle_bg_t;
+
+typedef struct spell_gui {
+    sprite_t *box;
+    spell_t *spell;
+    int is_selected;
+    int cursor;
+
+} spell_gui_t;
 
 typedef struct battle_screen_s {
     int select_choice;
@@ -44,6 +53,7 @@ typedef struct battle_screen_s {
     round_t round;
     fade_t *fade_in;
     fade_t *fade_out;
+    spell_gui_t spell_gui;
 } battle_screen_t;
 
 void battle_screen(game_t *game, long int delta);

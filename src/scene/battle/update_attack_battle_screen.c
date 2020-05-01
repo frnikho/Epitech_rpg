@@ -67,6 +67,8 @@ static void check_dialog(battle_screen_t *b, long int *delta, long int *d, int *
 
 void update_attack_battle_screen(game_t *g, battle_screen_t *b, long int d)
 {
+    if (g->current_state != BATTLE)
+        return;
     static int index = 0;
     static long int delta = 0;
     if (d == -1) {

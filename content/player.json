@@ -5,15 +5,15 @@
     "y":0
   },
   "level":7,
-  "xp":24,
-  "gold":52,
+  "xp":159,
+  "gold":74,
   "stats":{
-    "hp":2209,
-    "mp":24,
-    "resistance":17,
-    "magic":19,
-    "agility":15,
-    "strength":22,
+    "hp":2219,
+    "mp":37,
+    "resistance":27,
+    "magic":31,
+    "agility":23,
+    "strength":34,
     "animations":{
       "idle":{
         "count":2,
@@ -101,4 +101,4 @@
       }
     }
   }
-}}}}}}}
+}}}}}}}}

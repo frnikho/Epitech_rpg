@@ -32,8 +32,8 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
     if (battle->dialog)
         destroy_dialog(battle->dialog);
     dispose_sprite(battle->bg);
-    free(battle->round.order);
     battle->round.order_index = 0;
+    game->player->fight = 0;
     battle->round.code = 0;
     battle = 0;
 }
