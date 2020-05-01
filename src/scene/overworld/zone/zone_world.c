@@ -20,9 +20,9 @@ void init_zone_world(overworld_t *overworld, interaction_box_t **inter)
 {
     sfVector2f null = {0, 0};
     sfVector2f town_enter = {200, 430};
-    sfVector2f town_out = {450, 990*2};
-    sfVector2f dungeon_out = {1200, 300*2};
-    sfVector2f dungeon_enter = {960, 960};
+    sfVector2f town_out = {1110, 2816};
+    sfVector2f dungeon_out = {1426, 1036};
+    sfVector2f dungeon_enter = {1268, 2488};
     inter[TOWN_SAFE-1] = create_interaction_box((sfFloatRect){0, 0, 1500, 1300}, null, -1, 0);
     inter[TOWN_OUT-1] = create_interaction_box((sfFloatRect){0, 205, 20, 80}, town_out, 1, 0);
     inter[TOWN_ENTER-1] = create_interaction_box((sfFloatRect){310, 940, 40, 22}, town_enter, 0, 0);
