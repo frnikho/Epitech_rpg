@@ -75,9 +75,9 @@ char *get_key_data(char *buff, char *balise)
     int in_container_tt = 0;
     int force_stop = 0;
 
-    for (; buff[indx_b-1] != ':'; indx_b ++);
+    for (; buff[indx_b-1] && buff[indx_b-1] != ':'; indx_b ++);
     indx_e = indx_b;
-    while (1) {
+    while (indx_b != -1) {
         if ((buff[indx_e] == ',' && in_container_tt == 0) || force_stop == 1)
             break;
         check_container_opening_closing(buff, indx_e, in_cont_tab, cont_tab);

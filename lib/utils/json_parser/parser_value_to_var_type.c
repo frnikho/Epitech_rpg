@@ -13,6 +13,10 @@ char *my_str_part_copy(char *buff, int beg, int end)
     char *result = malloc(sizeof(char) * (end-beg+1));
     int index = 0;
 
+    if (beg == -1 || end == -1) {
+        free(result);
+        return (my_strdup("Undefined"));
+    }
     result[end-beg] = '\0';
     for (int i = beg; i < end; i++) {
         result[index] = buff[i];

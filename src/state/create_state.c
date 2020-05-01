@@ -29,6 +29,8 @@ state_t *create_state(int code, game_t *game, int sub_code)
     state->delta = 0;
     state->fade_out = 0;
     state->fade_in = 0;
+    state->npcs = malloc(sizeof(npc_t *));
+    state->npcs[0] = NULL;
     iterate_lists(state, game, code);
     return (state);
 }
