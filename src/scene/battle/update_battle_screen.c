@@ -60,13 +60,15 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         update_monster(battle->monster[i], delta);
     update_select_gui(battle->select_gui, delta);
     update_player_gui(game->player);
-    if (battle->attack_gui->is_selected) {
+    /* if (battle->attack_gui->is_selected) {
         if (battle->attack_gui->select_index == SELECT_ATTACK && battle->attacking) {
             battle->select_gui->is_active = 1;
         }
     }
-    if (!battle->select_choice && battle->select_gui->is_selected)
+    if (!battle->select_choice && battle->select_gui->is_selected) {
         battle->select_choice = 1;
+        printf("chien\n");
+    } */
     update_monster_battle(game, battle, delta);
     if (battle->round.code == ATTACK_CODE) {
         battle->attacking = 1;

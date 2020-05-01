@@ -16,6 +16,8 @@ void intro_state(state_t *state, game_t *game, long int delta)
 sfBlack, 1, FADE_IN);
     set_fade_active(state->fade_in);
     game->player->can_move = 0;
+    if (state->npcs != 0)
+        free(state->npcs);
     state->npcs = malloc(sizeof(npc_t*) * 6);
     state->npcs[0] = create_npc("content/npc/musclor.json", \
 (sfVector2f){400, 300}, 1);
@@ -44,7 +46,7 @@ static void sub_one(state_t *state, game_t *game, long int delta, long int d)
         set_dialog_active(state->dialog, 1);
     }
     if (state->sub_code == 3 && state->dialog->is_finished) {
-        move_npc(state->npcs[0], (sfVector2f){331, 196});
+        move_npc(state->npcs[0], (sfVector2f){331, 596});
         state->sub_code++;
         game->player->can_move = 1;
     }
@@ -54,7 +56,7 @@ void update_intro_state(state_t *state, game_t *game, long int delta)
 {
     static long int d = 0;
     d += delta;
-
+    update_npc(state->npcs[0], delta);
     sub_one(state, game, delta, d);
     if (state->sub_code == 4) {
         if (state->npcs[0]->finish_move) {

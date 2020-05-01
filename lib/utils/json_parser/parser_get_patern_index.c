@@ -29,7 +29,9 @@ int get_patern_index(char *buff, char *balise)
 {
     int index = -1;
 
-    for (int i = 0; i < str_len(buff) - str_len(balise); i++) {
+    for (int i = 1; i < str_len(buff) - str_len(balise); i++) {
+        if (buff[i-1] != '"')
+            continue;
         index = get_patern_index_core(balise, buff, i, index);
         if (index != -1)
             break;

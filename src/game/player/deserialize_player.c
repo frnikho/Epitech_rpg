@@ -10,6 +10,19 @@
 #include "lib/utils/string.h"
 #include "lib/utils/file.h"
 
+void init_player_tmp_stats(player_t *player)
+{
+    int value[6];
+    value[STATS_I_AG] = 0;
+    value[STATS_I_RES] = 0;
+    value[STATS_I_STR] = 0;
+    value[STATS_I_MAG] = 0;
+    value[STATS_I_HP] = 0;
+    value[STATS_I_MP] = 0;
+    player->tmp_stats = init_stats(value);
+    return;
+}
+
 static int init_other_stats(char *content, player_t *player)
 {
     char *stats = get_key_data(content, "stats");
@@ -74,6 +87,7 @@ player_t *deserialize_player(void)
         return (0);
     if (!p->stats)
         return (0);
+    init_player_tmp_stats(p);
     p->zone = 1;
     free(c);
     return (p);
