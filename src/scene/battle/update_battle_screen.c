@@ -16,7 +16,7 @@ static sfVector2i *get_attack_order(monster_t **m, player_t *p)
     sfVector2i *order = malloc(sizeof(sfVector2i) * (length + 1));
     order[0] = (sfVector2i){PLAYER_INDEX, p->stats->agility};
     for (int i = 0; i < length-1; i++)
-        order[i+1] = (sfVector2i){i+1, m[i]->stats->agility};
+        order[i+1] = (sfVector2i){i, m[i]->stats->agility};
     order[length] = (sfVector2i){-999, -999};
     int index = 0;
     while (index != length) {
@@ -74,5 +74,6 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         battle->attacking = 1;
         update_attack_battle_screen(game, battle, delta);
     }
+    check_player_dead(game, battle, delta);
     end_battle_screen(game, battle, delta);
 }

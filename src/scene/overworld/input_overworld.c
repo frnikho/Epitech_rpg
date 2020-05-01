@@ -23,6 +23,9 @@ int input_overworld(game_t *game, overworld_t *overworld)
 {
     handle_inventory(game->event, game->player->inventory);
     if (game->event.type == sfEvtKeyPressed) {
+        if (game->event.key.code == sfKeyEscape) {
+            toggle_pause(overworld->pause);
+        }
         overworld_key_code(game);
         if (overworld->state->dialog && overworld->state->dialog->is_active) {
             update_dialog_line(overworld->state->dialog);

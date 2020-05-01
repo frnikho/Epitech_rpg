@@ -15,7 +15,21 @@
       ],
       "count":3
     },
-    "3": {},
-    "4": {}
+    "3": {
+      "monsters": [
+        "rochexplosif.json",
+        "bonaconstrictor.json",
+        "chimera.json",
+        "amerente.json"
+      ],
+      "count":3
+    },
+    "4": {
+      "monsters": [
+        "belze.json",
+        "brownie.json"
+      ],
+      "count": 3
+    }
   }
 }

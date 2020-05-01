@@ -63,6 +63,7 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     sfView_setCenter(game->camera, (sfVector2f){800, 400});
     set_sound_loop(battle->music, 1);
     init_battle_gui(game, battle);
+    battle->fade_out = 0;
     battle->fade_in = 0;
     return (0);
 }

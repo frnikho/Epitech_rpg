@@ -108,7 +108,7 @@ int *objs_ids, int *obs_ids)
 
 void init_maps_interactions(overworld_t *world)
 {
-    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * 9);
+    interaction_box_t **inter = malloc(sizeof(interaction_box_t *) * (END + 1));
     init_zone_world(world, inter);
     world->maps_interaction_boxes = inter;
 }
@@ -174,6 +174,6 @@ int init_overworld(game_t *game, overworld_t *world)
     int code = get_nbr(get_key_data(content, "code"));
     world->current_map = 0;
     init_world_map(game, world);
-    world->state = create_state(100, game, 0);
+    world->state = create_state(code, game, 0);
     return (0);
 }

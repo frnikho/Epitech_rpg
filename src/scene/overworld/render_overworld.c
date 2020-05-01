@@ -5,6 +5,7 @@
 ** render overworld function
 */
 
+#include "gui/pause_gui.h"
 #include "game.h"
 #include "scene/overworld.h"
 
@@ -70,5 +71,6 @@ int render_overworld(game_t *game, overworld_t *world, long int delta)
     draw_npcs(game->window, world->npcs, game->camera);
     draw_inventory(game->window, game->camera, game->player->inventory);
     draw_state(game->camera, game->window, world->state);
+    draw_pause(world->pause, game->window, delta);
     return (0);
 }

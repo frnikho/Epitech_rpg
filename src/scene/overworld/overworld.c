@@ -12,6 +12,7 @@
 static overworld_t *init(game_t *game)
 {
     overworld_t *overworld = malloc(sizeof(overworld_t));
+    game->code = 0;
     if (init_overworld(game, overworld) == 84)
         return (NULL);
     return (overworld);
@@ -73,7 +74,7 @@ void overworld(game_t *game, long int delta)
 {
     static overworld_t *overworld = 0;
 
-    if (!overworld)
+    if (!overworld || game->code == RESTART_GAME)
         overworld = init(game);
     if (overworld == NULL) {
         sfRenderWindow_close(game->window);

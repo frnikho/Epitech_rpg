@@ -26,6 +26,7 @@ state_t *create_state(int code, game_t *game, int sub_code)
     state->music = 0;
     state->sub_code = sub_code;
     state->dialog = 0;
+    state->npcs = 0;
     state->delta = 0;
     state->fade_out = 0;
     state->fade_in = 0;
