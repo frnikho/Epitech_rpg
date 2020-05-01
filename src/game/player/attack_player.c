@@ -25,7 +25,7 @@ int player_attack_monster(player_t *player, monster_t *monster)
 {
     if (!monster || !player)
         return (0);
-    int str = player->stats->strenght;
+    int str = (player->tmp_stats->strenght + player->stats->strenght);
     int damage = calc_attack_damage(str, monster->stats->resistance);
     return (damage);
 }

@@ -105,6 +105,7 @@ SCENE					=					$(PATH_SCENE)/intro/intro_screen.c												\
 											$(PATH_SCENE)/battle/update_battle_screen.c										\
 											$(PATH_SCENE)/battle/update_attack_battle_screen.c								\
 											$(PATH_SCENE)/battle/run_away.c													\
+											$(PATH_SCENE)/battle/tension.c													\
 											$(PATH_SCENE)/battle/end_battle_screen.c										\
 											$(PATH_SCENE)/overworld/overworld.c												\
 											$(PATH_SCENE)/overworld/init_overworld.c										\

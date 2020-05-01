@@ -44,6 +44,7 @@ typedef struct player_s {
     inventory_t *inventory;
     player_gui_t *gui;
     stats_t *stats;
+    stats_t *tmp_stats;
     collision_box_t *collision;
     int current_animations;
     anim_sprite_t **animations;
