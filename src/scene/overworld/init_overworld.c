@@ -176,5 +176,6 @@ int init_overworld(game_t *game, overworld_t *world)
     init_world_map(game, world);
     world->state = create_state(100, game, 0);
     world->pause = create_pause(game->window, game->camera);
+    game->player->in_teleportation = 0;
     return (0);
 }
