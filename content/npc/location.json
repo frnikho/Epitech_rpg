@@ -6,9 +6,8 @@
       "y":240,
       "speed":1,
       "file":"content/npc/knight.json",
-      "dialog":"first_knight",
+      "dialog":"toilet_soldier",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":2,
           "a":{
@@ -29,9 +28,8 @@
       "y":1824,
       "speed":1,
       "file":"content/npc/kebabier.json",
-      "dialog":"first_knight",
+      "dialog":"maitre_kebabier",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":6,
           "a":{
@@ -72,9 +70,8 @@
       "y":1824,
       "speed":1,
       "file":"content/npc/onizuka.json",
-      "dialog":"first_knight",
+      "dialog":"zac_client_1",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":4,
           "a":{
@@ -105,9 +102,8 @@
       "y":1892,
       "speed":1,
       "file":"content/npc/musclor.json",
-      "dialog":"first_knight",
+      "dialog":"zac_client_2",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -123,9 +119,8 @@
       "y":2036,
       "speed":1,
       "file":"content/npc/onizuka.json",
-      "dialog":"first_knight",
+      "dialog":"zac_client_3",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":2,
           "a":{
@@ -146,7 +141,7 @@
       "y":1240,
       "speed":1,
       "file":"content/npc/grandpa.json",
-      "dialog":"first_knight",
+      "dialog":"resting_grandpa",
       "script":{
         "dialog":"......",
         "actions":{
@@ -164,7 +159,7 @@
       "y":1316,
       "speed":1,
       "file":"content/npc/grandma.json",
-      "dialog":"first_knight",
+      "dialog":"resting_grandma",
       "script":{
         "dialog":"......",
         "actions":{
@@ -182,9 +177,8 @@
       "y":1156,
       "speed":1,
       "file":"content/npc/greenwoman.json",
-      "dialog":"first_knight",
+      "dialog":"cooking_mom",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":7,
           "a":{
@@ -230,9 +224,8 @@
       "y":1824,
       "speed":1,
       "file":"content/npc/bodyguard.json",
-      "dialog":"first_knight",
+      "dialog":"bank_guard_1",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -248,9 +241,8 @@
       "y":1824,
       "speed":1,
       "file":"content/npc/bodyguard.json",
-      "dialog":"first_knight",
+      "dialog":"bank_guard_2",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -266,7 +258,7 @@
       "y":1984,
       "speed":1,
       "file":"content/npc/runner.json",
-      "dialog":"first_knight",
+      "dialog":"footing_guy",
       "script":{
         "dialog":"......",
         "actions":{
@@ -289,9 +281,8 @@
       "y":1536,
       "speed":1,
       "file":"content/npc/worker.json",
-      "dialog":"first_knight",
+      "dialog":"fisherman",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":10,
           "a":{
@@ -352,9 +343,8 @@
       "y":1608,
       "speed":1,
       "file":"content/npc/merchant.json",
-      "dialog":"first_knight",
+      "dialog":"topaze_merchant",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":3,
           "a":{
@@ -380,9 +370,8 @@
       "y":96,
       "speed":1,
       "file":"content/npc/sister.json",
-      "dialog":"first_knight",
+      "dialog":"topaze_sister_1",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":2,
           "a":{
@@ -403,9 +392,8 @@
       "y":180,
       "speed":1,
       "file":"content/npc/sister.json",
-      "dialog":"first_knight",
+      "dialog":"topaze_sister_2",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -421,7 +409,7 @@
       "y":264,
       "speed":1,
       "file":"content/npc/old_man.json",
-      "dialog":"first_knight",
+      "dialog":"watching_old_man",
       "script":{
         "dialog":"......",
         "actions":{
@@ -439,9 +427,8 @@
       "y":162,
       "speed":1,
       "file":"content/npc/boy.json",
-      "dialog":"first_knight",
+      "dialog":"playing_boy",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -457,9 +444,8 @@
       "y":333,
       "speed":1,
       "file":"content/npc/girl.json",
-      "dialog":"first_knight",
+      "dialog":"playing_girl",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -475,9 +461,8 @@
       "y":300,
       "speed":1,
       "file":"content/npc/dog.json",
-      "dialog":"first_knight",
+      "dialog":"playing_dog",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":2,
           "a":{
@@ -498,9 +483,8 @@
       "y":1812,
       "speed":1,
       "file":"content/npc/cat.json",
-      "dialog":"first_knight",
+      "dialog":"topaze_cat",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":4,
           "a":{
@@ -531,9 +515,8 @@
       "y":1064,
       "speed":1,
       "file":"content/npc/greenwoman.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_3",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -549,7 +532,7 @@
       "y":1027,
       "speed":1,
       "file":"content/npc/runner.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_1",
       "script":{
         "dialog":"......",
         "actions":{
@@ -567,9 +550,8 @@
       "y":1101,
       "speed":1,
       "file":"content/npc/old_man.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_2",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -585,9 +567,8 @@
       "y":1204,
       "speed":1,
       "file":"content/npc/onizuka.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_4",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -603,9 +584,8 @@
       "y":1244,
       "speed":1,
       "file":"content/npc/musclor.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_5",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -621,9 +601,8 @@
       "y":1244,
       "speed":1,
       "file":"content/npc/grandpa.json",
-      "dialog":"first_knight",
+      "dialog":"nothing_to_say",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -639,9 +618,8 @@
       "y":1141,
       "speed":1,
       "file":"content/npc/purplewoman.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_6",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -657,9 +635,8 @@
       "y":1141,
       "speed":1,
       "file":"content/npc/worker.json",
-      "dialog":"first_knight",
+      "dialog":"bar_client_7",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":1,
           "a":{
@@ -675,9 +652,8 @@
       "y":1068,
       "speed":1,
       "file":"content/npc/merchant.json",
-      "dialog":"first_knight",
+      "dialog":"barman",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":7,
           "a":{
@@ -723,9 +699,8 @@
       "y":193,
       "speed":1,
       "file":"content/npc/purplewoman.json",
-      "dialog":"first_knight",
+      "dialog":"citizen",
       "script":{
-        "dialog":"......",
         "actions":{
           "count":9,
           "a":{
