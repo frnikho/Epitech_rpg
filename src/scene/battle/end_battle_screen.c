@@ -78,6 +78,19 @@ static int check_level(game_t *g, battle_screen_t *b, int **var)
     }
 }
 
+void print_point(sfRenderWindow *window, sfVector2f point)
+{
+    sfCircleShape *circle = sfCircleShape_create();
+    int radius = 20;
+
+    sfCircleShape_setFillColor(circle, sfColor_fromRGBA(255, 0, 0, 255));
+    sfCircleShape_setPosition(circle, (sfVector2f){point.x-(radius/2), \
+        point.y-(radius/2)});
+    sfCircleShape_setRadius(circle, radius);
+    sfRenderWindow_drawCircleShape(window, circle, NULL);
+    sfCircleShape_destroy(circle);
+}
+
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
 {
     static int tmp_delta = 0;
@@ -92,8 +105,12 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
             gold += b->monster[i]->gold;
         }
     }
-    if (tmp_delta == 0)
+    if (tmp_delta == 0) {
         init_end_dialog(g, b, &gold, &xp);
+        b->particle_system = create_particle_system(500, (sfVector2f){800, 400}, 30, 10);
+        particle_system_setSize(b->particle_system, (sfVector2f){2, 2});
+    }
+    
     if (b->dialog->is_finished && code == 0)
         return check_level(g, b, ((int*[]){&code, &tmp_delta, &xp, &gold}));
     tmp_delta += delta;

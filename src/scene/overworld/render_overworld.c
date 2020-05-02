@@ -50,19 +50,6 @@ static void draw_npcs(sfRenderWindow *window, npc_t **npcs, sfView *camera)
     }
 }
 
-void print_point(sfRenderWindow *window, sfVector2f point)
-{
-    sfCircleShape *circle = sfCircleShape_create();
-    int radius = 20;
-
-    sfCircleShape_setFillColor(circle, sfColor_fromRGBA(255, 0, 0, 255));
-    sfCircleShape_setPosition(circle, (sfVector2f){point.x-(radius/2), \
-        point.y-(radius/2)});
-    sfCircleShape_setRadius(circle, radius);
-    sfRenderWindow_drawCircleShape(window, circle, NULL);
-    sfCircleShape_destroy(circle);
-}
-
 int render_overworld(game_t *game, overworld_t *world, long int delta)
 {
     sfRenderWindow_clear(game->window, sfBlack);

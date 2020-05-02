@@ -40,7 +40,11 @@ EFFECTS					=					$(PATH_EFFECTS)/bump/bump.c													\
 											$(PATH_EFFECTS)/bump/active_bump.c											\
 											$(PATH_EFFECTS)/fade/fade.c													\
 											$(PATH_EFFECTS)/fade/fade_draw.c											\
-											$(PATH_EFFECTS)/fade/fade_set.c
+											$(PATH_EFFECTS)/fade/fade_set.c												\
+											$(PATH_EFFECTS)/particles/create_particles.c								\
+											$(PATH_EFFECTS)/particles/destroy_particles.c								\
+											$(PATH_EFFECTS)/particles/particles_tools.c									\
+											$(PATH_EFFECTS)/particles/draw_particles.c
 
 UTILS					=					$(PATH_UTILS)/string/str_split.c											\
 											$(PATH_UTILS)/string/str_split_json.c										\

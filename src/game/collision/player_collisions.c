@@ -14,18 +14,10 @@
 #include <SFML/Graphics.h>
 #include "scene/overworld.h"
 
-static void update_collisions_box(player_t *p, npc_t **npcs, \
-long int delta, overworld_t *world)
+static void update_npcs_collision_boxs(npc_t **npcs, overworld_t *world)
 {
     sfFloatRect r = {0, 0, 0, 0};
-    float z = world->map->zoom;
-    float ox = world->map->offset.x;
-    float oy = world->map->offset.y;
-    p->collision->collision_box = \
-    sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
-    p->collision->collision_box.top += p->collision->collision_box.width/2;
-    p->collision->collision_box.height -= (p->collision->\
-collision_box.height/2);
+
     for (int i = 0; npcs[i]; i++) {
         r = sfSprite_getGlobalBounds(npcs[i]->animations[npcs[i]->\
         current_animations]->sprite);
@@ -34,21 +26,42 @@ collision_box.height/2);
             r.width+10, r.height+10};
     }
     for (int i = 0; world->state->npcs[i]; i++) {
-        r = sfSprite_getGlobalBounds(world->state->npcs[i]->animations[world->state->npcs[i]->\
-        current_animations]->sprite);
+        r = sfSprite_getGlobalBounds(world->state->npcs[i]->animations[world->\
+        state->npcs[i]->current_animations]->sprite);
         world->state->npcs[i]->collision->collision_box = r;
-        world->state->npcs[i]->trigger->collision_box = (sfFloatRect){r.left-5, r.top-5, \
-            r.width+10, r.height+10};
+        world->state->npcs[i]->trigger->collision_box = \
+        (sfFloatRect){r.left-5, r.top-5, r.width+10, r.height+10};
     }
+}
+
+void update_player_collision_box(player_t *p)
+{
+    p->collision->collision_box = \
+    sfSprite_getGlobalBounds(p->animations[p->current_animations]->sprite);
+    p->collision->collision_box.top += p->collision->collision_box.width/2;
+    p->collision->collision_box.height -= (p->collision->\
+    collision_box.height/2);
+}
+
+static void update_collisions_box(player_t *p, npc_t **npcs, \
+long int delta, overworld_t *world)
+{
+    sfFloatRect r = {0, 0, 0, 0};
+    float z = world->map->zoom;
+    float ox = world->map->offset.x;
+    float oy = world->map->offset.y;
+
+    update_player_collision_box(p);
+    update_npcs_collision_boxs(npcs, world);
     for (int i = 0; world->map->obs[i]; i++) {
         r = world->map->obs[i]->shape;
-        world->map->obs[i]->collision->collision_box = (sfFloatRect){r.left*z+ox, \
-r.top*z+oy, r.width*z+ox, r.height*z+oy};
+        world->map->obs[i]->collision->collision_box = \
+        (sfFloatRect){r.left*z+ox, r.top*z+oy, r.width*z+ox, r.height*z+oy};
     }
     for (int i = 0; world->map->interaction_boxes[i]; i++) {
         r = world->map->interaction_boxes[i]->shape;
-        world->map->interaction_boxes[i]->collision_box = (sfFloatRect){r.left*z+ox, \
-r.top*z+oy, r.width*z, r.height*z};
+        world->map->interaction_boxes[i]->collision_box = \
+        (sfFloatRect){r.left*z+ox, r.top*z+oy, r.width*z, r.height*z};
     }
 }
 

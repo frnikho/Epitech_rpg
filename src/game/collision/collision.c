@@ -51,31 +51,40 @@ c2->collision_box) == 1) {
     return (0);
 }
 
-int check_collision_ahead(overworld_t *world, player_t *player, long int delta)
+static int check_npcs_collision_ahead(npc_t **npcs, player_t *player, \
+long int delta)
 {
-    npc_t **npcs = world->npcs;
-    npc_t **npcs_state = world->state->npcs;
-    obstacle_t **map_obs = world->map->obs;
-
-    int result = 0;
+    int result = 3;
+    int temp_result = 0;
 
     for (int i = 0; npcs[i]; i++) {
-        result = check_collisions(player->collision, npcs[i]->collision);
-        if (result != 0)
-            return (result);
+        temp_result = check_collisions(player->collision, npcs[i]->collision);
+        if (temp_result != 0)
+            temp_result < result ? result = temp_result : 0;
         else if (npcs[i]->collision->update_on_default == 1 && \
-player->search_for_interlocutor == 1)
+            player->search_for_interlocutor == 1)
             update_npc(npcs[i], delta);
-        result = check_collisions(player->collision, npcs[i]->trigger);
-        if (result != 0) {
+        temp_result = check_collisions(player->collision, npcs[i]->trigger);
+        if (temp_result != 0) {
             player->interlocutor = npcs[i];
-            return (result);
+            temp_result < result ? result = temp_result : 0;
         } else if (npcs[i]->trigger->update_on_default == 1 && \
-player->search_for_interlocutor == 1)
+            player->search_for_interlocutor == 1)
             update_npc(npcs[i], delta);
     }
+    if (result == 3)
+        return (0);
+    return (result);
+}
 
+int check_collision_ahead(overworld_t *world, player_t *player, long int delta)
+{
+    npc_t **npcs_state = world->state->npcs;
+    obstacle_t **map_obs = world->map->obs;
+    int result = 0;
 
+    if ((result = check_npcs_collision_ahead(world->npcs, player, delta)) != 0)
+        return (result);
     for (int i = 0; npcs_state[i]; i++) {
         result = check_collisions(player->collision, npcs_state[i]->collision);
         if (result != 0)
@@ -91,8 +100,6 @@ player->search_for_interlocutor == 1)
 player->search_for_interlocutor == 1)
         //    update_npc(npcs_state[i], delta);
     }
-
-
     for (int i = 0; map_obs[i]; i++) {
         if (check_collisions(player->collision, map_obs[i]->collision) == 1)
             return (1);
