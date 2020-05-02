@@ -28,6 +28,7 @@ static int init_other_stats(char *content, player_t *player)
     char *stats = get_key_data(content, "stats");
     char *hp = get_key_data(stats, "hp");
     char *mp = get_key_data(stats, "mp");
+    player->gold = fget_nbr(get_key_data(content, "gold"));
     player->stats->hp = get_nbr(hp);
     player->stats->mp = get_nbr(mp);
     player->health = get_nbr(hp);

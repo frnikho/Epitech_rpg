@@ -13,5 +13,8 @@ void draw_pause(pause_gui_t *gui, sfRenderWindow *window, long int delta)
         return;
     update_pause(gui, delta);
     draw_sprite(window, gui->box);
+    draw_text(window, gui->main_menu);
+    draw_text(window, gui->quit);
+    draw_text(window, gui->resume);
     draw_sprite(window, gui->cursor);
 }
