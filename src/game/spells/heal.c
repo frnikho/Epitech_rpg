@@ -8,7 +8,6 @@
 #include "game.h"
 #include "scene/battle.h"
 
-int heal(game_t *game,  monster_t **monsters)
+int heal(game_t *game, monster_t **monsters)
 {
-
 }

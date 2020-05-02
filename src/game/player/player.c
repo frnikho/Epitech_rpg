@@ -59,9 +59,8 @@ static anim_sprite_t **create_annimations(void)
     return (animations);
 }
 
-player_t *create_player(void)
+static void create_player_init_values(player_t *player)
 {
-    player_t *player = deserialize_player();
     player->interlocutor = NULL;
     player->learned_abi = 0;
     player->learned_spell = 0;
@@ -73,6 +72,13 @@ player_t *create_player(void)
     player->inventory = create_inventory();
     player->in_teleportation = 1;
     player->animations = create_annimations();
+}
+
+player_t *create_player(void)
+{
+    player_t *player = deserialize_player();
+
+    create_player_init_values(player);
     create_gui(player);
     player->is_ghost = 0;
     player->collision = create_collision_box(\

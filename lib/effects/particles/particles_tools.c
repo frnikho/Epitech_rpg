@@ -11,14 +11,14 @@
 #include <SFML/Graphics.h>
 #include "lib/effects/particle.h"
 
-void particle_setSize(particle_t *p, sfVector2f size)
+void particle_setsize(particle_t *p, sfVector2f size)
 {
     sfSprite_setScale(p->sprite, size);
 }
 
-void particle_system_setSize(particle_system_t *sys, sfVector2f size)
+void particle_system_setsize(particle_system_t *sys, sfVector2f size)
 {
     for (int i = 0; i < sys->particule_nb; i++) {
-        particle_setSize(sys->particles[i], size);
+        particle_setsize(sys->particles[i], size);
     }
 }

@@ -17,7 +17,6 @@ void set_dialog_relative(dialog_t *dialog, sfView *view)
 {
     dialog->relative = 1;
     dialog->cam = view;
-    //set_dialog_scale(dialog, 0.5f);
 }
 
 void set_dialog_position(dialog_t *d, sfRenderWindow *w, sfView *v)

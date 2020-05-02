@@ -8,6 +8,17 @@
 #include <stdlib.h>
 #include "game/player.h"
 
+static void fill_stats_values(int **stats)
+{
+    (*stats)[0] = (rand() % 3) + 1;
+    (*stats)[1] = (rand() % 3) + 1;
+    (*stats)[2] = (rand() % 3) + 1;
+    (*stats)[3] = (rand() % 3) + 1;
+    (*stats)[4] = (rand() % 3) + 1;
+    (*stats)[5] = (rand() % 3) + 1;
+    (*stats)[6] = 0;
+}
+
 int *check_player_levelup(player_t *player)
 {
     int require_xp = get_next_xp_level(player);
@@ -17,13 +28,7 @@ int *check_player_levelup(player_t *player)
         (*current_xp) = (*current_xp) - require_xp;
         player->level++;
         int *stats = malloc(sizeof(int) * 7);
-        stats[0] = (rand() % 3) + 1;
-        stats[1] = (rand() % 3) + 1;
-        stats[2] = (rand() % 3) + 1;
-        stats[3] = (rand() % 3) + 1;
-        stats[4] = (rand() % 3) + 1;
-        stats[5] = (rand() % 3) + 1;
-        stats[6] = 0;
+        fill_stats_values(&stats);
         player->stats->strenght += stats[0];
         player->stats->resistance += stats[1];
         player->stats->agility += stats[2];

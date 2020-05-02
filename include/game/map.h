@@ -88,7 +88,7 @@ char *get_key_data(char *buff, char *balise);
 float my_getfloat(char *str);
 
 void draw_map(map_t *map, sfRenderWindow *window, int *layers_to_print_tiles, \
-int *layers_to_print_objs, sfView *camera);
+int *layers_to_print_objs);
 void update_zoom_and_offset(map_t *map);
 void destroy_and_free_map(map_t *map);
 int map_obj_id(int id);

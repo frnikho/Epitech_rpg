@@ -9,7 +9,7 @@
 
 static void update_cursor(pause_gui_t *pause)
 {
-    static sfVector2i pos[] = {{120, 235}, {120, 275},  {120, 315}, {0, 0}};
+    static sfVector2i pos[] = {{120, 235}, {120, 275}, {120, 315}, {0, 0}};
     if (pause->cursor_select < 0)
         pause->cursor_select = 0;
     if (pause->cursor_select > 2)
@@ -19,7 +19,6 @@ static void update_cursor(pause_gui_t *pause)
     rf = sfRenderWindow_mapPixelToCoords(pause->window, tmp, pause->camera);
     set_sprite_position(pause->cursor, rf);
 }
-
 
 void update_pause(pause_gui_t *pause, long int delta)
 {

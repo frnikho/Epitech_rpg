@@ -10,5 +10,4 @@
 
 int weakness_hit(game_t *game, monster_t **monsters)
 {
-
 }

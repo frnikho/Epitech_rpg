@@ -19,9 +19,10 @@ void destroy_and_free_map(map_t *map)
 }
 
 void draw_map(map_t *map, sfRenderWindow *window, int *layers_to_print_tiles, \
-int *layers_to_print_objs, sfView *camera)
+int *layers_to_print_objs)
 {
-    draw_tiles(map, window, layers_to_print_tiles, camera);
+    draw_tiles(map, window, layers_to_print_tiles, \
+    sfRenderWindow_getView(window));
     draw_objects(map, window, layers_to_print_objs);
     //draw_obstacles(map, window);
 }

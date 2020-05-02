@@ -18,8 +18,6 @@ int i, int y)
 
     if (layer->obj_map[y][i] == -1)
         return;
-    //if (is_object_displayed(i, y, layer, window) == 0)
-    //    return;
     position.x = ((i*t_size)-obj->center_offset.x+(t_size/2))*\
     zoom+layer->offset.x;
     position.y = ((y*t_size)-obj->center_offset.y+(t_size/2))*\
