@@ -42,7 +42,7 @@ int input_main_menu(game_t *game, main_menu_t *screen)
         }
     }
     if (evt == sfEvtMouseButtonPressed) {
-        pos = sfMouse_getPosition(game->window);
+        pos = sfMouse_getPositionRenderWindow(game->window);
         if (is_point_in_coords(pos, (sfVector2i){639, 424}, \
         (sfVector2i){699, 442}, &is_clicked) == 1)
             screen->select_index = 0;
