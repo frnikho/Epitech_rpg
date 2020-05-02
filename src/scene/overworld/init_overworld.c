@@ -123,7 +123,7 @@ void init_maps(overworld_t *world)
     maps[0]->tile_set = "assets/tiles/outside.png";
     maps[0]->location = "topaze";
     maps[0]->layer_nb = 2;
-    maps[0]->obs_nb = 265;
+    maps[0]->obs_nb = 268;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 1.8f;
@@ -148,7 +148,7 @@ DUNGEON_ENTER, FOREST_2, FOREST_1, POISON, 0});
     maps[2]->tile_set = "assets/tiles/inside.png";
     maps[2]->location = "default";
     maps[2]->layer_nb = 2;
-    maps[2]->obs_nb = 0;
+    maps[2]->obs_nb = 183;
     maps[2]->tile_size = 20;
     maps[2]->offset = (sfVector2f){0, 0};
     maps[2]->zoom = 2.0f;
