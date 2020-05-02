@@ -27,23 +27,9 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
         battle->select_gui->is_active = 1;
         streak = 0;
     }
-    if (battle->attack_gui->select_index == SELECT_TENSION \
-&& battle->attack_gui->is_selected) {
-        battle->attack_gui->is_selected = 0;
-        if (streak <= 3) {
-            game->player->tmp_stats->strenght = add_tension(game, battle, streak);
-            streak++;
-        }
-    }
-    if (battle->attack_gui->select_index == SELECT_RUN_AWAY \
-&& battle->attack_gui->is_selected) {
-        game->player->fight = 0;
-        game->current_state = OVERWORLD;
-        game->code = RESET_CODE;
-        update_attack_battle_screen(game, battle, -1);
-        dispose_battle_screen(game, battle);
+    tension(game, battle, &streak);
+    if (run_away(battle, game) == 0)
         return (0);
-    }
     if (battle->attack_gui->is_selected) {
         handle_select_gui(game->event, battle->select_gui);
         battle->select_gui->is_active = 1;

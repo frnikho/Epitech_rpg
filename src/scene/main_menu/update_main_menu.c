@@ -20,6 +20,7 @@ int update_main_menu(game_t *game, main_menu_t *menu, long int delta)
     if (menu->is_selected) {
         if (menu->select_index == 0) {
             game->current_state = OVERWORLD;
+            game->player->in_teleportation = 1;
             game->code = RESTART_GAME;
         }
         if (menu->select_index == 1)

@@ -20,6 +20,7 @@
 #include "game/player.h"
 #include "lib/effects/fade.h"
 #include "game/spell.h"
+#include "lib/effects/particle.h"
 
 typedef struct round_s {
     sfVector2i *order;
@@ -54,6 +55,7 @@ typedef struct battle_screen_s {
     fade_t *fade_in;
     fade_t *fade_out;
     spell_gui_t spell_gui;
+    particle_system_t *particle_system;
 } battle_screen_t;
 
 void battle_screen(game_t *game, long int delta);
@@ -67,7 +69,9 @@ int render_battle_screen(game_t *game, battle_screen_t *battle, long int delta);
 void reset_battle_gui(game_t *game, battle_screen_t *battle);
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta);
 void check_run_away(game_t *game, battle_screen_t *battle, long int delta);
+int run_away(battle_screen_t *battle, game_t *game);
 int try_run_away(game_t *game, battle_screen_t *battle);
+void tension(game_t *game, battle_screen_t *battle, int *streak);
 int add_tension(game_t *game, battle_screen_t *battle, int streak);
 int check_player_dead(game_t *g, battle_screen_t *b, long int delta);
 #endif
