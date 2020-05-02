@@ -26,14 +26,9 @@ static char *clean_fp(char *fp)
     return (result);
 }
 
-npc_t **get_town_npcs(char *town)
+static void get_town_npws_core(int count, char *town_npcs, \
+npc_t ***npcs, char *town)
 {
-    int fd = open_file("content/npc/location.json");
-    char *content = read_file(fd, "content/npc/location.json");
-
-    char *town_npcs = get_key_data(content, town);
-    int count = fget_nbr(get_key_data(town_npcs, "count"));
-    npc_t **npcs = malloc(sizeof(npc_t*) * (count + 1));
     for (int i = 0; i < count; i++) {
         char *value = convert_str(i+1);
         char *key = get_key_data(town_npcs, value);
@@ -44,12 +39,23 @@ npc_t **get_town_npcs(char *town)
         char *clear_fp = clean_fp(fp);
         char *dialog = get_key_data(key, "dialog");
         free(fp);
-        npcs[i] = create_npc(clear_fp, (sfVector2f){x, y}, speed);
-        npcs[i]->dialog = create_dialog(get_dialog(clean_fp(dialog)), \
+        (*npcs)[i] = create_npc(clear_fp, (sfVector2f){x, y}, speed);
+        (*npcs)[i]->dialog = create_dialog(get_dialog(clean_fp(dialog)), \
 1, (sfVector2f)GUI_POS, 1);
-        npcs[i]->script = get_npc_script(get_key_data(key, "script"));
+        (*npcs)[i]->script = get_npc_script(get_key_data(key, "script"));
         free(dialog);
     }
+}
+
+npc_t **get_town_npcs(char *town)
+{
+    int fd = open_file("content/npc/location.json");
+    char *content = read_file(fd, "content/npc/location.json");
+    char *town_npcs = get_key_data(content, town);
+    int count = fget_nbr(get_key_data(town_npcs, "count"));
+    npc_t **npcs = malloc(sizeof(npc_t*) * (count + 1));
+
+    get_town_npws_core(count, town_npcs, &npcs, town);
     npcs[count] = 0;
     return (npcs);
 }

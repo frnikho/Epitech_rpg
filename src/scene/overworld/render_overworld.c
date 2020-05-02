@@ -34,9 +34,7 @@ static void render_map_world(game_t *game, overworld_t *world, long int delta)
     sfRenderWindow_clear(game->window, sfBlack);
     update_zoom_and_offset(world->map);
     draw_map(world->map, game->window, (int []){0}, \
-(int []){99, 0}, game->camera);
-    //draw_map(world->map, game->window, (int []){2, 0}, (int []){99, 0});
-    //draw_interaction_boxes(game->window, world->map);
+(int []){99, 0});
 }
 
 static void draw_npcs(sfRenderWindow *window, npc_t **npcs, sfView *camera)

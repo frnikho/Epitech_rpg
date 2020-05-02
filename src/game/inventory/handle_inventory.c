@@ -25,20 +25,12 @@ void handle_inventory(sfEvent event, inventory_t *inv)
     handle_inv_gamepad(event, inv);
     if (event.type != sfEvtKeyPressed)
         return;
-    if (event.key.code == sfKeyZ) {
-        if (inv->cursor_index.y != 0)
-            inv->cursor_index.y--;
-    }
-    if (event.key.code == sfKeyS) {
-        if (inv->cursor_index.y != 2)
-            inv->cursor_index.y++;
-    }
-    if (event.key.code == sfKeyQ) {
-        if (inv->cursor_index.x != 0)
-            inv->cursor_index.x--;
-    }
-    if (event.key.code == sfKeyD) {
-        if (inv->cursor_index.x != 9)
-            inv->cursor_index.x++;
-    }
+    if (event.key.code == sfKeyZ && inv->cursor_index.y != 0)
+        inv->cursor_index.y--;
+    if (event.key.code == sfKeyS && inv->cursor_index.y != 2)
+        inv->cursor_index.y++;
+    if (event.key.code == sfKeyQ && inv->cursor_index.x != 0)
+        inv->cursor_index.x--;
+    if (event.key.code == sfKeyD && inv->cursor_index.x != 9)
+        inv->cursor_index.x++;
 }

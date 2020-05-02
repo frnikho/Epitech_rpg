@@ -8,7 +8,6 @@
 #include <scene/battle.h>
 #include "game.h"
 
-int flame(game_t *game,  monster_t **monsters)
+int flame(game_t *game, monster_t **monsters)
 {
-
 }

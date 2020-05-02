@@ -15,7 +15,6 @@ sfFloatRect rect, int *coords)
     if (layer->tiles_map[coords[1]][coords[0]] == -1)
         return;
     points = is_tile_displayed(layer, coords[0], coords[1]);
-
     if (is_square_in_window(rect, points) == 0) {
         free(points);
         return;
@@ -24,15 +23,8 @@ sfFloatRect rect, int *coords)
 tiles_map[coords[1]][coords[0]]-1], points[0]);
     sfSprite_setScale(layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], \
 (sfVector2f){layer->zoom, layer->zoom});
-    /*sfConvexShape_setPoint(layer->tile_shape, 0, points[0]);
-    sfConvexShape_setPoint(layer->tile_shape, 1, points[1]);
-    sfConvexShape_setPoint(layer->tile_shape, 2, points[2]);
-    sfConvexShape_setPoint(layer->tile_shape, 3, points[3]);
-    sfConvexShape_setTexture(layer->tile_shape, \
-    layer->tiles[layer->tiles_map[coords[1]][coords[0]]-1], sfTrue); */
     sfRenderWindow_drawSprite(window, layer->tiles[layer->\
 tiles_map[coords[1]][coords[0]]-1], 0);
-    //sfRenderWindow_drawConvexShape(window, layer->tile_shape, NULL);
     free(points);
 }
 

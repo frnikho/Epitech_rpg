@@ -54,10 +54,8 @@ void destroy_npc(npc_t *npc)
     free(npc);
 }
 
-npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
+static void npc_init_values(npc_t *npc, int speed, char *filepath)
 {
-    npc_t *npc = malloc(sizeof(npc_t));
-
     npc->delta = 0;
     npc->delta_movement = 0;
     npc->current_animations = 0;
@@ -66,6 +64,13 @@ npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
     npc->need_move = 0;
     npc->finish_move = 0;
     npc->script = 0;
+}
+
+npc_t *create_npc(char *filepath, sfVector2f pos, int speed)
+{
+    npc_t *npc = malloc(sizeof(npc_t));
+
+    npc_init_values(npc, speed, filepath);
     npc->next_pos = (sfVector2f){0, 0};
     npc->animations = malloc(sizeof(anim_sprite_t*) * 5);
     npc->animations[0] = init_npc(npc, filepath, "idle");

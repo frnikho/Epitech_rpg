@@ -43,8 +43,6 @@ sfRenderWindow *window)
     points[2].y = position.y + obj->disapear_dist.y;
     points[3].x = position.x - obj->disapear_dist.x;
     points[3].y = position.y + obj->disapear_dist.y;
-    //if (is_square_in_window(window, points) == 0)
-    //    return (0);
     return (1);
 }
 

@@ -7,6 +7,16 @@
 
 #include "game/map.h"
 
+static void create_unit_tile(int *index, sfSprite ***tab, \
+sfTexture *tmp, sfIntRect *rect)
+{
+    (*tab)[(*index)] = sfSprite_create();
+    sfSprite_setTexture((*tab)[(*index)], tmp, 0);
+    sfSprite_setTextureRect((*tab)[(*index)], (*rect));
+    rect->left += rect->width;
+    (*index)++;
+}
+
 sfSprite **create_tiles(char *tile_set, int tile_size)
 {
     sfSprite **tab = NULL;
@@ -15,16 +25,12 @@ sfSprite **create_tiles(char *tile_set, int tile_size)
     sfVector2u max_size = sfTexture_getSize(tile_set_texture);
     int index = 0;
     sfTexture *tmp = sfTexture_createFromFile(tile_set, 0);
+
     tab = malloc(sizeof(sfTexture*) * (((max_size.x / rect.width) * \
     (max_size.y / rect.height))+1));
     for (int y = 0; (rect.top + rect.height) <= max_size.y; y++) {
-        for (int x = 0; (rect.left + rect.width) <= max_size.x; x++) {
-            tab[index] = sfSprite_create();
-            sfSprite_setTexture(tab[index], tmp, 0);
-            sfSprite_setTextureRect(tab[index], rect);
-            rect.left += rect.width;
-            index++;
-        }
+        for (int x = 0; (rect.left + rect.width) <= max_size.x; x++)
+            create_unit_tile(&index, &tab, tmp, &rect);
         rect.left = 0;
         rect.top += rect.height;
     }
@@ -35,7 +41,7 @@ sfSprite **create_tiles(char *tile_set, int tile_size)
 
 object_t **create_objects(void)
 {
-    object_t **tab = malloc(sizeof(object_t*) * 3);
+    object_t **tab = malloc(sizeof(object_t*) * 2);
 
     tab[0] = malloc(sizeof(object_t));
     tab[0]->texture = sfTexture_createFromFile(\
@@ -46,18 +52,7 @@ object_t **create_objects(void)
 tab[0]->texture_size.y + 10};
     tab[0]->center_offset = (sfVector2f){((tab[0]->texture_size.x * \
 tab[0]->scale.x)/2), (tab[0]->texture_size.y * tab[0]->scale.y)-5};
-
-    tab[1] = malloc(sizeof(object_t));
-    tab[1]->texture = sfTexture_createFromFile(\
-"assets/sprite/tiles/tiny-house.png", NULL);
-    tab[1]->scale = (sfVector2f){0.8, 0.8};
-    tab[1]->texture_size = sfTexture_getSize(tab[1]->texture);
-    tab[1]->disapear_dist = (sfVector2f){tab[1]->texture_size.x + 10, \
-tab[1]->texture_size.y + 10};
-    tab[1]->center_offset = (sfVector2f){((tab[1]->texture_size.x * \
-tab[1]->scale.x)/2), (tab[1]->texture_size.y * tab[1]->scale.y)/2};
-
-    tab[2] = NULL;
+    tab[1] = NULL;
     return (tab);
 }
 
