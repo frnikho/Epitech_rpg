@@ -72,6 +72,7 @@ SRC						=					$(PATH_MAIN)/main.c																\
 											$(PATH_MAIN)/gui/select_dialog/handle_select_gui.c								\
 											$(PATH_MAIN)/gui/pause/pause.c													\
                                             $(PATH_MAIN)/gui/pause/draw_pause.c												\
+                                            $(PATH_MAIN)/gui/pause/handle_pause.c											\
                                             $(PATH_MAIN)/gui/pause/update_pause.c											\
 											$(PATH_MAIN)/game/map/dependencies.c											\
 											$(PATH_MAIN)/game/map/destroy_and_free.c										\

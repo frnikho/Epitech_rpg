@@ -11,21 +11,29 @@
 
 void overworld_key_code(game_t *game)
 {
-    if (game->event.key.code == sfKeyE) {
+    if (game->event.key.code == sfKeyE)
         open_inventory(game->player->inventory);
-    }
-    if (game->event.key.code == sfKeyL) {
+    if (game->event.key.code == sfKeyL)
         sfRenderWindow_close(game->window);
+}
+
+static void input_pause(game_t *game, pause_gui_t *pause, overworld_t *world)
+{
+    if (!pause->is_selected)
+        return;
+    if (pause->cursor_select == 1) {
+        game->current_state = MAIN_MENU;
+        destroy_overworld(game, world);
     }
 }
 
 int input_overworld(game_t *game, overworld_t *overworld)
 {
+    handle_pause(overworld->pause, game->event);
     handle_inventory(game->event, game->player->inventory);
     if (game->event.type == sfEvtKeyPressed) {
-        if (game->event.key.code == sfKeyEscape) {
+        if (game->event.key.code == sfKeyEscape)
             toggle_pause(overworld->pause);
-        }
         overworld_key_code(game);
         if (overworld->state->dialog && overworld->state->dialog->is_active) {
             update_dialog_line(overworld->state->dialog);
@@ -41,5 +49,6 @@ dialog && !game->player->interlocutor->dialog->is_active) {
             }
         }
     }
+    input_pause(game, overworld->pause, overworld);
     return (0);
 }

@@ -1,0 +1,36 @@
+EPITECH PROJECT, 2020
+.legend
+File description:
+my_rpg content
+
+Map:
+    Tiled was used to create these maps:
+        - overworld
+        - topaze town
+        - boss dungeon
+    tiled created a json file who contains layers (id, content, size) and every layers contains a array of integer
+    that looks like this: [183, 181, 184, 183, 184, 183, 183, 181, 182, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57]
+    each integer was a tile id
+
+Tile:
+    All tiles used is format in 20x20 pixels.
+
+Musics & Sound location:
+    all musics and sounds used provide from Dragon Quest IX - sentinels of the starry skies classes
+
+    Music
+    - "Happy Menu" assets/music/menu.ogg
+    - "topaze town" assets/music/town.ogg
+    - "Monster battle theme" assets/music/monster_battle.ogg
+
+    Sound
+    - "Dialog pitch 1" assets/sound/gui/dialog_normal.ogg
+    - "Level Up" assets/sound/levelup.ogg
+    - "Battle end" assets/sound/endfight.ogg
+    - "Player Dead" assets/sound/dead.ogg
+
+Authors:
+    Baptiste RENOUF
+    Luann BERTAUD
+    Nicolas SANS
+    Rachel CHEVALIER

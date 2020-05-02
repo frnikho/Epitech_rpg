@@ -41,9 +41,8 @@ static void render_map_world(game_t *game, overworld_t *world, long int delta)
 
 static void draw_npcs(sfRenderWindow *window, npc_t **npcs, sfView *camera)
 {
-    for (int i = 0; npcs[i]; i++) {
+    for (int i = 0; npcs[i]; i++)
         draw_npc(window, npcs[i]);
-    }
     for (int i = 0; npcs[i]; i++) {
         set_dialog_relative(npcs[i]->dialog, camera);
         draw_dialog(window, npcs[i]->dialog);
@@ -65,6 +64,8 @@ void print_point(sfRenderWindow *window, sfVector2f point)
 
 int render_overworld(game_t *game, overworld_t *world, long int delta)
 {
+    if (game->current_state != OVERWORLD)
+        return (0);
     sfRenderWindow_clear(game->window, sfBlack);
     render_map_world(game, world, delta);
     draw_state(game->camera, game->window, world->state);

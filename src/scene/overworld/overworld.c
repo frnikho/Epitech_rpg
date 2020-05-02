@@ -46,6 +46,8 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
         }
         input_overworld(game, overworld);
     }
+    if (game->current_state != OVERWORLD)
+        return;
     map_act = overworld->current_map;
     overworld_commands(game, overworld);
     update_overworld(game, overworld, delta);
@@ -55,7 +57,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 
 void destroy_overworld(game_t *game, overworld_t *overworld)
 {
-    free(overworld->map->interaction_boxes);
+    /*free(overworld->map->interaction_boxes);
     destroy_and_free_map(overworld->map);
     free(overworld->map);
     free_tab(overworld->obs_tab);
@@ -67,7 +69,7 @@ void destroy_overworld(game_t *game, overworld_t *overworld)
         free(overworld->npcs[i]->dialog);
         free(overworld->npcs[i]);
     }
-    free(overworld->npcs);
+    free(overworld->npcs); */
 }
 
 void overworld(game_t *game, long int delta)
