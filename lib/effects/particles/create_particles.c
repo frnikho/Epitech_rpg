@@ -34,7 +34,8 @@ static void init_particle_velocity(particle_t *particle)
     particle->velocity = velocity;
 }
 
-particle_t *create_particule(sfVector2f pos, int speed, float life, sfColor color)
+particle_t *create_particule(sfVector2f pos, int speed, \
+float life, sfColor color)
 {
     particle_t *particle = malloc(sizeof(particle_t));
     particle->pos = pos;
@@ -50,7 +51,8 @@ particle_t *create_particule(sfVector2f pos, int speed, float life, sfColor colo
     return (particle);
 }
 
-particle_system_t *create_particle_system(int particle_nb, sfVector2f pos, int life_time, int speed)
+particle_system_t *create_particle_system(int particle_nb, \
+sfVector2f pos, int life_time, int speed)
 {
     time_t t;
     srand((unsigned) time(&t));
