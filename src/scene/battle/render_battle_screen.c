@@ -32,4 +32,6 @@ int render_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         dispose_battle_screen(game, battle);
         game->player->fight = 0;
     }
+    if (battle->particle_system)
+        draw_particle_system(game->window, battle->particle_system);
 }
