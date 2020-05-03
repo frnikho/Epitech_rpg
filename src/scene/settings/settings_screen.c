@@ -18,7 +18,10 @@ settings_screen_t *init(game_t *game)
 
 void dispose_settings_screen(settings_screen_t *settings)
 {
-
+    settings->is_active = 0;
+    settings->select_cursor = 0;
+    sfVector2f pos = {1600*10, 800*10};
+    settings->fade = init_fade(pos, sfBlack, 1, FADE_OUT);
 }
 
 void update(game_t* g, settings_screen_t *s, long int delta)

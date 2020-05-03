@@ -22,6 +22,7 @@ int update_settings_screen(game_t *game, settings_screen_t *s, long int delta)
     update_dialog(s->dialog, delta);
     update_fade(s->fade, delta);
     if (s->fade->is_finish) {
+        dispose_settings_screen(s);
         game->current_state = MAIN_MENU;
         return (0);
     }
