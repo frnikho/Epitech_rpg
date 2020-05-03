@@ -21,7 +21,11 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
 {
     int active = 0;
     static int streak = 1;
-
+    if (battle->dialog && battle->dialog->is_active) {
+        update_dialog_line(battle->dialog);
+    }
+    if (game->player->health <= 0)
+        return;
     if (battle->attack_gui->select_index == SELECT_ATTACK \
 && battle->attack_gui->is_selected) {
         battle->select_gui->is_active = 1;
@@ -37,9 +41,6 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
     handle_attack_gui(battle->attack_gui, game->event);
     if (game->event.type != sfEvtKeyPressed)
         return (0);
-    if (battle->dialog && battle->dialog->is_active) {
-        update_dialog_line(battle->dialog);
-    }
     sfKeyCode key = game->event.key.code;
     active = battle->select_gui->is_active;
     if (!battle->select_choice && key == sfKeyEscape && active) {

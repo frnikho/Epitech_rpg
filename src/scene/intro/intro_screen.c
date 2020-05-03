@@ -31,7 +31,6 @@ static intro_screen_t *init(game_t *game)
 
 void destroy_intro_screen(game_t *game, intro_screen_t *screen)
 {
-    //destroy_dialog(screen->dialog);
     free(screen);
 }
 
