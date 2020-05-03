@@ -12,7 +12,7 @@
 static overworld_t *init(game_t *game)
 {
     overworld_t *overworld = malloc(sizeof(overworld_t));
-    game->code = 0;
+    game->restart = 0;
     if (init_overworld(game, overworld) == 84)
         return (NULL);
     return (overworld);
@@ -45,7 +45,8 @@ static void change_current_map(game_t *game, overworld_t *overworld)
 static void update(game_t *game, overworld_t *overworld, long int delta)
 {
     static int delta_i = 0;
-
+    if (overworld->current_map == 0 && game->player->health != game->player->stats->hp)
+        game->player->health = game->player->stats->hp;
     delta_i += delta;
     change_current_map(game, overworld);
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
@@ -88,7 +89,7 @@ void overworld(game_t *game, long int delta)
 {
     static overworld_t *overworld = 0;
 
-    if (!overworld || game->code == RESTART_GAME)
+    if (!overworld || game->restart == 1)
         overworld = init(game);
     if (overworld == NULL) {
         sfRenderWindow_close(game->window);
