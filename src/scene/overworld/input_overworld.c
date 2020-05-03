@@ -38,7 +38,7 @@ static int interact_npc(game_t *game, overworld_t *overworld)
     }
 }
 
-int input_overworld(game_t *game, overworld_t *overworld)
+int input_overworld(game_t *game, overworld_t *overworld, long int delta)
 {
     handle_pause(overworld->pause, game->event);
     handle_inventory(game->event, game->player->inventory);
