@@ -35,7 +35,8 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
     battle->round.order_index = 0;
     game->player->fight = 0;
     battle->round.code = 0;
-    battle = 0;
+    free(battle);
+    game->code = RESET_CODE;
 }
 
 static void update(game_t *game, battle_screen_t *battle, long int delta)

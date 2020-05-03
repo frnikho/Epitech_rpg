@@ -13,11 +13,12 @@
 
 static void init_particle_pixels(particle_t *particle)
 {
-    particle->pixels = malloc(0);
+    particle->pixels = malloc(sizeof(sfUint8) * 5);
     particle->pixels[0] = particle->color.r;
     particle->pixels[1] = particle->color.g;
     particle->pixels[2] = particle->color.b;
     particle->pixels[3] = particle->color.a;
+    particle->pixels[4] = 0;
 }
 
 static void init_particle_velocity(particle_t *particle)
@@ -56,7 +57,7 @@ sfVector2f pos, int life_time, int speed)
 {
     time_t t;
     srand((unsigned) time(&t));
-    particle_system_t *system = malloc(sizeof(particle_system_t *));
+    particle_system_t *system = malloc(sizeof(particle_system_t));
     particle_t **particle = malloc(particle_nb * sizeof(particle_t *));
     for (int i = 0; i < particle_nb; i++) {
         int life = (rand() % life_time);
