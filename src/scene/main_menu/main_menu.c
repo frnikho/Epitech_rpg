@@ -44,6 +44,7 @@ void destroy_main_menu(game_t *game, main_menu_t *screen)
 
 void main_menu(game_t *game, long int delta)
 {
+    printf("main menu call\n");
     static main_menu_t *screen;
     if (!screen || game->code == GAMECODE_RESET)
         screen = init(game);

@@ -20,6 +20,7 @@ int loop(game_t *game)
     sfClock_restart(game->clock);
     while (sfRenderWindow_isOpen(game->window)) {
         long int delta = sfClock_restart(game->clock).microseconds;
+        printf("state: %d\n", game->current_state);
         game_state[game->current_state](game, delta);
         if (game->player->in_teleportation) {
             sfRenderWindow_setTitle(game->window, \
