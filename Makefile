@@ -81,17 +81,16 @@ SRC						=					$(PATH_MAIN)/main.c																\
 											$(PATH_MAIN)/game/map/draw_and_create_tiles.c									\
 											$(PATH_MAIN)/game/map/global_map_updates.c										\
 											$(PATH_MAIN)/game/map/objects_and_tiles_var.c									\
-											$(PATH_MAIN)/game/map/player_collisions.c										\
 											$(PATH_MAIN)/game/map/render_optimisation.c										\
 											$(PATH_MAIN)/game/collision/collision.c											\
 											$(PATH_MAIN)/game/collision/interaction_boxes.c									\
 											$(PATH_MAIN)/game/collision/player_collisions.c
 
-SCENE					=					$(PATH_SCENE)/end/end_screen.c												\
-											$(PATH_SCENE)/end/init_end_screen.c 										\
-											$(PATH_SCENE)/end/input_end_screen.c										\
-											$(PATH_SCENE)/end/render_end_screen.c										\
-											$(PATH_SCENE)/end/update_end_screen.c										\
+SCENE					=					$(PATH_SCENE)/end/end_screen.c													\
+											$(PATH_SCENE)/end/init_end_screen.c 											\
+											$(PATH_SCENE)/end/input_end_screen.c											\
+											$(PATH_SCENE)/end/render_end_screen.c											\
+											$(PATH_SCENE)/end/update_end_screen.c											\
 											$(PATH_SCENE)/main_menu/init_main_menu.c										\
 											$(PATH_SCENE)/main_menu/input_main_menu.c										\
 											$(PATH_SCENE)/main_menu/render_main_menu.c										\

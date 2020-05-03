@@ -71,7 +71,7 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
     }
     int rt = check_player_dead(game, battle, delta);
     if (rt)
-        return;
+        return (0);
     end_battle_screen(game, battle, delta);
     return (0);
 }
