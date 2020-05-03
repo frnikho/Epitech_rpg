@@ -27,6 +27,7 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
         game->player->in_teleportation = 1;
     }
     dispose_sound(battle->music);
+    destroy_dialog(battle->dialog);
     battle->round.order_index = 0;
     game->player->fight = 0;
     battle->round.code = 0;
