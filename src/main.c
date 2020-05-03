@@ -8,6 +8,7 @@
 #include <time.h>
 #include "game.h"
 
+
 int main(int ac, char **av)
 {
     sfVector2f mode = {1600, 800};

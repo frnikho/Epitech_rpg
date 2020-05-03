@@ -34,8 +34,9 @@ int update_overworld(game_t *game, overworld_t *world, long int delta)
         return (0);
     move_player(game->player, world->state->npcs, delta);
     if (game->player->fight) {
+        printf("change current state into battle \n");
         game->current_state = BATTLE;
-        return (0);
+        return (1);
     }
     sfView_setCenter(game->camera, get_player_position(game->player));
     sfRenderWindow_setView(game->window, game->camera);

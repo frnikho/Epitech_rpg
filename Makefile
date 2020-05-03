@@ -5,7 +5,7 @@
 ## Main makefile
 ##
 
-CC						=					gcc -g
+CC						=					gcc
 NAME					=					my_rpg
 PATH_COMPONENT			=					src/component
 PATH_SCENE				=					src/scene

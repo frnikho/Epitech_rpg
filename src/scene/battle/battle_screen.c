@@ -53,7 +53,8 @@ static void update(game_t *game, battle_screen_t *battle, long int delta)
 
 void battle_screen(game_t *game, long int delta)
 {
-    static battle_screen_t *battle;
+    static battle_screen_t *battle = 0;
+
     if (!battle || game->code == RESET_CODE) {
         battle = init(game);
         if (!battle)

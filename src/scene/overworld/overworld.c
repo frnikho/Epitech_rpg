@@ -63,7 +63,8 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
     if (game->current_state != OVERWORLD)
         return;
     overworld_commands(game, overworld);
-    update_overworld(game, overworld, delta);
+    if (update_overworld(game, overworld, delta))
+        return;
     if (game->player->in_teleportation == 0)
         render_overworld(game, overworld, delta);
 }

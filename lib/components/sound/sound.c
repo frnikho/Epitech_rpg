@@ -21,7 +21,6 @@ sound_t *init_sound(char *fp)
         return (0);
     sound->sound = sfSound_create();
     sfSound_setBuffer(sound->sound, sound->buffer);
-
     return (sound);
 }
 

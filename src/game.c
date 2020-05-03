@@ -22,6 +22,7 @@ static void init_default_settings(game_t *game)
     game->config.music_volume = 100;
     game->config.dialog_speed = 3;
     game->config.framerate = 144;
+    game->current_state = MAIN_MENU;
 }
 
 static void load_game_settings(game_t *game)
@@ -58,7 +59,7 @@ game_t *init_game(sfVector2f win_size, char *title)
     sfFloatRect rect = {0, 0, win_size.x, win_size.y};
     game->camera = sfView_createFromRect(rect);
     game->window = sfRenderWindow_create(game->mode, title, sfClose, 0);
-    game->current_state = MAIN_MENU;
+    game->current_state = OVERWORLD;
     sfRenderWindow_setFramerateLimit(game->window, game->config.framerate);
     sfRenderWindow_setView(game->window, game->camera);
     return (game);
