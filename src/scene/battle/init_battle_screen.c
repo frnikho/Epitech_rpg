@@ -23,6 +23,7 @@ static void init_battle_gui(game_t *game, battle_screen_t *battle)
         set_text_color(battle->attack_gui->abilities, grey);
     if (game->player->learned_spell == 0)
         set_text_color(battle->attack_gui->spells, grey);
+    set_text_color(battle->attack_gui->objects, grey);
 }
 
 static void init_battle_zone(game_t *game, battle_screen_t *battle)

@@ -24,7 +24,9 @@ void handle_attack_gui(attack_gui_t *gui, sfEvent event)
     if (event.key.code == sfKeySpace || event.key.code == sfKeyEnter) {
         gui->is_selected = 1;
         int in = gui->select_index;
-        if ((compare_color(gui->abilities->color, grey) == 0 && in == 1))
+        if ((compare_color(gui->objects->color, grey) == 0 && in == 1))
+            gui->is_selected = 0;
+        if ((compare_color(gui->abilities->color, grey) == 0 && in == 3))
             gui->is_selected = 0;
         if ((compare_color(gui->spells->color, grey) == 0 && in == 2))
             gui->is_selected = 0;
