@@ -69,7 +69,9 @@ int update_battle_screen(game_t *game, battle_screen_t *battle, long int delta)
         battle->attacking = 1;
         update_attack_battle_screen(game, battle, delta);
     }
-    check_player_dead(game, battle, delta);
+    int rt = check_player_dead(game, battle, delta);
+    if (rt)
+        return;
     end_battle_screen(game, battle, delta);
     return (0);
 }

@@ -7,20 +7,10 @@
 
 #include "gui/attack_gui.h"
 
-void handle_attack_gui(attack_gui_t *gui, sfEvent event)
+static void reset_color(attack_gui_t *gui, sfEvent event)
 {
     sfColor grey = sfColor_fromRGBA(87, 89, 93, 255);
 
-    if (gui->is_selected || event.type != sfEvtKeyPressed)
-        return;
-    if (event.key.code == sfKeyZ)
-        gui->select_index-=2;
-    if (event.key.code == sfKeyS)
-        gui->select_index+=2;
-    if (event.key.code == sfKeyQ)
-        gui->select_index--;
-    if (event.key.code == sfKeyD)
-        gui->select_index++;
     if (event.key.code == sfKeySpace || event.key.code == sfKeyEnter) {
         gui->is_selected = 1;
         int in = gui->select_index;
@@ -31,6 +21,22 @@ void handle_attack_gui(attack_gui_t *gui, sfEvent event)
         if ((compare_color(gui->spells->color, grey) == 0 && in == 2))
             gui->is_selected = 0;
     }
+}
+
+void handle_attack_gui(attack_gui_t *gui, sfEvent event)
+{
+    if (gui->is_selected || event.type != sfEvtKeyPressed)
+        return;
+    if (event.key.code == sfKeyZ)
+        gui->select_index-=2;
+    if (event.key.code == sfKeyS)
+        gui->select_index+=2;
+    if (event.key.code == sfKeyQ)
+        gui->select_index--;
+    if (event.key.code == sfKeyD)
+        gui->select_index++;
+    reset_color(gui, event);
+
 }
 
 int compare_color(sfColor selected, sfColor grey)

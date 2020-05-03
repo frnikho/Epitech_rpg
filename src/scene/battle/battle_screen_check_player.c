@@ -39,7 +39,7 @@ int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
         is_dead = 0;
         dispose_battle_screen(g, b);
         g->player->fight = 0;
-        return (0);
+        return (1);
     }
     return (0);
 }
