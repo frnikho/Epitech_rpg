@@ -13,7 +13,6 @@ int choice_main_menu(game_t *game, main_menu_t *menu)
     if (menu->is_selected) {
         if (menu->select_index == 0) {
             game->current_state = OVERWORLD;
-            stop_sound(menu->sound);
             game->player->in_teleportation = 1;
             game->restart = 1;
             game->code = RESTART_GAME;
@@ -26,8 +25,9 @@ int choice_main_menu(game_t *game, main_menu_t *menu)
             sfRenderWindow_close(game->window);
             return (0);
         }
-        game->code = GAMECODE_RESET;
-        destroy_main_menu(game, menu);
+        stop_sound(menu->sound);
+        menu->is_selected = 0;
+        menu->select_index = 0;
     }
     return (1);
 }

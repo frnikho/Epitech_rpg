@@ -12,6 +12,8 @@ int render_main_menu(game_t *game, main_menu_t *menu, long int delta)
 {
     if (game->current_state != MAIN_MENU)
         return (0);
+    sfView_setCenter(game->camera, (sfVector2f){800, 400});
+    sfRenderWindow_setView(game->window, game->camera);
     sfRenderWindow_clear(game->window, sfBlack);
     draw_sprite(game->window, menu->bg);
     draw_sprite(game->window, menu->box);
