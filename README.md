@@ -17,6 +17,18 @@ if you need more information you can watch out the .legend file
 ## Contributing
 Pull requests are welcome but there are low chances for the project to be updated.
 
+## Coding Stats
+
+Total commit: **236**
+
+Total line of C code (.c + .h): **8586**
+
+Number of C file: **206**
+
+Total of file: **255**
+
+Total of lines: **18136**
+
 ### Authors:
 
 > Baptiste RENOUF

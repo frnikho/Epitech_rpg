@@ -43,4 +43,4 @@ interaction_box_t *create_interaction_box(sfFloatRect rec, sfVector2f \
 spaw_pos, int load_zone, int zone_act);
 int is_rectangles_in_collision(sfFloatRect r_one, sfFloatRect r_two);
 
-#endif /* !COLLISION_H_ */
+#endif
