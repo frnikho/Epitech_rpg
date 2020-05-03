@@ -11,7 +11,7 @@
 #include "lib/utils/file.h"
 
 static const sfVector2f pos[] = {{150, 300}, {550, 300}, {950, 300},
-    {1350, 300}, 0};
+    {1350, 300}, {700, 300}, 0};
 
 static void init_battle_gui(game_t *game, battle_screen_t *battle)
 {
@@ -56,9 +56,20 @@ static void init_spell_gui(game_t *game, battle_screen_t *battle)
     battle->spell_gui.cursor = 0;
 }
 
+static void init_battle_boss(game_t *game, battle_screen_t *battle)
+{
+    battle->monster = malloc(sizeof(monster_t) * 2);
+    battle->monster[0] = create_monster("belze.json", pos[4]);
+    battle->monster[1] = 0;
+}
+
 int init_battle_screen(game_t *game, battle_screen_t *battle)
 {
-    init_battle_zone(game, battle);
+    if (game->player->zone == 4) {
+        init_battle_boss(game, battle);
+    } else {
+        init_battle_zone(game, battle);
+    }
     battle->select_choice = 0;
     init_battle_screen_bg(game, battle);
     battle->music = init_sound("assets/music/monster_battle.ogg");
@@ -76,9 +87,4 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     battle->fade_out = 0;
     battle->fade_in = 0;
     return (0);
-}
-
-void reset_battle_gui(game_t *game, battle_screen_t *battle)
-{
-    init_battle_gui(game, battle);
 }

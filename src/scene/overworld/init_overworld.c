@@ -123,7 +123,7 @@ void init_maps(overworld_t *world)
     maps[0]->tile_set = "assets/tiles/outside.png";
     maps[0]->location = "topaze";
     maps[0]->layer_nb = 2;
-    maps[0]->obs_nb = 268;
+    maps[0]->obs_nb = 267;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 1.8f;
@@ -152,7 +152,7 @@ DUNGEON_ENTER, FOREST_2, FOREST_1, POISON, 0});
     maps[2]->tile_size = 20;
     maps[2]->offset = (sfVector2f){0, 0};
     maps[2]->zoom = 2.0f;
-    init_interactions_boxes_indexs(maps[2], (int []){DUNGEON_OUT, 0});
+    init_interactions_boxes_indexs(maps[2], (int []){DUNGEON_OUT, BOSS, 0});
     init_layers_id(maps[2], (int []){1, 0}, (int []){0}, (int []){2, 0});
 
     maps[3] = NULL;
@@ -172,7 +172,7 @@ int init_overworld(game_t *game, overworld_t *world)
     int fd = open_file("content/stats.json");
     char *content = read_file(fd, "content/stats.json");
     int code = get_nbr(get_key_data(content, "code"));
-    world->current_map = 0;
+    world->current_map = 1;
     init_world_map(game, world);
     world->state = create_state(100, game, 0);
     world->pause = create_pause(game->window, game->camera);

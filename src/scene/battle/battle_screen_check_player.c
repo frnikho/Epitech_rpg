@@ -22,14 +22,17 @@ int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
         b->fade_out = init_fade((sfVector2f){1600*10, 800*10}, sfBlack, 1, FADE_OUT);
         set_fade_active(b->fade_out);
     }
-    if (is_dead && b->dialog->is_finished) {
+    if (is_dead && b->dialog && b->dialog->is_finished) {
         update_fade(b->fade_out, delta);
     }
     if (is_dead && b->fade_out->is_finish) {
         g->current_state = OVERWORLD;
-        g->code = RESTART_GAME;
-        g->player->fight = 0;
+        g->code = RESET_CODE;
+        g->player->health = g->player->stats->hp;
+        g->player->mp = g->player->stats->mp;
+        is_dead = 0;
         dispose_battle_screen(g, b);
+        g->player->fight = 0;
         return (0);
     }
     return (0);

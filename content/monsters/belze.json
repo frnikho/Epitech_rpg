@@ -1,9 +1,9 @@
 {
   "sprite":{
-    "x":833,
-    "y":786,
-    "width":0,
-    "height":0
+    "x":828,
+    "y":778,
+    "width":142,
+    "height":116
   },
   "gain_factor":1,
   "stats_factor":1,

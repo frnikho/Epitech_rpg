@@ -22,9 +22,10 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
 {
     //dispose_fade(battle->fade_in);
     //dispose_fade(battle->fade_out);
-    for (int i = 0; battle->monster[i]; i++) {
+    if (game->player->zone == 4 && !battle->monster[0]->is_alive)
+        set_player_position(game->player, (sfVector2f){200, 100});
+    /*for (int i = 0; battle->monster[i]; i++)
         dispose_monster(battle->monster[i]);
-    }
     free(battle->monster);
     dispose_select_gui(battle->select_gui);
     destroy_attack_gui(battle->attack_gui);
@@ -32,10 +33,10 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
     if (battle->dialog)
         destroy_dialog(battle->dialog);
     dispose_sprite(battle->bg);
+    free(battle); */
     battle->round.order_index = 0;
     game->player->fight = 0;
     battle->round.code = 0;
-    free(battle);
     game->code = RESET_CODE;
 }
 

@@ -8,7 +8,7 @@
 #include "lib/utils/string.h"
 #include "scene/battle.h"
 
-static const battle_bg_t bg[] = {{1, "forest.bmp"}, {2, "plains.png"}, {3, "poison.png"}, {0, 0}};
+static const battle_bg_t bg[] = {{1, "forest.bmp"}, {2, "plains.png"}, {3, "poison.png"}, {4, "dungeon.png"}, {0, 0}};
 
 static char *get_bg_path(game_t *game, battle_screen_t *battle)
 {
