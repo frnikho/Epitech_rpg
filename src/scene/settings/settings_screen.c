@@ -18,17 +18,7 @@ settings_screen_t *init(game_t *game)
 
 void dispose_settings_screen(settings_screen_t *settings)
 {
-    dispose_text(settings->title);
-    dispose_text(settings->text);
-    dispose_text(settings->current_dialog);
-    dispose_text(settings->current_frame);
-    dispose_text(settings->quit);
-    dispose_fade(settings->fade);
-    dispose_sprite(settings->cursor);
-    dispose_sprite(settings->box);
-    dispose_sprite(settings->bg);
-    destroy_dialog(settings->dialog);
-    free(settings);
+
 }
 
 void update(game_t* g, settings_screen_t *s, long int delta)
@@ -41,6 +31,8 @@ void update(game_t* g, settings_screen_t *s, long int delta)
         }
         input_settings_screen(g, s);
     }
+    if (g->current_state != SETTINGS)
+        return;
     render_settings_screen(g, s, delta);
     update_settings_screen(g, s, delta);
 }

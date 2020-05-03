@@ -24,7 +24,5 @@ int init_main_menu(game_t *game, main_menu_t *menu)
 Parametres\n\nHow to Play\n\nQuit", 20, (sfVector2f){640, 420});
     set_text_font(menu->text, FONT);
     set_sprite_scale(menu->bg, 0.9);
-    sfView_setCenter(game->camera, (sfVector2f){800, 400});
-    sfRenderWindow_setView(game->window, game->camera);
     return (0);
 }
