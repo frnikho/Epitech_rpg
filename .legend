@@ -91,8 +91,17 @@ NPCs:
                   {"farmer":"Hello world !"} with keycodes for interpretation 
                   ('#' for a new page, '$' for new line).
 
+Battle:
+    when you walk into overworld, every (3 seconde + 5 random seconde) some monsters appear
+    every monsters was created with a json file who contains: stats, gain and stats factor.
+    the factors can modified monster like (like +2 or -2 for example).
 
+    each monsters appear by zone, for example the forest is the zone 1 and
+    the poison dungeon is the zone 2.
 
+    during the fight, the player can use tension to increase his strength. He can use
+    tension 4 time an each use of tension increase the stenght by 1.25. For example if the player
+    as a strength of 10 and use tension 2 time, then his strength will be 15 (10*1.5)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
