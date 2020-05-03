@@ -8,12 +8,12 @@
   "xp":0,
   "gold":0,
   "stats":{
-    "hp":10,
+    "hp":1,
     "mp":8,
     "resistance":8,
     "magic":7,
     "agility":8,
-    "strength":8,
+    "strength":800,
     "animations":{
       "idle":{
         "count":2,
@@ -101,4 +101,4 @@
       }
     }
   }
-}}
+}
