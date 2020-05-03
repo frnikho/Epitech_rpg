@@ -20,7 +20,7 @@ int choice_main_menu(game_t *game, main_menu_t *menu)
         if (menu->select_index == 1)
             game->current_state = SETTINGS;
         if (menu->select_index == 2)
-            game->current_state = OVERWORLD;
+            game->current_state = HOW_TO_PLAY;
         if (menu->select_index == 3) {
             sfRenderWindow_close(game->window);
             return (0);

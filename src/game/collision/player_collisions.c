@@ -81,7 +81,7 @@ overworld_t *world)
     sfVector2f moves[] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
     int result = 0;
 
-    if (p->is_ghost == 1 || p->in_teleportation == 1)
+    if (p->in_teleportation == 1)
         return (0);
     p->search_for_interlocutor = 1;
     p->interlocutor = NULL;

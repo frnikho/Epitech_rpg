@@ -121,7 +121,12 @@ SCENE					=					$(PATH_SCENE)/end/end_screen.c												\
 											$(PATH_SCENE)/overworld/update_overworld.c										\
 											$(PATH_SCENE)/overworld/zone/zone_world.c										\
 											$(PATH_SCENE)/overworld/init_different_maps.c									\
-											$(PATH_SCENE)/overworld/load_map_dependencies.c
+											$(PATH_SCENE)/overworld/load_map_dependencies.c									\
+											$(PATH_SCENE)/how_to_play/htp_screen.c											\
+											$(PATH_SCENE)/how_to_play/input_htp_screen.c									\
+											$(PATH_SCENE)/how_to_play/render_htp_screen.c									\
+											$(PATH_SCENE)/how_to_play/update_htp_screen.c									\
+											$(PATH_SCENE)/how_to_play/init_htp_screen.c
 
 STATE					=					$(PATH_STATE)/draw_state.c														\
 											$(PATH_STATE)/update_state.c													\

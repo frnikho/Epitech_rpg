@@ -89,16 +89,6 @@ int check_collision_ahead(overworld_t *world, player_t *player, long int delta)
         result = check_collisions(player->collision, npcs_state[i]->collision);
         if (result != 0)
             return (result);
-        /*else if (npcs_state[i]->collision->update_on_default == 1 && \
-player->search_for_interlocutor == 1)
-            update_npc(npcs_state[i], delta);*/
-        //result = check_collisions(player->collision, npcs_state[i]->trigger);
-        //if (result != 0) {
-        //    //player->interlocutor = npcs_state[i];
-        //    return (result);
-        //} /*else if (npcs_state[i]->trigger->update_on_default == 1 && \
-player->search_for_interlocutor == 1)
-        //    update_npc(npcs_state[i], delta);
     }
     for (int i = 0; map_obs[i]; i++) {
         if (check_collisions(player->collision, map_obs[i]->collision) == 1)

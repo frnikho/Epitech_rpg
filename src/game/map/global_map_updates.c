@@ -24,7 +24,6 @@ int *layers_to_print_objs)
     draw_tiles(map, window, layers_to_print_tiles, \
     (sfView *)sfRenderWindow_getView(window));
     draw_objects(map, window, layers_to_print_objs);
-    //draw_obstacles(map, window);
 }
 
 void init_map(map_t *map, int ***tiles_tab, int ***objs_tab, char **obs_tab)

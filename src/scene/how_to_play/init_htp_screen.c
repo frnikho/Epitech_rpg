@@ -6,7 +6,7 @@
 */
 
 #include "game.h"
-#include "how_to_play_scene.h"
+#include "scene/how_to_play_scene.h"
 
 int init_htp_screen(game_t *game, htp_scene_t *htp)
 {

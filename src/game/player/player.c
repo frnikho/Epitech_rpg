@@ -80,7 +80,6 @@ player_t *create_player(void)
 
     create_player_init_values(player);
     create_gui(player);
-    player->is_ghost = 0;
     player->collision = create_collision_box(\
     sfSprite_getGlobalBounds(player->animations[0]->sprite), 0, 1);
     player->free_moves = malloc(sizeof(int) * 5);

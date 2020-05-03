@@ -6,7 +6,12 @@
 */
 
 #include "game.h"
-#include "how_to_play_scene.h"
+#include "scene/how_to_play_scene.h"
+
+int input_htp_screen(game_t *game, htp_scene_t *htp)
+{
+    
+}
 
 void event_key_pressed_htp(game_t *game, htp_scene_t *htp)
 {

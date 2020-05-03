@@ -5,14 +5,14 @@
 **  function
 */
 
-#include "how_to_play_scene.h"
+#include "scene/how_to_play_scene.h"
 #include "game.h"
 
 static htp_scene_t *init(game_t *game)
 {
     game->code = 0;
     htp_scene_t *htp = malloc(sizeof(htp_scene_t));
-    init_main_menu(game, htp);
+    init_htp_screen(game, htp);
     return (htp);
 }
 

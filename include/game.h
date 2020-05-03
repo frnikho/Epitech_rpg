@@ -19,7 +19,8 @@
 #include <stdlib.h>
 #include <SFML/Graphics.h>
 
-enum game_state {END_SCREEN, MAIN_MENU, BATTLE, SETTINGS, OVERWORLD, HOW_TO_PLAY};
+enum game_state {END_SCREEN, MAIN_MENU, BATTLE, \
+SETTINGS, HOW_TO_PLAY, OVERWORLD};
 
 typedef struct config_s {
     int framerate;

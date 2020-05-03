@@ -10,6 +10,9 @@
 
 static void update_map_world(game_t *game, overworld_t *world, long int delta)
 {
+    if (world->current_map == 0)
+        if (game->player->health != game->player->stats->hp)
+            game->player->health = game->player->stats->hp;
     npc_t **npcs = world->npcs;
     block_move_on_collision(game->player, npcs, delta, world);
 }
@@ -34,7 +37,6 @@ int update_overworld(game_t *game, overworld_t *world, long int delta)
         return (0);
     move_player(game->player, world->state->npcs, delta);
     if (game->player->fight) {
-        printf("change current state into battle \n");
         game->current_state = BATTLE;
         return (1);
     }

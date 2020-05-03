@@ -107,7 +107,8 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
     }
     if (tmp_delta == 0) {
         init_end_dialog(g, b, &gold, &xp);
-        b->particle_system = create_particle_system(500, (sfVector2f){800, 400}, 30, 10);
+        sfVector2f pos = (sfVector2f){800, 400};
+        b->particle_system = create_particle_system(500, pos, 30, 10);
         particle_system_setsize(b->particle_system, (sfVector2f){2, 2});
     }
     if (b->dialog->is_finished && code == 0)

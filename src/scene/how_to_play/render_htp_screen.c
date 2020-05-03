@@ -6,10 +6,11 @@
 */
 
 #include "game.h"
-#include "how_to_play_scene.h"
+#include "scene/how_to_play_scene.h"
 
-int render_settings_screen(game_t *game, htp_scene_t *htp, long int delta)
+int render_htp_screen(game_t *game, htp_scene_t *htp, long int delta)
 {
+    sfRenderWindow_clear(game->window, sfBlack);
     draw_sprite(game->window, htp->bg);
     draw_sprite(game->window, htp->box);
     draw_text(game->window, htp->title);

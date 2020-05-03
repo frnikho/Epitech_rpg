@@ -29,6 +29,8 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
     game->player->fight = 0;
     battle->round.code = 0;
     game->code = RESET_CODE;
+    if (game->player->zone == 4 && game->player->health > 0)
+        game->current_state = END_SCREEN;
 }
 
 static void update(game_t *game, battle_screen_t *battle, long int delta)

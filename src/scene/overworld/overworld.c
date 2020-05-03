@@ -18,15 +18,6 @@ static overworld_t *init(game_t *game)
     return (overworld);
 }
 
-static void overworld_commands(game_t *game, overworld_t *overworld)
-{
-    if (game->event.key.code == sfKeyG) {
-        game->player->is_ghost = 1 - (game->player->is_ghost * 1);
-        for (int i = 0; i < 4; i++)
-            game->player->free_moves[i] = 1;
-    }
-}
-
 static void change_current_map(game_t *game, overworld_t *overworld)
 {
     static int map_act = -1;
@@ -45,8 +36,6 @@ static void change_current_map(game_t *game, overworld_t *overworld)
 static void update(game_t *game, overworld_t *overworld, long int delta)
 {
     static int delta_i = 0;
-    if (overworld->current_map == 0 && game->player->health != game->player->stats->hp)
-        game->player->health = game->player->stats->hp;
     delta_i += delta;
     change_current_map(game, overworld);
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
@@ -62,7 +51,6 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
     }
     if (game->current_state != OVERWORLD)
         return;
-    overworld_commands(game, overworld);
     if (update_overworld(game, overworld, delta))
         return;
     if (game->player->in_teleportation == 0)

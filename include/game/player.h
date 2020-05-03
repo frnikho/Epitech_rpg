@@ -48,7 +48,6 @@ typedef struct player_s {
     collision_box_t *collision;
     int current_animations;
     anim_sprite_t **animations;
-    int is_ghost;
     npc_t *interlocutor;
     int *free_moves;
     int search_for_interlocutor;
