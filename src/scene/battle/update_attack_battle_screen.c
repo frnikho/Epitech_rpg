@@ -52,7 +52,7 @@ static void check_attack_player(game_t *g, battle_screen_t *b, int selected)
         set_dialog_active(b->dialog, 1);
         b->monster[b->select_gui->monster_index]->stats->hp -= damage;
     } else if (b->attack_gui->select_index == SELECT_TENSION){
-        char *tension = "tension ++";
+        char *tension = "Votre tension augmente !";
         char **dialog = str_split(tension, '#');
         b->dialog = create_dialog(dialog, 1, (sfVector2f) GUI_POS, 2);
         set_dialog_active(b->dialog, 1);
