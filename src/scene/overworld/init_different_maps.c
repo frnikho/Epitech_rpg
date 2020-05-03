@@ -26,7 +26,7 @@ static void create_topaze_map(map_setup_t **maps)
     maps[0]->tile_set = "assets/tiles/outside.png";
     maps[0]->location = "topaze";
     maps[0]->layer_nb = 2;
-    maps[0]->obs_nb = 267;
+    maps[0]->obs_nb = 272;
     maps[0]->tile_size = 20;
     maps[0]->offset = (sfVector2f){0, 0};
     maps[0]->zoom = 1.8f;
