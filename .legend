@@ -1,22 +1,108 @@
-EPITECH PROJECT, 2020
+EPITECH PROJECT, 2019
 .legend
 File description:
 my_rpg content
 
+
+
+
+
+
+*__*__*__*__*__*__*__*__*__*__*__*__*__*__*__*__*__*__*__*__*
+
+
+
+                       DRAGON EPIQUEST
+
+
+ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __
+*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+
+
+
+
+
+
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+                            GAME
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Main Quest:
+    The chaos armies are back so the king just diffuse
+    the wanted poster of the dark general Belze. 
+    You, as the son of an retired Hero, you decided to take your chance
+    and jump in this adventure for saving your village, Topaze.
+
+Danger Zones:
+    In the worldmap there is multiples danger zones in which 
+    you may encounter monsters. The monsters you will fights have 
+    different stats depending on the area they spawn in.
+    The areas close to the village are less difficult than the far ones.
+
+Fights:
+    - The fights are turn by turn based.
+    - The Player / Monster that have the biggest agility skill attack first.
+    - The more resistance skill you have the less you take damages.
+    - Your strength and your health max points depend on your level.
+    - You gain experience points during fights.
+    - To heal yourself just enter the village (Topaze).
+
+
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+                          TECHNICAL
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 Map:
-    Tiled was used to create these maps:
+    The editor Tiled was used to create these maps:
         - overworld
-        - topaze town
+        - topaze village
         - boss dungeon
-    tiled created a json file who contains layers (id, content, size) and every layers contains a array of integer
-    that looks like this: [183, 181, 184, 183, 184, 183, 183, 181, 182, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57]
-    each integer was a tile id
+    Tiled create a json file that contains as many layers as 
+    you want with these infos:
+        - id
+        - array of tiles id, like [183, 181, 184, 183, 57, 57, 57, 57]
+        - dimentions
+        - name
+    Moreover, you can add object in tiled such as 
+    {x, y, width, height}, this was used to create 
+    the collisions of the maps.
 
-Tile:
-    All tiles used is format in 20x20 pixels.
+    During the loading of the map, the parser pick 
+    the tiles dimension in Tiled's json and cut out the 
+    tileset and set ids. The the map is load from the tiles ids array.
 
-Musics & Sound location:
-    all musics and sounds used provide from Dragon Quest IX - sentinels of the starry skies classes
+NPCs:
+    To create an npc we need 3 things:
+    
+    - The template, for the sprite animation. 
+                    (Coordinates in the npcs.png)
+    - The Location, every places of the world have a location in location.json were
+                    is listed all the npcs of the place with there behaviour.
+    - The dialog, in the dialog.json were is stocked every dialogs such as : 
+                  {"farmer":"Hello world !"} with keycodes for interpretation 
+                  ('#' for a new page, '$' for new line).
+
+
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+                           CREDITS
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Musics & Sound:
+    All musics and sounds used provide from 
+    Dragon Quest IX - sentinels of the starry skies classes
 
     Music
     - "Happy Menu" assets/music/menu.ogg
@@ -28,6 +114,9 @@ Musics & Sound location:
     - "Level Up" assets/sound/levelup.ogg
     - "Battle end" assets/sound/endfight.ogg
     - "Player Dead" assets/sound/dead.ogg
+
+Map Editor:
+    Tiled map editor by bjorn : https://www.mapeditor.org/
 
 Authors:
     Baptiste RENOUF
