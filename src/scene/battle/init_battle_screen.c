@@ -78,7 +78,7 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     battle->round.order = 0;
     battle->attacking = 0;
     battle->dialog = 0;
-    battle->particle_system = NULL;
+    battle->particle_system = 0;
     //init_spell_gui(game, battle);
     play_sound(battle->music, 60);
     sfView_setCenter(game->camera, (sfVector2f){800, 400});

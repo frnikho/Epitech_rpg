@@ -27,6 +27,17 @@ static void input_pause(game_t *game, pause_gui_t *pause, overworld_t *world)
     }
 }
 
+static int interact_npc(game_t *game, overworld_t *overworld)
+{
+    if (game->event.key.code == sfKeySpace) {
+        if (game->player->interlocutor && game->player->interlocutor->\
+        dialog && !game->player->interlocutor->dialog->is_active) {
+            clear_dialog(game->player->interlocutor->dialog);
+            set_dialog_active(game->player->interlocutor->dialog, 1);
+        }
+    }
+}
+
 int input_overworld(game_t *game, overworld_t *overworld)
 {
     handle_pause(overworld->pause, game->event);
@@ -41,13 +52,7 @@ int input_overworld(game_t *game, overworld_t *overworld)
         for (int i = 0; overworld->npcs[i]; i++) {
             update_dialog_line(overworld->npcs[i]->dialog);
         }
-        if (game->event.key.code == sfKeySpace) {
-            if (game->player->interlocutor && game->player->interlocutor->\
-dialog && !game->player->interlocutor->dialog->is_active) {
-                clear_dialog(game->player->interlocutor->dialog);
-                set_dialog_active(game->player->interlocutor->dialog, 1);
-            }
-        }
+        interact_npc(game, overworld);
     }
     input_pause(game, overworld->pause, overworld);
     return (0);

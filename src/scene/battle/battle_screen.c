@@ -20,20 +20,11 @@ static battle_screen_t *init(game_t *game)
 
 void dispose_battle_screen(game_t *game, battle_screen_t *battle)
 {
-    //dispose_fade(battle->fade_in);
-    //dispose_fade(battle->fade_out);
     if (game->player->zone == 4 && !battle->monster[0]->is_alive)
         set_player_position(game->player, (sfVector2f){200, 100});
-    /*for (int i = 0; battle->monster[i]; i++)
-        dispose_monster(battle->monster[i]);
-    free(battle->monster);
-    dispose_select_gui(battle->select_gui);
-    destroy_attack_gui(battle->attack_gui);
-    battle->attacking = 0;
-    if (battle->dialog)
-        destroy_dialog(battle->dialog);
-    dispose_sprite(battle->bg);
-    free(battle); */
+    if (game->player->health <= 0)
+        game->restart = 1;
+    dispose_sound(battle->music);
     battle->round.order_index = 0;
     game->player->fight = 0;
     battle->round.code = 0;

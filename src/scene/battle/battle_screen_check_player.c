@@ -11,7 +11,6 @@
 int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
 {
     static int is_dead = 0;
-    printf("is dead: %d\n", is_dead);
     if (!is_dead && g->player->health <= 0) {
         is_dead = 1;
         char **dialog = str_split("Vous n'avez plus assez de point de vie.", '&');
@@ -29,8 +28,6 @@ int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
     if (is_dead && b->fade_out->is_finish) {
         g->current_state = OVERWORLD;
         g->code = RESET_CODE;
-        g->player->health = g->player->stats->hp;
-        g->player->mp = g->player->stats->mp;
         is_dead = 0;
         dispose_battle_screen(g, b);
         g->player->fight = 0;

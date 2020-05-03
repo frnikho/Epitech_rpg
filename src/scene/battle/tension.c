@@ -18,7 +18,6 @@ void tension(game_t *game, battle_screen_t *battle, int *streak)
             (*streak)++;
         }
         battle->round.code = ATTACK_CODE;
-        printf("strengh: %i\n", (game->player->stats->strenght + game->player->tmp_stats->strenght));
     }
 }
 
