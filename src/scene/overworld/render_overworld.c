@@ -54,6 +54,9 @@ int render_overworld(game_t *game, overworld_t *world, long int delta)
     sfRenderWindow_clear(game->window, sfBlack);
     render_map_world(game, world, delta);
     draw_state(game->camera, game->window, world->state);
+    if (world->state->npcs && world->current_map == 0)
+        for (int i = 0; world->state->npcs[i] != 0; i++)
+            draw_npc(game->window, world->state->npcs[i]);
     draw_npcs(game->window, world->npcs, game->camera);
     draw_inventory(game->window, game->camera, game->player->inventory);
     draw_player(game->window, game->player);

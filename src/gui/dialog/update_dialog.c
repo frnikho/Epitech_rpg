@@ -13,6 +13,7 @@ static void update_text_dialog(dialog_t *d)
     char *new;
     if (d->text[d->index_line] == 0) {
         d->is_finished = 1;
+        dispose_sound(d->sound);
         d->is_active = 0;
         return;
     }

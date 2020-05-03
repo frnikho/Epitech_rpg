@@ -14,7 +14,8 @@ void tension(game_t *game, battle_screen_t *battle, int *streak)
 && battle->attack_gui->is_selected && battle->round.code != ATTACK_CODE) {
         battle->attack_gui->is_selected = 0;
         if ((*streak) <= 3) {
-            game->player->tmp_stats->strenght = add_tension(game, battle, (*streak));
+            game->player->tmp_stats->strenght = \
+            add_tension(game, battle, (*streak));
             (*streak)++;
         }
         battle->round.code = ATTACK_CODE;
