@@ -12,7 +12,7 @@
 static overworld_t *init(game_t *game)
 {
     overworld_t *overworld = malloc(sizeof(overworld_t));
-    game->restart = 0;
+    game->code = 0;
     if (init_overworld(game, overworld) == 84)
         return (NULL);
     return (overworld);
@@ -27,15 +27,10 @@ static void overworld_commands(game_t *game, overworld_t *overworld)
     }
 }
 
-static void update(game_t *game, overworld_t *overworld, long int delta)
+static void change_current_map(game_t *game, overworld_t *overworld)
 {
     static int map_act = -1;
-    static int delta_i = 0;
 
-    if (overworld->current_map == 0 && game->player->health != game->player->stats->hp)
-        game->player->health = game->player->stats->hp;
-
-    delta_i += delta;
     if (overworld->current_map != map_act && map_act != -1) {
         destroy_overworld(game, overworld);
         if (init_overworld_map(overworld) == 84) {
@@ -44,6 +39,15 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
         }
         game->player->in_teleportation = 0;
     }
+    map_act = overworld->current_map;
+}
+
+static void update(game_t *game, overworld_t *overworld, long int delta)
+{
+    static int delta_i = 0;
+
+    delta_i += delta;
+    change_current_map(game, overworld);
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             destroy_overworld(game, overworld);
@@ -57,7 +61,6 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
     }
     if (game->current_state != OVERWORLD)
         return;
-    map_act = overworld->current_map;
     overworld_commands(game, overworld);
     update_overworld(game, overworld, delta);
     if (game->player->in_teleportation == 0)
@@ -66,7 +69,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
 
 void destroy_overworld(game_t *game, overworld_t *overworld)
 {
-    /*free(overworld->map->interaction_boxes);
+    free(overworld->map->interaction_boxes);
     destroy_and_free_map(overworld->map);
     free(overworld->map);
     free_tab(overworld->obs_tab);
@@ -78,14 +81,14 @@ void destroy_overworld(game_t *game, overworld_t *overworld)
         free(overworld->npcs[i]->dialog);
         free(overworld->npcs[i]);
     }
-    free(overworld->npcs); */
+    free(overworld->npcs);
 }
 
 void overworld(game_t *game, long int delta)
 {
     static overworld_t *overworld = 0;
 
-    if (!overworld || game->restart == 1)
+    if (!overworld || game->code == RESTART_GAME)
         overworld = init(game);
     if (overworld == NULL) {
         sfRenderWindow_close(game->window);

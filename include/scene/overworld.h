@@ -38,7 +38,17 @@ int update_overworld(game_t *game, overworld_t *overworld, long int delta);
 int render_overworld(game_t *game, overworld_t *overworld, long int delta);
 int init_overworld_map(overworld_t *overworld);
 void init_zone_world(overworld_t *overworld, interaction_box_t **boxs);
-
+int ***create_tiles_tab(overworld_t *overworld, char **layers);
+int ***create_objs_tab(overworld_t *overworld, char **layers);
+char **create_obs_tab(overworld_t *overworld, char **layers);
+void load_setup_in_map(overworld_t *overworld, \
+int ***tiles_tab, int ***objs_tab, char **obs_tab);
+void load_interaction_boxes(map_setup_t *setup, map_t *map, overworld_t *world);
+void init_maps(overworld_t *world);
+void init_maps_interactions(overworld_t *world);
+void init_interactions_boxes_indexs(map_setup_t *map, int *indexs);
+void init_layers_id(map_setup_t *map, int *tile_ids, \
+int *objs_ids, int *obs_ids);
 dialog_t *create_levelup_dialog(player_t *player, int *stats);
 
 #endif
