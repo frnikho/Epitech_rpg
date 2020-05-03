@@ -10,7 +10,6 @@
 
 int input_htp_screen(game_t *game, htp_scene_t *htp)
 {
-    
 }
 
 void event_key_pressed_htp(game_t *game, htp_scene_t *htp)

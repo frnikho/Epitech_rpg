@@ -17,7 +17,8 @@ int init_htp_screen(game_t *game, htp_scene_t *htp)
     htp->box = init_sprite("assets/sprite/gui/select_enemy_gui.png", 0);
     set_sprite_position(htp->box, (sfVector2f){550, 400});
     htp->text = init_text("Z to move forward\n\n\
-Q to move left\n\nD to move rightn\nS to move backward", 20, (sfVector2f){640, 420});
+    Q to move left\n\nD to move rightn\nS to move backward", 20, \
+    (sfVector2f){640, 420});
     htp->cursor = init_sprite("assets/sprite/gui/pointer_big.png", 0);
     htp->text = init_text("Quit", 20, (sfVector2f){30, 30});
     set_sprite_scale(htp->cursor, 1.2);
