@@ -17,6 +17,25 @@ int battle_screen_key_pressed(game_t *game)
     return (1);
 }
 
+static int battle_gui_selection(game_t *game, \
+battle_screen_t *battle, int active)
+{
+    if (battle->attack_gui->is_selected) {
+        handle_select_gui(game->event, battle->select_gui);
+        battle->select_gui->is_active = 1;
+    }
+    handle_attack_gui(battle->attack_gui, game->event);
+    if (game->event.type != sfEvtKeyPressed)
+        return (0);
+    sfKeyCode key = game->event.key.code;
+    active = battle->select_gui->is_active;
+    if (!battle->select_choice && key == sfKeyEscape && active) {
+        battle->select_gui->is_active = 0;
+        battle->attack_gui->is_selected = 0;
+    }
+    return (active);
+}
+
 int input_battle_screen(game_t *game, battle_screen_t *battle)
 {
     int active = 0;
@@ -34,17 +53,6 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
     tension(game, battle, &streak);
     if (run_away(battle, game) == 0)
         return (0);
-    if (battle->attack_gui->is_selected) {
-        handle_select_gui(game->event, battle->select_gui);
-        battle->select_gui->is_active = 1;
-    }
-    handle_attack_gui(battle->attack_gui, game->event);
-    if (game->event.type != sfEvtKeyPressed)
-        return (0);
-    sfKeyCode key = game->event.key.code;
-    active = battle->select_gui->is_active;
-    if (!battle->select_choice && key == sfKeyEscape && active) {
-        battle->select_gui->is_active = 0;
-        battle->attack_gui->is_selected = 0;
-    }
+    active = battle_gui_selection(game, battle, active);
+    return (0);
 }

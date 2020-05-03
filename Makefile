@@ -114,6 +114,7 @@ SCENE					=					$(PATH_SCENE)/end/end_screen.c												\
 											$(PATH_SCENE)/battle/run_away.c													\
 											$(PATH_SCENE)/battle/tension.c													\
 											$(PATH_SCENE)/battle/end_battle_screen.c										\
+											$(PATH_SCENE)/battle/check_attacks.c											\
 											$(PATH_SCENE)/overworld/overworld.c												\
 											$(PATH_SCENE)/overworld/init_overworld.c										\
 											$(PATH_SCENE)/overworld/input_overworld.c										\

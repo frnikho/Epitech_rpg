@@ -65,11 +65,10 @@ static void init_battle_boss(game_t *game, battle_screen_t *battle)
 
 int init_battle_screen(game_t *game, battle_screen_t *battle)
 {
-    if (game->player->zone == 4) {
+    if (game->player->zone == 4)
         init_battle_boss(game, battle);
-    } else {
+    else
         init_battle_zone(game, battle);
-    }
     battle->select_choice = 0;
     init_battle_screen_bg(game, battle);
     battle->music = init_sound("assets/music/monster_battle.ogg");
@@ -79,7 +78,6 @@ int init_battle_screen(game_t *game, battle_screen_t *battle)
     battle->attacking = 0;
     battle->dialog = 0;
     battle->particle_system = 0;
-    //init_spell_gui(game, battle);
     play_sound(battle->music, 60);
     sfView_setCenter(game->camera, (sfVector2f){800, 400});
     set_sound_loop(battle->music, 1);
