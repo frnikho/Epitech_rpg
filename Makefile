@@ -87,11 +87,11 @@ SRC						=					$(PATH_MAIN)/main.c																\
 											$(PATH_MAIN)/game/collision/interaction_boxes.c									\
 											$(PATH_MAIN)/game/collision/player_collisions.c
 
-SCENE					=					$(PATH_SCENE)/intro/intro_screen.c												\
-											$(PATH_SCENE)/intro/init_intro_screen.c 										\
-											$(PATH_SCENE)/intro/input_intro_screen.c										\
-											$(PATH_SCENE)/intro/render_intro_screen.c										\
-											$(PATH_SCENE)/intro/update_intro_screen.c										\
+SCENE					=					$(PATH_SCENE)/end/end_screen.c												\
+											$(PATH_SCENE)/end/init_end_screen.c 										\
+											$(PATH_SCENE)/end/input_end_screen.c										\
+											$(PATH_SCENE)/end/render_end_screen.c										\
+											$(PATH_SCENE)/end/update_end_screen.c										\
 											$(PATH_SCENE)/main_menu/init_main_menu.c										\
 											$(PATH_SCENE)/main_menu/input_main_menu.c										\
 											$(PATH_SCENE)/main_menu/render_main_menu.c										\

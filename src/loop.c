@@ -8,14 +8,14 @@
 #include <game.h>
 #include "scene/main_menu.h"
 #include "scene/settings.h"
-#include "scene/intro_screen.h"
+#include "scene/end_screen.h"
 #include "scene/battle.h"
 #include "scene/overworld.h"
 
 int loop(game_t *game)
 {
     void (*game_state[])(game_t *game, long int delta) =
-    {intro_screen, main_menu, battle_screen, settings_screen, overworld};
+    {end_screen, main_menu, battle_screen, settings_screen, overworld};
 
     sfClock_restart(game->clock);
     while (sfRenderWindow_isOpen(game->window)) {

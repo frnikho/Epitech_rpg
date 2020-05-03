@@ -110,7 +110,6 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
         b->particle_system = create_particle_system(500, (sfVector2f){800, 400}, 30, 10);
         particle_system_setsize(b->particle_system, (sfVector2f){2, 2});
     }
-    
     if (b->dialog->is_finished && code == 0)
         return check_level(g, b, ((int*[]){&code, &tmp_delta, &xp, &gold}));
     tmp_delta += delta;
