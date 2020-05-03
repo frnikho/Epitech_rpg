@@ -28,8 +28,6 @@ int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
     if (is_dead && b->fade_out->is_finish) {
         g->current_state = OVERWORLD;
         g->code = RESET_CODE;
-        g->player->health = g->player->stats->hp;
-        g->player->mp = g->player->stats->mp;
         is_dead = 0;
         dispose_battle_screen(g, b);
         g->player->fight = 0;
