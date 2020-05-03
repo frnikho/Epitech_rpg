@@ -33,7 +33,7 @@ typedef struct overworld_s {
 void overworld(game_t *game, long int delta);
 void destroy_overworld(game_t *game, overworld_t *overworld);
 int init_overworld(game_t *game, overworld_t *overworld);
-int input_overworld(game_t *game, overworld_t *overworld);
+int input_overworld(game_t *game, overworld_t *overworld, long int delta);
 int update_overworld(game_t *game, overworld_t *overworld, long int delta);
 int render_overworld(game_t *game, overworld_t *overworld, long int delta);
 int init_overworld_map(overworld_t *overworld);

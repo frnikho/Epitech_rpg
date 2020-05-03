@@ -46,7 +46,7 @@ static void update(game_t *game, overworld_t *overworld, long int delta)
         }
         if (delta_i < 1000)
             continue;
-        input_overworld(game, overworld);
+        input_overworld(game, overworld, delta);
         delta_i = 0;
     }
     if (game->current_state != OVERWORLD)
