@@ -12,6 +12,7 @@ Once you have cloned the project, make a ```make``` in the console at the root o
 
 Or you can use ```make ; ./my_rpg```.
 
+if you need more information you can see
 ## Contributing
 Pull requests are welcome but there are low chances for the project to be updated.
 
