@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** str_cat.c
 ** File description:
-** strcat function
+** str_cat function
 */
 
 #include "lib/utils/string.h"
