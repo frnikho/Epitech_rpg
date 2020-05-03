@@ -10,20 +10,9 @@
 
 static htp_scene_t *init(game_t *game)
 {
-    game->code = 0;
     htp_scene_t *htp = malloc(sizeof(htp_scene_t));
     init_htp_screen(game, htp);
     return (htp);
-}
-
-void destroy_how_to_play(game_t *game, htp_scene_t *htp)
-{
-    htp->delta = 0;
-    dispose_text(htp->text);
-    dispose_sprite(htp->cursor);
-    dispose_sprite(htp->box);
-    dispose_sprite(htp->bg);
-    free(htp);
 }
 
 static void update_htp(game_t *game, htp_scene_t *screen_htp, long int delta)
@@ -31,7 +20,6 @@ static void update_htp(game_t *game, htp_scene_t *screen_htp, long int delta)
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             sfRenderWindow_close(game->window);
-            destroy_how_to_play(game, screen_htp);
             return;
         }
         input_htp_screen(game, screen_htp);
