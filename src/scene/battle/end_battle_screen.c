@@ -48,15 +48,6 @@ static void init_end_dialog(game_t *g, battle_screen_t *b, int *gold, int *xp)
     g->player->xp += (*xp);
 }
 
-static int check_monsters_is_alive(game_t *game, battle_screen_t *b)
-{
-    for (int i = 0; b->monster[i] != 0; i++) {
-        if (!b->monster || b->monster[i]->is_alive)
-            return (1);
-    }
-    return (0);
-}
-
 static int check_level(game_t *g, battle_screen_t *b, int **var)
 {
     int *stats = check_player_levelup(g->player);
@@ -78,17 +69,12 @@ static int check_level(game_t *g, battle_screen_t *b, int **var)
     }
 }
 
-void print_point(sfRenderWindow *window, sfVector2f point)
+static void end_battle_setup(game_t *g, battle_screen_t *b, int *xp, int *gold)
 {
-    sfCircleShape *circle = sfCircleShape_create();
-    int radius = 20;
-
-    sfCircleShape_setFillColor(circle, sfColor_fromRGBA(255, 0, 0, 255));
-    sfCircleShape_setPosition(circle, (sfVector2f){point.x-(radius/2), \
-        point.y-(radius/2)});
-    sfCircleShape_setRadius(circle, radius);
-    sfRenderWindow_drawCircleShape(window, circle, NULL);
-    sfCircleShape_destroy(circle);
+    init_end_dialog(g, b, gold, xp);
+    sfVector2f pos = (sfVector2f){800, 400};
+    b->particle_system = create_particle_system(500, pos, 30, 10);
+    particle_system_setsize(b->particle_system, (sfVector2f){2, 2});
 }
 
 int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
@@ -97,6 +83,7 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
     static int code = 0;
     static int xp = 0;
     static int gold = 0;
+
     if (check_monsters_is_alive(g, b))
         return (1);
     if (tmp_delta == 0) {
@@ -105,12 +92,8 @@ int end_battle_screen(game_t *g, battle_screen_t *b, long int delta)
             gold += b->monster[i]->gold;
         }
     }
-    if (tmp_delta == 0) {
-        init_end_dialog(g, b, &gold, &xp);
-        sfVector2f pos = (sfVector2f){800, 400};
-        b->particle_system = create_particle_system(500, pos, 30, 10);
-        particle_system_setsize(b->particle_system, (sfVector2f){2, 2});
-    }
+    if (tmp_delta == 0)
+        end_battle_setup(g, b, &xp, &gold);
     if (b->dialog->is_finished && code == 0)
         return check_level(g, b, ((int*[]){&code, &tmp_delta, &xp, &gold}));
     tmp_delta += delta;

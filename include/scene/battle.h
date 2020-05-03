@@ -74,4 +74,8 @@ int try_run_away(game_t *game, battle_screen_t *battle);
 void tension(game_t *game, battle_screen_t *battle, int *streak);
 int add_tension(game_t *game, battle_screen_t *battle, int streak);
 int check_player_dead(game_t *g, battle_screen_t *b, long int delta);
+void check_attack_monster(game_t *g, battle_screen_t *b, int selected);
+void check_attack_player(game_t *g, battle_screen_t *b, int selected);
+int check_monsters_is_alive(game_t *game, battle_screen_t *b);
+
 #endif

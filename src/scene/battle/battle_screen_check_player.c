@@ -8,20 +8,28 @@
 #include "lib/utils/string.h"
 #include "scene/battle.h"
 
-int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
+static int trigger_death(int is_dead, game_t *g, battle_screen_t *b)
 {
-    static int is_dead = 0;
     if (!is_dead && g->player->health <= 0) {
         is_dead = 1;
-        char **dialog = str_split("Vous n'avez plus assez de point de vie.", '&');
+        char **dialog = \
+        str_split("Vous n'avez plus assez de point de vie.", '&');
         b->dialog = create_dialog(dialog, 1, (sfVector2f)GUI_POS, 1);
         set_dialog_active(b->dialog, 1);
         stop_sound(b->music);
         b->music = init_sound("assets/sound/dead.ogg");
         play_sound(b->music, 50);
-        b->fade_out = init_fade((sfVector2f){1600*10, 800*10}, sfBlack, 1, FADE_OUT);
+        b->fade_out = \
+        init_fade((sfVector2f){1600*10, 800*10}, sfBlack, 1, FADE_OUT);
         set_fade_active(b->fade_out);
     }
+    return (is_dead);
+}
+
+int check_player_dead(game_t *g, battle_screen_t *b, long int delta)
+{
+    static int is_dead = 0;
+    is_dead = trigger_death(is_dead, g, b);
     if (is_dead && b->dialog && b->dialog->is_finished) {
         update_fade(b->fade_out, delta);
     }
