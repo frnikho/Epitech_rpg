@@ -41,13 +41,19 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
 
 static void update(game_t *game, battle_screen_t *battle, long int delta)
 {
+    static int delta_i = 0;
+
+    delta_i += delta;
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             sfRenderWindow_close(game->window);
             dispose_battle_screen(game, battle);
             return;
         }
+        if (delta_i < 1000)
+            continue;
         input_battle_screen(game, battle);
+        delta_i = 0;
     }
     update_battle_screen(game, battle, delta);
     render_battle_screen(game, battle, delta);
