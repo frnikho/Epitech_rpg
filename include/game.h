@@ -46,6 +46,7 @@ typedef struct game_s {
     config_t config;
     player_t *player;
     int code;
+    int restart;
 } game_t;
 
 game_t *init_game(sfVector2f win_size, char *title);

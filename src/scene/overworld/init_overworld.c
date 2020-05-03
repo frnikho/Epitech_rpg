@@ -172,9 +172,9 @@ int init_overworld(game_t *game, overworld_t *world)
     int fd = open_file("content/stats.json");
     char *content = read_file(fd, "content/stats.json");
     int code = get_nbr(get_key_data(content, "code"));
-    world->current_map = 1;
+    world->current_map = 0;
     init_world_map(game, world);
-    world->state = create_state(100, game, 0);
+    world->state = create_state(code, game, 0);
     world->pause = create_pause(game->window, game->camera);
     game->player->in_teleportation = 0;
     return (0);

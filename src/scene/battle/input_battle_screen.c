@@ -25,7 +25,7 @@ int input_battle_screen(game_t *game, battle_screen_t *battle)
         update_dialog_line(battle->dialog);
     }
     if (game->player->health <= 0)
-        return;
+        return (0);
     if (battle->attack_gui->select_index == SELECT_ATTACK \
 && battle->attack_gui->is_selected) {
         battle->select_gui->is_active = 1;
