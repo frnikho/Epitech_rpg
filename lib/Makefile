@@ -31,8 +31,7 @@ COMPONENTS				=					$(PATH_COMPONENTS)/camera/camera_drag.c										\
 											$(PATH_COMPONENTS)/sound/sound.c											\
 											$(PATH_COMPONENTS)/sound/sound_cmd.c										\
 											$(PATH_COMPONENTS)/music/music.c											\
-											$(PATH_COMPONENTS)/pad/pad.c												\
-
+											$(PATH_COMPONENTS)/pad/pad.c
 
 EFFECTS					=					$(PATH_EFFECTS)/bump/bump.c													\
 											$(PATH_EFFECTS)/bump/draw_bump.c											\
@@ -61,14 +60,13 @@ UTILS					=					$(PATH_UTILS)/string/str_split.c											\
 											$(PATH_UTILS)/json_parser/parser.c											\
 											$(PATH_UTILS)/json_writer/json_writer.c										\
 											$(PATH_UTILS)/file/open_file.c												\
-											$(PATH_UTILS)/file/read_file.c												\
-
+											$(PATH_UTILS)/file/read_file.c
 
 OBJ						=					$(COMPONENTS:%.c=%.o) $(EFFECTS:%.c=%.o) $(UTILS:%.c=%.o)
 
 LIB						=					-lm -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
-CFLAGS					=					-I ../include/ $(LIB) -g
+CFLAGS					=					-I ../include/ $(LIB)
 
 all:										$(NAME)
 $(NAME):									$(OBJ)
