@@ -11,11 +11,12 @@
 #include "scene/end_screen.h"
 #include "scene/battle.h"
 #include "scene/overworld.h"
+#include "scene/how_to_play_scene.h"
 
 int loop(game_t *game)
 {
     void (*game_state[])(game_t *game, long int delta) =
-    {end_screen, main_menu, battle_screen, settings_screen, overworld};
+    {end_screen, main_menu, battle_screen, settings_screen, overworld, how_to_play};
 
     sfClock_restart(game->clock);
     while (sfRenderWindow_isOpen(game->window)) {
