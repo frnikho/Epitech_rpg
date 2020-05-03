@@ -12,10 +12,6 @@ void draw_state(sfView *camera, sfRenderWindow *window, state_t *state)
 {
     if (!state)
         return;
-    if (state->npcs) {
-        for (int i = 0; state->npcs[i] != 0; i++)
-            draw_npc(window, state->npcs[i]);
-    }
     if (state->fade_in)
         draw_fade(window, state->fade_in);
 

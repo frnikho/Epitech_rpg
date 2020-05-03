@@ -16,13 +16,10 @@ sfBlack, 1, FADE_IN);
     game->player->can_move = 0;
     if (state->npcs != 0)
         free(state->npcs);
-    state->npcs = malloc(sizeof(npc_t*) * 6);
+    state->npcs = malloc(sizeof(npc_t*) * 2);
     state->npcs[0] = create_npc("content/npc/musclor.json", \
 (sfVector2f){400, 300}, 1);
-    state->npcs[1] = create_npc("content/npc/sister.json", \
-(sfVector2f){600, 800}, 1);
-    state->npcs[2] = 0;
-    set_player_position(game->player, (sfVector2f) {});
+    state->npcs[1] = 0;
     set_player_position(game->player, (sfVector2f) {543, 300});
 }
 

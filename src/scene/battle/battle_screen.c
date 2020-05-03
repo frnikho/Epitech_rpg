@@ -22,8 +22,10 @@ void dispose_battle_screen(game_t *game, battle_screen_t *battle)
 {
     if (game->player->zone == 4 && !battle->monster[0]->is_alive)
         set_player_position(game->player, (sfVector2f){200, 100});
-    if (game->player->health <= 0)
+    if (game->player->health <= 0) {
         game->restart = 1;
+        game->player->in_teleportation = 1;
+    }
     dispose_sound(battle->music);
     battle->round.order_index = 0;
     game->player->fight = 0;
